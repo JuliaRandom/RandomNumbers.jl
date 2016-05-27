@@ -10,7 +10,7 @@ const default_multipliers = (0x8d, 0x321d, 0x2c9277b5, 0x5851f42d4c957f2d, 0x236
 
 # Rotate functions. TODO: this can be rewrite in assembly
 for uint_type in uint_types
-    @eval @inline function pcg_rotr(value::uint_type, rot::uint_type)
+    @eval @inline function pcg_rotr(value::$uint_type, rot::$uint_type)
         (tmp >> rot) | (tmp << ((-rot) & $(sizeof(uint_type) * 8 - 1)))
     end
 end
@@ -18,7 +18,7 @@ end
 # pcg_output_xsh_rs_XX_YY
 # XX is one of the UInt types except UInt8, and YY is half of XX.
 # Xorshift High, Random Shift.
-for (uint_type, return_type, p1, p2, p3) in zip(uint_types[2:end], uint_types[1:end-1]
+for (uint_type, return_type, p1, p2, p3) in zip(uint_types[2:end], uint_types[1:end-1],
     (7, 11, 22, 43), (14, 30, 61, 124), (3, 11, 22, 45))
     @eval @inline function pcg_xsh_rs_output(state::$uint_type)
         $return_type(((state >> $(uint_type(p1))) $ state) >> 
@@ -29,7 +29,7 @@ end
 # pcg_output_xsh_rr_XX_YY
 # XX is one of the UInt types except UInt8, and YY is half of XX.
 # Xorshift High, Random Rotation.
-for (uint_type, return_type, p1, p2, p3) in zip(uint_types[2:end], uint_types[1:end-1]
+for (uint_type, return_type, p1, p2, p3) in zip(uint_types[2:end], uint_types[1:end-1],
     (5, 10, 18, 29), (5, 12, 27, 58), (13, 28, 59, 122))
     @eval @inline function pcg_xsh_rr_output(state::$uint_type)
         pcg_rotr(
@@ -45,7 +45,7 @@ end
 # Insecure.
 for (uint_type, p1, p2, p3, p4) in zip(uint_types,
     (6, 13, 28, 59, 122), (2, 3, 4, 5, 6),
-    (217, 62169, 277803737, 12605985483714917081, 327738287884841127335028083622016905945)
+    (217, 62169, 277803737, 12605985483714917081, 327738287884841127335028083622016905945),
     (6, 11, 22, 43, 86))
     @eval @inline function pcg_rxs_m_xs_output(state::$uint_type)
         word = ((state >> ((state >> $(uint_type(p1))) + $(uint_type(p2)))) $ state) * $(uint_type(p3))
@@ -172,7 +172,7 @@ const pcg_state_types = (PCGStateOneseq, PCGStateMCG, PCGStateUnique, PCGStateSe
 # pcg_setseq_XX_xsh_rs_YY_random_r
 # XX is one of the UInt types except UInt8, and YY is half of XX.
 for state_type in pcg_state_types
-    for (uint_type, return_type) in zip(uint_types[2:end], uint_types[1:end-1])
+    for uint_type in uint_types[2:end]
         @eval @inline function pcg_xsh_rs_random(s::$state_type{$uint_type})
             old_state = s.state
             pcg_step(s)
