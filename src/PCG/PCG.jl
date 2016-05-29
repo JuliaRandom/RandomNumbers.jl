@@ -96,7 +96,7 @@ module PCG
     type PCGStateOneseq{T<:UIntTypes}
         state::T
         function PCGStateOneseq(init_state::T)
-            s = PCGStateOneseq(0)
+            s = new(0)
             pcg_step(s)
             s.state += init_state
             pcg_step(s)
@@ -117,7 +117,7 @@ module PCG
     # XX is one of the UInt types.
     type PCGStateMCG{T<:UIntTypes}
         state::T
-        PCGStateMCG(init_state::T) = PCGStateMCG(init_state | 1)
+        PCGStateMCG(init_state::T) = new(init_state | 1)
     end
 
     # pcg_mcg_XX_step_r
@@ -133,7 +133,7 @@ module PCG
     type PCGStateUnique{T<:UIntTypes}
         state::T
         function PCGStateUnique(init_state::T)
-            s = PCGStateUnique(0)
+            s = new(0)
             pcg_step(s)
             s.state += init_state
             pcg_step(s)
@@ -155,7 +155,7 @@ module PCG
         state::T
         inc::T
         function PCGStateSetseq(init_state::T, init_seq::T)
-            s = PCGStateSetseq(0, (init_seq << 1) | 1)
+            s = new(0, (init_seq << 1) | 1)
             pcg_step(s)
             s.state += init_state
             pcg_step(s)
@@ -179,8 +179,8 @@ module PCG
     # pcg_ZZZ_XX_METHOD_YY_random_r, pcg_ZZZ_XX_METHOD_YY_boundedrand_r
     # XX and YY is the data type.
     # ZZZ is the state type. METHOD is the method.
-    let random_list = include("random_list.jl")
-        for (state_type_t, uint_type, method, return_type) in random_list
+    let pcg_list = include("pcg_list.jl")
+        for (state_type_t, uint_type, method, return_type) in pcg_list
             state_type = Symbol("PCGState$state_type_t")
             @eval @inline function pcg_random(s::$state_type{$uint_type}, ::Type{$method})
                 old_state = s.state
