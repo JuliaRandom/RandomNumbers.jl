@@ -1,5 +1,5 @@
 module RNG
 
-# package code goes here
+    include("./PCG/PCG.jl")
 
 end # module
