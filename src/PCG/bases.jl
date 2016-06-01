@@ -18,8 +18,8 @@ end
 for (uint_type, return_type, p1, p2, p3) in zip(pcg_uints[2:end], pcg_uints[1:end-1],
     (7, 11, 22, 43), (14, 30, 61, 124), (3, 11, 22, 45))
     @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSH_RS})
-        $return_type(((state >> $(uint_type(p1))) $ state) >>
-        ((state >> $(uint_type(p2))) + $(uint_type(p3))))
+        (((state >> $(uint_type(p1))) $ state) >>
+        ((state >> $(uint_type(p2))) + $(uint_type(p3)))) % $return_type
     end
 end
 
@@ -30,8 +30,8 @@ for (uint_type, return_type, p1, p2, p3) in zip(pcg_uints[2:end], pcg_uints[1:en
     (5, 10, 18, 29), (5, 12, 27, 58), (13, 28, 59, 122))
     @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSH_RR})
         pcg_rotr(
-            $return_type(((state >> $(uint_type(p1))) $ state) >> $(uint_type(p2))),
-            $return_type(state >> $(uint_type(p3)))
+            (((state >> $(uint_type(p1))) $ state) >> $(uint_type(p2))) % $return_type,
+            (state >> $(uint_type(p3))) % $return_type
         )
     end
 end
@@ -57,7 +57,7 @@ for (uint_type, return_type, p1) in ((UInt64, UInt32, 59), (UInt128, UInt64, 122
     @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSL_RR})
         pcg_rotr(
             ((state >> $(sizeof(return_type) * 8)) $ state) % $return_type, # StateUIntTypehe high bits will become 0.
-            $return_type(state >> $p1)
+            (state >> $p1) % $return_type
         )
     end
 end
@@ -68,12 +68,12 @@ end
 # Insecure.
 for (uint_type, half_type, p1) in ((UInt64, UInt32, 59), (UInt128, UInt64, 122))
     @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSL_RR_RR})
-        rot1 = $half_type(state >> $p1)
-        high = $half_type(state >> $(sizeof(uint_type) * 4))
+        rot1 = (state >> $p1) % $half_type
+        high = (state >> $(sizeof(uint_type) * 4)) % $half_type
         low = state % $half_type
         xored = high $ low
         new_low = pcg_rotr(xored, rot1)
-        new_high = pcg_rotr(high, newlow $ $(sizeof(uint_type) * 4 - 1))
+        new_high = pcg_rotr(high, (new_low $ $(sizeof(uint_type) * 4 - 1)) % $half_type)
         ($uint_type(new_high) << $(sizeof(uint_type) * 4)) | new_low
     end
 end
@@ -137,7 +137,7 @@ end
 # XX is one of the UInt types.
 for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
     @eval @inline function pcg_step(s::PCGStateUnique{$uint_type})
-        s.state = s.state * $default_multiplier + $uint_type(UInt(rng_ptr) | 1)
+        s.state = s.state * $default_multiplier + (UInt(pointer_from_objref(s)) | 1) % $uint_type
     end
 end
 

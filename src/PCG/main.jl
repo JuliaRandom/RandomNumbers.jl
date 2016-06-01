@@ -1,6 +1,8 @@
+import RNG: AbstractRNG
 import Base.Random: srand, rand
 
-type PermutedCongruentialGenerator{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt} <: AbstractRNG
+type PermutedCongruentialGenerator{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt,
+        OutputUIntType<:PCGUInt} <: AbstractRNG{OutputUIntType}
     state::StateType
     function PermutedCongruentialGenerator()
         new()
@@ -27,13 +29,13 @@ function srand{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUIn
     pcg
 end
 
-function rand{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt}(
-        pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType})
-    pcg_random(pcg.state)
-end
-
 function rand_bounded{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt,
         OutputUIntType<:PCGUInt}(pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType},
         bound::OutputUIntType)
     pcg_boundedrand(pcg.state, bound)
+end
+
+@inline function rand{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt}(
+        pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType}, ::Type{OutputUIntType})
+    pcg_random(pcg.state)
 end
