@@ -1,5 +1,7 @@
 using RNG.PCG
 
+cd("PCG")
+mkpath("./actual")
 pcg_list = include("pcg_list.jl")
 
 numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
@@ -23,7 +25,7 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
         continue
     end
     outfile = open(string(
-        "actual/check-$(lowercase("$state_type_t"))-$(sizeof(uint_type) << 3)-",
+        "./actual/check-$(lowercase("$state_type_t"))-$(sizeof(uint_type) << 3)-",
         "$(replace(lowercase("$method_symbol"), "_", "-"))-$(sizeof(return_type) << 3).out"
     ), "w")
     redirect_stdout(outfile)
@@ -98,3 +100,4 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
 end
 
 @test success(`diff -x .gitignore -ru expected actual`)
+cd("..")
