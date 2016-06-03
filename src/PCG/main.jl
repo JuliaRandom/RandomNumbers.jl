@@ -39,3 +39,8 @@ end
         pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType}, ::Type{OutputUIntType})
     pcg_random(pcg.state)
 end
+
+function advance!{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt}(
+        pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType}, delta::StateUIntType)
+    pcg_advance!(pcg.state, delta)
+end

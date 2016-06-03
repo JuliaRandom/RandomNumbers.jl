@@ -13,7 +13,7 @@ module PCG
 
     export PCGUInt, PCGMethod
 
-    export rand_bounded
+    export rand_bounded, advance!
 
     const pcg_uints = (UInt8, UInt16, UInt32, UInt64, UInt128)
     typealias PCGUInt Union{pcg_uints...}

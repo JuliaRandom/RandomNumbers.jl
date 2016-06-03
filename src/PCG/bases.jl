@@ -1,3 +1,4 @@
+# This file contains the basic functions of PCG.
 
 
 const default_multipliers = (0x8d, 0x321d, 0x2c9277b5, 0x5851f42d4c957f2d, 0x2360ed051fc65da44385df649fccf645)
@@ -5,12 +6,29 @@ const default_multipliers = (0x8d, 0x321d, 0x2c9277b5, 0x5851f42d4c957f2d, 0x236
 
 # Shift and Rotate functions
 
-# Rotate functions. TODO: this can be rewrite in assembly
-for uint_type in pcg_uints
-    @eval @inline function pcg_rotr(value::$uint_type, rot::$uint_type)
-        (value >> rot) | (value << ((-rot) & $(sizeof(uint_type) * 8 - 1)))
-    end
+# Rotate functions.
+@inline function pcg_rotr{T<:PCGUInt}(value::T, rot::T)
+    s = sizeof(value) << 3
+    (value >> (rot % s)) | (value << (-rot % s))
 end
+
+
+# General advance functions.
+@inline function pcg_advance_lcg{T<:PCGUInt}(state::T, delta::T, cur_mult::T, cur_plus::T)
+    acc_mult = 1 % T
+    acc_plus = 0 % T
+    while delta > 0
+        if delta & 1 == 1
+            acc_mult *= cur_mult
+            acc_plus = acc_plus * cur_mult + cur_plus
+        end
+        cur_plus = (cur_mult + (1 % T)) * cur_plus
+        cur_mult *= cur_mult
+        delta = delta >> 1
+    end
+    acc_mult * state + acc_plus
+end
+
 
 # pcg_output_xsh_rs_XX_YY
 # XX is one of the UInt types except UInt8, and YY is half of XX.
@@ -46,7 +64,7 @@ for (uint_type, p1, p2, p3, p4) in zip(pcg_uints,
     (6, 11, 22, 43, 86))
     @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_RXS_M_XS})
         word = ((state >> ((state >> $(uint_type(p1))) + $(uint_type(p2)))) $ state) * $(uint_type(p3))
-        (word >> $(uint_type(p4))) ^ word
+        (word >> $(uint_type(p4))) $ word
     end
 end
 
@@ -73,8 +91,8 @@ for (uint_type, half_type, p1) in ((UInt64, UInt32, 59), (UInt128, UInt64, 122))
         low = state % $half_type
         xored = high $ low
         new_low = pcg_rotr(xored, rot1)
-        new_high = pcg_rotr(high, (new_low $ $(sizeof(uint_type) * 4 - 1)) % $half_type)
-        ($uint_type(new_high) << $(sizeof(uint_type) * 4)) | new_low
+        new_high = pcg_rotr(high, (new_low & $(sizeof(uint_type) * 4 - 1)) % $half_type)
+        ((new_high % $uint_type) << $(sizeof(uint_type) * 4)) | new_low
     end
 end
 
@@ -89,9 +107,9 @@ type PCGStateOneseq{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{S
     state::StateUIntType
     function PCGStateOneseq(init_state::StateUIntType)
         s = new(0)
-        pcg_step(s)
+        pcg_step!(s)
         s.state += init_state
-        pcg_step(s)
+        pcg_step!(s)
         s
     end
 end
@@ -100,8 +118,17 @@ end
 # XX is one of the UInt types.
 for (uint_type, default_multiplier, default_increment) in zip(pcg_uints, default_multipliers,
     (0x4d, 0xbb75, 0xac564b05, 0x14057b7ef767814f, 0x5851f42d4c957f2d14057b7ef767814f))
-    @eval @inline function pcg_step(s::PCGStateOneseq{$uint_type})
+    @eval @inline function pcg_step!(s::PCGStateOneseq{$uint_type})
         s.state = s.state * $default_multiplier + $default_increment
+    end
+end
+
+# pcg_oneseq_XX_advance_r
+# XX is one of the UInt types.
+for (uint_type, default_multiplier, default_increment) in zip(pcg_uints, default_multipliers,
+    (0x4d, 0xbb75, 0xac564b05, 0x14057b7ef767814f, 0x5851f42d4c957f2d14057b7ef767814f))
+    @eval @inline function pcg_advance!(s::PCGStateOneseq{$uint_type}, delta::$uint_type)
+        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier, $default_increment)
     end
 end
 
@@ -115,8 +142,16 @@ end
 # pcg_mcg_XX_step_r
 # XX is one of the UInt types.
 for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_step(s::PCGStateMCG{$uint_type})
+    @eval @inline function pcg_step!(s::PCGStateMCG{$uint_type})
         s.state = s.state * $default_multiplier
+    end
+end
+
+# pcg_mcg_XX_advance_r
+# XX is one of the UInt types.
+for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
+    @eval @inline function pcg_advance!(s::PCGStateMCG{$uint_type}, delta::$uint_type)
+        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier, $(0 % uint_type))
     end
 end
 
@@ -126,9 +161,9 @@ type PCGStateUnique{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{S
     state::StateUIntType
     function PCGStateUnique(init_state::StateUIntType)
         s = new(0)
-        pcg_step(s)
+        pcg_step!(s)
         s.state += init_state
-        pcg_step(s)
+        pcg_step!(s)
         s
     end
 end
@@ -136,8 +171,17 @@ end
 # pcg_unique_XX_step_r
 # XX is one of the UInt types.
 for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_step(s::PCGStateUnique{$uint_type})
+    @eval @inline function pcg_step!(s::PCGStateUnique{$uint_type})
         s.state = s.state * $default_multiplier + (UInt(pointer_from_objref(s)) | 1) % $uint_type
+    end
+end
+
+# pcg_unique_XX_advance_r
+# XX is one of the UInt types.
+for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
+    @eval @inline function pcg_advance!(s::PCGStateUnique{$uint_type}, delta::$uint_type)
+        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier,
+            (UInt(pointer_from_objref(s)) | 1) % $uint_type)
     end
 end
 
@@ -148,9 +192,9 @@ type PCGStateSetseq{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{S
     inc::StateUIntType
     function PCGStateSetseq(init_state::StateUIntType, init_seq::StateUIntType)
         s = new(0, (init_seq << 1) | 1)
-        pcg_step(s)
+        pcg_step!(s)
         s.state += init_state
-        pcg_step(s)
+        pcg_step!(s)
         s
     end
 end
@@ -158,8 +202,16 @@ end
 # pcg_setseq_XX_step_r
 # XX is one of the UInt types.
 for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_step(s::PCGStateSetseq{$uint_type})
+    @eval @inline function pcg_step!(s::PCGStateSetseq{$uint_type})
         s.state = s.state * $default_multiplier + s.inc
+    end
+end
+
+# pcg_setseq_XX_advance_r
+# XX is one of the UInt types.
+for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
+    @eval @inline function pcg_advance!(s::PCGStateSetseq{$uint_type}, delta::$uint_type)
+        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier, s.inc)
     end
 end
 
@@ -174,10 +226,17 @@ let pcg_list = include("pcg_list.jl")
     for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
         state_type = Symbol("PCGState$state_type_t")
         method = Val{method_symbol}
-        @eval @inline function pcg_random(s::$state_type{$uint_type, $method})
-            old_state = s.state
-            pcg_step(s)
-            pcg_output(old_state, $method);
+        if (uint_type != UInt128)
+            @eval @inline function pcg_random(s::$state_type{$uint_type, $method})
+                old_state = s.state
+                pcg_step!(s)
+                pcg_output(old_state, $method);
+            end
+        else
+            @eval @inline function pcg_random(s::$state_type{$uint_type, $method})
+                pcg_step!(s)
+                pcg_output(s.state, $method);
+            end
         end
 
         @eval @inline function pcg_boundedrand(s::$state_type{$uint_type, $method}, bound::$return_type)
