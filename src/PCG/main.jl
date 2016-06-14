@@ -14,7 +14,7 @@ end
     pcg_output(s.state, MethodType)
 end
 
-@inline function srand{StateType<:PCGUInt}(s::PCGStateSetseq{StateType},
+@inline function srand{StateType<:PCGUInt}(s::AbstractPCG{StateType},
         seed::Union{StateType, Tuple{StateType, StateType}})
     pcg_srand(s, seed...)
 end
