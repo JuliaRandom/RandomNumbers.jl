@@ -11,7 +11,7 @@ suit = ['h', 'c', 'd', 's'];
 for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
     state_type = eval(Symbol("PCGState$state_type_t"))
     method = Val{method_symbol}
-    r = state_type{uint_type, method, return_type}()
+    r = state_type(uint_type, method)
     if state_type_t == :Setseq
         srand(r, (42 % uint_type, 54 % uint_type))
     else
