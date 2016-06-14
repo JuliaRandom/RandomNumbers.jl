@@ -14,7 +14,7 @@ end
     pcg_output(s.state, MethodType)
 end
 
-@inline function srand{StateType<:PCGUInt}(s::AbstractPCG{StateType},
+@inline function srand{StateType<:PCGUInt}(s::PCGStateSetseq{StateType},
         seed::Union{StateType, Tuple{StateType, StateType}})
     pcg_srand(s, seed...)
 end
@@ -31,4 +31,28 @@ end
 
 @inline function advance!{StateType<:PCGUInt}(s::AbstractPCG{StateType}, delta::Integer)
     pcg_advance!(s, delta % StateType)
+end
+
+for (pcg_type_t, uint_type, method_symbol, return_type) in include("pcg_list.jl")
+    pcg_type = Symbol("PCGState$pcg_type_t")
+    method = Val{method_symbol}
+
+    @eval $pcg_type(state_type::Type{$uint_type}, method::Type{$method}) = 
+        $pcg_type{state_type, method, $return_type}()
+
+    if pcg_type_t != :Setseq
+        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type)
+            s = $pcg_type(state_type, method)
+            pcg_srand(s, init_state)
+            s
+        end
+    else
+        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type,
+                init_seq::$uint_type)
+            s = $pcg_type(state_type, method)
+            pcg_srand(s, init_state, init_seq)
+            s
+        end
+    end
+
 end
