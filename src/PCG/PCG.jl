@@ -2,18 +2,15 @@ __precompile__(true)
 
 module PCG
 
-    # RNG
-    export PermutedCongruentialGenerator
-
-    # PCG State
-    export PCGState, PCGStateMCG, PCGStateOneseq, PCGStateUnique, PCGStateSetseq
+    # PCG
+    export AbstractPCG, PCGStateMCG, PCGStateOneseq, PCGStateUnique, PCGStateSetseq
 
     # PCG Methods
     export PCG_XSH_RS, PCG_XSH_RR, PCG_RXS_M_XS, PCG_XSL_RR, PCG_XSL_RR_RR
 
     export PCGUInt, PCGMethod
 
-    export rand_bounded, advance!
+    export bounded_rand, advance!
 
     const pcg_uints = (UInt8, UInt16, UInt32, UInt64, UInt128)
     typealias PCGUInt Union{pcg_uints...}

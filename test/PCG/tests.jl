@@ -11,7 +11,7 @@ suit = ['h', 'c', 'd', 's'];
 for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
     state_type = eval(Symbol("PCGState$state_type_t"))
     method = Val{method_symbol}
-    r = PermutedCongruentialGenerator(state_type, method, uint_type)
+    r = state_type{uint_type, method, return_type}()
     if state_type_t == :Setseq
         srand(r, (42 % uint_type, 54 % uint_type))
     else
@@ -21,7 +21,7 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
     # Unique state won't produce the same sequence every time.
     if state_type_t == :Unique
         rand(r, return_type)
-        rand_bounded(r, 200701281 % return_type)
+        bounded_rand(r, 200701281 % return_type)
         continue
     end
     outfile = open(string(
@@ -67,19 +67,19 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
 
         @printf "  Coins: "
         for i in 1:65
-            @printf "%c" (rand_bounded(r, 2 % return_type) == 1 ? 'H' : 'T')
+            @printf "%c" (bounded_rand(r, 2 % return_type) == 1 ? 'H' : 'T')
         end
         @printf "\n"
 
         @printf "  Rolls:"
         for i in 1:33
-            @printf " %d" (UInt32(rand_bounded(r, 6 % return_type)) + 1);
+            @printf " %d" (UInt32(bounded_rand(r, 6 % return_type)) + 1);
         end
         @printf "\n"
 
         cards = collect(0:51)
         for i = 52:-1:2
-            chosen = rand_bounded(r, i % return_type)
+            chosen = bounded_rand(r, i % return_type)
             card = cards[chosen+1]
             cards[chosen+1] = cards[i]
             cards[i] = card

@@ -9,6 +9,6 @@ for (output_type, scale) in (
     (UInt128, 2.938735877055718769921841343056e-39)
 )
     @eval @inline function rand(rng::AbstractRNG{$output_type})
-        rand(rng, $output_type) * $scale
+        (rand(rng, $output_type)::$output_type * $scale)::Float64
     end
 end

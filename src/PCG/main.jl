@@ -1,46 +1,34 @@
-import RNG: AbstractRNG
-import Base.Random: srand, rand
+# Random and Bounded Random functions
+import Base.Random: rand, srand
 
-type PermutedCongruentialGenerator{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt,
-        OutputUIntType<:PCGUInt} <: AbstractRNG{OutputUIntType}
-    state::StateType
-    function PermutedCongruentialGenerator()
-        new()
+@inline function rand{StateType<:Union{pcg_uints[1:end-1]...}, MethodType<:PCGMethod, OutputType<:PCGUInt}(
+        s::AbstractPCG{StateType, MethodType, OutputType}, ::Type{OutputType})
+    old_state = s.state
+    pcg_step!(s)
+    pcg_output(old_state, MethodType)
+end
+
+@inline function rand{MethodType<:PCGMethod, OutputType<:PCGUInt}(
+        s::AbstractPCG{UInt128, MethodType, OutputType}, ::Type{OutputType})
+    pcg_step!(s)
+    pcg_output(s.state, MethodType)
+end
+
+@inline function srand{StateType<:PCGUInt}(s::AbstractPCG{StateType},
+        seed::Union{StateType, Tuple{StateType, StateType}})
+    pcg_srand(s, seed...)
+end
+
+@inline function bounded_rand{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt}(
+        s::AbstractPCG{StateType, MethodType, OutputType}, bound::OutputType)
+    threshold = (-bound) % bound
+    r = rand(s, OutputType)
+    while r < threshold
+        r = rand(s, OutputType)
     end
-end
-function PermutedCongruentialGenerator{T1<:PCGState, T2<:PCGMethod, T3<:PCGUInt}(
-    state_type::Type{T1}, method::Type{T2}, uint_type::Type{T3})
-
-    if !method_exists(pcg_random, (state_type{uint_type, method}, ))
-        error("Illegal combination of arguments.")
-    end
-    if method == PCG_RXS_M_XS || method == PCG_XSL_RR_RR
-        return_type = uint_type
-    else
-        return_type = pcg_uints[log2(sizeof(uint_type))]
-    end
-    PermutedCongruentialGenerator{state_type, method, uint_type, return_type}()
+    r % bound
 end
 
-function srand{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt}(
-        pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType},
-        seed::Union{StateUIntType, Tuple{StateUIntType, StateUIntType}})
-    pcg.state = StateType{StateUIntType, MethodType}(seed...)
-    pcg
-end
-
-function rand_bounded{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt,
-        OutputUIntType<:PCGUInt}(pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType},
-        bound::OutputUIntType)
-    pcg_boundedrand(pcg.state, bound)
-end
-
-@inline function rand{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt}(
-        pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType}, ::Type{OutputUIntType})
-    pcg_random(pcg.state)
-end
-
-function advance!{StateType<:PCGState, MethodType<:PCGMethod, StateUIntType<:PCGUInt, OutputUIntType<:PCGUInt}(
-        pcg::PermutedCongruentialGenerator{StateType, MethodType, StateUIntType, OutputUIntType}, delta::StateUIntType)
-    pcg_advance!(pcg.state, delta)
+@inline function advance!{StateType<:PCGUInt}(s::AbstractPCG{StateType}, delta::Integer)
+    pcg_advance!(s, delta % StateType)
 end

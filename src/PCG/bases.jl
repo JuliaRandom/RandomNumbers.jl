@@ -1,14 +1,47 @@
 # This file contains the basic functions of PCG.
+import RNG: AbstractRNG
 
+@inline default_multiplier(::Type{UInt8}) = 0x8d
+@inline default_multiplier(::Type{UInt16}) = 0x321d
+@inline default_multiplier(::Type{UInt32}) = 0x2c9277b5
+@inline default_multiplier(::Type{UInt64}) = 0x5851f42d4c957f2d
+@inline default_multiplier(::Type{UInt128}) = 0x2360ed051fc65da44385df649fccf645
 
-const default_multipliers = (0x8d, 0x321d, 0x2c9277b5, 0x5851f42d4c957f2d, 0x2360ed051fc65da44385df649fccf645)
+@inline default_increment(::Type{UInt8}) = 0x4d
+@inline default_increment(::Type{UInt16}) = 0xbb75
+@inline default_increment(::Type{UInt32}) = 0xac564b05
+@inline default_increment(::Type{UInt64}) = 0x14057b7ef767814f
+@inline default_increment(::Type{UInt128}) = 0x5851f42d4c957f2d14057b7ef767814f
+
+@inline mcg_multiplier(::Type{UInt8}) = 0xd9
+@inline mcg_multiplier(::Type{UInt16}) = 0xf2d9
+@inline mcg_multiplier(::Type{UInt32}) = 0x108ef2d9
+@inline mcg_multiplier(::Type{UInt64}) = 0xaef17502108ef2d9
+@inline mcg_multiplier(::Type{UInt128}) = 0xf69019274d7f699caef17502108ef2d9
+
+@inline mcg_unmultiplier(::Type{UInt8}) = 0x69
+@inline mcg_unmultiplier(::Type{UInt16}) = 0x6d69
+@inline mcg_unmultiplier(::Type{UInt32}) = 0xacb86d69
+@inline mcg_unmultiplier(::Type{UInt64}) = 0xd04ca582acb86d69
+@inline mcg_unmultiplier(::Type{UInt128}) = 0xc827645e182bc965d04ca582acb86d69
+
+@inline uint_index(::Type{UInt8}) = 1
+@inline uint_index(::Type{UInt16}) = 2
+@inline uint_index(::Type{UInt32}) = 3
+@inline uint_index(::Type{UInt64}) = 4
+@inline uint_index(::Type{UInt128}) = 5
+
+@inline half_width(::Type{UInt16}) = UInt8
+@inline half_width(::Type{UInt32}) = UInt16
+@inline half_width(::Type{UInt64}) = UInt32
+@inline half_width(::Type{UInt128}) = UInt64
 
 
 # Shift and Rotate functions
 
 # Rotate functions.
 @inline function pcg_rotr{T<:PCGUInt}(value::T, rot::T)
-    s = sizeof(value) << 3
+    s = sizeof(T) << 3
     (value >> (rot % s)) | (value << (-rot % s))
 end
 
@@ -30,222 +63,215 @@ end
 end
 
 
-# pcg_output_xsh_rs_XX_YY
-# XX is one of the UInt types except UInt8, and YY is half of XX.
+# output_xsh_rs
 # Xorshift High, Random Shift.
-for (uint_type, return_type, p1, p2, p3) in zip(pcg_uints[2:end], pcg_uints[1:end-1],
-    (7, 11, 22, 43), (14, 30, 61, 124), (3, 11, 22, 45))
-    @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSH_RS})
-        (((state >> $(uint_type(p1))) $ state) >>
-        ((state >> $(uint_type(p2))) + $(uint_type(p3)))) % $return_type
-    end
+# return half bits of T.
+@inline function pcg_output{T<:Union{pcg_uints[2:end]...}}(state::T, ::Type{PCG_XSH_RS})
+    return_bits = sizeof(T) << 2
+    bits = return_bits << 1
+    spare_bits = bits - return_bits
+    op_bits = spare_bits - 5 >= 64 ? 5 :
+              spare_bits - 4 >= 32 ? 4 :
+              spare_bits - 3 >= 16 ? 3 :
+              spare_bits - 2 >= 4  ? 2 :
+              spare_bits - 1 >= 1  ? 1 : 0
+    mask = (1 << op_bits) - 1
+    xshift = op_bits + (return_bits + mask) >> 1
+    rshift = op_bits != 0 ? (state >> (bits - op_bits)) & mask : 0 % T
+    state = state $ (state >> xshift)
+    (state >> (spare_bits - op_bits - mask + rshift)) % half_width(T)
 end
 
-# pcg_output_xsh_rr_XX_YY
-# XX is one of the UInt types except UInt8, and YY is half of XX.
+# output_xsh_rr
 # Xorshift High, Random Rotation.
-for (uint_type, return_type, p1, p2, p3) in zip(pcg_uints[2:end], pcg_uints[1:end-1],
-    (5, 10, 18, 29), (5, 12, 27, 58), (13, 28, 59, 122))
-    @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSH_RR})
-        pcg_rotr(
-            (((state >> $(uint_type(p1))) $ state) >> $(uint_type(p2))) % $return_type,
-            (state >> $(uint_type(p3))) % $return_type
-        )
-    end
+# return half bits of T.
+@inline function pcg_output{T<:Union{pcg_uints[2:end]...}}(state::T, ::Type{PCG_XSH_RR})
+    return_bits = sizeof(T) << 2
+    bits = return_bits << 1
+    spare_bits = bits - return_bits
+    op_bits = return_bits >= 128 ? 7 :
+              return_bits >=  64 ? 6 :
+              return_bits >=  32 ? 5 :
+              return_bits >=  16 ? 4 : 3
+    mask = (1 << op_bits) - 1
+    xshift = (op_bits + return_bits) >> 1
+    rot = (state >> (bits - op_bits)) & mask
+    state $= (state >> xshift)
+    result = (state >> (spare_bits - op_bits)) % half_width(T)
+    pcg_rotr(result, rot % half_width(T))
 end
 
-# pcg_output_rxs_m_xs_XX_XX
-# XX is one of the UInt types.
+# output_rxs_m_xs
 # Random Xorshift, Multiplication, Xorshift.
+# return the same bits as T.
 # Insecure.
-for (uint_type, p1, p2, p3, p4) in zip(pcg_uints,
-    (6, 13, 28, 59, 122), (2, 3, 4, 5, 6),
-    (217, 62169, 277803737, 12605985483714917081, 327738287884841127335028083622016905945),
-    (6, 11, 22, 43, 86))
-    @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_RXS_M_XS})
-        word = ((state >> ((state >> $(uint_type(p1))) + $(uint_type(p2)))) $ state) * $(uint_type(p3))
-        (word >> $(uint_type(p4))) $ word
-    end
+@inline function pcg_output{T<:PCGUInt}(state::T, ::Type{PCG_RXS_M_XS})
+    bits = return_bits = sizeof(T) << 3
+    op_bits = return_bits >= 128 ? 6 :
+              return_bits >=  64 ? 5 :
+              return_bits >=  32 ? 4 :
+              return_bits >=  16 ? 3 : 2
+    mask = (1 << op_bits) - 1
+    rshift = (state >> (bits - op_bits)) & mask
+    state $= state >> (op_bits + rshift)
+    state *= mcg_multiplier(T)
+    state $ (state >> ((return_bits << 1 + 2) ÷ 3))
 end
 
-# pcg_output_xsl_rr_XX_YY
-# XX is 64 or 128, and YY is half of XX.
+# output_xsl_rr
 # Xorshift Low, Random Rotation.
-for (uint_type, return_type, p1) in ((UInt64, UInt32, 59), (UInt128, UInt64, 122))
-    @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSL_RR})
-        pcg_rotr(
-            ((state >> $(sizeof(return_type) * 8)) $ state) % $return_type, # StateUIntTypehe high bits will become 0.
-            (state >> $p1) % $return_type
-        )
-    end
+# return half bits of T.
+@inline function pcg_output{T<:Union{UInt64, UInt128}}(state::T, ::Type{PCG_XSL_RR})
+    return_bits = sizeof(T) << 2
+    bits = return_bits << 1
+    spare_bits = bits - return_bits
+    op_bits = return_bits >= 128 ? 7 :
+              return_bits >=  64 ? 6 :
+              return_bits >=  32 ? 5 :
+              return_bits >=  16 ? 4 : 3
+    mask = (1 << op_bits) - 1
+    xshift = (spare_bits + return_bits) >> 1
+    rot = (state >> (bits - op_bits)) & mask
+    pcg_rotr((state $ (state >> xshift)) % half_width(T), rot % half_width(T))
 end
 
-# pcg_output_xsl_rr_rr_XX_XX
-# XX is 64 or 128.
+# output_xsl_rr_rr
 # Xorshift Low, Random Rotation, Random Rotation.
+# return the same bits as T.
 # Insecure.
-for (uint_type, half_type, p1) in ((UInt64, UInt32, 59), (UInt128, UInt64, 122))
-    @eval @inline function pcg_output(state::$uint_type, ::Type{PCG_XSL_RR_RR})
-        rot1 = (state >> $p1) % $half_type
-        high = (state >> $(sizeof(uint_type) * 4)) % $half_type
-        low = state % $half_type
-        xored = high $ low
-        new_low = pcg_rotr(xored, rot1)
-        new_high = pcg_rotr(high, (new_low & $(sizeof(uint_type) * 4 - 1)) % $half_type)
-        ((new_high % $uint_type) << $(sizeof(uint_type) * 4)) | new_low
-    end
+@inline function pcg_output{T<:Union{UInt64, UInt128}}(state::T, ::Type{PCG_XSL_RR_RR})
+    half_bits = sizeof(T) << 2
+    bits = half_bits << 1
+    spare_bits = bits - half_bits
+    op_bits = half_bits >= 128 ? 7 :
+              half_bits >=  64 ? 6 :
+              half_bits >=  32 ? 5 :
+              half_bits >=  16 ? 4 : 3
+    mask = (1 << op_bits) - 1
+    xshift = (spare_bits + half_bits) >> 1
+    rot = (state >> (bits - op_bits)) & mask
+    state $= state >> xshift
+    low_bits = state % half_width(T)
+    low_bits = pcg_rotr(low_bits, rot % half_width(T))
+    high_bits = (state >> spare_bits) % half_width(T)
+    rot2 = low_bits & mask
+    high_bits = pcg_rotr(high_bits, rot2 % half_width(T))
+    ((high_bits % T) << spare_bits) $ (low_bits % T)
 end
 
 
 # PCGState types, SRandom and Step functions.
-
-abstract PCGState{StateUIntType<:PCGUInt, MethodType<:PCGMethod}
+abstract AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+    AbstractRNG{OutputType}
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateOneseq{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{StateUIntType, MethodType}
-    state::StateUIntType
-    function PCGStateOneseq(init_state::StateUIntType)
-        s = new(0)
-        pcg_step!(s)
-        s.state += init_state
-        pcg_step!(s)
-        s
-    end
+type PCGStateOneseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+        AbstractPCG{StateType, MethodType, OutputType}
+    state::StateType
+    PCGStateOneseq() = new()
+end
+
+@inline function pcg_srand{T<:PCGUInt}(s::PCGStateOneseq{T}, init_state::T)
+    s.state = 0 % T
+    pcg_step!(s)
+    s.state += init_state
+    pcg_step!(s)
+    s
 end
 
 # pcg_oneseq_XX_step_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier, default_increment) in zip(pcg_uints, default_multipliers,
-    (0x4d, 0xbb75, 0xac564b05, 0x14057b7ef767814f, 0x5851f42d4c957f2d14057b7ef767814f))
-    @eval @inline function pcg_step!(s::PCGStateOneseq{$uint_type})
-        s.state = s.state * $default_multiplier + $default_increment
-    end
+@inline function pcg_step!{T<:PCGUInt}(s::PCGStateOneseq{T})
+    s.state = s.state * default_multiplier(T) + default_increment(T)
 end
 
 # pcg_oneseq_XX_advance_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier, default_increment) in zip(pcg_uints, default_multipliers,
-    (0x4d, 0xbb75, 0xac564b05, 0x14057b7ef767814f, 0x5851f42d4c957f2d14057b7ef767814f))
-    @eval @inline function pcg_advance!(s::PCGStateOneseq{$uint_type}, delta::$uint_type)
-        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier, $default_increment)
-    end
+@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateOneseq{T}, delta::T)
+    s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), default_increment(T))
 end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateMCG{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{StateUIntType, MethodType}
-    state::StateUIntType
-    PCGStateMCG(init_state::StateUIntType) = new(init_state | 1)
+type PCGStateMCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+        AbstractPCG{StateType, MethodType, OutputType}
+    state::StateType
+    PCGStateMCG() = new()
+end
+
+@inline function pcg_srand{T<:PCGUInt}(s::PCGStateMCG{T}, init_state::T)
+    s.state = init_state | 1
+    s
 end
 
 # pcg_mcg_XX_step_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_step!(s::PCGStateMCG{$uint_type})
-        s.state = s.state * $default_multiplier
-    end
+@inline function pcg_step!{T<:PCGUInt}(s::PCGStateMCG{T})
+    s.state = s.state * default_multiplier(T)
 end
 
 # pcg_mcg_XX_advance_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_advance!(s::PCGStateMCG{$uint_type}, delta::$uint_type)
-        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier, $(0 % uint_type))
-    end
+@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateMCG{T}, delta::T)
+    s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), 0 % T)
 end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateUnique{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{StateUIntType, MethodType}
-    state::StateUIntType
-    function PCGStateUnique(init_state::StateUIntType)
-        s = new(0)
-        pcg_step!(s)
-        s.state += init_state
-        pcg_step!(s)
-        s
-    end
+type PCGStateUnique{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+        AbstractPCG{StateType, MethodType, OutputType}
+    state::StateType
+    PCGStateUnique() = new()
+end
+
+@inline function pcg_srand{T<:PCGUInt}(s::PCGStateUnique{T}, init_state::T)
+    s.state = 0 % T
+    pcg_step!(s)
+    s.state += init_state
+    pcg_step!(s)
+    s
 end
 
 # pcg_unique_XX_step_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_step!(s::PCGStateUnique{$uint_type})
-        s.state = s.state * $default_multiplier + (UInt(pointer_from_objref(s)) | 1) % $uint_type
-    end
+@inline function pcg_step!{T<:PCGUInt}(s::PCGStateUnique{T})
+    s.state = s.state * default_multiplier(T) + (UInt(pointer_from_objref(s)) | 1) % T
 end
 
 # pcg_unique_XX_advance_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_advance!(s::PCGStateUnique{$uint_type}, delta::$uint_type)
-        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier,
-            (UInt(pointer_from_objref(s)) | 1) % $uint_type)
-    end
+@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateUnique{T}, delta::T)
+    s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T),
+        (UInt(pointer_from_objref(s)) | 1) % T)
 end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateSetseq{StateUIntType<:PCGUInt, MethodType<:PCGMethod} <: PCGState{StateUIntType, MethodType}
-    state::StateUIntType
-    inc::StateUIntType
-    function PCGStateSetseq(init_state::StateUIntType, init_seq::StateUIntType)
-        s = new(0, (init_seq << 1) | 1)
-        pcg_step!(s)
-        s.state += init_state
-        pcg_step!(s)
-        s
-    end
+type PCGStateSetseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+        AbstractPCG{StateType, MethodType, OutputType}
+    state::StateType
+    inc::StateType
+    PCGStateSetseq() = new()
+end
+
+@inline function pcg_srand{T<:PCGUInt}(s::PCGStateSetseq{T}, init_state::T, init_seq::T)
+    s.state = 0
+    s.inc = (init_seq << 1) | 1
+    pcg_step!(s)
+    s.state += init_state
+    pcg_step!(s)
+    s
 end
 
 # pcg_setseq_XX_step_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_step!(s::PCGStateSetseq{$uint_type})
-        s.state = s.state * $default_multiplier + s.inc
-    end
+@inline function pcg_step!{T<:PCGUInt}(s::PCGStateSetseq{T})
+    s.state = s.state * default_multiplier(T) + s.inc
 end
 
 # pcg_setseq_XX_advance_r
 # XX is one of the UInt types.
-for (uint_type, default_multiplier) in zip(pcg_uints, default_multipliers)
-    @eval @inline function pcg_advance!(s::PCGStateSetseq{$uint_type}, delta::$uint_type)
-        s.state = pcg_advance_lcg(s.state, delta, $default_multiplier, s.inc)
-    end
-end
-
-const pcg_state_types = (PCGStateOneseq, PCGStateMCG, PCGStateUnique, PCGStateSetseq)
-
-# Random and Bounded Random functions
-
-# pcg_ZZZ_XX_METHOD_YY_random_r, pcg_ZZZ_XX_METHOD_YY_boundedrand_r
-# XX and YY is the data type.
-# ZZZ is the state type. METHOD is the method.
-let pcg_list = include("pcg_list.jl")
-    for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
-        state_type = Symbol("PCGState$state_type_t")
-        method = Val{method_symbol}
-        if (uint_type != UInt128)
-            @eval @inline function pcg_random(s::$state_type{$uint_type, $method})
-                old_state = s.state
-                pcg_step!(s)
-                pcg_output(old_state, $method);
-            end
-        else
-            @eval @inline function pcg_random(s::$state_type{$uint_type, $method})
-                pcg_step!(s)
-                pcg_output(s.state, $method);
-            end
-        end
-
-        @eval @inline function pcg_boundedrand(s::$state_type{$uint_type, $method}, bound::$return_type)
-            threshold = (-bound) % bound
-            r = pcg_random(s)
-            while r < threshold
-                r = pcg_random(s)
-            end
-            r % bound
-        end
-    end
+@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateSetseq{T}, delta::T)
+    s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), s.inc)
 end
