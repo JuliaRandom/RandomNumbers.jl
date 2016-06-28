@@ -102,5 +102,5 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
     close(outfile)
 end
 
-@test success(`diff -x .gitignore -ru expected actual`)
+@test success(`diff -ru expected actual`)
 cd(pwd_)
