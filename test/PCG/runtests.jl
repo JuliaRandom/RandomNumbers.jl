@@ -1,6 +1,7 @@
 using RNG.PCG
 
-cd("PCG")
+pwd_ = pwd()
+cd(joinpath(Pkg.dir("RNG"), "test/PCG"))
 mkpath("./actual")
 pcg_list = include("pcg_list.jl")
 
@@ -11,11 +12,13 @@ suit = ['h', 'c', 'd', 's'];
 for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
     state_type = eval(Symbol("PCGState$state_type_t"))
     method = Val{method_symbol}
-    r = state_type(uint_type, method)
+
+    state_type(uint_type, method)
+
     if state_type_t == :Setseq
-        srand(r, (42 % uint_type, 54 % uint_type))
+        r = state_type(uint_type, method, 42 % uint_type, 54 % uint_type)
     else
-        srand(r, 42 % uint_type)
+        r = state_type(uint_type, method, 42 % uint_type)
     end
 
     # Unique state won't produce the same sequence every time.
@@ -100,4 +103,4 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
 end
 
 @test success(`diff -x .gitignore -ru expected actual`)
-cd("..")
+cd(pwd_)

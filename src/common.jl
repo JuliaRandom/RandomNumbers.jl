@@ -8,7 +8,7 @@ for (output_type, scale) in (
     (UInt64, 5.421010862427522170037264004350e-20),
     (UInt128, 2.938735877055718769921841343056e-39)
 )
-    @eval @inline function rand(rng::AbstractRNG{$output_type})
+    @eval @inline function rand(rng::AbstractRNG{$output_type}, ::Type{Float64}=Float64)
         (rand(rng, $output_type)::$output_type * $scale)::Float64
     end
 end

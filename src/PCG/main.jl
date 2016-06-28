@@ -1,3 +1,5 @@
+import RNG: gen_seed
+
 # Random and Bounded Random functions
 import Base.Random: rand, srand
 
@@ -14,10 +16,9 @@ end
     pcg_output(s.state, MethodType)
 end
 
-@inline function srand{StateType<:PCGUInt}(s::AbstractPCG{StateType},
-        seed::Union{StateType, Tuple{StateType, StateType}})
-    pcg_srand(s, seed...)
-end
+# TODO: `srand` should support more types of seed.
+@inline srand{StateType<:PCGUInt}(s::AbstractPCG{StateType}, seed::StateType=gen_seed(StateType)) = pcg_srand(s, seed)
+@inline srand{StateType<:PCGUInt}(s::PCGStateSetseq{StateType}, seed::Tuple{StateType, StateType}=gen_seed(StateType, 2)) = pcg_srand(s, seed...)
 
 @inline function bounded_rand{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt}(
         s::AbstractPCG{StateType, MethodType, OutputType}, bound::OutputType)
@@ -33,26 +34,24 @@ end
     pcg_advance!(s, delta % StateType)
 end
 
+
+# Constructors.
 for (pcg_type_t, uint_type, method_symbol, return_type) in include("pcg_list.jl")
     pcg_type = Symbol("PCGState$pcg_type_t")
     method = Val{method_symbol}
 
-    @eval $pcg_type(state_type::Type{$uint_type}, method::Type{$method}) = 
-        $pcg_type{state_type, method, $return_type}()
-
     if pcg_type_t != :Setseq
-        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type)
-            s = $pcg_type(state_type, method)
-            pcg_srand(s, init_state)
+        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type=gen_seed($uint_type))
+            s = $pcg_type{state_type, method, $return_type}()
+            srand(s, init_state)
             s
         end
     else
-        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type,
-                init_seq::$uint_type)
-            s = $pcg_type(state_type, method)
-            pcg_srand(s, init_state, init_seq)
+        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type=gen_seed($uint_type),
+                init_seq::$uint_type=gen_seed($uint_type))
+            s = $pcg_type{state_type, method, $return_type}()
+            srand(s, (init_state, init_seq))
             s
         end
     end
-
 end
