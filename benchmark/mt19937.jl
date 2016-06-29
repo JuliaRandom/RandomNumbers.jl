@@ -4,6 +4,6 @@ include("common.jl")
 
 using RNG.MersenneTwisters
 
-r = MT19937()
+r = MT19937(123)
 
 test_all(r, 100_000_000)

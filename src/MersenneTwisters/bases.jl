@@ -12,7 +12,7 @@ type MT19937 <: MersenneTwister{UInt32}
     mt::Vector{UInt32}
     mti::Int
 end
-MT19937(seed::UInt32=gen_seed(UInt32)) = mt_set!(MT19937(Vector{UInt32}(N), 1), seed)
+MT19937(seed::Integer=gen_seed(UInt32)) = srand(MT19937(Vector{UInt32}(N), 1), seed)
 
 @inline function mt_set!(r::MT19937, s::UInt32)
     r.mt[1] = s

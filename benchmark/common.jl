@@ -18,6 +18,7 @@ function test_all{T<:Number}(rng::RNG.AbstractRNG{T}, n=10_000_000)
     redirect_stdout(fo)
     println(TEST_NAME)
     speed_test(rng, n)
+    flush(fo)
     bigcrush(rng)
     close(fo)
 end

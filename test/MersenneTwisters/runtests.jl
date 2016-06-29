@@ -1,3 +1,4 @@
+import Base.Test: @test
 using RNG.MersenneTwisters
 
 pwd_ = pwd()
@@ -11,8 +12,7 @@ for mt_name in (:MT19937, )
     ), "w")
     redirect_stdout(outfile)
 
-    @eval $mt_name()
-    x = @eval $mt_name(123 % UInt32)
+    x = @eval $mt_name(123)
 
     for i in 1:100
         @printf "%.9f\n" rand(x)

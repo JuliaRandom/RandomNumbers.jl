@@ -1,3 +1,4 @@
+import Base.Test: @test
 using RNG.PCG
 
 pwd_ = pwd()
