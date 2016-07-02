@@ -16,9 +16,10 @@ end
     pcg_output(s.state, MethodType)
 end
 
-# TODO: `srand` should support more types of seed.
-@inline srand{StateType<:PCGUInt}(s::AbstractPCG{StateType}, seed::StateType=gen_seed(StateType)) = pcg_srand(s, seed)
-@inline srand{StateType<:PCGUInt}(s::PCGStateSetseq{StateType}, seed::Tuple{StateType, StateType}=gen_seed(StateType, 2)) = pcg_srand(s, seed...)
+@inline srand{StateType<:PCGUInt}(s::AbstractPCG{StateType},
+    seed::Integer=gen_seed(StateType)) = pcg_srand(s, seed % StateType)
+@inline srand{StateType<:PCGUInt}(s::PCGStateSetseq{StateType},
+    seed::Tuple{Integer, Integer}=gen_seed(StateType, 2)) = pcg_srand(s, seed[1] % StateType, seed[2] % StateType)
 
 @inline function bounded_rand{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt}(
         s::AbstractPCG{StateType, MethodType, OutputType}, bound::OutputType)
@@ -41,14 +42,14 @@ for (pcg_type_t, uint_type, method_symbol, return_type) in include("pcg_list.jl"
     method = Val{method_symbol}
 
     if pcg_type_t != :Setseq
-        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type=gen_seed($uint_type))
+        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::Integer=gen_seed($uint_type))
             s = $pcg_type{state_type, method, $return_type}()
             srand(s, init_state)
             s
         end
     else
-        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::$uint_type=gen_seed($uint_type),
-                init_seq::$uint_type=gen_seed($uint_type))
+        @eval function $pcg_type(state_type::Type{$uint_type}, method::Type{$method}, init_state::Integer=gen_seed($uint_type),
+                init_seq::Integer=gen_seed($uint_type))
             s = $pcg_type{state_type, method, $return_type}()
             srand(s, (init_state, init_seq))
             s
