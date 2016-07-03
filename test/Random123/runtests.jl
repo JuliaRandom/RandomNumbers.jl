@@ -9,7 +9,11 @@ for (rng_name, stype, seed) in (
     (:Threefry2x, UInt32, (123, 321)),
     (:Threefry2x, UInt64, (123, 321)),
     (:Threefry4x, UInt32, (123, 321, 456, 654)),
-    (:Threefry4x, UInt64, (123, 321, 456, 654))
+    (:Threefry4x, UInt64, (123, 321, 456, 654)),
+    (:Philox2x, UInt32, 123),
+    (:Philox2x, UInt64, 123),
+    (:Philox4x, UInt32, (123, 321)),
+    (:Philox4x, UInt64, (123, 321))
 )
     outfile = open(string(
         "./actual/check-$(string(lowercase("$rng_name"), sizeof(stype)<<3)).out"
