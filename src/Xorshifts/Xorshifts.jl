@@ -8,4 +8,7 @@ module Xorshifts
     export Xorshift128, Xorshift128Star, Xorshift128Plus
     include("xorshift128.jl")
 
+    export Xorshift1024, Xorshift1024Star, Xorshift1024Plus
+    include("xorshift1024.jl")
+
 end

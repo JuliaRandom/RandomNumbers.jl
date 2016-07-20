@@ -16,6 +16,12 @@ for (rng_name, rng) in (
         (:Xorshift128Star_32, :(Xorshift128Star(UInt32, 123))),
         (:Xorshift128Plus_64, :(Xorshift128Plus(UInt64, 123))),
         (:Xorshift128Plus_32, :(Xorshift128Plus(UInt32, 123))),
+        (:Xorshift1024_64, :(Xorshift1024(UInt64, 123))),
+        (:Xorshift1024_32, :(Xorshift1024(UInt32, 123))),
+        (:Xorshift1024Star_64, :(Xorshift1024Star(UInt64, 123))),
+        (:Xorshift1024Star_32, :(Xorshift1024Star(UInt32, 123))),
+        (:Xorshift1024Plus_64, :(Xorshift1024Plus(UInt64, 123))),
+        (:Xorshift1024Plus_32, :(Xorshift1024Plus(UInt32, 123))),
     )
 
     outfile = open(string(
