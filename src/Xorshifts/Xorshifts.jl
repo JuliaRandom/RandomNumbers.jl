@@ -2,8 +2,10 @@ __precompile__(true)
 
 module Xorshifts
 
-    export Xorshift64, Xorshift128, Xoroshiro128plus, Xorshift128plus, Xorshift116plus, Xorshift1028star
+    export Xorshift64, Xorshift64Star
+    include("xorshift64.jl")
 
-    include("xorshift.jl")
+    export Xorshift128, Xorshift128Star, Xorshift128Plus
+    include("xorshift128.jl")
 
 end
