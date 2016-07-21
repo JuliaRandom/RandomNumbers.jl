@@ -1,12 +1,14 @@
 import Base.Random: rand, srand
 import RNG: AbstractRNG, gen_seed
 
+@inline xorshift_rotl(x::UInt64, k) = (x << k) | (x >> (64 - k))
+
 for (star, plus) in (
         (false, false),
         (false, true),
         (true, false),
     )
-    rng_name = Symbol(string("Xorshift128", star ? "Star" : plus ? "Plus" :""))
+    rng_name = Symbol(string("Xoroshiro128", star ? "Star" : plus ? "Plus" :""))
     @eval begin
         type $rng_name{T<:Union{UInt32, UInt64}} <: AbstractRNG{T}
             x::UInt64
@@ -26,11 +28,12 @@ for (star, plus) in (
         $rng_name(seed::Integer=gen_seed(UInt128)) = $rng_name(UInt64, seed)
 
         @inline function xorshift_next(r::$rng_name)
-            t = r.x $ r.x << 23
-            r.x = r.y
-            r.y = t $ (t >> 3) $ r.y $ (r.y >> 24)
+            $(plus ? :(r.result = r.x + r.y) : nothing)
+            s1 = r.y $ r.x
+            r.x = xorshift_rotl(r.x, 55) $ s1 $ (s1 << 14)
+            r.y = xorshift_rotl(s1, 36)
             $(star ? :(r.result = r.y * 2685821657736338717) :
-              plus ? :(r.result = r.y + r.x) : :(r.y))
+              plus ? :(r.result) : :(r.y))
         end
 
         @inline function srand(r::$rng_name, seed::Integer=gen_seed(UInt64))

@@ -11,4 +11,7 @@ module Xorshifts
     export Xorshift1024, Xorshift1024Star, Xorshift1024Plus
     include("xorshift1024.jl")
 
+    export Xoroshiro128, Xoroshiro128Star, Xoroshiro128Plus
+    include("xoroshiro128.jl")
+
 end

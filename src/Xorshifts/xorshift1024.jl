@@ -46,12 +46,12 @@ for (star, plus) in (
             if l == 0
                 return $rng_name(T, gen_seed(UInt64, 16))
             end
-            $rng_name(T, (seed..., [0 for i in l+1:16]...))
+            $rng_name(T, (seed..., [i for i in l+1:16]...))
         end
 
         $rng_name(seed::Tuple{[Integer for i in 1:16]...}) = $rng_name(UInt64, seed)
 
-        $rng_name(seed::Integer...) = $rng_name(UInt64, seed)
+        $rng_name(seed::Integer...) = $rng_name(UInt64, seed...)
 
         @inline function xorshift_next(r::$rng_name)
             p = r.p
@@ -74,7 +74,9 @@ for (star, plus) in (
             end
             r.p = 0
             r.flag = false
-            xorshift_next(r)
+            for i in 1:16
+                xorshift_next(r)
+            end
             r
         end
 
@@ -84,7 +86,7 @@ for (star, plus) in (
             if l == 0
                 srand(r, gen_seed(UInt64, 16))
             end
-            srand(r, (seed..., [0 for i in l+1:16]...))
+            srand(r, (seed..., [i for i in l+1:16]...))
         end
 
         @inline function rand(r::$rng_name{UInt64}, ::Type{UInt64})
