@@ -28,7 +28,7 @@ for (star, plus) in (
             p::Int
             $((star || plus) ? :(result::UInt64) : nothing)
             flag::Bool
-            function $rng_name(seed::Tuple{[UInt64 for i in 1:16]...}=gen_seed(UInt64, 16))
+            function $rng_name(seed::NTuple{16, UInt64}=gen_seed(UInt64, 16))
                 $((star || plus) ? :(r = new{T}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false)) :
                     :(r = new{T}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false)))
                 srand(r, seed)
@@ -38,7 +38,7 @@ for (star, plus) in (
     end # if no another @eval there's a weird error: type definition not allowed inside a local scope
     @eval begin
         $rng_name{T<:Union{UInt32, UInt64}}(::Type{T},
-            seed::Tuple{[Integer for i in 1:16]...}=gen_seed(UInt64, 16)) = $rng_name{T}(map(x->x % UInt64, seed))
+            seed::NTuple{16, Integer}=gen_seed(UInt64, 16)) = $rng_name{T}(map(x->x % UInt64, seed))
 
         function $rng_name{T<:Union{UInt32, UInt64}}(::Type{T}, seed::Integer...)
             l = length(seed)
@@ -49,7 +49,7 @@ for (star, plus) in (
             $rng_name(T, (seed..., [i for i in l+1:16]...))
         end
 
-        $rng_name(seed::Tuple{[Integer for i in 1:16]...}) = $rng_name(UInt64, seed)
+        $rng_name(seed::NTuple{16, Integer}) = $rng_name(UInt64, seed)
 
         $rng_name(seed::Integer...) = $rng_name(UInt64, seed...)
 
@@ -68,8 +68,8 @@ for (star, plus) in (
               plus ? :(r.result = s1 + s0) : :s1)
         end
 
-        @inline function srand(r::$rng_name, seed::Tuple{[Integer for i in 1:16]...})
-            for i in 1:16
+        @inline function srand(r::$rng_name, seed::NTuple{16, Integer})
+            @inbounds for i in 1:16
                 unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), seed[i], i)
             end
             r.p = 0
