@@ -1,7 +1,5 @@
 import Base.Random: rand, srand
-import RNG: AbstractRNG, gen_seed
-
-abstract Threefry{T<:Union{UInt32, UInt64}} <: AbstractRNG{T}
+import RNG: gen_seed
 
 @inline threefry_rotl(x::UInt64, N) = (x << (N & 63)) | (x >> ((64-N) & 63))
 @inline threefry_rotl(x::UInt32, N) = (x << (N & 31)) | (x >> ((32-N) & 31))
@@ -63,7 +61,7 @@ abstract Threefry{T<:Union{UInt32, UInt64}} <: AbstractRNG{T}
 # TODO: Provide a method to make use all the generated numbers.
 
 """
-    Threefry2x{T, R} <: Threefry{T}
+    Threefry2x{T, R} <: R123Generator2x{T}
 
 Threefry2x is one kind of Threefry Counter-Based RNGs. It generates two numbers at a time.
 
@@ -72,33 +70,32 @@ the minimum number of rounds with no known statistical flaws, but still has exce
 
 Constructor: `Threefry2x([T=UInt64, (seed1, seed2), R=20])` where `T` is `UInt32` or `UInt64`
 """
-type Threefry2x{T<:Union{UInt32, UInt64}, R} <: Threefry{T}
+type Threefry2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
+    x1::T
+    x2::T
     key1::T
     key2::T
     ctr1::T
     ctr2::T
-    x1::T
-    x2::T
+    p::Int
 end
+
 function Threefry2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::Tuple{Integer, Integer}=gen_seed(T, 2), R::Integer=20)
     @assert 1 <= R <= 32
-    Threefry2x{T, Int(R)}(seed[1] % T, seed[2] % T, 0 % T, 0 % T, 0 % T, 0 % T)
+    r = Threefry2x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0)
+    srand(r, seed)
 end
 
 function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::Tuple{Integer, Integer}=gen_seed(T, 2))
-    r.key1, r.key2 = seed
-    r.ctr1 = r.ctr2 = 0
     r.x1 = r.x2 = 0
+    r.key1 = seed[1] % T
+    r.key2 = seed[2] % T
+    r.ctr1 = r.ctr2 = 0
+    random123_r(r)
     r
 end
 
-@inline function rand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, ::Type{T})
-    threefry_r(r)
-    r.ctr1 += 1 % T
-    r.x1
-end
-
-@eval @inline function threefry_r{T<:Union{UInt32, UInt64}, R}(r::Threefry2x{T, R})
+@eval @inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry2x{T, R})
     ks2 = SKEIN_KS_PARITY(T)
     ks0 = r.key1
     x0 = r.ctr1
@@ -174,11 +171,10 @@ end
         x1 += 8 % T;
     end
     r.x1, r.x2 = x0, x1
-    r
 end
 
 """
-    Threefry4x{T, R} <: Threefry{T}
+    Threefry4x{T, R} <: R123Generator4x{T}
 
 Threefry4x is one kind of Threefry Counter-Based RNGs. It generates two numbers at a time.
 
@@ -187,7 +183,11 @@ the minimum number of rounds with no known statistical flaws, but still has exce
 
 Constructor: `Threefry4x([T=UInt64, (seed1, seed2, seed3, seed4), R=20])` where `T` is `UInt32` or `UInt64`
 """
-type Threefry4x{T<:Union{UInt32, UInt64}, R} <: Threefry{T}
+type Threefry4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
+    x1::T
+    x2::T
+    x3::T
+    x4::T
     key1::T
     key2::T
     key3::T
@@ -196,36 +196,26 @@ type Threefry4x{T<:Union{UInt32, UInt64}, R} <: Threefry{T}
     ctr2::T
     ctr3::T
     ctr4::T
-    x1::T
-    x2::T
-    x3::T
-    x4::T
+    p::Int
 end
 
 function Threefry4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
         seed::Tuple{Integer, Integer, Integer, Integer}=gen_seed(T, 4), R::Integer=20)
     @assert 1 <= R <= 72
-    Threefry4x{T, Int(R)}(
-        seed[1] % T, seed[2] % T, seed[3] % T, seed[4] % T,
-        0 % T, 0 % T, 0 % T, 0 % T, 0 % T, 0 % T, 0 % T, 0 % T
-    )
+    r = Threefry4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    srand(r, seed)
 end
 
 function srand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T},
         seed::Tuple{Integer, Integer, Integer, Integer}=gen_seed(T, 4))
-    r.key1, r.key2, r.key3, r.key4 = seed
-    r.ctr1 = r.ctr2 = r.ctr3 = r.ctr4 = 0
     r.x1 = r.x2 = r.x3 = r.x4 = 0
+    r.key1, r.key2, r.key3, r.key4 = seed[1] % T, seed[2] % T, seed[3] % T, seed[4] % T
+    r.ctr1 = r.ctr2 = r.ctr3 = r.ctr4 = 0
+    random123_r(r)
     r
 end
 
-@inline function rand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T}, ::Type{T})
-    threefry_r(r)
-    r.ctr1 += 1 % T
-    r.x1
-end
-
-@inline function threefry_r{T<:Union{UInt32, UInt64}, R}(r::Threefry4x{T, R})
+@inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry4x{T, R})
     ks4 = SKEIN_KS_PARITY(T)
     ks0 = r.key1
     x0 = r.ctr1
@@ -602,5 +592,4 @@ end
         x3 += 18 % T;
     end
     r.x1, r.x2, r.x3, r.x4 = x0, x1, x2, x3
-    r
 end
