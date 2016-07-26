@@ -10,4 +10,7 @@ module Random123
     export Philox2x, Philox4x
     include("philox.jl")
 
+    export AESNI1x, AESNI4x
+    include("aesni.jl")
+
 end

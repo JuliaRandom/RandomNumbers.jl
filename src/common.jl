@@ -19,8 +19,7 @@ end
     t = rand(rng, T1) % T2
     s1 > s2 && return t
     for i in 2:(s2÷s1)
-        t <<= s1 << 3
-        t |= rand(rng, T1)
+        t |= rand(rng, T1) << ((s1 << 3) * (i - 1))
     end
     t
 end

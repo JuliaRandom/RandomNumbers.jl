@@ -80,13 +80,13 @@ type Threefry2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     p::Int
 end
 
-function Threefry2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::Tuple{Integer, Integer}=gen_seed(T, 2), R::Integer=20)
+function Threefry2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::NTuple{2, Integer}=gen_seed(T, 2), R::Integer=20)
     @assert 1 <= R <= 32
     r = Threefry2x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 
-function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::Tuple{Integer, Integer}=gen_seed(T, 2))
+function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2))
     r.x1 = r.x2 = 0
     r.key1 = seed[1] % T
     r.key2 = seed[2] % T
@@ -200,14 +200,14 @@ type Threefry4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
 end
 
 function Threefry4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
-        seed::Tuple{Integer, Integer, Integer, Integer}=gen_seed(T, 4), R::Integer=20)
+        seed::NTuple{4, Integer}=gen_seed(T, 4), R::Integer=20)
     @assert 1 <= R <= 72
     r = Threefry4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 
 function srand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T},
-        seed::Tuple{Integer, Integer, Integer, Integer}=gen_seed(T, 4))
+        seed::NTuple{4, Integer}=gen_seed(T, 4))
     r.x1 = r.x2 = r.x3 = r.x4 = 0
     r.key1, r.key2, r.key3, r.key4 = seed[1] % T, seed[2] % T, seed[3] % T, seed[4] % T
     r.ctr1 = r.ctr2 = r.ctr3 = r.ctr4 = 0

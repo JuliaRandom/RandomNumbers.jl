@@ -1,13 +1,21 @@
 import Base.Random: rand, srand
 import RNG: AbstractRNG
 
+typealias R123Array1x{T<:Union{UInt128}} NTuple{1, T}
 typealias R123Array2x{T<:Union{UInt32, UInt64}} NTuple{2, T}
 typealias R123Array4x{T<:Union{UInt32, UInt64}} NTuple{4, T}
 
 abstract AbstractR123{T<:Union{UInt32, UInt64}} <: AbstractRNG{T}
 
+abstract R123Generator1x{T} <: AbstractR123{T}
 abstract R123Generator2x{T} <: AbstractR123{T}
 abstract R123Generator4x{T} <: AbstractR123{T}
+
+@inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{T})
+    r.crt += 1
+    random123_r(r)
+    r.x
+end
 
 @inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator2x{T}, ::Type{T})
     if r.p == 1
@@ -28,6 +36,11 @@ end
     end
     r.p += 1
     getfield(r, r.p)
+end
+
+@inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{R123Array1x{T}})
+    r.crt += 1
+    random123_r(r)
 end
 
 @inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator2x{T}, ::Type{R123Array2x{T}})

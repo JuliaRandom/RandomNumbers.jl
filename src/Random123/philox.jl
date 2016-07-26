@@ -115,13 +115,13 @@ type Philox4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
 end
 
 function Philox4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
-        seed::Tuple{Integer, Integer}=gen_seed(T, 2), R::Integer=10)
+        seed::NTuple{2, Integer}=gen_seed(T, 2), R::Integer=10)
     @assert 1 <= R <= 16
     r = Philox4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 
-function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::Tuple{Integer, Integer}=gen_seed(T, 2))
+function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2))
     r.x1 = r.x2 = r.x3 = r.x4 = 0
     r.key1 = seed[1] % T
     r.key2 = seed[2] % T
