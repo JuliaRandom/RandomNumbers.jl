@@ -5,3 +5,5 @@
 build/
 actual/
 *.log
+*.so
+*.dll
