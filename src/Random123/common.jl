@@ -1,7 +1,8 @@
 import Base.Random: rand, srand
 import RNG: AbstractRNG
 
-const librandom123 = Pkg.dir("RNG/deps/Random123/librandom123")
+const librandom123 = Libdl.find_library(["librandom123"], [Pkg.dir("RNG/deps/Random123/")])
+const R123_USE_AESNI = librandom123 != ""
 
 typealias R123Array1x{T<:Union{UInt128}} NTuple{1, T}
 typealias R123Array2x{T<:Union{UInt32, UInt64}} NTuple{2, T}

@@ -1,4 +1,4 @@
-if Libdl.find_library(RNG.Random123.librandom123) != "" 
+if R123_USE_AESNI
     key = rand(UInt128)
     r = AESNI1x(key)
     r1 = AESNI4x((unsafe_wrap(Array, Ptr{UInt32}(pointer_from_objref(key)), 4)...))

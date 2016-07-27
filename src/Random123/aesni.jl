@@ -1,4 +1,4 @@
-if Libdl.find_library(librandom123) != "" @eval begin
+if R123_USE_AESNI @eval begin
 
     type AESNIKey
         key1::UInt128
