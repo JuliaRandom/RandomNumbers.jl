@@ -32,3 +32,5 @@ end
 
 @test success(`diff -ru expected actual`)
 cd(pwd_)
+
+include("aesni.jl")

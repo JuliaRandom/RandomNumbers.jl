@@ -1,16 +1,6 @@
-function test_lib()
-    try
-        ccall((:test, librandom123), Void, ())
-    catch
-        return false
-    end
-    return true
-end
+if Libdl.find_library(librandom123) != "" @eval begin
 
-@static if test_lib()
-
-    type AESNI1x{T<:UInt128} <: R123Generator1x{T}
-        x::T
+    type AESNIKey
         key1::UInt128
         key2::UInt128
         key3::UInt128
@@ -22,17 +12,23 @@ end
         key9::UInt128
         key10::UInt128
         key11::UInt128
-        crt::UInt128
+        AESNIKey() = new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    end
+
+    type AESNI1x{T<:UInt128} <: R123Generator1x{T}
+        x::T
+        key::AESNIKey
+        ctr::UInt128
     end
 
     function AESNI1x(seed::Integer=gen_seed(UInt128))
-        r = AESNI1x{UInt128}([0 for i in 1:13]...)
+        r = AESNI1x{UInt128}(0, AESNIKey(), 0)
         srand(r, seed)
     end
 
     function srand(r::AESNI1x, seed::Integer=gen_seed(UInt128))
         initkey(r, seed % UInt128)
-        r.crt = 0
+        r.ctr = 0
         random123_r(r)
         r
     end
@@ -42,75 +38,59 @@ end
         x2::T
         x3::T
         x4::T
-        key1::UInt128
-        key2::UInt128
-        key3::UInt128
-        key4::UInt128
-        key5::UInt128
-        key6::UInt128
-        key7::UInt128
-        key8::UInt128
-        key9::UInt128
-        key10::UInt128
-        key11::UInt128
-        crt1::T
-        crt2::T
-        crt3::T
-        crt4::T
+        key::AESNIKey
+        ctr1::UInt128
         p::Int
     end
 
     function AESNI4x(seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
-        r = AESNI4x{UInt32}([0 in 1:20]...)
+        r = AESNI4x{UInt32}(0, 0, 0, 0, AESNIKey(), 0, 0)
         srand(r, seed)
     end
 
     function srand(r::AESNI4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
         key = 0 % UInt128
-        for i in 1:4
+        for i in 4:-1:1
             key <<= 32
             key |= seed[i] % UInt32
         end
         initkey(r, key)
-        r.crt1 = r.crt2 = r.crt3 = r.crt4 = 0
+        r.ctr1 = 0
         p = 0
         random123_r(r)
         r
     end
 
     @inline function initkey(r, key)
+        k = Ptr{UInt128}(pointer_from_objref(r.key))
         ccall((:keyinit, librandom123), Void, (
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128},
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, 
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}
-        ), &key, pointer_from_objref(r.key1), pointer_from_objref(r.key2), pointer_from_objref(r.key3),
-        pointer_from_objref(r.key4), pointer_from_objref(r.key5), pointer_from_objref(r.key6),
-        pointer_from_objref(r.key7), pointer_from_objref(r.key8), pointer_from_objref(r.key9),
-        pointer_from_objref(r.key10), pointer_from_objref(r.key11))
+        ), pointer_from_objref(key), k, k + 16, k + 32, k + 48, k + 64, k + 80, k + 96,
+        k + 112, k + 128, k + 144, k + 160)
     end
 
-    @inline function aesni1xm128i(r)
-        x = 0 % UInt128
+    @inline function aesni1xm128i(r, ctr)
+        k = Ptr{UInt128}(pointer_from_objref(r.key))
+        p = Ptr{UInt128}(pointer_from_objref(r))
         ccall((:aesni1xm128i, librandom123), Void, (
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128},
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, 
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128},
             Ptr{UInt128}
-        ), &key, pointer_from_objref(r.key1), pointer_from_objref(r.key2), pointer_from_objref(r.key3),
-        pointer_from_objref(r.key4), pointer_from_objref(r.key5), pointer_from_objref(r.key6),
-        pointer_from_objref(r.key7), pointer_from_objref(r.key8), pointer_from_objref(r.key9),
-        pointer_from_objref(r.key10), pointer_from_objref(r.key11), pointer_from_objref(x))
-        x
+        ), pointer_from_objref(ctr), k, k + 16, k + 32, k + 48, k + 64, k + 80, k + 96,
+        k + 112, k + 128, k + 144, k + 160, p)
+        unsafe_load(p, 1)        
     end
 
     @inline function random123_r(r::AESNI1x)
-        r.x = aesni1xm128i(r)
+        aesni1xm128i(r, r.ctr)
     end
 
     @inline function random123_r(r::AESNI4x)
-        p = Ptr{UInt128}(pointer_from_objref(r))
-        x = aesni1xm128i(r) 
-        unsafe_store!(p, x, 1)
-        (pointer_to_array(Ptr{UInt32}(pointer_from_objref(x)))...)
+        aesni1xm128i(r, r.ctr1)
+        (unsafe_wrap(Array, Ptr{UInt32}(pointer_from_objref(r)), 4)...)
     end
-end
+
+end end
