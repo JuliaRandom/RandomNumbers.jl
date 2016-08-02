@@ -1,7 +1,9 @@
 environment:
   matrix:
-  - JULIAVERSION: "julianightlies/bin/winnt/x86/julia-latest-win32.exe"
-  - JULIAVERSION: "julianightlies/bin/winnt/x64/julia-latest-win64.exe"
+    - ARCH: "x86"
+      JULIAVERSION: "julianightlies/bin/winnt/x86/julia-latest-win32.exe"
+    - ARCH: "x64"
+      JULIAVERSION: "julianightlies/bin/winnt/x64/julia-latest-win64.exe"
 
 branches:
   only:
@@ -25,6 +27,8 @@ install:
 build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
+  - if [%ARCH%]==[x86] SET PATH=C:\MinGW\bin;%PATH%
+  - if [%ARCH%]==[x64] SET PATH=C:\mingw64\bin;%PATH%
   - C:\projects\julia\bin\julia -e "versioninfo();
       Pkg.clone(pwd(), \"RNG\"); Pkg.build(\"RNG\")"
 
