@@ -28,7 +28,7 @@ build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
   - if [%ARCH%]==[x86] SET PATH=C:\MinGW\bin;%PATH%
-  - if [%ARCH%]==[x64] SET PATH=C:\mingw-w64\bin;%PATH%
+  - if [%ARCH%]==[x64] SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
   - C:\projects\julia\bin\julia -e "versioninfo();
       Pkg.clone(pwd(), \"RNG\"); Pkg.build(\"RNG\")"
 
