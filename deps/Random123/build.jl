@@ -1,7 +1,11 @@
 function build()
     p = pwd()
     cd(Pkg.dir("RNG/deps/Random123"))
-    run(`make`)
+    if is_windows()
+        run(`mingw32-make`)
+    else
+        run(`make`)
+    end
     cd(p)
 end
 
