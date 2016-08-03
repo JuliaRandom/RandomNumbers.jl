@@ -34,3 +34,4 @@ end
 cd(pwd_)
 
 include("aesni.jl")
+include("ars.jl")

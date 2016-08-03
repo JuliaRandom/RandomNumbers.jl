@@ -1,20 +1,20 @@
 ifeq ($(OS), Windows_NT)
-	CC = gcc
+	CC = g++
 	SLIB = dll
 else
 	UNAME := $(shell uname)
 	ifeq ($(UNAME), Darwin)
-		CC = gcc
+		CC = g++
 		SLIB = dylib
 	else
-		CC = cc
+		CC = g++
 		SLIB = so
 	endif
 endif
-CFLAGS = -std=c99 -shared -fPIC -O3 -maes
 
+CFLAGS = -std=c++11 -shared -fPIC -O3 -maes
 
-OBJ = 	aesni.c
+OBJ = 	aesni.c ars.c
 
 all:
 	$(CC) $(CFLAGS) $(OBJ) -o librandom123.$(SLIB)

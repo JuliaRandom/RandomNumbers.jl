@@ -1,4 +1,4 @@
-import Base.Random: rand, srand
+import Base.Random: srand
 import RNG: gen_seed
 
 for (w, T, Td) in ((32, UInt32, UInt64), (64, UInt64, UInt128))

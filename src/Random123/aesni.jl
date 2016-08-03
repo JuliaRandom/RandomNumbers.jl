@@ -49,11 +49,7 @@ if R123_USE_AESNI @eval begin
     end
 
     function srand(r::AESNI4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
-        key = 0 % UInt128
-        for i in 4:-1:1
-            key <<= 32
-            key |= seed[i] % UInt32
-        end
+        key = unsafe_load(Ptr{UInt128}(pointer_from_objref(seed)), 1)
         initkey(r, key)
         r.ctr1 = 0
         p = 0
@@ -67,7 +63,7 @@ if R123_USE_AESNI @eval begin
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128},
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, 
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}
-        ), pointer_from_objref(key), k, k + 16, k + 32, k + 48, k + 64, k + 80, k + 96,
+        ), Ptr{UInt128}(pointer_from_objref(key)), k, k + 16, k + 32, k + 48, k + 64, k + 80, k + 96,
         k + 112, k + 128, k + 144, k + 160)
     end
 
@@ -79,13 +75,13 @@ if R123_USE_AESNI @eval begin
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, 
             Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128},
             Ptr{UInt128}
-        ), pointer_from_objref(ctr), k, k + 16, k + 32, k + 48, k + 64, k + 80, k + 96,
+        ), Ptr{UInt128}(pointer_from_objref(ctr)), k, k + 16, k + 32, k + 48, k + 64, k + 80, k + 96,
         k + 112, k + 128, k + 144, k + 160, p)
-        unsafe_load(p, 1)        
+        unsafe_load(p, 1)
     end
 
     @inline function random123_r(r::AESNI1x)
-        aesni1xm128i(r, r.ctr)
+        (aesni1xm128i(r, r.ctr),)
     end
 
     @inline function random123_r(r::AESNI4x)

@@ -14,4 +14,6 @@ module Random123
     export AESNI1x, AESNI4x
     include("aesni.jl")
 
+    export ARS1x, ARS4x
+    include("ars.jl")
 end

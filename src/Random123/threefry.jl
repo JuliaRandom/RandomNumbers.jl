@@ -1,4 +1,4 @@
-import Base.Random: rand, srand
+import Base.Random: srand
 import RNG: gen_seed
 
 @inline threefry_rotl(x::UInt64, N) = (x << (N & 63)) | (x >> ((64-N) & 63))
