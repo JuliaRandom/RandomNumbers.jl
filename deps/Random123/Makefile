@@ -12,7 +12,7 @@ else
 	endif
 endif
 
-CFLAGS = -std=c++11 -shared -fPIC -O3 -maes
+CFLAGS = -shared -fPIC -O3 -maes
 
 OBJ = 	aesni.c ars.c
 
