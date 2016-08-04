@@ -7,8 +7,9 @@ function bigcrush{T<:Number}(rng::RNG.AbstractRNG{T})
 end
 
 function speed_test{T<:Number}(rng::RNG.AbstractRNG{T}, n)
+    t = 0 % T
     elapsed = @elapsed for i = 1:n
-        rand(rng, T)
+        t += rand(rng, T)
     end
     @printf "Speed Test: %.3f ns/64 bits\n" elapsed * 1e9 / n * 8 / sizeof(T)
 end
