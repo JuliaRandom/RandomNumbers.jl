@@ -1,4 +1,4 @@
-const TEST_NAME = "PCG_RSH_RS_64_32"
+const TEST_NAME = "PCG_XSH_RS_64_32"
 
 include("common.jl")
 
