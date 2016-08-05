@@ -1,60 +1,73 @@
 import Base.Random: rand, srand
 import RNG: AbstractRNG, gen_seed
 
-for (star, plus) in (
-        (false, false),
-        (false, true),
-        (true, false),
-    )
-    rng_name = Symbol(string("Xorshift128", star ? "Star" : plus ? "Plus" :""))
-    @eval begin
-        type $rng_name{T<:Union{UInt32, UInt64}} <: AbstractRNG{T}
-            x::UInt64
-            y::UInt64
-            $((star || plus) ? :(result::UInt64) : nothing)
-            flag::Bool
-            function $rng_name(seed::UInt128)
-                $((star || plus) ? :(r = new{T}(0, 0, 0, false)) : :(r = new{T}(0, 0, false)))
-                srand(r, seed)
-                r
-            end
-        end
+abstract AbstractXorshift128 <: AbstractRNG{UInt64}
 
-        $rng_name{T<:Union{UInt32, UInt64}}(::Type{T},
-            seed::Integer=gen_seed(UInt128)) = $rng_name{T}(seed % UInt128)
+type Xorshift128 <: AbstractXorshift128
+    x::UInt64
+    y::UInt64
+end
+type Xorshift128plus <: AbstractXorshift128
+    x::UInt64
+    y::UInt64
+end
+type Xorshift128star <: AbstractXorshift128
+    x::UInt64
+    y::UInt64
+end
 
-        $rng_name(seed::Integer=gen_seed(UInt128)) = $rng_name(UInt64, seed)
+function (::Type{T}){T<:AbstractXorshift128}()
+    r = T(0,0)
+    srand(r)
+    r
+end
 
-        @inline function xorshift_next(r::$rng_name)
-            t = r.x $ r.x << 23
-            r.x = r.y
-            r.y = t $ (t >> 3) $ r.y $ (r.y >> 24)
-            $(star ? :(r.result = r.y * 2685821657736338717) :
-              plus ? :(r.result = r.y + r.x) : :(r.y))
-        end
+@inline function srand(r::AbstractXorshift128, seed::Integer=gen_seed(UInt64))
+    r.x = seed % UInt64
+    r.y = (seed >> 64) % UInt64
+    xorshift_next!(r)
+    xorshift_next!(r)
+    r
+end
 
-        @inline function srand(r::$rng_name, seed::Integer=gen_seed(UInt64))
-            r.x = seed % UInt64
-            r.y = (seed >> 64) % UInt64
-            r.flag = false
-            xorshift_next(r)
-            xorshift_next(r)
-            r
-        end
+@inline function xorshift_next!(r::AbstractXorshift128)
+    t = r.x $ r.x << 23
+    r.x = r.y
+    r.y = t $ (t >> 3) $ r.y $ (r.y >> 24)
+end
 
-        @inline function rand(r::$rng_name{UInt64}, ::Type{UInt64})
-            xorshift_next(r)
-        end
+@inline function rand(r::Xorshift128, ::Type{UInt64})
+    xorshift_next!(r)
+end
+@inline function rand(r::Xorshift128plus, ::Type{UInt64})
+    xorshift_next!(r)
+    r.y + r.x
+end
+@inline function rand(r::Xorshift128star, ::Type{UInt64})
+    xorshift_next!(r)
+    r.y * 2685821657736338717
+end
 
-        @inline function rand(r::$rng_name{UInt32}, ::Type{UInt32})
-            if r.flag
-                r.flag = false
-                return ($((star || plus) ? :(r.result) : :(r.y)) >> 32) % UInt32
-            else
-                xorshift_next(r)
-                r.flag = true
-                return $((star || plus) ? :(r.result) : :(r.y)) % UInt32
-            end
-        end
+
+
+
+type SplitRNG{R<:AbstractRNG,T} <: AbstractRNG{T}
+    rng::R
+    cache::T
+    flag::Bool
+end
+
+SplitRNG(rng::AbstractRNG{UInt64}) = SplitRNG{typeof(rng),UInt32}(rng,0,false)
+srand{R,T}(s::SplitRNG{R,T},args...) = srand(s.rng,args...)
+
+@inline function rand{R<:AbstractRNG{UInt64}}(r::SplitRNG{R,UInt32}, ::Type{UInt32})
+    if r.flag
+        r.flag = false
+        return r.cache
+    else
+        u = rand(r.rng, UInt64)
+        r.flag = true
+        r.cache = (u>>32) % UInt32
+        return u % UInt32
     end
 end
