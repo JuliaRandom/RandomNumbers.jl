@@ -55,9 +55,9 @@ for (star, plus) in (
 
         @inline function xorshift_next(r::$rng_name)
             p = r.p
-            s0 = getfield(r, p + 1)
+            s0 = unsafe_load(Ptr{UInt64}(pointer_from_objref(r)), p + 1)
             p = (p + 1) % 16
-            s1 = getfield(r, p + 1)
+            s1 = unsafe_load(Ptr{UInt64}(pointer_from_objref(r)), p + 1)
             s1 $= s1 << 31
             s1 $= s1 >> 11
             s1 $= s0 >> 30
