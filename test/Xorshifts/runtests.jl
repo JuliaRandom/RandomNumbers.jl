@@ -1,6 +1,7 @@
 import Base.Test: @test
 using RNG.Xorshifts
 
+stdout_ = STDOUT
 pwd_ = pwd()
 cd(joinpath(Pkg.dir("RNG"), "test/Xorshifts"))
 mkpath("./actual")
@@ -43,6 +44,7 @@ for (rng_name, rng) in (
 
     close(outfile)
 end
+redirect_stdout(stdout_)
 
 @test success(`diff -ru expected actual`)
 cd(pwd_)

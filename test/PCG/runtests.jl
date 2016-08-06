@@ -1,6 +1,7 @@
 import Base.Test: @test
 using RNG.PCG
 
+stdout_ = STDOUT
 pwd_ = pwd()
 cd(joinpath(Pkg.dir("RNG"), "test/PCG"))
 mkpath("./actual")
@@ -102,6 +103,7 @@ for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
     end
     close(outfile)
 end
+redirect_stdout(stdout_)
 
 @test success(`diff -ru expected actual`)
 cd(pwd_)
