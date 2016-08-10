@@ -1,0 +1,44 @@
+site_name:        RNG.jl
+repo_url:         https://github.com/sunoru/RNG.jl
+site_description: Random number generators for Julia language.
+site_author:      Sunoru
+
+theme: material
+
+extra:
+  palette:
+    primary: 'indigo'
+    accent:  'blue'
+
+extra_css:
+  - assets/Documenter.css
+
+markdown_extensions:
+  - codehilite
+  - extra
+  - tables
+  - fenced_code
+  - mdx_math
+  - admonition
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+  - assets/mathjaxhelper.js
+
+docs_dir: 'build'
+
+pages:
+- Home: index.md
+- Manual:
+    - Bases: man/bases.md
+    - Benchmark: man/benchmark.md
+    - PCG: man/pcg.md
+    - MersenneTwisters: man/mersenne-twisters.md
+    - Random123: man/random123.md
+    - Xorshifts: man/xorshifts.md
+- Library:
+    - RNG: lib/rng.md
+    - PCG: lib/pcg.md
+    - MersenneTwisters: lib/mersenne-twisters.md
+    - Random123: lib/random123.md
+    - Xorshifts: lib/xorshifts.md
