@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+      
+        <title>Bases - RNG.jl</title>
+      
+      
+      
+      
+        <meta name="author" content="Sunoru">
+      
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="RNG.jl">
+    <meta property="og:image" content="None/../../">
+    <meta name="apple-mobile-web-app-title" content="RNG.jl">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/favicon-e565ddfa3b.ico">
+    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon-e565ddfa3b.ico">
+    <style>
+      @font-face {
+      	font-family: 'Icon';
+      	src: url('../../assets/fonts/icon.eot?52m981');
+      	src: url('../../assets/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+      		   url('../../assets/fonts/icon.woff?52m981')
+               format('woff'),
+      		   url('../../assets/fonts/icon.ttf?52m981')
+               format('truetype'),
+      		   url('../../assets/fonts/icon.svg?52m981#icon')
+               format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+    </style>
+    <link rel="stylesheet" href="../../assets/stylesheets/application-a422ff04cc.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/palettes-05ab2406df.css">
+    
+    
+      
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+      <style>
+        body, input {
+          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+      </style>
+    
+    
+      <link rel="stylesheet" href="../../assets/Documenter.css">
+    
+    <script src="../../assets/javascripts/modernizr-4ab42b99fd.js"></script>
+    
+  </head>
+  
+  
+  
+  <body class="palette-primary-indigo palette-accent-blue">
+    
+      
+      
+    
+    <div class="backdrop">
+      <div class="backdrop-paper"></div>
+    </div>
+    <input class="toggle" type="checkbox" id="toggle-drawer">
+    <input class="toggle" type="checkbox" id="toggle-search">
+    <label class="toggle-button overlay" for="toggle-drawer"></label>
+    <header class="header">
+      <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        
+          <span class="path">
+            
+              
+                Manual <i class="icon icon-link"></i>
+              
+            
+          </span>
+        
+        Bases
+      </div>
+    </div>
+    
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+    </header>
+    <main class="main">
+      
+      <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <a href="https://github.com/sunoru/RNG.jl" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>
+          RNG.jl
+          <span class="version">
+            
+          </span>
+        </strong>
+        
+          <br>
+          sunoru/RNG.jl
+        
+      </div>
+    </div>
+  </a>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/sunoru/RNG.jl/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/sunoru/RNG.jl/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="" title="Home" href="../..">
+      Home
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <span class="section">Manual</span>
+    <ul>
+      
+        
+  <li>
+    <a class="current" title="Bases" href="./">
+      Bases
+    </a>
+    
+      
+        
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="Interface" href="#interface">
+                Interface
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Empirical Statistical Testing" href="#empirical-statistical-testing">
+                Empirical Statistical Testing
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Conversion to Float" href="#conversion-to-float">
+                Conversion to Float
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Benchmark" href="../benchmark/">
+      Benchmark
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Permuted Congruential Generators" href="../pcg/">
+      Permuted Congruential Generators
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Mersenne Twisters" href="../mersenne-twisters/">
+      Mersenne Twisters
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Random123 Family" href="../random123/">
+      Random123 Family
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Xorshift Family" href="../xorshifts/">
+      Xorshift Family
+    </a>
+    
+  </li>
+
+      
+    </ul>
+  </li>
+
+          
+            
+  <li>
+    <span class="section">Library</span>
+    <ul>
+      
+        
+  <li>
+    <a class="" title="RNG" href="../../lib/rng/">
+      RNG
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="PCG" href="../../lib/pcg/">
+      PCG
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="MersenneTwisters" href="../../lib/mersenne-twisters/">
+      MersenneTwisters
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Random123" href="../../lib/random123/">
+      Random123
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Xorshifts" href="../../lib/xorshifts/">
+      Xorshifts
+    </a>
+    
+  </li>
+
+      
+    </ul>
+  </li>
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+      </div>
+      <article class="article">
+        <div class="wrapper">
+          
+          <p><a id='Bases-1'></a></p>
+<h1 id="bases">Bases</h1>
+<p>This page describes basic concepts and fundanmental knowledge of <strong>RNG.jl</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unless otherwise specified, all the random number generators in this package are <em>pseudorandom</em> number generators (or <em>deterministic</em> random bit generator), which means they only provide numbers whose properties approximate the properties of <em>truly random</em> numbers. Always, especially in secure-sensitive cases, keep in mind that they do not gaurantee a totally random performance.</p>
+</div>
+<p><a id='Interface-1'></a></p>
+<h2 id="interface">Interface</h2>
+<p>First of all, to use a RNG from this package, you can import <code>RNG.jl</code> and use RNG by declare its submodule's name, or directly import the submodule. Then you can create a random number generator of certain type. For example:</p>
+<pre class="codehilite"><code class="language-julia">julia&gt; using RNG
+julia&gt; r = Xorshifts.Xorshift1024Plus()</code></pre>
+
+
+<p>or</p>
+<pre class="codehilite"><code class="language-julia">julia&gt; using RNG.Xorshifts
+julia&gt; r = Xorshift1024Plus()</code></pre>
+
+
+<p>The submodules have some API in common and a few differently.</p>
+<p>All the Random Number Generators (RNGs) are child types of <code>AbstractRNG{T}</code>, which is a child type of <code>Base.Random.AbstractRNG</code> and replaces it. (The <code>Base.Random</code> may be refactored sometime, anyway.) The type parameter <code>T</code> indicates the original output type of a RNG, and it is usually a child type of the <code>Unsigned</code>, such as <code>UInt64</code>, <code>UInt32</code>, etc.</p>
+<p>Consistent to what the <code>Base.Random</code> does, there are generic functions:</p>
+<ul>
+<li><code>srand(::AbstractRNG{T}[, seed])</code>   initializes a RNG by one or a sequence of numbers (called <em>seed</em>). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   <em>deterministic</em>. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no <code>seed</code> provided, then it will use <a href="../@ref"><code>gen_seed</code></a> to get a random one.</li>
+<li><code>rand(::AbstractRNG{T}[, ::Type{TP}=Float64])</code>   returns a random number in the type <code>TP</code>. <code>TP</code> is usually an <code>Unsigned</code> type, and the return value is   expected to be random at every bit. When <code>TP</code> is <code>Float64</code> (as default), this function returns a <code>Float64</code>   value that is expected to be uniformly distributed in [0, 1). The discussion about this is in the   <a href="./#Conversion-to-Float-1">Conversion to Float</a> section.</li>
+</ul>
+<p>The other generic functions such as <code>rand(::AbstractRNG, ::Dims)</code> and <code>rand!(::AbstractRNG, ::AbstractArray)</code> defined in <code>Base.Random</code> still work.</p>
+<p>The constructors of all the types of RNG are designed to take <code>seed</code> as their parameters, and can be called with no parameter. For example:</p>
+<pre class="codehilite"><code class="language-jlcon">julia&gt; using RNG.Xorshifts
+
+julia&gt; r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed &quot;123&quot;
+RNG.Xorshifts.Xorshift128Star{UInt64}(0x000000003a300074,0x000000003a30004e,0x228e12c83a9b5ed6,false)
+
+julia&gt; r2 = Xorshift128Star();  # Use a random value to be the seed.
+
+julia&gt; rand(r1)  # Generate a number uniformly distributed in [0, 1).
+0.12555060351645186
+
+julia&gt; A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.
+2×3 Array{UInt64,2}:
+ 0xbed3dea863c65407  0x607f5f9815f515af  0x807289d8f9847407
+ 0x4ab80d43269335ee  0xf78b56ada11ea641  0xc2306a55acfb4aaa
+
+julia&gt; rand!(r1, A)  # Refill `A` with random numbers.
+2×3 Array{UInt64,2}:
+ 0xf729352e2a72b541  0xe89948b5582a85f0  0x8a95ebd6aa34fcf4
+ 0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865</code></pre>
+
+
+<p>People will get the same results in their own computers of the above lines. For more interfaces and usage examples, please refer to the manual pages of each RNG.</p>
+<p><a id='Empirical-Statistical-Testing-1'></a></p>
+<h2 id="empirical-statistical-testing">Empirical Statistical Testing</h2>
+<p>Empirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.</p>
+<p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RNG.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and the <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Bit Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as <code>GLOBAL_RAND</code>.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<p>The testing results are available on <a href="../benchmark/#Benchmark-1">Benchmark</a> page.</p>
+<p><a id='Conversion-to-Float-1'></a></p>
+<h2 id="conversion-to-float">Conversion to Float</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://github.com/JuliaLang/julia/issues/6464"><code>rand</code> fails bigcrush #6464</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+          <aside class="copyright" role="note">
+            
+            Documentation built with
+            <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
+            using the
+            <a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
+              Material
+            </a>
+            theme.
+          </aside>
+          
+            <footer class="footer">
+              
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+        <a href="../.." title="Home">
+          <span class="direction">
+            Previous
+          </span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                Home
+              </div>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+    <div class="next">
+      
+        <a href="../benchmark/" title="Benchmark">
+          <span class="direction">
+            Next
+          </span>
+          <div class="page">
+            <div class="stretch">
+              <div class="title">
+                Benchmark
+              </div>
+            </div>
+            <div class="button button-next" role="button" aria-label="Next">
+              <i class="icon icon-forward"></i>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+  </nav>
+
+            </footer>
+          
+        </div>
+      </article>
+      <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+          <div class="wrapper">
+            <div class="meta"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var base_url = '../..';
+      var repo_id  = 'sunoru/RNG.jl';
+    </script>
+    <script src="../../assets/javascripts/application-997097ee0c.js"></script>
+    
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+      <script src="../../assets/mathjaxhelper.js"></script>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,149 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "RNG.jl Documentation\n\n\nRNG.jl\n is a collection of Random Number Generators for the Julia language.\n\n\nThere are several kinds of RNG families in this package, provided as submodules.\n\n\nThe examples and detailed descriptions of each RNG can be found on the Manual pages.\n\n\n\n\nManual Outline\n\n\n\n\nBases\n\n\nInterface\n\n\nEmpirical Statistical Testing\n\n\nConversion to Float\n\n\n\n\n\n\nPermuted Congruential Generators\n\n\nMersenne Twisters\n\n\nRandom123 Family\n\n\nXorshift Family\n\n\n\n\n\n\nLibrary Outline\n\n\n\n\nRNG\n\n\nPCG\n\n\nMersenneTwisters\n\n\nRandom123\n\n\nXorshifts", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#rngjl-documentation", 
+            "text": "RNG.jl  is a collection of Random Number Generators for the Julia language.  There are several kinds of RNG families in this package, provided as submodules.  The examples and detailed descriptions of each RNG can be found on the Manual pages.", 
+            "title": "RNG.jl Documentation"
+        }, 
+        {
+            "location": "/#manual-outline", 
+            "text": "Bases  Interface  Empirical Statistical Testing  Conversion to Float    Permuted Congruential Generators  Mersenne Twisters  Random123 Family  Xorshift Family", 
+            "title": "Manual Outline"
+        }, 
+        {
+            "location": "/#library-outline", 
+            "text": "RNG  PCG  MersenneTwisters  Random123  Xorshifts", 
+            "title": "Library Outline"
+        }, 
+        {
+            "location": "/man/bases/", 
+            "text": "Bases\n\n\nThis page describes basic concepts and fundanmental knowledge of \nRNG.jl\n.\n\n\n\n\nNote\n\n\nUnless otherwise specified, all the random number generators in this package are \npseudorandom\n number generators (or \ndeterministic\n random bit generator), which means they only provide numbers whose properties approximate the properties of \ntruly random\n numbers. Always, especially in secure-sensitive cases, keep in mind that they do not gaurantee a totally random performance.\n\n\n\n\n\n\nInterface\n\n\nFirst of all, to use a RNG from this package, you can import \nRNG.jl\n and use RNG by declare its submodule's name, or directly import the submodule. Then you can create a random number generator of certain type. For example:\n\n\njulia\n using RNG\njulia\n r = Xorshifts.Xorshift1024Plus()\n\n\n\n\nor\n\n\njulia\n using RNG.Xorshifts\njulia\n r = Xorshift1024Plus()\n\n\n\n\nThe submodules have some API in common and a few differently.\n\n\nAll the Random Number Generators (RNGs) are child types of \nAbstractRNG{T}\n, which is a child type of \nBase.Random.AbstractRNG\n and replaces it. (The \nBase.Random\n may be refactored sometime, anyway.) The type parameter \nT\n indicates the original output type of a RNG, and it is usually a child type of the \nUnsigned\n, such as \nUInt64\n, \nUInt32\n, etc.\n\n\nConsistent to what the \nBase.Random\n does, there are generic functions:\n\n\n\n\nsrand(::AbstractRNG{T}[, seed])\n   initializes a RNG by one or a sequence of numbers (called \nseed\n). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   \ndeterministic\n. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no \nseed\n provided, then it will use \ngen_seed\n to get a random one.\n\n\nrand(::AbstractRNG{T}[, ::Type{TP}=Float64])\n   returns a random number in the type \nTP\n. \nTP\n is usually an \nUnsigned\n type, and the return value is   expected to be random at every bit. When \nTP\n is \nFloat64\n (as default), this function returns a \nFloat64\n   value that is expected to be uniformly distributed in [0, 1). The discussion about this is in the   \nConversion to Float\n section.\n\n\n\n\nThe other generic functions such as \nrand(::AbstractRNG, ::Dims)\n and \nrand!(::AbstractRNG, ::AbstractArray)\n defined in \nBase.Random\n still work.\n\n\nThe constructors of all the types of RNG are designed to take \nseed\n as their parameters, and can be called with no parameter. For example:\n\n\njulia\n using RNG.Xorshifts\n\njulia\n r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed \n123\n\nRNG.Xorshifts.Xorshift128Star{UInt64}(0x000000003a300074,0x000000003a30004e,0x228e12c83a9b5ed6,false)\n\njulia\n r2 = Xorshift128Star();  # Use a random value to be the seed.\n\njulia\n rand(r1)  # Generate a number uniformly distributed in [0, 1).\n0.12555060351645186\n\njulia\n A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.\n2\u00d73 Array{UInt64,2}:\n 0xbed3dea863c65407  0x607f5f9815f515af  0x807289d8f9847407\n 0x4ab80d43269335ee  0xf78b56ada11ea641  0xc2306a55acfb4aaa\n\njulia\n rand!(r1, A)  # Refill `A` with random numbers.\n2\u00d73 Array{UInt64,2}:\n 0xf729352e2a72b541  0xe89948b5582a85f0  0x8a95ebd6aa34fcf4\n 0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865\n\n\n\n\nPeople will get the same results in their own computers of the above lines. For more interfaces and usage examples, please refer to the manual pages of each RNG.\n\n\n\n\nEmpirical Statistical Testing\n\n\nEmpirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.\n\n\nThe famous and highly evaluated \nTestU01\n library\n is chosen to test the RNGs in \nRNG.jl\n. \nTestU01\n offers a collection of test suites, and the \nBig Crush\n is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). \nBit Crush\n has revealed a number of flaws of lots of well-used generators, even including the \nMersenne Twister\n (or to be more exact, the \ndSFMT\n) which is currently used in \nBase.Random\n as \nGLOBAL_RAND\n.\n1\n\n\nThe testing results are available on \nBenchmark\n page.\n\n\n\n\nConversion to Float\n\n\n\n\n\n\n\n\n\n\nrand\n fails bigcrush #6464", 
+            "title": "Bases"
+        }, 
+        {
+            "location": "/man/bases/#bases", 
+            "text": "This page describes basic concepts and fundanmental knowledge of  RNG.jl .   Note  Unless otherwise specified, all the random number generators in this package are  pseudorandom  number generators (or  deterministic  random bit generator), which means they only provide numbers whose properties approximate the properties of  truly random  numbers. Always, especially in secure-sensitive cases, keep in mind that they do not gaurantee a totally random performance.", 
+            "title": "Bases"
+        }, 
+        {
+            "location": "/man/bases/#interface", 
+            "text": "First of all, to use a RNG from this package, you can import  RNG.jl  and use RNG by declare its submodule's name, or directly import the submodule. Then you can create a random number generator of certain type. For example:  julia  using RNG\njulia  r = Xorshifts.Xorshift1024Plus()  or  julia  using RNG.Xorshifts\njulia  r = Xorshift1024Plus()  The submodules have some API in common and a few differently.  All the Random Number Generators (RNGs) are child types of  AbstractRNG{T} , which is a child type of  Base.Random.AbstractRNG  and replaces it. (The  Base.Random  may be refactored sometime, anyway.) The type parameter  T  indicates the original output type of a RNG, and it is usually a child type of the  Unsigned , such as  UInt64 ,  UInt32 , etc.  Consistent to what the  Base.Random  does, there are generic functions:   srand(::AbstractRNG{T}[, seed])    initializes a RNG by one or a sequence of numbers (called  seed ). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them    deterministic . The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no  seed  provided, then it will use  gen_seed  to get a random one.  rand(::AbstractRNG{T}[, ::Type{TP}=Float64])    returns a random number in the type  TP .  TP  is usually an  Unsigned  type, and the return value is   expected to be random at every bit. When  TP  is  Float64  (as default), this function returns a  Float64    value that is expected to be uniformly distributed in [0, 1). The discussion about this is in the    Conversion to Float  section.   The other generic functions such as  rand(::AbstractRNG, ::Dims)  and  rand!(::AbstractRNG, ::AbstractArray)  defined in  Base.Random  still work.  The constructors of all the types of RNG are designed to take  seed  as their parameters, and can be called with no parameter. For example:  julia  using RNG.Xorshifts\n\njulia  r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed  123 \nRNG.Xorshifts.Xorshift128Star{UInt64}(0x000000003a300074,0x000000003a30004e,0x228e12c83a9b5ed6,false)\n\njulia  r2 = Xorshift128Star();  # Use a random value to be the seed.\n\njulia  rand(r1)  # Generate a number uniformly distributed in [0, 1).\n0.12555060351645186\n\njulia  A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.\n2\u00d73 Array{UInt64,2}:\n 0xbed3dea863c65407  0x607f5f9815f515af  0x807289d8f9847407\n 0x4ab80d43269335ee  0xf78b56ada11ea641  0xc2306a55acfb4aaa\n\njulia  rand!(r1, A)  # Refill `A` with random numbers.\n2\u00d73 Array{UInt64,2}:\n 0xf729352e2a72b541  0xe89948b5582a85f0  0x8a95ebd6aa34fcf4\n 0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865  People will get the same results in their own computers of the above lines. For more interfaces and usage examples, please refer to the manual pages of each RNG.", 
+            "title": "Interface"
+        }, 
+        {
+            "location": "/man/bases/#empirical-statistical-testing", 
+            "text": "Empirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.  The famous and highly evaluated  TestU01  library  is chosen to test the RNGs in  RNG.jl .  TestU01  offers a collection of test suites, and the  Big Crush  is the largest and most stringent test battery for empirical testing (which usually takes several hours to run).  Bit Crush  has revealed a number of flaws of lots of well-used generators, even including the  Mersenne Twister  (or to be more exact, the  dSFMT ) which is currently used in  Base.Random  as  GLOBAL_RAND . 1  The testing results are available on  Benchmark  page.", 
+            "title": "Empirical Statistical Testing"
+        }, 
+        {
+            "location": "/man/bases/#conversion-to-float", 
+            "text": "rand  fails bigcrush #6464", 
+            "title": "Conversion to Float"
+        }, 
+        {
+            "location": "/man/benchmark/", 
+            "text": "Benchmark", 
+            "title": "Benchmark"
+        }, 
+        {
+            "location": "/man/benchmark/#benchmark", 
+            "text": "", 
+            "title": "Benchmark"
+        }, 
+        {
+            "location": "/man/pcg/", 
+            "text": "Permuted Congruential Generators", 
+            "title": "Permuted Congruential Generators"
+        }, 
+        {
+            "location": "/man/pcg/#permuted-congruential-generators", 
+            "text": "", 
+            "title": "Permuted Congruential Generators"
+        }, 
+        {
+            "location": "/man/mersenne-twisters/", 
+            "text": "Mersenne Twisters", 
+            "title": "Mersenne Twisters"
+        }, 
+        {
+            "location": "/man/mersenne-twisters/#mersenne-twisters", 
+            "text": "", 
+            "title": "Mersenne Twisters"
+        }, 
+        {
+            "location": "/man/random123/", 
+            "text": "Random123 Family", 
+            "title": "Random123 Family"
+        }, 
+        {
+            "location": "/man/random123/#random123-family", 
+            "text": "", 
+            "title": "Random123 Family"
+        }, 
+        {
+            "location": "/man/xorshifts/", 
+            "text": "Xorshift Family", 
+            "title": "Xorshift Family"
+        }, 
+        {
+            "location": "/man/xorshifts/#xorshift-family", 
+            "text": "", 
+            "title": "Xorshift Family"
+        }, 
+        {
+            "location": "/lib/rng/", 
+            "text": "RNG", 
+            "title": "RNG"
+        }, 
+        {
+            "location": "/lib/rng/#rng", 
+            "text": "", 
+            "title": "RNG"
+        }, 
+        {
+            "location": "/lib/pcg/", 
+            "text": "PCG", 
+            "title": "PCG"
+        }, 
+        {
+            "location": "/lib/pcg/#pcg", 
+            "text": "", 
+            "title": "PCG"
+        }, 
+        {
+            "location": "/lib/mersenne-twisters/", 
+            "text": "MersenneTwisters", 
+            "title": "MersenneTwisters"
+        }, 
+        {
+            "location": "/lib/mersenne-twisters/#mersennetwisters", 
+            "text": "", 
+            "title": "MersenneTwisters"
+        }, 
+        {
+            "location": "/lib/random123/", 
+            "text": "Random123", 
+            "title": "Random123"
+        }, 
+        {
+            "location": "/lib/random123/#random123", 
+            "text": "", 
+            "title": "Random123"
+        }, 
+        {
+            "location": "/lib/xorshifts/", 
+            "text": "Xorshifts", 
+            "title": "Xorshifts"
+        }, 
+        {
+            "location": "/lib/xorshifts/#xorshifts", 
+            "text": "", 
+            "title": "Xorshifts"
+        }
+    ]
+}
