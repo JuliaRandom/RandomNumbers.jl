@@ -52,14 +52,13 @@ defined in `Base.Random` still work.
 The constructors of all the types of RNG are designed to take `seed` as their parameters, and can be called
 with no parameter. For example:
 
-```julia
+```jldoctest
 julia> using RNG.Xorshifts
 
 julia> r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed "123"
 RNG.Xorshifts.Xorshift128Star{UInt64}(0x000000003a300074,0x000000003a30004e,0x228e12c83a9b5ed6,false)
 
-julia> r2 = Xorshift128Star()  # Use a random value to be the seed.
-RNG.Xorshifts.Xorshift128Star{UInt64}(0x784c0ed3d830bb42,0x4d268014e74d6e25,0x4ef0aea8ee776b31,false)
+julia> r2 = Xorshift128Star();  # Use a random value to be the seed.
 
 julia> rand(r1)  # Generate a number uniformly distributed in [0, 1).
 0.12555060351645186
@@ -75,7 +74,7 @@ julia> rand!(r1, A)  # Refill `A` with random numbers.
  0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865
 ```
 
-People will get the same results in their own computers of the above lines, except for the third one. For
+People will get the same results in their own computers of the above lines. For
 more interfaces and usage examples, please refer to the manual pages of each RNG.
 
 

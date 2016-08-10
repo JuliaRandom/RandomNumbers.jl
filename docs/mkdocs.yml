@@ -32,10 +32,10 @@ pages:
 - Manual:
     - Bases: man/bases.md
     - Benchmark: man/benchmark.md
-    - PCG: man/pcg.md
-    - MersenneTwisters: man/mersenne-twisters.md
-    - Random123: man/random123.md
-    - Xorshifts: man/xorshifts.md
+    - Permuted Congruential Generators: man/pcg.md
+    - Mersenne Twisters: man/mersenne-twisters.md
+    - Random123 Family: man/random123.md
+    - Xorshift Family: man/xorshifts.md
 - Library:
     - RNG: lib/rng.md
     - PCG: lib/pcg.md

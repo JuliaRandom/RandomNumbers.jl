@@ -1,1 +1,1 @@
-# Permuted Congruential Generators
+# PCG

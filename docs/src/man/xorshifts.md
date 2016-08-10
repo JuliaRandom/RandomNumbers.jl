@@ -1,1 +1,1 @@
-# Xorshifts
+# Xorshift Family

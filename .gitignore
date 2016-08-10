@@ -7,3 +7,4 @@ actual/
 *.log
 *.so
 *.dll
+/docs/site/
