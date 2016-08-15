@@ -2,6 +2,15 @@ __precompile__(true)
 
 """
 Main module for `RNG.jl` -- a random number generator package for Julia Language.
+
+
+This module exports one abstract type and four submodules:
+
+- [`AbstractRNG`](@ref). The base type of all the RNGs.
+- [`PCG`](@ref).
+- [`MersenneTwisters`](@ref).
+- [`Random123`](@ref).
+- [`Xorshifts`](@ref).
 """
 module RNG
 

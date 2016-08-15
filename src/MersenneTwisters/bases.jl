@@ -1,5 +1,12 @@
 import RNG: AbstractRNG, gen_seed
 
+"""
+```julia
+MersenneTwister{T} <: RNG.AbstractRNG{T}
+```
+
+The base type of Mersenne Twisters.
+"""
 abstract MersenneTwister{T<:Number} <: AbstractRNG{T}
 
 const N = 624
@@ -7,13 +14,21 @@ const M = 397
 const UPPER_MASK = 0x800000000
 const LOWER_MASK = 0x7ffffffff
 
-# It now only supports the UInt32 output.
+"""
+```julia
+MT19937 <: MersenneTwister{UInt32}
+MT19937([seed])
+```
+
+MT19937 RNG. The `seed` will be automatically convert to an `UInt32` number.
+"""
 type MT19937 <: MersenneTwister{UInt32}
     mt::Vector{UInt32}
     mti::Int
 end
 MT19937(seed::Integer=gen_seed(UInt32)) = srand(MT19937(Vector{UInt32}(N), 1), seed)
 
+"Set up a `MT19937` RNG object using an `UInt32` number."
 @inline function mt_set!(r::MT19937, s::UInt32)
     r.mt[1] = s
     @inbounds for i in 2:N
@@ -24,6 +39,7 @@ MT19937(seed::Integer=gen_seed(UInt32)) = srand(MT19937(Vector{UInt32}(N), 1), s
 end
 
 @inline mt_magic(y) = y & 1 == 1 ? 0x9908b0df : (0 % UInt32)
+"Get a random `UInt32` number from a `MT19937` object."
 @inline function mt_get(r::MT19937)
     mt = r.mt
     if r.mti > N

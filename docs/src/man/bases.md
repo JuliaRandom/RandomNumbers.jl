@@ -3,7 +3,6 @@
 This page describes basic concepts and fundanmental knowledge of **RNG.jl**.
 
 !!! note
-
     Unless otherwise specified, all the random number generators in this package are *pseudorandom* number
     generators (or *deterministic* random bit generator), which means they only provide numbers whose
     properties approximate the properties of *truly random* numbers. Always, especially in secure-sensitive
@@ -38,7 +37,8 @@ Consistent to what the `Base.Random` does, there are generic functions:
     initializes a RNG by one or a sequence of numbers (called *seed*). The output sequences by two RNGs of
     the same type should be the same if they are initialized by the same seed, which makes them
     *deterministic*. The seed type of each RNG type can be different, you can refer to the corresponding
-    manual pages for details. If no `seed` provided, then it will use [`gen_seed`](@ref) to get a random one.
+    manual pages for details. If no `seed` provided, then it will use [`RNG.gen_seed`](@ref) to get a "truly"
+    random one.
 
 - `rand(::AbstractRNG{T}[, ::Type{TP}=Float64])`
     returns a random number in the type `TP`. `TP` is usually an `Unsigned` type, and the return value is
@@ -49,8 +49,7 @@ Consistent to what the `Base.Random` does, there are generic functions:
 The other generic functions such as `rand(::AbstractRNG, ::Dims)` and `rand!(::AbstractRNG, ::AbstractArray)`
 defined in `Base.Random` still work.
 
-The constructors of all the types of RNG are designed to take `seed` as their parameters, and can be called
-with no parameter. For example:
+The constructors of all the types of RNG are designed to take the same kind of parameters as `srand`. For example:
 
 ```jldoctest
 julia> using RNG.Xorshifts

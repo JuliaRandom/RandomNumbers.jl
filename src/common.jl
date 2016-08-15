@@ -1,6 +1,15 @@
 import Base.Random: rand
+
+"""
+```julia
+AbstractRNG{T} <: Base.Random.AbstractRNG
+```
+
+The abstract type of Random Number Generators. T indicates the original output type of a RNG.
+"""
 abstract AbstractRNG{T<:Number} <: Base.Random.AbstractRNG
 
+# TODO: convert to float64
 for (output_type, scale) in (
     (UInt8, 3.906250000000000000000000000000e-03),
     (UInt16, 1.525878906250000000000000000000e-05),

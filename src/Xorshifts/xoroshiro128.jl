@@ -1,6 +1,15 @@
 import Base.Random: rand, srand
 import RNG: AbstractRNG, gen_seed
 
+"""
+```julia
+AbstractXoroshiro128{T} <: AbstractRNG{T}
+```
+
+The base abstract type for `Xoroshiro128`, `Xoroshiro128Star` and `Xoroshiro128Plus`.
+"""
+abstract AbstractXoroshiro128{T} <: AbstractRNG{T}
+
 @inline xorshift_rotl(x::UInt64, k) = (x << k) | (x >> (64 - k))
 
 for (star, plus) in (
@@ -27,6 +36,8 @@ for (star, plus) in (
 
         $rng_name(seed::Integer=gen_seed(UInt128)) = $rng_name(UInt64, seed)
 
+        $rng_name(seed::NTuple{2, UInt64}) = $rng_name(UInt64, seed)
+
         @inline function xorshift_next(r::$rng_name)
             $(plus ? :(r.result = r.x + r.y) : nothing)
             s1 = r.y $ r.x
@@ -34,19 +45,6 @@ for (star, plus) in (
             r.y = xorshift_rotl(s1, 36)
             $(star ? :(r.result = r.y * 2685821657736338717) :
               plus ? :(r.result) : :(r.y))
-        end
-
-        @inline function srand(r::$rng_name, seed::Integer=gen_seed(UInt64))
-            r.x = seed % UInt64
-            r.y = (seed >> 64) % UInt64
-            r.flag = false
-            xorshift_next(r)
-            xorshift_next(r)
-            r
-        end
-
-        @inline function rand(r::$rng_name{UInt64}, ::Type{UInt64})
-            xorshift_next(r)
         end
 
         @inline function rand(r::$rng_name{UInt32}, ::Type{UInt32})
@@ -61,3 +59,14 @@ for (star, plus) in (
         end
     end
 end
+
+function srand(r::AbstractXoroshiro128, seed::Integer=gen_seed(UInt64))
+    r.x = seed % UInt64
+    r.y = (seed >> 64) % UInt64
+    r.flag = false
+    xorshift_next(r)
+    xorshift_next(r)
+    r
+end
+
+@inline rand(r::AbstractXoroshiro128{UInt64}, ::Type{UInt64}) = xorshift_next(r)

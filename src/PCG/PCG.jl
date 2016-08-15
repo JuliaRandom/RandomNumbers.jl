@@ -3,7 +3,7 @@ __precompile__(true)
 module PCG
 
     # PCG
-    export AbstractPCG, PCGStateMCG, PCGStateOneseq, PCGStateUnique, PCGStateSetseq
+    export PCGStateMCG, PCGStateOneseq, PCGStateUnique, PCGStateSetseq
 
     # PCG Methods
     export PCG_XSH_RS, PCG_XSH_RR, PCG_RXS_M_XS, PCG_XSL_RR, PCG_XSL_RR_RR

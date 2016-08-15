@@ -1,6 +1,15 @@
 import Base.Random: rand, srand
 import RNG: AbstractRNG, gen_seed
 
+"""
+```julia
+AbstractXorshift1024{T} <: AbstractRNG{T}
+```
+
+The base abstract type for `Xorshift1024`, `Xorshift1024Star` and `Xorshift1024Plus`.
+"""
+abstract AbstractXorshift1024{T} <: AbstractRNG{T}
+
 for (star, plus) in (
         (false, false),
         (false, true),
@@ -8,7 +17,7 @@ for (star, plus) in (
     )
     rng_name = Symbol(string("Xorshift1024", star ? "Star" : plus ? "Plus" :""))
     @eval begin
-        type $rng_name{T<:Union{UInt32, UInt64}} <: AbstractRNG{T}
+        type $rng_name{T<:Union{UInt32, UInt64}} <: AbstractXorshift1024{T}
             s0::UInt64
             s1::UInt64
             s2::UInt64
@@ -35,10 +44,10 @@ for (star, plus) in (
                 r
             end
         end
-    end # if no another @eval there's a weird error: type definition not allowed inside a local scope
+    end # If no another @eval: type definition not allowed inside a local scope. (It's a bug of julia)
     @eval begin
         $rng_name{T<:Union{UInt32, UInt64}}(::Type{T},
-            seed::NTuple{16, Integer}=gen_seed(UInt64, 16)) = $rng_name{T}(map(x->x % UInt64, seed))
+            seed::NTuple{16, UInt64}=gen_seed(UInt64, 16)) = $rng_name{T}(seed)
 
         function $rng_name{T<:Union{UInt32, UInt64}}(::Type{T}, seed::Integer...)
             l = length(seed)
@@ -49,7 +58,7 @@ for (star, plus) in (
             $rng_name(T, (seed..., [i for i in l+1:16]...))
         end
 
-        $rng_name(seed::NTuple{16, Integer}) = $rng_name(UInt64, seed)
+        $rng_name(seed::NTuple{16, UInt64}) = $rng_name(UInt64, seed)
 
         $rng_name(seed::Integer...) = $rng_name(UInt64, seed...)
 
@@ -68,31 +77,6 @@ for (star, plus) in (
               plus ? :(r.result = s1 + s0) : :s1)
         end
 
-        @inline function srand(r::$rng_name, seed::NTuple{16, Integer})
-            @inbounds for i in 1:16
-                unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), seed[i], i)
-            end
-            r.p = 0
-            r.flag = false
-            for i in 1:16
-                xorshift_next(r)
-            end
-            r
-        end
-
-        @inline function srand(r::$rng_name, seed::Integer...)
-            l = length(seed)
-            @assert 0 ≤ l ≤ 16 
-            if l == 0
-                srand(r, gen_seed(UInt64, 16))
-            end
-            srand(r, (seed..., [i for i in l+1:16]...))
-        end
-
-        @inline function rand(r::$rng_name{UInt64}, ::Type{UInt64})
-            xorshift_next(r)
-        end
-
         @inline function rand(r::$rng_name{UInt32}, ::Type{UInt32})
             if r.flag
                 r.flag = false
@@ -105,3 +89,26 @@ for (star, plus) in (
         end
     end
 end
+
+function srand(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
+    @inbounds for i in 1:16
+        unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), seed[i], i)
+    end
+    r.p = 0
+    r.flag = false
+    for i in 1:16
+        xorshift_next(r)
+    end
+    r
+end
+
+function srand(r::AbstractXorshift1024, seed::Integer...)
+    l = length(seed)
+    @assert 0 ≤ l ≤ 16 
+    if l == 0
+        srand(r, gen_seed(UInt64, 16))
+    end
+    srand(r, (seed..., [i for i in l+1:16]...))
+end
+
+@inline rand(r::AbstractXorshift1024{UInt64}, ::Type{UInt64}) = xorshift_next(r)
