@@ -66,10 +66,9 @@ type AESNI4x <: R123Generator4x{UInt32}
     ctr1::UInt128
     p::Int
     function AESNI4x(seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
-        r = AESNI4x{UInt32}(0, 0, 0, 0, AESNIKey(), 0, 0)
+        r = new(0, 0, 0, 0, AESNIKey(), 0, 0)
         srand(r, seed)
     end
-
 end
 
 function srand(r::AESNI4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))

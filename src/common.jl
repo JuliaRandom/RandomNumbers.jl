@@ -11,17 +11,14 @@ abstract AbstractRNG{T<:Number} <: Base.Random.AbstractRNG
 
 typealias BitTypes Union{Bool, Signed, Unsigned}
 
-# TODO: convert to float64
-for (output_type, scale) in (
-    (UInt8, 3.906250000000000000000000000000e-03),
-    (UInt16, 1.525878906250000000000000000000e-05),
-    (UInt32, 2.328306436538696289062500000000e-10),
-    (UInt64, 5.421010862427522170037264004350e-20),
-    (UInt128, 2.938735877055718769921841343056e-39)
-)
-    @eval @inline function rand(rng::AbstractRNG{$output_type}, ::Type{Float64}=Float64)
-        (rand(rng, $output_type)::$output_type * $scale)
-    end
+# see https://github.com/sunoru/RNG.jl/issues/8
+# TODO: find a better approach.
+@inline function rand{T<:Union{UInt64, UInt128}}(rng::AbstractRNG{T}, ::Type{Float64}=Float64)
+    u = rand(rng, UInt64)
+    reinterpret(Float64, Base.exponent_one(Float64) | Base.significand_mask(Float64) & u) - 1.0
+end
+@inline function rand{T<:Union{UInt8, UInt16, UInt32}}(rng::AbstractRNG{T}, ::Type{Float64}=Float64)
+    rand(rng, T) * exp2(-sizeof(T) << 3)
 end
 
 @inline function rand{T1<:BitTypes, T2<:BitTypes}(rng::AbstractRNG{T1}, ::Type{T2})

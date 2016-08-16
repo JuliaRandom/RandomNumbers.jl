@@ -56,12 +56,12 @@ The constructors of all the types of RNG are designed to take the same kind of p
 julia> using RNG.Xorshifts
 
 julia> r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed "123"
-RNG.Xorshifts.Xorshift128Star{UInt64}(0x000000003a300074,0x000000003a30004e,0x228e12c83a9b5ed6,false)
+RNG.Xorshifts.Xorshift128Star(0x000000003a300074,0x000000003a30004e)
 
 julia> r2 = Xorshift128Star();  # Use a random value to be the seed.
 
 julia> rand(r1)  # Generate a number uniformly distributed in [0, 1).
-0.12555060351645186
+0.2552720033868119
 
 julia> A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.
 2×3 Array{UInt64,2}:
