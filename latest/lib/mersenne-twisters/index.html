@@ -273,6 +273,28 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="Index" href="#index">
+                Index
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Public" href="#public">
+                Public
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Internal" href="#internal">
+                Internal
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -311,6 +333,52 @@
           
           <p><a id='MersenneTwisters-1'></a></p>
 <h1 id="mersennetwisters">MersenneTwisters</h1>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="./#RNG.MersenneTwisters"><code>RNG.MersenneTwisters</code></a></li>
+<li><a href="./#RNG.MersenneTwisters.MT19937"><code>RNG.MersenneTwisters.MT19937</code></a></li>
+<li><a href="./#RNG.MersenneTwisters.MersenneTwister"><code>RNG.MersenneTwisters.MersenneTwister</code></a></li>
+<li><a href="./#RNG.MersenneTwisters.mt_get-Tuple{RNG.MersenneTwisters.MT19937}"><code>RNG.MersenneTwisters.mt_get</code></a></li>
+<li><a href="./#RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,UInt32}"><code>RNG.MersenneTwisters.mt_set!</code></a></li>
+</ul>
+<p><a id='Public-1'></a></p>
+<h2 id="public">Public</h2>
+<p><a id='RNG.MersenneTwisters' href='#RNG.MersenneTwisters'>#</a>
+<strong><code>RNG.MersenneTwisters</code></strong> &mdash; <em>Module</em>.</p>
+<p>The module for <a href="../../man/mersenne-twisters/#Mersenne-Twisters-1">Mersenne Twisters</a>.</p>
+<p>Currently only provide one RNG type:</p>
+<ul>
+<li><a href="./#RNG.MersenneTwisters.MT19937"><code>MT19937</code></a></li>
+</ul>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./MersenneTwisters/MersenneTwisters.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.MersenneTwisters.MT19937' href='#RNG.MersenneTwisters.MT19937'>#</a>
+<strong><code>RNG.MersenneTwisters.MT19937</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">MT19937</span> <span class="o">&lt;:</span> <span class="n">MersenneTwister</span><span class="p">{</span><span class="n">UInt32</span><span class="p">}</span>
+<span class="n">MT19937</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>MT19937 RNG. The <code>seed</code> will be automatically convert to an <code>UInt32</code> number.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./MersenneTwisters/bases.jl#L17-L24' class='documenter-source'>source</a><br></p>
+<p><a id='Internal-1'></a></p>
+<h2 id="internal">Internal</h2>
+<p><a id='RNG.MersenneTwisters.MersenneTwister' href='#RNG.MersenneTwisters.MersenneTwister'>#</a>
+<strong><code>RNG.MersenneTwisters.MersenneTwister</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">MersenneTwister</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">RNG</span><span class="o">.</span><span class="n">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+</pre></div>
+
+
+<p>The base type of Mersenne Twisters.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./MersenneTwisters/bases.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.MersenneTwisters.mt_get-Tuple{RNG.MersenneTwisters.MT19937}' href='#RNG.MersenneTwisters.mt_get-Tuple{RNG.MersenneTwisters.MT19937}'>#</a>
+<strong><code>RNG.MersenneTwisters.mt_get</code></strong> &mdash; <em>Method</em>.</p>
+<p>Get a random <code>UInt32</code> number from a <code>MT19937</code> object.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./MersenneTwisters/bases.jl#L42' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,UInt32}' href='#RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,UInt32}'>#</a>
+<strong><code>RNG.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
+<p>Set up a <code>MT19937</code> RNG object using an <code>UInt32</code> number.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./MersenneTwisters/bases.jl#L31' class='documenter-source'>source</a><br></p>
           <aside class="copyright" role="note">
             
             Documentation built with

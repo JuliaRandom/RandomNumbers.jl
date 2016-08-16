@@ -341,50 +341,53 @@
 <p><a id='Interface-1'></a></p>
 <h2 id="interface">Interface</h2>
 <p>First of all, to use a RNG from this package, you can import <code>RNG.jl</code> and use RNG by declare its submodule's name, or directly import the submodule. Then you can create a random number generator of certain type. For example:</p>
-<pre class="codehilite"><code class="language-julia">julia&gt; using RNG
-julia&gt; r = Xorshifts.Xorshift1024Plus()</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RNG</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xorshifts</span><span class="o">.</span><span class="n">Xorshift1024Plus</span><span class="p">()</span>
+</pre></div>
 
 
 <p>or</p>
-<pre class="codehilite"><code class="language-julia">julia&gt; using RNG.Xorshifts
-julia&gt; r = Xorshift1024Plus()</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RNG</span><span class="o">.</span><span class="n">Xorshifts</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xorshift1024Plus</span><span class="p">()</span>
+</pre></div>
 
 
 <p>The submodules have some API in common and a few differently.</p>
-<p>All the Random Number Generators (RNGs) are child types of <code>AbstractRNG{T}</code>, which is a child type of <code>Base.Random.AbstractRNG</code> and replaces it. (The <code>Base.Random</code> may be refactored sometime, anyway.) The type parameter <code>T</code> indicates the original output type of a RNG, and it is usually a child type of the <code>Unsigned</code>, such as <code>UInt64</code>, <code>UInt32</code>, etc.</p>
-<p>Consistent to what the <code>Base.Random</code> does, there are generic functions:</p>
+<p>All the Random Number Generators (RNGs) are child types of <code>AbstractRNG{T}</code>, which is a child type of <code>Base.Random.AbstractRNG</code> and replaces it. (<code>Base.Random</code> may be refactored sometime, anyway.) The type parameter <code>T</code> indicates the original output type of a RNG, and it is usually a child type of <code>Unsigned</code>, such as <code>UInt64</code>, <code>UInt32</code>, etc. Users can change the output type of a certain RNG type by use a wrapped type: <a href="../../lib/rng/#RNG.WrappedRNG"><code>WrappedRNG</code></a></p>
+<p>Consistent to what <code>Base.Random</code> does, there are generic functions:</p>
 <ul>
-<li><code>srand(::AbstractRNG{T}[, seed])</code>   initializes a RNG by one or a sequence of numbers (called <em>seed</em>). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   <em>deterministic</em>. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no <code>seed</code> provided, then it will use <a href="../@ref"><code>gen_seed</code></a> to get a random one.</li>
-<li><code>rand(::AbstractRNG{T}[, ::Type{TP}=Float64])</code>   returns a random number in the type <code>TP</code>. <code>TP</code> is usually an <code>Unsigned</code> type, and the return value is   expected to be random at every bit. When <code>TP</code> is <code>Float64</code> (as default), this function returns a <code>Float64</code>   value that is expected to be uniformly distributed in [0, 1). The discussion about this is in the   <a href="./#Conversion-to-Float-1">Conversion to Float</a> section.</li>
+<li><code>srand(::AbstractRNG{T}[, seed])</code>   initializes a RNG by one or a sequence of numbers (called <em>seed</em>). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   <em>deterministic</em>. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no <code>seed</code> provided, then it will use <a href="../../lib/rng/#RNG.gen_seed-Tuple{Type{T&lt;:Number}}"><code>RNG.gen_seed</code></a> to get a "truly"   random one.</li>
+<li><code>rand(::AbstractRNG{T}[, ::Type{TP}=Float64])</code>   returns a random number in the type <code>TP</code>. <code>TP</code> is usually an <code>Unsigned</code> type, and the return value is   expected to be uniformly distributed in {0, 1} at every bit. When <code>TP</code> is <code>Float64</code> (as default), this   function returns a <code>Float64</code> value that is expected to be uniformly distributed in [0, 1). The discussion   about this is in the <a href="./#Conversion-to-Float-1">Conversion to Float</a> section.</li>
 </ul>
 <p>The other generic functions such as <code>rand(::AbstractRNG, ::Dims)</code> and <code>rand!(::AbstractRNG, ::AbstractArray)</code> defined in <code>Base.Random</code> still work.</p>
-<p>The constructors of all the types of RNG are designed to take <code>seed</code> as their parameters, and can be called with no parameter. For example:</p>
-<pre class="codehilite"><code class="language-jlcon">julia&gt; using RNG.Xorshifts
+<p>The constructors of all the types of RNG are designed to take the same kind of parameters as <code>srand</code>. For example:</p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="k">using</span> <span class="n">RNG</span><span class="o">.</span><span class="n">Xorshifts</span>
 
-julia&gt; r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed &quot;123&quot;
-RNG.Xorshifts.Xorshift128Star{UInt64}(0x000000003a300074,0x000000003a30004e,0x228e12c83a9b5ed6,false)
+<span class="gp">julia&gt;</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">Xorshift128Star</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c"># Create a RNG of Xorshift128Star with the seed &quot;123&quot;</span>
+<span class="go">RNG.Xorshifts.Xorshift128Star(0x000000003a300074,0x000000003a30004e)</span>
 
-julia&gt; r2 = Xorshift128Star();  # Use a random value to be the seed.
+<span class="gp">julia&gt;</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">Xorshift128Star</span><span class="p">();</span>  <span class="c"># Use a random value to be the seed.</span>
 
-julia&gt; rand(r1)  # Generate a number uniformly distributed in [0, 1).
-0.12555060351645186
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>  <span class="c"># Generate a number uniformly distributed in [0, 1).</span>
+<span class="go">0.2552720033868119</span>
 
-julia&gt; A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.
-2×3 Array{UInt64,2}:
- 0xbed3dea863c65407  0x607f5f9815f515af  0x807289d8f9847407
- 0x4ab80d43269335ee  0xf78b56ada11ea641  0xc2306a55acfb4aaa
+<span class="gp">julia&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c"># Generate a 2x3 matrix `A` in `UInt64` type.</span>
+<span class="go">2×3 Array{UInt64,2}:</span>
+<span class="go"> 0xbed3dea863c65407  0x607f5f9815f515af  0x807289d8f9847407</span>
+<span class="go"> 0x4ab80d43269335ee  0xf78b56ada11ea641  0xc2306a55acfb4aaa</span>
 
-julia&gt; rand!(r1, A)  # Refill `A` with random numbers.
-2×3 Array{UInt64,2}:
- 0xf729352e2a72b541  0xe89948b5582a85f0  0x8a95ebd6aa34fcf4
- 0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865</code></pre>
+<span class="gp">julia&gt;</span> <span class="n">rand!</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>  <span class="c"># Refill `A` with random numbers.</span>
+<span class="go">2×3 Array{UInt64,2}:</span>
+<span class="go"> 0xf729352e2a72b541  0xe89948b5582a85f0  0x8a95ebd6aa34fcf4</span>
+<span class="go"> 0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865</span>
+</pre></div>
 
 
 <p>People will get the same results in their own computers of the above lines. For more interfaces and usage examples, please refer to the manual pages of each RNG.</p>
 <p><a id='Empirical-Statistical-Testing-1'></a></p>
 <h2 id="empirical-statistical-testing">Empirical Statistical Testing</h2>
 <p>Empirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.</p>
-<p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RNG.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and the <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Bit Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as <code>GLOBAL_RAND</code>.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RNG.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Bit Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as <code>GLOBAL_RAND</code>.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
 <p>The testing results are available on <a href="../benchmark/#Benchmark-1">Benchmark</a> page.</p>
 <p><a id='Conversion-to-Float-1'></a></p>
 <h2 id="conversion-to-float">Conversion to Float</h2>

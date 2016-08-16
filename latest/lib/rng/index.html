@@ -255,6 +255,28 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="Index" href="#index">
+                Index
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Public" href="#public">
+                Public
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Internal" href="#internal">
+                Internal
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -311,6 +333,94 @@
           
           <p><a id='RNG-1'></a></p>
 <h1 id="rng">RNG</h1>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="./#RNG"><code>RNG</code></a></li>
+<li><a href="./#RNG.AbstractRNG"><code>RNG.AbstractRNG</code></a></li>
+<li><a href="./#RNG.WrappedRNG"><code>RNG.WrappedRNG</code></a></li>
+<li><a href="./#RNG.gen_seed-Tuple{Type{T&lt;:Number}}"><code>RNG.gen_seed</code></a></li>
+<li><a href="./#RNG.output_type-Tuple{RNG.AbstractRNG{T}}"><code>RNG.output_type</code></a></li>
+</ul>
+<p><a id='Public-1'></a></p>
+<h2 id="public">Public</h2>
+<p><a id='RNG' href='#RNG'>#</a>
+<strong><code>RNG</code></strong> &mdash; <em>Module</em>.</p>
+<p>Main module for <code>RNG.jl</code> – a random number generator package for Julia Language.</p>
+<p>This module exports two types and four submodules:</p>
+<ul>
+<li><a href="./#RNG.AbstractRNG"><code>AbstractRNG</code></a>.</li>
+<li><a href="./#RNG.WrappedRNG"><code>WrappedRNG</code></a>.</li>
+<li><a href="../@ref"><code>PCG</code></a>.</li>
+<li><a href="../mersenne-twisters/#RNG.MersenneTwisters"><code>MersenneTwisters</code></a>.</li>
+<li><a href="../@ref"><code>Random123</code></a>.</li>
+<li><a href="../xorshifts/#RNG.Xorshifts"><code>Xorshifts</code></a>.</li>
+</ul>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/RNG.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.AbstractRNG' href='#RNG.AbstractRNG'>#</a>
+<strong><code>RNG.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">AbstractRNG</span>
+</pre></div>
+
+
+<p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.WrappedRNG' href='#RNG.WrappedRNG'>#</a>
+<strong><code>RNG.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">WrappedRNG</span><span class="p">{</span><span class="n">R</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractRNG</span><span class="p">{</span><span class="n">T2</span><span class="p">}</span>
+<span class="n">WrappedRNG</span><span class="p">(</span><span class="n">base_rng</span><span class="p">,</span> <span class="n">T2</span><span class="p">)</span>
+<span class="n">WrappedRNG</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">args</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Wrap a RNG which originally provides output in T1 into a RNG that provides output in T2.</p>
+<p><strong>Examples</strong></p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xorshifts</span><span class="o">.</span><span class="n">Xorshift128Star</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">RNG</span><span class="o">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="go">UInt64</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">WrappedRNG</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">RNG</span><span class="o">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+<span class="go">UInt32</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">WrappedRNG</span><span class="p">(</span><span class="n">Xorshifts</span><span class="o">.</span><span class="n">Xorshift128Star</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">RNG</span><span class="o">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+<span class="go">UInt32</span>
+
+<span class="gp">julia&gt;</span> <span class="p">@</span><span class="n">Test</span><span class="o">.</span><span class="n">test</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">rand</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">Test Passed</span>
+<span class="go">  Expression: rand(r1,UInt32,3) == rand(r2,UInt32,3)</span>
+<span class="go">   Evaluated: UInt32[0x18a21796,0x20241598,0x63c65407] == UInt32[0x18a21796,0x20241598,0x63c65407]</span>
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/wrapped_rng.jl#L3-L34' class='documenter-source'>source</a><br></p>
+<p><a id='Internal-1'></a></p>
+<h2 id="internal">Internal</h2>
+<p><a id='RNG.gen_seed-Tuple{Type{T<:Number}}' href='#RNG.gen_seed-Tuple{Type{T<:Number}}'>#</a>
+<strong><code>RNG.gen_seed</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">gen_seed</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">n</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Generate a tuple of <code>n</code> truly random numbers in type <code>T</code>. If <code>n</code> is missing, return only one number. The "truly" random numbers are provided by the random device of system. See <a href="https://github.com/JuliaLang/julia/blob/master/base/random.jl#L29"><code>Base.Random.RandomDevice</code></a>.</p>
+<p><strong>Examples</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">RNG</span><span class="o">.</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># The output should probably be different on different computers.</span>
+<span class="p">(</span><span class="mh">0x26aa3fe5e306f725</span><span class="p">,</span><span class="mh">0x7b9dc3c227d8acc9</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">RNG</span><span class="o">.</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">UInt32</span><span class="p">)</span>
+<span class="mh">0x9ba60fdc</span>
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.output_type-Tuple{RNG.AbstractRNG{T}}' href='#RNG.output_type-Tuple{RNG.AbstractRNG{T}}'>#</a>
+<strong><code>RNG.output_type</code></strong> &mdash; <em>Method</em>.</p>
+<p>Get the original output type of a RNG.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
           <aside class="copyright" role="note">
             
             Documentation built with

@@ -282,6 +282,28 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="Index" href="#index">
+                Index
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Public" href="#public">
+                Public
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Internal" href="#internal">
+                Internal
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -311,6 +333,155 @@
           
           <p><a id='Random123-1'></a></p>
 <h1 id="random123">Random123</h1>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="./#RNG.Random123.R123_USE_AESNI"><code>RNG.Random123.R123_USE_AESNI</code></a></li>
+<li><a href="./#RNG.Random123.AESNI1x"><code>RNG.Random123.AESNI1x</code></a></li>
+<li><a href="./#RNG.Random123.AESNI4x"><code>RNG.Random123.AESNI4x</code></a></li>
+<li><a href="./#RNG.Random123.AESNIKey"><code>RNG.Random123.AESNIKey</code></a></li>
+<li><a href="./#RNG.Random123.ARS1x"><code>RNG.Random123.ARS1x</code></a></li>
+<li><a href="./#RNG.Random123.ARS4x"><code>RNG.Random123.ARS4x</code></a></li>
+<li><a href="./#RNG.Random123.AbstractR123"><code>RNG.Random123.AbstractR123</code></a></li>
+<li><a href="./#RNG.Random123.Philox2x"><code>RNG.Random123.Philox2x</code></a></li>
+<li><a href="./#RNG.Random123.Philox4x"><code>RNG.Random123.Philox4x</code></a></li>
+<li><a href="./#RNG.Random123.R123Generator1x"><code>RNG.Random123.R123Generator1x</code></a></li>
+<li><a href="./#RNG.Random123.R123Generator2x"><code>RNG.Random123.R123Generator2x</code></a></li>
+<li><a href="./#RNG.Random123.R123Generator4x"><code>RNG.Random123.R123Generator4x</code></a></li>
+<li><a href="./#RNG.Random123.Threefry2x"><code>RNG.Random123.Threefry2x</code></a></li>
+<li><a href="./#RNG.Random123.Threefry4x"><code>RNG.Random123.Threefry4x</code></a></li>
+<li><a href="./#RNG.Random123.random123_r"><code>RNG.Random123.random123_r</code></a></li>
+</ul>
+<p><a id='Public-1'></a></p>
+<h2 id="public">Public</h2>
+<p><a id='RNG.Random123.R123_USE_AESNI' href='#RNG.Random123.R123_USE_AESNI'>#</a>
+<strong><code>RNG.Random123.R123_USE_AESNI</code></strong> &mdash; <em>Constant</em>.</p>
+<p>True when AES-NI library has been compiled.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/common.jl#L5' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.AESNI1x' href='#RNG.Random123.AESNI1x'>#</a>
+<strong><code>RNG.Random123.AESNI1x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">AESNI1x</span> <span class="o">&lt;:</span> <span class="n">R123Generator1x</span><span class="p">{</span><span class="n">UInt128</span><span class="p">}</span>
+<span class="n">AESNI1x</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>AESNI1x is one kind of AESNI Counter-Based RNGs. It generates one <code>UInt128</code> number at a time.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>UInt128</code>.</p>
+<p>Only available when <a href="./#RNG.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/aesni.jl#L19-L30' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.AESNI4x' href='#RNG.Random123.AESNI4x'>#</a>
+<strong><code>RNG.Random123.AESNI4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">AESNI4x</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="n">UInt32</span><span class="p">}</span>
+<span class="n">AESNI4x</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>AESNI4x is one kind of AESNI Counter-Based RNGs. It generates four <code>UInt32</code> numbers at a time.</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>UInt32</code>.</p>
+<p>Only available when <a href="./#RNG.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/aesni.jl#L48-L59' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.ARS1x' href='#RNG.Random123.ARS1x'>#</a>
+<strong><code>RNG.Random123.ARS1x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">ARS1x</span><span class="p">{</span><span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator1x</span><span class="p">{</span><span class="n">UInt128</span><span class="p">}</span>
+<span class="n">ARS1x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+
+
+<p>ARS1x is one kind of ARS Counter-Based RNGs. It generates one <code>UInt128</code> number at a time.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>UInt128</code>.</p>
+<p><code>R</code> denotes to the Rounds. With 7 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p>Only available when <a href="./#RNG.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/ars.jl#L3-L17' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.ARS4x' href='#RNG.Random123.ARS4x'>#</a>
+<strong><code>RNG.Random123.ARS4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">ARS4x</span><span class="p">{</span><span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="n">UInt32</span><span class="p">}</span>
+<span class="n">ARS4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+
+
+<p>ARS4x is one kind of ARS Counter-Based RNGs. It generates four <code>UInt32</code> numbers at a time.</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>UInt32</code>.</p>
+<p><code>R</code> denotes to the Rounds. With 7 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p>Only available when <a href="./#RNG.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/ars.jl#L54-L68' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.Philox2x' href='#RNG.Random123.Philox2x'>#</a>
+<strong><code>RNG.Random123.Philox2x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Philox2x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator2x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Philox2x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Philox2x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Philox2x is one kind of Philox Counter-Based RNGs. It generates two numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds. With 10 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/philox.jl#L28-L43' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.Philox4x' href='#RNG.Random123.Philox4x'>#</a>
+<strong><code>RNG.Random123.Philox4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Philox4x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Philox4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Philox4x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Philox4x is one kind of Philox Counter-Based RNGs. It generates four numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds. With 10 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/philox.jl#L98-L113' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.Threefry2x' href='#RNG.Random123.Threefry2x'>#</a>
+<strong><code>RNG.Random123.Threefry2x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Threefry2x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator2x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Threefry2x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Threefry2x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Threefry2x is one kind of Threefry Counter-Based RNGs. It generates two numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/threefry.jl#L61-L76' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.Threefry4x' href='#RNG.Random123.Threefry4x'>#</a>
+<strong><code>RNG.Random123.Threefry4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Threefry4x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Threefry4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Threefry4x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Threefry2x is one kind of Threefry Counter-Based RNGs. It generates four numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/threefry.jl#L181-L196' class='documenter-source'>source</a><br></p>
+<p><a id='Internal-1'></a></p>
+<h2 id="internal">Internal</h2>
+<p><a id='RNG.Random123.AESNIKey' href='#RNG.Random123.AESNIKey'>#</a>
+<strong><code>RNG.Random123.AESNIKey</code></strong> &mdash; <em>Type</em>.</p>
+<p>The key for AESNI</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/aesni.jl#L3' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.AbstractR123' href='#RNG.Random123.AbstractR123'>#</a>
+<strong><code>RNG.Random123.AbstractR123</code></strong> &mdash; <em>Type</em>.</p>
+<p>The base abstract type of RNGs in <a href="../../man/random123/#Random123-Family-1">Random123 Family</a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/common.jl#L12' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.R123Generator1x' href='#RNG.Random123.R123Generator1x'>#</a>
+<strong><code>RNG.Random123.R123Generator1x</code></strong> &mdash; <em>Type</em>.</p>
+<p>RNG that generates one number at a time.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/common.jl#L15' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.R123Generator2x' href='#RNG.Random123.R123Generator2x'>#</a>
+<strong><code>RNG.Random123.R123Generator2x</code></strong> &mdash; <em>Type</em>.</p>
+<p>RNG that generates two numbers at a time.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/common.jl#L17' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.R123Generator4x' href='#RNG.Random123.R123Generator4x'>#</a>
+<strong><code>RNG.Random123.R123Generator4x</code></strong> &mdash; <em>Type</em>.</p>
+<p>RNG that generates four numbers at a time.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/common.jl#L19' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.Random123.random123_r' href='#RNG.Random123.random123_r'>#</a>
+<strong><code>RNG.Random123.random123_r</code></strong> &mdash; <em>Function</em>.</p>
+<p>Do one iteration and return the a tuple of a Random123 RNG object.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ce9d64aeb5f92d9448e536e0e69632a53bfb76e5/src/./Random123/common.jl#L86' class='documenter-source'>source</a><br></p>
           <aside class="copyright" role="note">
             
             Documentation built with
