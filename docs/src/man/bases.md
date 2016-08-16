@@ -27,11 +27,12 @@ julia> r = Xorshift1024Plus()
 The submodules have some API in common and a few differently.
 
 All the Random Number Generators (RNGs) are child types of `AbstractRNG{T}`, which is a child type of
-`Base.Random.AbstractRNG` and replaces it. (The `Base.Random` may be refactored sometime, anyway.) The type
-parameter `T` indicates the original output type of a RNG, and it is usually a child type of the `Unsigned`,
-such as `UInt64`, `UInt32`, etc.
+`Base.Random.AbstractRNG` and replaces it. (`Base.Random` may be refactored sometime, anyway.) The type
+parameter `T` indicates the original output type of a RNG, and it is usually a child type of `Unsigned`, such
+as `UInt64`, `UInt32`, etc. Users can change the output type of a certain RNG type by use a wrapped type:
+[`WrappedRNG`](@ref)
 
-Consistent to what the `Base.Random` does, there are generic functions:
+Consistent to what `Base.Random` does, there are generic functions:
 
 - `srand(::AbstractRNG{T}[, seed])`
     initializes a RNG by one or a sequence of numbers (called *seed*). The output sequences by two RNGs of
@@ -42,9 +43,9 @@ Consistent to what the `Base.Random` does, there are generic functions:
 
 - `rand(::AbstractRNG{T}[, ::Type{TP}=Float64])`
     returns a random number in the type `TP`. `TP` is usually an `Unsigned` type, and the return value is
-    expected to be random at every bit. When `TP` is `Float64` (as default), this function returns a `Float64`
-    value that is expected to be uniformly distributed in [0, 1). The discussion about this is in the
-    [Conversion to Float](@ref) section.
+    expected to be uniformly distributed in {0, 1} at every bit. When `TP` is `Float64` (as default), this
+    function returns a `Float64` value that is expected to be uniformly distributed in [0, 1). The discussion
+    about this is in the [Conversion to Float](@ref) section.
 
 The other generic functions such as `rand(::AbstractRNG, ::Dims)` and `rand!(::AbstractRNG, ::AbstractArray)`
 defined in `Base.Random` still work.
@@ -83,7 +84,7 @@ Empirical statistical testing is very important for random number generation, be
 mathematical analysis is insufficient to verify the performance of a random number generator.
 
 The famous and highly evaluated [**TestU01** library](http://simul.iro.umontreal.ca/testu01/tu01.html) is
-chosen to test the RNGs in `RNG.jl`. **TestU01** offers a collection of test suites, and the *Big Crush* is
+chosen to test the RNGs in `RNG.jl`. **TestU01** offers a collection of test suites, and *Big Crush* is
 the largest and most stringent test battery for empirical testing (which usually takes several hours to run).
 *Bit Crush* has revealed a number of flaws of lots of well-used generators, even including the
 *Mersenne Twister* (or to be more exact, the *dSFMT*) which is currently used in `Base.Random` as

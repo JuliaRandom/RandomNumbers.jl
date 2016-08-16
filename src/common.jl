@@ -9,6 +9,8 @@ The abstract type of Random Number Generators. T indicates the original output t
 """
 abstract AbstractRNG{T<:Number} <: Base.Random.AbstractRNG
 
+typealias BitTypes Union{Bool, Signed, Unsigned}
+
 # TODO: convert to float64
 for (output_type, scale) in (
     (UInt8, 3.906250000000000000000000000000e-03),
@@ -22,12 +24,12 @@ for (output_type, scale) in (
     end
 end
 
-@inline function rand{T1<:Union{Signed, Unsigned}, T2<:Union{Bool, Signed, Unsigned}}(rng::AbstractRNG{T1}, ::Type{T2})
+@inline function rand{T1<:BitTypes, T2<:BitTypes}(rng::AbstractRNG{T1}, ::Type{T2})
     s1 = sizeof(T1)
     s2 = sizeof(T2)
     t = rand(rng, T1) % T2
     s1 > s2 && return t
-    for i in 2:(s2÷s1)
+    for i in 2:(s2 ÷ s1)
         t |= rand(rng, T1) << ((s1 << 3) * (i - 1))
     end
     t

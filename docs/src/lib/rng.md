@@ -1,5 +1,11 @@
 # RNG
 
+```@meta
+DocTestSetup = quote
+    using RNG
+end
+```
+
 ## Index
 
 ```@index
