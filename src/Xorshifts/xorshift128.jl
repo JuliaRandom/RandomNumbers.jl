@@ -1,5 +1,5 @@
 import Base.Random: rand, srand
-import RNG: AbstractRNG, gen_seed, uint128to64
+import RNG: AbstractRNG, gen_seed, split_uint
 
 """
 ```julia
@@ -27,7 +27,7 @@ for (star, plus) in (
             end
         end
 
-        $rng_name(seed::Integer) = $rng_name(uint128to64(seed % UInt128))
+        $rng_name(seed::Integer) = $rng_name(split_uint(seed % UInt128))
 
         @inline function xorshift_next(r::$rng_name)
             t = r.x $ r.x << 23
@@ -39,7 +39,7 @@ for (star, plus) in (
     end
 end
 
-srand(r::AbstractXorshift128, seed::Integer) = srand(r, uint128to64(seed % UInt128))
+srand(r::AbstractXorshift128, seed::Integer) = srand(r, split_uint(seed % UInt128))
 
 function srand(r::AbstractXorshift128, seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
     r.x = seed[1]

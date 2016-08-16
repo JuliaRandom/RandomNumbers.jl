@@ -2,16 +2,21 @@ import Base.Random: rand, srand
 import RNG: AbstractRNG
 
 const librandom123 = Libdl.find_library(["librandom123"], [Pkg.dir("RNG/deps/Random123/")])
+"True when AES-NI library has been compiled."
 const R123_USE_AESNI = librandom123 != ""
 
 typealias R123Array1x{T<:Union{UInt128}} NTuple{1, T}
 typealias R123Array2x{T<:Union{UInt32, UInt64}} NTuple{2, T}
 typealias R123Array4x{T<:Union{UInt32, UInt64}} NTuple{4, T}
 
+"The base abstract type of RNGs in [Random123 Family](@ref)."
 abstract AbstractR123{T<:Union{UInt32, UInt64, UInt128}} <: AbstractRNG{T}
 
+"RNG that generates one number at a time."
 abstract R123Generator1x{T} <: AbstractR123{T}
+"RNG that generates two numbers at a time."
 abstract R123Generator2x{T} <: AbstractR123{T}
+"RNG that generates four numbers at a time."
 abstract R123Generator4x{T} <: AbstractR123{T}
 
 @inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{T})
@@ -77,3 +82,6 @@ end
     r.p = 4
     unsafe_load(Ptr{UInt128}(pointer_from_objref(r)), 1)
 end
+
+"Do one iteration and return the a tuple of a Random123 RNG object."
+random123_r

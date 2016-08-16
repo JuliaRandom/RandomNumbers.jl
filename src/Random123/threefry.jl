@@ -58,17 +58,21 @@ import RNG: gen_seed
 @inline Rx2_6_0(::Type{UInt32}) = 16
 @inline Rx2_7_0(::Type{UInt32}) = 24
 
-# TODO: Provide a method to make use all the generated numbers.
-
 """
-    Threefry2x{T, R} <: R123Generator2x{T}
+```julia
+Threefry2x{T, R} <: R123Generator2x{T}
+Threefry2x([seed, R])
+Threefry2x(T[, seed, R])
+```
 
 Threefry2x is one kind of Threefry Counter-Based RNGs. It generates two numbers at a time.
 
+`T` is `UInt32` or `UInt64`(default).
+
+`seed` is a `Tuple` of two `Integer`s which will both be automatically converted to `T`.
+
 `R` denotes to the Rounds. With 20 rounds (by default), it has a considerable safety margin over
 the minimum number of rounds with no known statistical flaws, but still has excellent performance.
-
-Constructor: `Threefry2x([T=UInt64, (seed1, seed2), R=20])` where `T` is `UInt32` or `UInt64`
 """
 type Threefry2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     x1::T
@@ -85,6 +89,7 @@ function Threefry2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::NTuple{2, 
     r = Threefry2x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
+Threefry2x(seed::NTuple{2, Integer}, R::Integer=20) = Threefry2x(UInt64, seed, R)
 
 function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2))
     r.x1 = r.x2 = 0
@@ -95,7 +100,7 @@ function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::NTuple{2, Integ
     r
 end
 
-@eval @inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry2x{T, R})
+@inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry2x{T, R})
     ks2 = SKEIN_KS_PARITY(T)
     ks0 = r.key1
     x0 = r.ctr1
@@ -174,14 +179,20 @@ end
 end
 
 """
-    Threefry4x{T, R} <: R123Generator4x{T}
+```julia
+Threefry4x{T, R} <: R123Generator4x{T}
+Threefry4x([seed, R])
+Threefry4x(T[, seed, R])
+```
 
-Threefry4x is one kind of Threefry Counter-Based RNGs. It generates two numbers at a time.
+Threefry2x is one kind of Threefry Counter-Based RNGs. It generates four numbers at a time.
+
+`T` is `UInt32` or `UInt64`(default).
+
+`seed` is a `Tuple` of four `Integer`s which will all be automatically converted to `T`.
 
 `R` denotes to the Rounds. With 20 rounds (by default), it has a considerable safety margin over
 the minimum number of rounds with no known statistical flaws, but still has excellent performance.
-
-Constructor: `Threefry4x([T=UInt64, (seed1, seed2, seed3, seed4), R=20])` where `T` is `UInt32` or `UInt64`
 """
 type Threefry4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
     x1::T
@@ -205,6 +216,7 @@ function Threefry4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
     r = Threefry4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
+Threefry4x(seed::NTuple{4, Integer}, R::Integer=20) = Threefry4x(UInt64, seed, R)
 
 function srand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T},
         seed::NTuple{4, Integer}=gen_seed(T, 4))

@@ -25,17 +25,21 @@ end
 @inline PHILOX_W_1(::Type{UInt32}) = 0xBB67AE85
 
 
-# TODO: Provide a method to make use all the generated numbers.
-
 """
-    Philox2x{T, R} <: R123Generator2x{T}
+```julia
+Philox2x{T, R} <: R123Generator2x{T}
+Philox2x([seed, R])
+Philox2x(T[, seed, R])
+```
 
 Philox2x is one kind of Philox Counter-Based RNGs. It generates two numbers at a time.
 
+`T` is `UInt32` or `UInt64`(default).
+
+`seed` is an `Integer` which will be automatically converted to `T`.
+
 `R` denotes to the Rounds. With 10 rounds (by default), it has a considerable safety margin over
 the minimum number of rounds with no known statistical flaws, but still has excellent performance.
-
-Constructor: `Philox2x([T=UInt64, seed, R=10])` where `T` is `UInt32` or `UInt64`
 """
 type Philox2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     x1::T
@@ -51,6 +55,7 @@ function Philox2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::Integer=gen_
     r = Philox2x{T, Int(R)}(0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
+Philox2x(seed::Integer, R::Integer=10) = Philox2x(UInt64, seed, R)
 
 function srand{T<:Union{UInt32, UInt64}}(r::Philox2x{T}, seed::Integer=gen_seed(T))
     r.x1 = r.x2 = 0
@@ -91,14 +96,20 @@ end
 end
 
 """
-    Philox4x{T, R} <: R123Generator4x{T}
+```julia
+Philox4x{T, R} <: R123Generator4x{T}
+Philox4x([seed, R])
+Philox4x(T[, seed, R])
+```
 
 Philox4x is one kind of Philox Counter-Based RNGs. It generates four numbers at a time.
 
+`T` is `UInt32` or `UInt64`(default).
+
+`seed` is a `Tuple` of two `Integer`s which will both be automatically converted to `T`.
+
 `R` denotes to the Rounds. With 10 rounds (by default), it has a considerable safety margin over
 the minimum number of rounds with no known statistical flaws, but still has excellent performance.
-
-Constructor: `Philox4x([T=UInt64, (seed1, seed2), R=10])` where `T` is `UInt32` or `UInt64`
 """
 type Philox4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
     x1::T
@@ -120,6 +131,7 @@ function Philox4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
     r = Philox4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
+Philox4x(seed::NTuple{2, Integer}, R::Integer=10) = Philox4x(UInt64, seed, R)
 
 function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2))
     r.x1 = r.x2 = r.x3 = r.x4 = 0

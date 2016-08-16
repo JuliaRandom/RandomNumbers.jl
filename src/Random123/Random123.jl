@@ -11,9 +11,12 @@ module Random123
     export Philox2x, Philox4x
     include("philox.jl")
 
-    export AESNI1x, AESNI4x
-    include("aesni.jl")
+    if R123_USE_AESNI
+        export AESNI1x, AESNI4x
+        include("aesni.jl")
+        
+        export ARS1x, ARS4x
+        include("ars.jl")
+    end
 
-    export ARS1x, ARS4x
-    include("ars.jl")
 end
