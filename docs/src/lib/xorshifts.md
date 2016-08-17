@@ -1,7 +1,6 @@
 # Xorshifts
 
 ## Index
-
 ```@index
 Pages = ["xorshifts.md"]
 ```

@@ -30,7 +30,7 @@ All the Random Number Generators (RNGs) are child types of `AbstractRNG{T}`, whi
 `Base.Random.AbstractRNG` and replaces it. (`Base.Random` may be refactored sometime, anyway.) The type
 parameter `T` indicates the original output type of a RNG, and it is usually a child type of `Unsigned`, such
 as `UInt64`, `UInt32`, etc. Users can change the output type of a certain RNG type by use a wrapped type:
-[`WrappedRNG`](@ref)
+[`WrappedRNG`](@ref).
 
 Consistent to what `Base.Random` does, there are generic functions:
 

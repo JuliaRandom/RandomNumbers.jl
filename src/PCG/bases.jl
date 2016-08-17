@@ -1,24 +1,28 @@
 # This file contains the basic functions of PCG.
 import RNG: AbstractRNG
 
+"Return the default multiplier for a certain type."
 @inline default_multiplier(::Type{UInt8}) = 0x8d
 @inline default_multiplier(::Type{UInt16}) = 0x321d
 @inline default_multiplier(::Type{UInt32}) = 0x2c9277b5
 @inline default_multiplier(::Type{UInt64}) = 0x5851f42d4c957f2d
 @inline default_multiplier(::Type{UInt128}) = 0x2360ed051fc65da44385df649fccf645
 
+"Return the default increment for a certain type."
 @inline default_increment(::Type{UInt8}) = 0x4d
 @inline default_increment(::Type{UInt16}) = 0xbb75
 @inline default_increment(::Type{UInt32}) = 0xac564b05
 @inline default_increment(::Type{UInt64}) = 0x14057b7ef767814f
 @inline default_increment(::Type{UInt128}) = 0x5851f42d4c957f2d14057b7ef767814f
 
+"Return the default MCG multiplier for a certain type."
 @inline mcg_multiplier(::Type{UInt8}) = 0xd9
 @inline mcg_multiplier(::Type{UInt16}) = 0xf2d9
 @inline mcg_multiplier(::Type{UInt32}) = 0x108ef2d9
 @inline mcg_multiplier(::Type{UInt64}) = 0xaef17502108ef2d9
 @inline mcg_multiplier(::Type{UInt128}) = 0xf69019274d7f699caef17502108ef2d9
 
+"Return the default MCG unmultiplier for a certain type."
 @inline mcg_unmultiplier(::Type{UInt8}) = 0x69
 @inline mcg_unmultiplier(::Type{UInt16}) = 0x6d69
 @inline mcg_unmultiplier(::Type{UInt32}) = 0xacb86d69
@@ -46,7 +50,7 @@ import RNG: AbstractRNG
 end
 
 
-# General advance functions.
+"General advance functions."
 @inline function pcg_advance_lcg{T<:PCGUInt}(state::T, delta::T, cur_mult::T, cur_plus::T)
     acc_mult = 1 % T
     acc_plus = 0 % T
@@ -159,8 +163,14 @@ end
     ((high_bits % T) << spare_bits) $ (low_bits % T)
 end
 
-
 # PCGState types, SRandom and Step functions.
+"""
+```julia
+AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <: AbstractRNG{OutputType}
+```
+
+The base abstract type for PCGs.
+"""
 abstract AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
     AbstractRNG{OutputType}
 
@@ -275,3 +285,15 @@ end
 @inline function pcg_advance!{T<:PCGUInt}(s::PCGStateSetseq{T}, delta::T)
     s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), s.inc)
 end
+
+"Return the output of a state for a certain PCG type."
+pcg_output
+
+"Initialize a PCG object."
+pcg_srand
+
+"Do one iteration step for a PCG object."
+pcg_step!
+
+"Advance a PCG object."
+pcg_advance!

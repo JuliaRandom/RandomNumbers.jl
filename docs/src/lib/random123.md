@@ -1,7 +1,6 @@
 # Random123
 
 ## Index
-
 ```@index
 Pages = ["random123.md"]
 ```

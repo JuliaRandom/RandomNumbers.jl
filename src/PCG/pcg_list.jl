@@ -1,4 +1,4 @@
-(
+const PCG_LIST = (
     (:Oneseq, UInt16, :XSH_RS, UInt8),
     (:Oneseq, UInt32, :XSH_RS, UInt16),
     (:Oneseq, UInt64, :XSH_RS, UInt32),
@@ -64,3 +64,15 @@
     (:Setseq, UInt64, :XSL_RR_RR, UInt64),
     (:Setseq, UInt128, :XSL_RR_RR, UInt128)
 )
+
+let p() = begin
+        s = "The list of all the parameter combinations that can be used for PCG.\n\n"
+        s *= "|Stream variation|State Type|Method Type|Output Type|\n"
+        s *= "|---|---|---|---|\n"
+        for (pcg_type, uint_type, method, output_type) in PCG_LIST
+            s *= "|`PCGState$pcg_type`|`$uint_type`|`PCG_$method`|`$output_type`|\n"
+        end
+        s
+    end
+    @doc p() PCG_LIST
+end

@@ -4,6 +4,6 @@ include("common.jl")
 
 using RNG.Xorshifts
 
-r = Xorshift1024Star(UInt64, 123)
+r = Xorshift1024Star(123)
 
 test_all(r, 100_000_000)

@@ -1,6 +1,6 @@
 import RNG: gen_seed, union_uint
 
-"The key for AESNI"
+"The key for AESNI."
 type AESNIKey
     key1::UInt128
     key2::UInt128

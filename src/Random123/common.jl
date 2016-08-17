@@ -9,7 +9,7 @@ typealias R123Array1x{T<:Union{UInt128}} NTuple{1, T}
 typealias R123Array2x{T<:Union{UInt32, UInt64}} NTuple{2, T}
 typealias R123Array4x{T<:Union{UInt32, UInt64}} NTuple{4, T}
 
-"The base abstract type of RNGs in [Random123 Family](@ref)."
+"The base abstract type for RNGs in [Random123 Family](@ref)."
 abstract AbstractR123{T<:Union{UInt32, UInt64, UInt128}} <: AbstractRNG{T}
 
 "RNG that generates one number at a time."

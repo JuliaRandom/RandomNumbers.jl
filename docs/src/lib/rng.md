@@ -7,7 +7,6 @@ end
 ```
 
 ## Index
-
 ```@index
 Pages = ["rng.md"]
 ```

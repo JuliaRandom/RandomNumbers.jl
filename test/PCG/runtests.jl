@@ -5,22 +5,22 @@ stdout_ = STDOUT
 pwd_ = pwd()
 cd(joinpath(Pkg.dir("RNG"), "test/PCG"))
 mkpath("./actual")
-pcg_list = include("pcg_list.jl")
 
 numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
 suit = ['h', 'c', 'd', 's'];
 
 
-for (state_type_t, uint_type, method_symbol, return_type) in pcg_list
+for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
     state_type = eval(Symbol("PCGState$state_type_t"))
     method = Val{method_symbol}
 
-    state_type(uint_type, method)
+    state_type(method)
+    state_type(return_type, method)
 
     if state_type_t == :Setseq
-        r = state_type(uint_type, method, 42 % uint_type, 54 % uint_type)
+        r = state_type(return_type, method, (42, 54))
     else
-        r = state_type(uint_type, method, 42 % uint_type)
+        r = state_type(return_type, method, 42)
     end
 
     # Unique state won't produce the same sequence every time.
