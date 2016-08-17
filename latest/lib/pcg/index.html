@@ -202,8 +202,8 @@
       
         
   <li>
-    <a class="" title="Permuted Congruential Generators" href="../../man/pcg/">
-      Permuted Congruential Generators
+    <a class="" title="PCG Family" href="../../man/pcg/">
+      PCG Family
     </a>
     
   </li>
@@ -264,6 +264,28 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="Index" href="#index">
+                Index
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Public" href="#public">
+                Public
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Internal" href="#internal">
+                Internal
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -311,6 +333,571 @@
           
           <p><a id='PCG-1'></a></p>
 <h1 id="pcg">PCG</h1>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="./#RNG.PCG"><code>RNG.PCG</code></a></li>
+<li><a href="./#RNG.PCG.PCGMethod"><code>RNG.PCG.PCGMethod</code></a></li>
+<li><a href="./#RNG.PCG.PCG_LIST"><code>RNG.PCG.PCG_LIST</code></a></li>
+<li><a href="./#RNG.PCG.AbstractPCG"><code>RNG.PCG.AbstractPCG</code></a></li>
+<li><a href="./#RNG.PCG.PCGStateMCG"><code>RNG.PCG.PCGStateMCG</code></a></li>
+<li><a href="./#RNG.PCG.PCGStateOneseq"><code>RNG.PCG.PCGStateOneseq</code></a></li>
+<li><a href="./#RNG.PCG.PCGStateSetseq"><code>RNG.PCG.PCGStateSetseq</code></a></li>
+<li><a href="./#RNG.PCG.PCGStateUnique"><code>RNG.PCG.PCGStateUnique</code></a></li>
+<li><a href="./#RNG.PCG.advance!-Tuple{RNG.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}"><code>RNG.PCG.advance!</code></a></li>
+<li><a href="./#RNG.PCG.bounded_rand-Tuple{RNG.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}"><code>RNG.PCG.bounded_rand</code></a></li>
+<li><a href="./#RNG.PCG.default_increment-Tuple{Type{UInt8}}"><code>RNG.PCG.default_increment</code></a></li>
+<li><a href="./#RNG.PCG.default_multiplier-Tuple{Type{UInt8}}"><code>RNG.PCG.default_multiplier</code></a></li>
+<li><a href="./#RNG.PCG.mcg_multiplier-Tuple{Type{UInt8}}"><code>RNG.PCG.mcg_multiplier</code></a></li>
+<li><a href="./#RNG.PCG.mcg_unmultiplier-Tuple{Type{UInt8}}"><code>RNG.PCG.mcg_unmultiplier</code></a></li>
+<li><a href="./#RNG.PCG.pcg_advance!"><code>RNG.PCG.pcg_advance!</code></a></li>
+<li><a href="./#RNG.PCG.pcg_advance_lcg-NTuple{4,T&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}"><code>RNG.PCG.pcg_advance_lcg</code></a></li>
+<li><a href="./#RNG.PCG.pcg_output"><code>RNG.PCG.pcg_output</code></a></li>
+<li><a href="./#RNG.PCG.pcg_srand"><code>RNG.PCG.pcg_srand</code></a></li>
+<li><a href="./#RNG.PCG.pcg_step!"><code>RNG.PCG.pcg_step!</code></a></li>
+</ul>
+<p><a id='Public-1'></a></p>
+<h2 id="public">Public</h2>
+<p><a id='RNG.PCG' href='#RNG.PCG'>#</a>
+<strong><code>RNG.PCG</code></strong> &mdash; <em>Module</em>.</p>
+<p>The module for <a href="../../man/random123/#Random123-Family-1">Random123 Family</a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/PCG.jl#L3' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.PCGMethod' href='#RNG.PCG.PCGMethod'>#</a>
+<strong><code>RNG.PCG.PCGMethod</code></strong> &mdash; <em>Constant</em>.</p>
+<p>The <code>Union</code> of all the PCG method types: <code>PCG_XSH_RS</code>, <code>PCG_XSH_RR</code>, <code>PCG_RXS_M_XS</code>, <code>PCG_XSL_RR</code>, and <code>PCG_XSL_RR_RR</code>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/PCG.jl#L23-L25' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.PCG_LIST' href='#RNG.PCG.PCG_LIST'>#</a>
+<strong><code>RNG.PCG.PCG_LIST</code></strong> &mdash; <em>Constant</em>.</p>
+<p>The list of all the parameter combinations that can be used for PCG.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Stream variation</th>
+<th align="right">State Type</th>
+<th align="right">Method Type</th>
+<th align="right">Output Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSH_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt8</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt128</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt128</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt8</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt8</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt16</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt16</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt32</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_RXS_M_XS</code></td>
+<td align="right"><code>UInt128</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt32</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateMCG</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateOneseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR_RR</code></td>
+<td align="right"><code>UInt128</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateUnique</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR_RR</code></td>
+<td align="right"><code>UInt128</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt64</code></td>
+<td align="right"><code>PCG_XSL_RR_RR</code></td>
+<td align="right"><code>UInt64</code></td>
+</tr>
+<tr>
+<td align="right"><code>PCGStateSetseq</code></td>
+<td align="right"><code>UInt128</code></td>
+<td align="right"><code>PCG_XSL_RR_RR</code></td>
+<td align="right"><code>UInt128</code></td>
+</tr>
+</tbody>
+</table>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/pcg_list.jl#L68-L133' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.PCGStateMCG' href='#RNG.PCG.PCGStateMCG'>#</a>
+<strong><code>RNG.PCG.PCGStateMCG</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateMCG</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateMCG</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>MCG</em>, where the increment is zero, resulting in a single stream and reduced period.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RNG.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RNG.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/main.jl#L129-L148' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.PCGStateOneseq' href='#RNG.PCG.PCGStateOneseq'>#</a>
+<strong><code>RNG.PCG.PCGStateOneseq</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateOneseq</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateOneseq</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>single streams</em>, where all instances use the same fixed constant, thus the RNG always somewhere in same sequence.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RNG.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RNG.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/main.jl#L102-L122' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.PCGStateSetseq' href='#RNG.PCG.PCGStateSetseq'>#</a>
+<strong><code>RNG.PCG.PCGStateSetseq</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateSetseq</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateSetseq</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>specific streams</em>, where the constant can be changed at any time, selecting a different random sequence.</p>
+<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RNG.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RNG.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/main.jl#L155-L175' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.PCGStateUnique' href='#RNG.PCG.PCGStateUnique'>#</a>
+<strong><code>RNG.PCG.PCGStateUnique</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateUnique</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateUnique</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>unique streams</em>, where the constant is based on the memory address of the object, thus every RNG has its own unique sequence.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RNG.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RNG.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/main.jl#L182-L202' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.advance!-Tuple{RNG.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}' href='#RNG.PCG.advance!-Tuple{RNG.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}'>#</a>
+<strong><code>RNG.PCG.advance!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">advance!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Δ</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Advance a PCG object <code>r</code> for <code>Δ</code> steps.</p>
+<p><strong>Examples</strong></p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="n">PCG_RXS_M_XS</span><span class="p">,</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="mi">321</span><span class="p">))</span>
+<span class="go">RNG.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)</span>
+
+<span class="gp">julia&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r</span>
+<span class="go">RNG.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702,0x0000000000000283)</span>
+
+<span class="gp">julia&gt;</span> <span class="n">advance!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">RNG.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)</span>
+
+<span class="gp">julia&gt;</span> <span class="p">@</span><span class="n">Test</span><span class="o">.</span><span class="n">test</span> <span class="n">A</span> <span class="o">==</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">Test Passed</span>
+<span class="go">  Expression: A == rand(r,UInt64,2)</span>
+<span class="go">   Evaluated: UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f] == UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f]</span>
+
+<span class="gp">julia&gt;</span> <span class="p">@</span><span class="n">Test</span><span class="o">.</span><span class="n">test</span> <span class="n">p</span> <span class="o">==</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="go">Test Passed</span>
+<span class="go">  Expression: p == rand(r)</span>
+<span class="go">   Evaluated: 0.3950038072091506 == 0.3950038072091506</span>
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/main.jl#L42-L74' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.bounded_rand-Tuple{RNG.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}' href='#RNG.PCG.bounded_rand-Tuple{RNG.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}'>#</a>
+<strong><code>RNG.PCG.bounded_rand</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span>bounded_rand(r, bound)
+</pre></div>
+
+
+<p>Producing a random number less than a given <code>bound</code> in the output type.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/main.jl#L25-L31' class='documenter-source'>source</a><br></p>
+<p><a id='Internal-1'></a></p>
+<h2 id="internal">Internal</h2>
+<p><a id='RNG.PCG.AbstractPCG' href='#RNG.PCG.AbstractPCG'>#</a>
+<strong><code>RNG.PCG.AbstractPCG</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractRNG</span><span class="p">{</span><span class="n">OutputType</span><span class="p">}</span>
+</pre></div>
+
+
+<p>The base abstract type for PCGs.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L167-L173' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.default_increment-Tuple{Type{UInt8}}' href='#RNG.PCG.default_increment-Tuple{Type{UInt8}}'>#</a>
+<strong><code>RNG.PCG.default_increment</code></strong> &mdash; <em>Method</em>.</p>
+<p>Return the default increment for a certain type.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L11' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.default_multiplier-Tuple{Type{UInt8}}' href='#RNG.PCG.default_multiplier-Tuple{Type{UInt8}}'>#</a>
+<strong><code>RNG.PCG.default_multiplier</code></strong> &mdash; <em>Method</em>.</p>
+<p>Return the default multiplier for a certain type.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L4' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.mcg_multiplier-Tuple{Type{UInt8}}' href='#RNG.PCG.mcg_multiplier-Tuple{Type{UInt8}}'>#</a>
+<strong><code>RNG.PCG.mcg_multiplier</code></strong> &mdash; <em>Method</em>.</p>
+<p>Return the default MCG multiplier for a certain type.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L18' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.mcg_unmultiplier-Tuple{Type{UInt8}}' href='#RNG.PCG.mcg_unmultiplier-Tuple{Type{UInt8}}'>#</a>
+<strong><code>RNG.PCG.mcg_unmultiplier</code></strong> &mdash; <em>Method</em>.</p>
+<p>Return the default MCG unmultiplier for a certain type.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L25' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.pcg_advance!' href='#RNG.PCG.pcg_advance!'>#</a>
+<strong><code>RNG.PCG.pcg_advance!</code></strong> &mdash; <em>Function</em>.</p>
+<p>Advance a PCG object.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L298' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.pcg_advance_lcg-NTuple{4,T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}' href='#RNG.PCG.pcg_advance_lcg-NTuple{4,T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}'>#</a>
+<strong><code>RNG.PCG.pcg_advance_lcg</code></strong> &mdash; <em>Method</em>.</p>
+<p>General advance functions.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L53' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.pcg_output' href='#RNG.PCG.pcg_output'>#</a>
+<strong><code>RNG.PCG.pcg_output</code></strong> &mdash; <em>Function</em>.</p>
+<p>Return the output of a state for a certain PCG type.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L289' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.pcg_srand' href='#RNG.PCG.pcg_srand'>#</a>
+<strong><code>RNG.PCG.pcg_srand</code></strong> &mdash; <em>Function</em>.</p>
+<p>Initialize a PCG object.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L292' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.PCG.pcg_step!' href='#RNG.PCG.pcg_step!'>#</a>
+<strong><code>RNG.PCG.pcg_step!</code></strong> &mdash; <em>Function</em>.</p>
+<p>Do one iteration step for a PCG object.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/ad94e921a554410f5cbe7f1efe05fe2dba14119e/src/./PCG/bases.jl#L295' class='documenter-source'>source</a><br></p>
           <aside class="copyright" role="note">
             
             Documentation built with

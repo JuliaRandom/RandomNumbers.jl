@@ -229,8 +229,8 @@
       
         
   <li>
-    <a class="" title="Permuted Congruential Generators" href="../pcg/">
-      Permuted Congruential Generators
+    <a class="" title="PCG Family" href="../pcg/">
+      PCG Family
     </a>
     
   </li>
@@ -353,7 +353,7 @@
 
 
 <p>The submodules have some API in common and a few differently.</p>
-<p>All the Random Number Generators (RNGs) are child types of <code>AbstractRNG{T}</code>, which is a child type of <code>Base.Random.AbstractRNG</code> and replaces it. (<code>Base.Random</code> may be refactored sometime, anyway.) The type parameter <code>T</code> indicates the original output type of a RNG, and it is usually a child type of <code>Unsigned</code>, such as <code>UInt64</code>, <code>UInt32</code>, etc. Users can change the output type of a certain RNG type by use a wrapped type: <a href="../../lib/rng/#RNG.WrappedRNG"><code>WrappedRNG</code></a></p>
+<p>All the Random Number Generators (RNGs) are child types of <code>AbstractRNG{T}</code>, which is a child type of <code>Base.Random.AbstractRNG</code> and replaces it. (<code>Base.Random</code> may be refactored sometime, anyway.) The type parameter <code>T</code> indicates the original output type of a RNG, and it is usually a child type of <code>Unsigned</code>, such as <code>UInt64</code>, <code>UInt32</code>, etc. Users can change the output type of a certain RNG type by use a wrapped type: <a href="../../lib/rng/#RNG.WrappedRNG"><code>WrappedRNG</code></a>.</p>
 <p>Consistent to what <code>Base.Random</code> does, there are generic functions:</p>
 <ul>
 <li><code>srand(::AbstractRNG{T}[, seed])</code>   initializes a RNG by one or a sequence of numbers (called <em>seed</em>). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   <em>deterministic</em>. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no <code>seed</code> provided, then it will use <a href="../../lib/rng/#RNG.gen_seed-Tuple{Type{T&lt;:Number}}"><code>RNG.gen_seed</code></a> to get a "truly"   random one.</li>
