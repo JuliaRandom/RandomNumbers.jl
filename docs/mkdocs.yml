@@ -36,6 +36,7 @@ pages:
     - Mersenne Twisters: man/mersenne-twisters.md
     - Random123 Family: man/random123.md
     - Xorshift Family: man/xorshifts.md
+    - Reference: man/ref.md
 - Library:
     - RNG: lib/rng.md
     - PCG: lib/pcg.md

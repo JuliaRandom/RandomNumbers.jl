@@ -8,6 +8,22 @@ This page describes basic concepts and fundanmental knowledge of **RNG.jl**.
     properties approximate the properties of *truly random* numbers. Always, especially in secure-sensitive
     cases, keep in mind that they do not gaurantee a totally random performance.
 
+## Installation
+
+This package is currently not registered, so you have to directly clone it for installation:
+```julia
+julia> Pkg.clone("https://github.com/sunoru/RNG.jl.git")
+```
+And build the dependencies:
+```julia
+julia> Pkg.build("RNG")
+```
+
+It is recommended to run the test suites before using the package:
+```julia
+julia> Pkg.test("RNG")
+```
+
 ## Interface
 
 First of all, to use a RNG from this package, you can import `RNG.jl` and use RNG by declare its submodule's
@@ -44,7 +60,7 @@ Consistent to what `Base.Random` does, there are generic functions:
 - `rand(::AbstractRNG{T}[, ::Type{TP}=Float64])`
     returns a random number in the type `TP`. `TP` is usually an `Unsigned` type, and the return value is
     expected to be uniformly distributed in {0, 1} at every bit. When `TP` is `Float64` (as default), this
-    function returns a `Float64` value that is expected to be uniformly distributed in [0, 1). The discussion
+    function returns a `Float64` value that is expected to be uniformly distributed in ``[0, 1)``. The discussion
     about this is in the [Conversion to Float](@ref) section.
 
 The other generic functions such as `rand(::AbstractRNG, ::Dims)` and `rand!(::AbstractRNG, ::AbstractArray)`
@@ -60,7 +76,7 @@ RNG.Xorshifts.Xorshift128Star(0x000000003a300074,0x000000003a30004e)
 
 julia> r2 = Xorshift128Star();  # Use a random value to be the seed.
 
-julia> rand(r1)  # Generate a number uniformly distributed in [0, 1).
+julia> rand(r1)  # Generate a number uniformly distributed in ``[0, 1)``.
 0.2552720033868119
 
 julia> A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.
@@ -86,7 +102,7 @@ mathematical analysis is insufficient to verify the performance of a random numb
 The famous and highly evaluated [**TestU01** library](http://simul.iro.umontreal.ca/testu01/tu01.html) is
 chosen to test the RNGs in `RNG.jl`. **TestU01** offers a collection of test suites, and *Big Crush* is
 the largest and most stringent test battery for empirical testing (which usually takes several hours to run).
-*Bit Crush* has revealed a number of flaws of lots of well-used generators, even including the
+*Big Crush* has revealed a number of flaws of lots of well-used generators, even including the
 *Mersenne Twister* (or to be more exact, the *dSFMT*) which is currently used in `Base.Random` as
 `GLOBAL_RAND`.[^1]
 
@@ -98,3 +114,24 @@ The testing results are available on [Benchmark](@ref) page.
 
 ## Conversion to Float
 
+Besides the statistical flaws, popular generators often neglect the importance of converting unsigned
+integers to floating numbers. The most common situation is to convert an `UInt` to a `Float64` which is
+uniformly distributed in ``[0.0, 1.0)``. For example, neither the `std::uniform_real_distribution` in
+libstdc++ from gcc, libc++ from llvm, nor the standard library from MSVC has a correct performance, as they
+all have a non-zero probability for generating the max value which is an open bound and should not be
+produced.
+
+The cause is that a `Float64` number in ``[0.0, 1.0)`` has only 53 *significand* bits (52 explicitly stored),
+which means at least 11 bits of an `UInt64` are abandoned when being converted to `Float64`. If using the
+naive approach to multiply an `UInt64` by ``2^{-64}``, users may get 1.0, and the distribution is not good
+(although using ``2^{-32}`` for an `UInt32` is OK).
+
+In this package, we make use of the fact that the distribution of the least 52 bits can be the same in an
+`UInt64` and a `Float64` (if you are familiar with
+[IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point) this is easy to understand). An `UInt64` will
+firstly be converted to a `Float64` that is perfectly uniformly distributed in [1.0, 2.0), and then be minus
+by one. This is a very fast approach, but not completely ideal, since the one bit is wasted. The current
+default RNG in `Base.Random` library does the same thing, so it also causes some tricky problems.[^2]
+
+[^2]:
+    [Least significant bit of rand() is always zero #16344](https://github.com/JuliaLang/julia/issues/16344)

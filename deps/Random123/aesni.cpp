@@ -3,17 +3,17 @@
 
 extern "C" {
 
-    static __inline __m128i AES_128_ASSIST (__m128i temp1, __m128i temp2) { 
-        __m128i temp3; 
-        temp2 = _mm_shuffle_epi32 (temp2 ,0xff); 
+    static __inline __m128i AES_128_ASSIST (__m128i temp1, __m128i temp2) {
+        __m128i temp3;
+        temp2 = _mm_shuffle_epi32 (temp2 ,0xff);
         temp3 = _mm_slli_si128 (temp1, 0x4);
         temp1 = _mm_xor_si128 (temp1, temp3);
         temp3 = _mm_slli_si128 (temp3, 0x4);
         temp1 = _mm_xor_si128 (temp1, temp3);
         temp3 = _mm_slli_si128 (temp3, 0x4);
         temp1 = _mm_xor_si128 (temp1, temp3);
-        temp1 = _mm_xor_si128 (temp1, temp2); 
-        return temp1; 
+        temp1 = _mm_xor_si128 (temp1, temp2);
+        return temp1;
     }
 
 

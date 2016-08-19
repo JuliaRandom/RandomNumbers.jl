@@ -43,7 +43,7 @@ end
         r.p = 0
     end
     r.p += 1
-    getfield(r, r.p)
+    unsafe_load(Ptr{T}(pointer_from_objref(r)), r.p)
 end
 
 @inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{R123Array1x{T}})

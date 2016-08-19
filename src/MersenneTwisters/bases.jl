@@ -20,13 +20,24 @@ MT19937 <: MersenneTwister{UInt32}
 MT19937([seed])
 ```
 
-MT19937 RNG. The `seed` will be automatically convert to an `UInt32` number.
+MT19937 RNG. The `seed` is a `Tuple` of $N `UInt32` numbers, or an `Integer` which will be automatically
+convert to an `UInt32` number.
 """
 type MT19937 <: MersenneTwister{UInt32}
     mt::Vector{UInt32}
     mti::Int
 end
-MT19937(seed::Integer=gen_seed(UInt32)) = srand(MT19937(Vector{UInt32}(N), 1), seed)
+MT19937(seed::Integer) = srand(MT19937(Vector{UInt32}(N), 1), seed % UInt32)
+MT19937(seed::NTuple{N, UInt32}=gen_seed(UInt32, N)) = srand(MT19937(Vector{UInt32}(N), 1), seed)
+
+"Set up a `MT19937` RNG object using a `Tuple` of $N `UInt32` numbers."
+@inline function mt_set!(r::MT19937, s::NTuple{N, UInt32})
+    @inbounds for i in 1:N
+        r.mt[i] = s[i]
+    end
+    r.mti = N + 1
+    r
+end
 
 "Set up a `MT19937` RNG object using an `UInt32` number."
 @inline function mt_set!(r::MT19937, s::UInt32)

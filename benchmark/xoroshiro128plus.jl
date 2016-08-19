@@ -4,6 +4,6 @@ include("common.jl")
 
 using RNG.Xorshifts
 
-r = Xoroshiro128Plus(UInt64, 123)
+r = Xoroshiro128Plus(123)
 
 test_all(r, 100_000_000)

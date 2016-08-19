@@ -109,5 +109,6 @@ end
 
 @inline function random123_r(r::AESNI4x)
     aesni1xm128i(r, r.ctr1)
-    (unsafe_wrap(Array, Ptr{UInt32}(pointer_from_objref(r)), 4)...)
+    x = unsafe_wrap(Array, Ptr{UInt32}(pointer_from_objref(r)), 4)
+    x[1], x[2], x[3], x[4]
 end

@@ -4,6 +4,6 @@ include("common.jl")
 
 using RNG.PCG
 
-r = PCGStateSetseq(UInt128, PCG_XSH_RS, 123 % UInt128, 456 % UInt128)
+r = PCGStateSetseq(UInt64, PCG_XSH_RS, (123, 456))
 
 test_all(r, 100_000_000)

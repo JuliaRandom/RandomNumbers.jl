@@ -23,7 +23,7 @@ end
 
 
 """
-```jluia
+```julia
 bounded_rand(r, bound)
 ```
 
