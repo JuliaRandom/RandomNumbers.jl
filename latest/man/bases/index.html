@@ -195,6 +195,12 @@
         <ul>
           
             <li class="anchor">
+              <a title="Installation" href="#installation">
+                Installation
+              </a>
+            </li>
+          
+            <li class="anchor">
               <a title="Interface" href="#interface">
                 Interface
               </a>
@@ -258,6 +264,15 @@
   <li>
     <a class="" title="Xorshift Family" href="../xorshifts/">
       Xorshift Family
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Reference" href="../ref/">
+      Reference
     </a>
     
   </li>
@@ -338,6 +353,23 @@
 <p class="admonition-title">Note</p>
 <p>Unless otherwise specified, all the random number generators in this package are <em>pseudorandom</em> number generators (or <em>deterministic</em> random bit generator), which means they only provide numbers whose properties approximate the properties of <em>truly random</em> numbers. Always, especially in secure-sensitive cases, keep in mind that they do not gaurantee a totally random performance.</p>
 </div>
+<p><a id='Installation-1'></a></p>
+<h2 id="installation">Installation</h2>
+<p>This package is currently not registered, so you have to directly clone it for installation:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s">&quot;https://github.com/sunoru/RNG.jl.git&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And build the dependencies:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s">&quot;RNG&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>It is recommended to run the test suites before using the package:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s">&quot;RNG&quot;</span><span class="p">)</span>
+</pre></div>
+
+
 <p><a id='Interface-1'></a></p>
 <h2 id="interface">Interface</h2>
 <p>First of all, to use a RNG from this package, you can import <code>RNG.jl</code> and use RNG by declare its submodule's name, or directly import the submodule. Then you can create a random number generator of certain type. For example:</p>
@@ -357,7 +389,7 @@
 <p>Consistent to what <code>Base.Random</code> does, there are generic functions:</p>
 <ul>
 <li><code>srand(::AbstractRNG{T}[, seed])</code>   initializes a RNG by one or a sequence of numbers (called <em>seed</em>). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   <em>deterministic</em>. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no <code>seed</code> provided, then it will use <a href="../../lib/rng/#RNG.gen_seed-Tuple{Type{T&lt;:Number}}"><code>RNG.gen_seed</code></a> to get a "truly"   random one.</li>
-<li><code>rand(::AbstractRNG{T}[, ::Type{TP}=Float64])</code>   returns a random number in the type <code>TP</code>. <code>TP</code> is usually an <code>Unsigned</code> type, and the return value is   expected to be uniformly distributed in {0, 1} at every bit. When <code>TP</code> is <code>Float64</code> (as default), this   function returns a <code>Float64</code> value that is expected to be uniformly distributed in [0, 1). The discussion   about this is in the <a href="./#Conversion-to-Float-1">Conversion to Float</a> section.</li>
+<li><code>rand(::AbstractRNG{T}[, ::Type{TP}=Float64])</code>   returns a random number in the type <code>TP</code>. <code>TP</code> is usually an <code>Unsigned</code> type, and the return value is   expected to be uniformly distributed in {0, 1} at every bit. When <code>TP</code> is <code>Float64</code> (as default), this   function returns a <code>Float64</code> value that is expected to be uniformly distributed in $[0, 1)$. The discussion   about this is in the <a href="./#Conversion-to-Float-1">Conversion to Float</a> section.</li>
 </ul>
 <p>The other generic functions such as <code>rand(::AbstractRNG, ::Dims)</code> and <code>rand!(::AbstractRNG, ::AbstractArray)</code> defined in <code>Base.Random</code> still work.</p>
 <p>The constructors of all the types of RNG are designed to take the same kind of parameters as <code>srand</code>. For example:</p>
@@ -368,7 +400,7 @@
 
 <span class="gp">julia&gt;</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">Xorshift128Star</span><span class="p">();</span>  <span class="c"># Use a random value to be the seed.</span>
 
-<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>  <span class="c"># Generate a number uniformly distributed in [0, 1).</span>
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>  <span class="c"># Generate a number uniformly distributed in ``[0, 1)``.</span>
 <span class="go">0.2552720033868119</span>
 
 <span class="gp">julia&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c"># Generate a 2x3 matrix `A` in `UInt64` type.</span>
@@ -387,15 +419,21 @@
 <p><a id='Empirical-Statistical-Testing-1'></a></p>
 <h2 id="empirical-statistical-testing">Empirical Statistical Testing</h2>
 <p>Empirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.</p>
-<p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RNG.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Bit Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as <code>GLOBAL_RAND</code>.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RNG.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Big Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as <code>GLOBAL_RAND</code>.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
 <p>The testing results are available on <a href="../benchmark/#Benchmark-1">Benchmark</a> page.</p>
 <p><a id='Conversion-to-Float-1'></a></p>
 <h2 id="conversion-to-float">Conversion to Float</h2>
+<p>Besides the statistical flaws, popular generators often neglect the importance of converting unsigned integers to floating numbers. The most common situation is to convert an <code>UInt</code> to a <code>Float64</code> which is uniformly distributed in $[0.0, 1.0)$. For example, neither the <code>std::uniform_real_distribution</code> in libstdc++ from gcc, libc++ from llvm, nor the standard library from MSVC has a correct performance, as they all have a non-zero probability for generating the max value which is an open bound and should not be produced.</p>
+<p>The cause is that a <code>Float64</code> number in $[0.0, 1.0)$ has only 53 <em>significand</em> bits (52 explicitly stored), which means at least 11 bits of an <code>UInt64</code> are abandoned when being converted to <code>Float64</code>. If using the naive approach to multiply an <code>UInt64</code> by $2^{-64}$, users may get 1.0, and the distribution is not good (although using $2^{-32}$ for an <code>UInt32</code> is OK).</p>
+<p>In this package, we make use of the fact that the distribution of the least 52 bits can be the same in an <code>UInt64</code> and a <code>Float64</code> (if you are familiar with <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> this is easy to understand). An <code>UInt64</code> will firstly be converted to a <code>Float64</code> that is perfectly uniformly distributed in [1.0, 2.0), and then be minus by one. This is a very fast approach, but not completely ideal, since the one bit is wasted. The current default RNG in <code>Base.Random</code> library does the same thing, so it also causes some tricky problems.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup></p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p><a href="https://github.com/JuliaLang/julia/issues/6464"><code>rand</code> fails bigcrush #6464</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://github.com/JuliaLang/julia/issues/16344">Least significant bit of rand() is always zero #16344</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>MersenneTwisters - RNG.jl</title>
+        <title>Reference - RNG.jl</title>
       
       
       
@@ -95,12 +95,12 @@
           <span class="path">
             
               
-                Library <i class="icon icon-link"></i>
+                Manual <i class="icon icon-link"></i>
               
             
           </span>
         
-        MersenneTwisters
+        Reference
       </div>
     </div>
     
@@ -184,7 +184,7 @@
       
         
   <li>
-    <a class="" title="Bases" href="../../man/bases/">
+    <a class="" title="Bases" href="../bases/">
       Bases
     </a>
     
@@ -193,7 +193,7 @@
       
         
   <li>
-    <a class="" title="Benchmark" href="../../man/benchmark/">
+    <a class="" title="Benchmark" href="../benchmark/">
       Benchmark
     </a>
     
@@ -202,7 +202,7 @@
       
         
   <li>
-    <a class="" title="PCG Family" href="../../man/pcg/">
+    <a class="" title="PCG Family" href="../pcg/">
       PCG Family
     </a>
     
@@ -211,7 +211,7 @@
       
         
   <li>
-    <a class="" title="Mersenne Twisters" href="../../man/mersenne-twisters/">
+    <a class="" title="Mersenne Twisters" href="../mersenne-twisters/">
       Mersenne Twisters
     </a>
     
@@ -220,7 +220,7 @@
       
         
   <li>
-    <a class="" title="Random123 Family" href="../../man/random123/">
+    <a class="" title="Random123 Family" href="../random123/">
       Random123 Family
     </a>
     
@@ -229,7 +229,7 @@
       
         
   <li>
-    <a class="" title="Xorshift Family" href="../../man/xorshifts/">
+    <a class="" title="Xorshift Family" href="../xorshifts/">
       Xorshift Family
     </a>
     
@@ -238,9 +238,14 @@
       
         
   <li>
-    <a class="" title="Reference" href="../../man/ref/">
+    <a class="current" title="Reference" href="./">
       Reference
     </a>
+    
+      
+        
+      
+      
     
   </li>
 
@@ -256,7 +261,7 @@
       
         
   <li>
-    <a class="" title="RNG" href="../rng/">
+    <a class="" title="RNG" href="../../lib/rng/">
       RNG
     </a>
     
@@ -265,7 +270,7 @@
       
         
   <li>
-    <a class="" title="PCG" href="../pcg/">
+    <a class="" title="PCG" href="../../lib/pcg/">
       PCG
     </a>
     
@@ -274,43 +279,16 @@
       
         
   <li>
-    <a class="current" title="MersenneTwisters" href="./">
+    <a class="" title="MersenneTwisters" href="../../lib/mersenne-twisters/">
       MersenneTwisters
     </a>
-    
-      
-        
-      
-      
-        <ul>
-          
-            <li class="anchor">
-              <a title="Index" href="#index">
-                Index
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Public" href="#public">
-                Public
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Internal" href="#internal">
-                Internal
-              </a>
-            </li>
-          
-        </ul>
-      
     
   </li>
 
       
         
   <li>
-    <a class="" title="Random123" href="../random123/">
+    <a class="" title="Random123" href="../../lib/random123/">
       Random123
     </a>
     
@@ -319,7 +297,7 @@
       
         
   <li>
-    <a class="" title="Xorshifts" href="../xorshifts/">
+    <a class="" title="Xorshifts" href="../../lib/xorshifts/">
       Xorshifts
     </a>
     
@@ -340,59 +318,8 @@
       <article class="article">
         <div class="wrapper">
           
-          <p><a id='MersenneTwisters-1'></a></p>
-<h1 id="mersennetwisters">MersenneTwisters</h1>
-<p><a id='Index-1'></a></p>
-<h2 id="index">Index</h2>
-<ul>
-<li><a href="./#RNG.MersenneTwisters"><code>RNG.MersenneTwisters</code></a></li>
-<li><a href="./#RNG.MersenneTwisters.MT19937"><code>RNG.MersenneTwisters.MT19937</code></a></li>
-<li><a href="./#RNG.MersenneTwisters.MersenneTwister"><code>RNG.MersenneTwisters.MersenneTwister</code></a></li>
-<li><a href="./#RNG.MersenneTwisters.mt_get-Tuple{RNG.MersenneTwisters.MT19937}"><code>RNG.MersenneTwisters.mt_get</code></a></li>
-<li><a href="./#RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,UInt32}"><code>RNG.MersenneTwisters.mt_set!</code></a></li>
-<li><a href="./#RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,NTuple{624,UInt32}}"><code>RNG.MersenneTwisters.mt_set!</code></a></li>
-</ul>
-<p><a id='Public-1'></a></p>
-<h2 id="public">Public</h2>
-<p><a id='RNG.MersenneTwisters' href='#RNG.MersenneTwisters'>#</a>
-<strong><code>RNG.MersenneTwisters</code></strong> &mdash; <em>Module</em>.</p>
-<p>The module for <a href="../../man/mersenne-twisters/#Mersenne-Twisters-1">Mersenne Twisters</a>.</p>
-<p>Currently only provide one RNG type:</p>
-<ul>
-<li><a href="./#RNG.MersenneTwisters.MT19937"><code>MT19937</code></a></li>
-</ul>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/2bf2d41fe3510e96fbd424093f97da143721d24c/src/./MersenneTwisters/MersenneTwisters.jl#L3-L9' class='documenter-source'>source</a><br></p>
-<p><a id='RNG.MersenneTwisters.MT19937' href='#RNG.MersenneTwisters.MT19937'>#</a>
-<strong><code>RNG.MersenneTwisters.MT19937</code></strong> &mdash; <em>Type</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">MT19937</span> <span class="o">&lt;:</span> <span class="n">MersenneTwister</span><span class="p">{</span><span class="n">UInt32</span><span class="p">}</span>
-<span class="n">MT19937</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
-</pre></div>
-
-
-<p>MT19937 RNG. The <code>seed</code> is a <code>Tuple</code> of 624 <code>UInt32</code> numbers, or an <code>Integer</code> which will be automatically convert to an <code>UInt32</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/2bf2d41fe3510e96fbd424093f97da143721d24c/src/./MersenneTwisters/bases.jl#L17-L25' class='documenter-source'>source</a><br></p>
-<p><a id='Internal-1'></a></p>
-<h2 id="internal">Internal</h2>
-<p><a id='RNG.MersenneTwisters.MersenneTwister' href='#RNG.MersenneTwisters.MersenneTwister'>#</a>
-<strong><code>RNG.MersenneTwisters.MersenneTwister</code></strong> &mdash; <em>Type</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">MersenneTwister</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">RNG</span><span class="o">.</span><span class="n">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-</pre></div>
-
-
-<p>The base type of Mersenne Twisters.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/2bf2d41fe3510e96fbd424093f97da143721d24c/src/./MersenneTwisters/bases.jl#L3-L9' class='documenter-source'>source</a><br></p>
-<p><a id='RNG.MersenneTwisters.mt_get-Tuple{RNG.MersenneTwisters.MT19937}' href='#RNG.MersenneTwisters.mt_get-Tuple{RNG.MersenneTwisters.MT19937}'>#</a>
-<strong><code>RNG.MersenneTwisters.mt_get</code></strong> &mdash; <em>Method</em>.</p>
-<p>Get a random <code>UInt32</code> number from a <code>MT19937</code> object.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/2bf2d41fe3510e96fbd424093f97da143721d24c/src/./MersenneTwisters/bases.jl#L53' class='documenter-source'>source</a><br></p>
-<p><a id='RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,NTuple{624,UInt32}}' href='#RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,NTuple{624,UInt32}}'>#</a>
-<strong><code>RNG.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
-<p>Set up a <code>MT19937</code> RNG object using a <code>Tuple</code> of 624 <code>UInt32</code> numbers.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/2bf2d41fe3510e96fbd424093f97da143721d24c/src/./MersenneTwisters/bases.jl#L33' class='documenter-source'>source</a><br></p>
-<p><a id='RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,UInt32}' href='#RNG.MersenneTwisters.mt_set!-Tuple{RNG.MersenneTwisters.MT19937,UInt32}'>#</a>
-<strong><code>RNG.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
-<p>Set up a <code>MT19937</code> RNG object using an <code>UInt32</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/2bf2d41fe3510e96fbd424093f97da143721d24c/src/./MersenneTwisters/bases.jl#L42' class='documenter-source'>source</a><br></p>
+          <p><a id='Reference-1'></a></p>
+<h1 id="reference">Reference</h1>
           <aside class="copyright" role="note">
             
             Documentation built with
@@ -409,7 +336,7 @@
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
-        <a href="../pcg/" title="PCG">
+        <a href="../xorshifts/" title="Xorshift Family">
           <span class="direction">
             Previous
           </span>
@@ -419,7 +346,7 @@
             </div>
             <div class="stretch">
               <div class="title">
-                PCG
+                Xorshift Family
               </div>
             </div>
           </div>
@@ -428,14 +355,14 @@
     </div>
     <div class="next">
       
-        <a href="../random123/" title="Random123">
+        <a href="../../lib/rng/" title="RNG">
           <span class="direction">
             Next
           </span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                Random123
+                RNG
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">
