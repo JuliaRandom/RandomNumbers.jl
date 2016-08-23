@@ -201,6 +201,22 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="Speed Test" href="#speed-test">
+                Speed Test
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Big Crush Test" href="#big-crush-test">
+                Big Crush Test
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -320,6 +336,138 @@
           
           <p><a id='Benchmark-1'></a></p>
 <h1 id="benchmark">Benchmark</h1>
+<p>This page includes the results of speed tests and big crush tests of several kinds of RNGs in this package. The data is produced on such a computer:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">versioninfo</span><span class="p">()</span>
+<span class="n">Julia</span> <span class="n">Version</span> <span class="mf">0.5</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">rc0</span><span class="o">+</span><span class="mi">0</span>
+<span class="n">Commit</span> <span class="mi">633443</span><span class="n">c</span> <span class="p">(</span><span class="mi">2016</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">02</span> <span class="mi">00</span><span class="p">:</span><span class="mi">53</span> <span class="n">UTC</span><span class="p">)</span>
+<span class="n">Platform</span> <span class="n">Info</span><span class="p">:</span>
+  <span class="n">System</span><span class="p">:</span> <span class="n">Linux</span> <span class="p">(</span><span class="n">x86_64</span><span class="o">-</span><span class="n">redhat</span><span class="o">-</span><span class="n">linux</span><span class="p">)</span>
+  <span class="n">CPU</span><span class="p">:</span> <span class="n">Intel</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="n">Core</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">i5</span><span class="o">-</span><span class="mi">3470</span> <span class="n">CPU</span> <span class="p">@</span> <span class="mf">3.20</span><span class="n">GHz</span>
+  <span class="n">WORD_SIZE</span><span class="p">:</span> <span class="mi">64</span>
+  <span class="n">BLAS</span><span class="p">:</span> <span class="n">libopenblas</span> <span class="p">(</span><span class="n">USE64BITINT</span> <span class="n">DYNAMIC_ARCH</span> <span class="n">NO_AFFINITY</span> <span class="n">Sandybridge</span><span class="p">)</span>
+  <span class="n">LAPACK</span><span class="p">:</span> <span class="n">libopenblas64_</span>
+  <span class="n">LIBM</span><span class="p">:</span> <span class="n">libopenlibm</span>
+  <span class="n">LLVM</span><span class="p">:</span> <span class="n">libLLVM</span><span class="o">-</span><span class="mf">3.7</span><span class="o">.</span><span class="mi">1</span> <span class="p">(</span><span class="n">ORCJIT</span><span class="p">,</span> <span class="n">ivybridge</span><span class="p">)</span>
+</pre></div>
+
+
+<p>All the benchmark scripts are in the <a href="https://github.com/sunoru/RNG.jl/tree/master/benchmark">benchmark</a> directory, you can do the tests by yourself.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the data here is only for reference, and will be updated as this package is updated.</p>
+</div>
+<p><a id='Speed-Test-1'></a></p>
+<h2 id="speed-test">Speed Test</h2>
+<p>The speed test results are as following (the smaller is the better):</p>
+<p><img alt="Speed Test" src="../img/speed_test.svg" /></p>
+<p>and detailed in the table (sorted by speed):</p>
+<table>
+<thead>
+<tr>
+<th align="right">RNG Type</th>
+<th align="center">Speed (ns/64 bits)</th>
+<th align="right">RNG Type</th>
+<th align="center">Speed (ns/64 bits)</th>
+<th align="right">RNG Type</th>
+<th align="center">Speed (ns/64 bits)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">Xoroshiro128Star</td>
+<td align="center">1.184</td>
+<td align="right">PCG_XSL_RR_128</td>
+<td align="center">2.646</td>
+<td align="right">Philox4x64</td>
+<td align="center">5.737</td>
+</tr>
+<tr>
+<td align="right">Xorshift128Plus</td>
+<td align="center">1.189</td>
+<td align="right">PCG_XSH_RS_64</td>
+<td align="center">2.738</td>
+<td align="right">Threefry4x64</td>
+<td align="center">5.965</td>
+</tr>
+<tr>
+<td align="right">Xoroshiro128Plus</td>
+<td align="center">1.393</td>
+<td align="right">PCG_XSH_RR_128</td>
+<td align="center">3.260</td>
+<td align="right">Threefry2x64</td>
+<td align="center">7.760</td>
+</tr>
+<tr>
+<td align="right">Xorshift128Star</td>
+<td align="center">1.486</td>
+<td align="right">PCG_XSL_RR_64</td>
+<td align="center">3.308</td>
+<td align="right">Philox2x32</td>
+<td align="center">9.698</td>
+</tr>
+<tr>
+<td align="right">PCG_RXS_M_XS_64</td>
+<td align="center">1.522</td>
+<td align="right">PCG_XSH_RS_128</td>
+<td align="center">3.373</td>
+<td align="right">Philox4x32</td>
+<td align="center">11.517</td>
+</tr>
+<tr>
+<td align="right">PCG_XSL_RR_RR_128</td>
+<td align="center">1.602</td>
+<td align="right">PCG_RXS_M_XS_32</td>
+<td align="center">3.420</td>
+<td align="right">Threefry4x32</td>
+<td align="center">12.241</td>
+</tr>
+<tr>
+<td align="right">Xorshift64</td>
+<td align="center">1.918</td>
+<td align="right">PCG_XSH_RR_64</td>
+<td align="center">3.580</td>
+<td align="right">Threefry2x32</td>
+<td align="center">16.253</td>
+</tr>
+<tr>
+<td align="right">BaseMT19937*</td>
+<td align="center">1.971</td>
+<td align="right">Xorshift1024Plus</td>
+<td align="center">3.725</td>
+<td align="right">ARS1x128</td>
+<td align="center">17.081</td>
+</tr>
+<tr>
+<td align="right">Xorshift64Star</td>
+<td align="center">2.000</td>
+<td align="right">Xorshift1024Star</td>
+<td align="center">3.748</td>
+<td align="right">ARS4x32</td>
+<td align="center">18.059</td>
+</tr>
+<tr>
+<td align="right">PCG_XSL_RR_RR_64</td>
+<td align="center">2.044</td>
+<td align="right">MT19937</td>
+<td align="center">4.229</td>
+<td align="right">AESNI1x128</td>
+<td align="center">18.304</td>
+</tr>
+<tr>
+<td align="right">PCG_RXS_M_XS_128</td>
+<td align="center">2.482</td>
+<td align="right">Philox2x64</td>
+<td align="center">5.161</td>
+<td align="right">AESNI4x32</td>
+<td align="center">29.770</td>
+</tr>
+</tbody>
+</table>
+<p>*<code>BaseMT19937</code> denotes to <code>Base.Random.MersenneTwister</code>.</p>
+<p><a id='Big-Crush-Test-1'></a></p>
+<h2 id="big-crush-test">Big Crush Test</h2>
+<p>10 kinds of RNGs (which are worth considering) have been tested with Big Crush test batteries: |RNG Type|Speed (ns/64 bits)|Total CPU time|Failed Test(s)| |–-|:-:|:-:|–-| |<a href="../@ref"><code>AESNI1x128</code></a>|18.304|04:14:22.19| | |<a href="../@ref"><code>ARS1x128</code></a>|17.081|04:13:27.54|55  SampleCorr, k = 1  7.0e-4| |<a href="../@ref"><code>BaseMT19937</code></a>|1.971|03:18:23.47| | |<a href="../@ref"><code>MT19937</code></a>|4.229|03:32:59.06|36  Gap, r = 0  eps<br>80  LinearComp, r = 0  1 - eps1<br>     81  LinearComp, r = 29  1 - eps1| |<a href="../@ref RXS_M_XS"><code>PCG\_RXS\_M\_XS\_64\_64</code></a>|1.522|03:23:44.44|21  BirthdaySpacings, t = 16  0.9994| |<a href="../@ref XSH_RS"><code>PCG\_XSH\_RS\_128\_64</code></a>|3.373|03:40:54.73|73  GCD  8.4e-4| |<a href="../@ref"><code>Philox2x64</code></a>|5.737|03:28:52.27|35  Gap, r = 25  3.4e-4| |<a href="../@ref"><code>Threefry2x64</code></a>|5.965|03:37:53.53| | |<a href="../@ref"><code>Xoroshiro128Plus</code></a>|1.393|03:33:16.51| | |<a href="../@ref"><code>Xorshift1024Star</code></a>|3.748|03:39:15.19| | eps  means a value &lt; 1.0e-300, and eps1 means a value &lt; 1.0e-15.</p>
+<p>It is interesting that BaseMT19937 passes all the tests when generating <code>UInt64</code> (by generating two <code>UInt32</code> with dSFMT). The PCG ones do not pass all the tests as the paper says, but the failures are just near the threshold. The RNG with best performance here is <code>Xoroshiro128Plus</code>, which passes all the tests and has an excellent speed.</p>
           <aside class="copyright" role="note">
             
             Documentation built with

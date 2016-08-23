@@ -420,6 +420,7 @@
 <h2 id="empirical-statistical-testing">Empirical Statistical Testing</h2>
 <p>Empirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.</p>
 <p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RNG.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Big Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as <code>GLOBAL_RAND</code>.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<p>This package chooses <a href="https://github.com/andreasnoack/RNGTest.jl">RNGTest.jl</a> to use TestU01.</p>
 <p>The testing results are available on <a href="../benchmark/#Benchmark-1">Benchmark</a> page.</p>
 <p><a id='Conversion-to-Float-1'></a></p>
 <h2 id="conversion-to-float">Conversion to Float</h2>
