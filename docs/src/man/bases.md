@@ -106,6 +106,8 @@ the largest and most stringent test battery for empirical testing (which usually
 *Mersenne Twister* (or to be more exact, the *dSFMT*) which is currently used in `Base.Random` as
 `GLOBAL_RAND`.[^1]
 
+This package chooses [RNGTest.jl](https://github.com/andreasnoack/RNGTest.jl) to use TestU01.
+
 The testing results are available on [Benchmark](@ref) page.
 
 [^1]: 

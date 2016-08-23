@@ -1,6 +1,6 @@
 __precompile__(true)
 
-"The module for [Random123 Family](@ref)."
+"The module for [PCG Family](@ref)."
 module PCG
 
 # PCG

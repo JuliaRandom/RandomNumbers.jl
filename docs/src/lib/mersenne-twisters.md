@@ -1,7 +1,6 @@
 # MersenneTwisters
 
 ## Index
-
 ```@index
 Pages = ["mersenne-twisters.md"]
 ```
