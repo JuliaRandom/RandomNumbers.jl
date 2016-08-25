@@ -10,10 +10,12 @@ The examples and detailed descriptions of each RNG can be found on the Manual pa
 ```@contents
 Pages = [
     "man/bases.md",
+    "man/benchmark.md",
     "man/pcg.md",
     "man/mersenne-twisters.md",
     "man/random123.md",
     "man/xorshifts.md",
+    "man/ref.md",
 ]
 Depth = 2
 ```

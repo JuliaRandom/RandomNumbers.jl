@@ -7,7 +7,7 @@ xorshift_next
 
 let doc_xorshift64(r) = """
 ```julia
-$r{T} <: AbstractXorshift64{T}
+$r <: AbstractXorshift64
 $r([seed])
 ```
 
@@ -19,7 +19,7 @@ end
 
 let doc_xorshift128(r) = """
 ```julia
-$r{T} <: AbstractXorshift128{T}
+$r <: AbstractXorshift128
 $r([seed])
 ```
 
@@ -33,7 +33,7 @@ end
 
 let doc_xorshift1024(r) = """
 ```julia
-$r{T} <: AbstractXorshift1024{T}
+$r <: AbstractXorshift1024
 $r([seed...])
 ```
 
@@ -47,7 +47,7 @@ end
 
 let doc_xoroshiro128(r) = """
 ```julia
-$r{T} <: AbstractXoroshiro128{T}
+$r <: AbstractXoroshiro128
 $r([seed])
 ```
 

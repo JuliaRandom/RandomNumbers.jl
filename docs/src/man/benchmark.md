@@ -1,5 +1,9 @@
 # Benchmark
 
+```@meta
+CurrentModule = RNG
+```
+
 This page includes the results of speed tests and big crush tests of several kinds of RNGs in this package.
 The data is produced on such a computer:
 ```julia
@@ -48,20 +52,20 @@ and detailed in the table (sorted by speed):
 ## Big Crush Test
 
 10 kinds of RNGs (which are worth considering) have been tested with Big Crush test batteries:
-|RNG Type|Speed (ns/64 bits)|Total CPU time|Failed Test(s)|
+
+|RNG Type|Speed (ns/64 bits)|Total CPU time|Failed Test(s)\*|
 |---|:-:|:-:|---|
-|[`AESNI1x128`](@ref)|18.304|04:14:22.19| |
-|[`ARS1x128`](@ref)|17.081|04:13:27.54|55  SampleCorr, k = 1  7.0e-4|
-|[`BaseMT19937`](@ref)|1.971|03:18:23.47| |
-|[`MT19937`](@ref)|4.229|03:32:59.06|36  Gap, r = 0  eps<br>80  LinearComp, r = 0  1 - eps1<br>
-    81  LinearComp, r = 29  1 - eps1|
-|[`PCG\_RXS\_M\_XS\_64\_64`](@ref RXS_M_XS)|1.522|03:23:44.44|21  BirthdaySpacings, t = 16  0.9994|
-|[`PCG\_XSH\_RS\_128\_64`](@ref XSH_RS)|3.373|03:40:54.73|73  GCD  8.4e-4|
-|[`Philox2x64`](@ref)|5.737|03:28:52.27|35  Gap, r = 25  3.4e-4|
-|[`Threefry2x64`](@ref)|5.965|03:37:53.53| |
-|[`Xoroshiro128Plus`](@ref)|1.393|03:33:16.51| |
-|[`Xorshift1024Star`](@ref)|3.748|03:39:15.19| |
-eps  means a value < 1.0e-300, and eps1 means a value < 1.0e-15.
+|AESNI1x128|18.304|04:14:22.19| |
+|ARS1x128|17.081|04:13:27.54|55 SampleCorr, k = 1 p-value = 7.0e-4|
+|BaseMT19937|1.971|03:18:23.47| |
+|MT19937|4.229|03:32:59.06|36 Gap, r = 0 p-value = eps<br>80LinearComp, r = 0 p-value = 1-eps1<br>81  LinearComp, r = 29 p-value = 1-eps1|
+|PCG\_RXS\_M\_XS\_64\_64|1.522|03:23:44.44|21  BirthdaySpacings, t = 16  0.9994|
+|PCG\_XSH\_RS\_128\_64`|3.373|03:40:54.73|73  GCD  8.4e-4|
+|Philox2x64|5.737|03:28:52.27|35  Gap, r = 25  3.4e-4|
+|Threefry2x64|5.965|03:37:53.53| |
+|Xoroshiro128Plus|1.393|03:33:16.51| |
+|Xorshift1024Star|3.748|03:39:15.19| |
+\*eps means a value < 1.0e-300, and eps1 means a value < 1.0e-15.
 
 It is interesting that BaseMT19937 passes all the tests when generating `UInt64` (by generating two `UInt32`
 with dSFMT). The PCG ones do not pass all the tests as the paper says, but the failures are just near the

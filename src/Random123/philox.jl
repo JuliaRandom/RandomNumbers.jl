@@ -38,8 +38,9 @@ Philox2x is one kind of Philox Counter-Based RNGs. It generates two numbers at a
 
 `seed` is an `Integer` which will be automatically converted to `T`.
 
-`R` denotes to the Rounds. With 10 rounds (by default), it has a considerable safety margin over
-the minimum number of rounds with no known statistical flaws, but still has excellent performance.
+`R` denotes to the Rounds which must be at least 1 and no more than 16. With 10 rounds (by default), it has a
+considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has
+excellent performance.
 """
 type Philox2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     x1::T
@@ -108,8 +109,9 @@ Philox4x is one kind of Philox Counter-Based RNGs. It generates four numbers at 
 
 `seed` is a `Tuple` of two `Integer`s which will both be automatically converted to `T`.
 
-`R` denotes to the Rounds. With 10 rounds (by default), it has a considerable safety margin over
-the minimum number of rounds with no known statistical flaws, but still has excellent performance.
+`R` denotes to the Rounds which must be at least 1 and no more than 16. With 10 rounds (by default), it has a
+considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has
+excellent performance.
 """
 type Philox4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
     x1::T

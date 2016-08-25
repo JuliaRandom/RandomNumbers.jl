@@ -16,10 +16,40 @@ export bounded_rand, advance!
 const pcg_uints = (UInt8, UInt16, UInt32, UInt64, UInt128)
 typealias PCGUInt Union{pcg_uints...}
 
-for method in (:XSH_RS, :XSH_RR, :RXS_M_XS, :XSL_RR, :XSL_RR_RR)
-    eval(parse("const PCG_$method = Val{:$method}"))
-end
-const pcg_methods = map(x -> Val{x}, (:XSH_RS, :XSH_RR, :RXS_M_XS, :XSL_RR, :XSL_RR_RR))
+"""
+One of PCG output method: high xorshift, followed by a random shift.
+
+Fast.
+"""
+const PCG_XSH_RS = Val{:XSH_RS}
+"""
+One of PCG output method: high xorshift, followed by a random rotate.
+
+Fast. Slightly better statistically than `PCG_XSH_RS`.
+"""
+const PCG_XSH_RR = Val{:XSH_RR}
+"""
+One of PCG output method: random xorshift, mcg multiply, fixed xorshift.
+
+The most statistically powerful generator, but slower than some of the others.
+"""
+const PCG_RXS_M_XS = Val{:RXS_M_XS}
+"""
+One of PCG output method: fixed xorshift (to low bits), random rotate.
+
+Useful for 128-bit types that are split across two CPU registers.
+"""
+const PCG_XSL_RR = Val{:XSL_RR}
+"""
+One of PCG output method: fixed xorshift (to low bits), random rotate (both parts).
+
+Useful for 128-bit types that are split across two CPU registers. Use this in need of an invertable 128-bit
+RNG.
+"""
+const PCG_XSL_RR_RR = Val{:XSL_RR_RR}
+
+const pcg_methods = (PCG_XSH_RS, PCG_XSH_RR, PCG_RXS_M_XS, PCG_XSL_RR, PCG_XSL_RR_RR)
+
 """
 The `Union` of all the PCG method types: `PCG_XSH_RS`, `PCG_XSH_RR`, `PCG_RXS_M_XS`, `PCG_XSL_RR`, and `PCG_XSL_RR_RR`.
 """

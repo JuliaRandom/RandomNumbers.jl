@@ -19,6 +19,20 @@ abstract R123Generator2x{T} <: AbstractR123{T}
 "RNG that generates four numbers at a time."
 abstract R123Generator4x{T} <: AbstractR123{T}
 
+"Set the counter of a Random123 RNG."
+@inline function set_counter!{T<:UInt128}(r::R123Generator1x{T}, ctr::Integer)
+    r.ctr = ctr % T
+    random123_r(r)
+    r
+end
+
+@inline function set_counter!{T<:Union{UInt32, UInt64}}(r::AbstractR123{T}, ctr::Integer)
+    r.p = 0
+    r.ctr1 = ctr % T
+    random123_r(r)
+    r
+end
+
 @inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{T})
     r.ctr += 1
     random123_r(r)
@@ -52,15 +66,21 @@ end
 end
 
 @inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator2x{T}, ::Type{R123Array2x{T}})
-    r.ctr1 += 1
-    r.p = 0
-    random123_r(r) # which returns a Tuple{T, T}
+    if r.p > 0
+        r.ctr1 += 1
+    end
+    ret = random123_r(r) # which returns a Tuple{T, T}
+    r.p = 1
+    ret
 end
 
 @inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator4x{T}, ::Type{R123Array4x{T}})
-    r.ctr1 += 1
-    r.p = 0
-    random123_r(r)
+    if r.p > 0
+        r.ctr1 += 1
+    end
+    ret = random123_r(r)
+    r.p = 4
+    ret
 end
 
 for (T, DT) in ((UInt32, UInt64), (UInt64, UInt128))

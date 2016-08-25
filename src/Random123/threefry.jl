@@ -71,8 +71,9 @@ Threefry2x is one kind of Threefry Counter-Based RNGs. It generates two numbers 
 
 `seed` is a `Tuple` of two `Integer`s which will both be automatically converted to `T`.
 
-`R` denotes to the Rounds. With 20 rounds (by default), it has a considerable safety margin over
-the minimum number of rounds with no known statistical flaws, but still has excellent performance.
+`R` denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a
+considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has
+excellent performance.
 """
 type Threefry2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     x1::T
@@ -191,8 +192,9 @@ Threefry2x is one kind of Threefry Counter-Based RNGs. It generates four numbers
 
 `seed` is a `Tuple` of four `Integer`s which will all be automatically converted to `T`.
 
-`R` denotes to the Rounds. With 20 rounds (by default), it has a considerable safety margin over
-the minimum number of rounds with no known statistical flaws, but still has excellent performance.
+`R` denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a
+considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has
+excellent performance.
 """
 type Threefry4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
     x1::T

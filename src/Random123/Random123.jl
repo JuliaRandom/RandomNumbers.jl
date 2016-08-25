@@ -16,7 +16,7 @@ Provide 8 RNG types:
 """
 module Random123
 
-export R123_USE_AESNI
+export R123_USE_AESNI, set_counter!
 include("common.jl")
 
 export Threefry2x, Threefry4x
