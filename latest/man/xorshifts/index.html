@@ -237,15 +237,16 @@
         
       
       
-    
-  </li>
-
+        <ul>
+          
+            <li class="anchor">
+              <a title="Examples" href="#examples">
+                Examples
+              </a>
+            </li>
+          
+        </ul>
       
-        
-  <li>
-    <a class="" title="Reference" href="../ref/">
-      Reference
-    </a>
     
   </li>
 
@@ -320,6 +321,47 @@
           
           <p><a id='Xorshift-Family-1'></a></p>
 <h1 id="xorshift-family">Xorshift Family</h1>
+<p><a href="http://xoroshiro.di.unimi.it/"><code>Xorshift</code></a> family is a class of PRNGs based on linear transformation that takes the <em>exclusive or</em> of a number with a <em>bit-shifted</em> version of itself<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. They are extremely fast on mordern computer architectures, and are very suitable for non-cryptographically-secure use. The suffix <code>-Star</code> and <code>-Plus</code> in the RNG names denote to two classes of improved RNGs<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>, which make it to pass Big Crush in TestU01. <code>-Star</code> RNGs are obtained by scrambling the output of a normal <code>Xorshift</code> generator with a 64-bit invertible multiplier, while <code>-Plus</code> RNGs return the sum of two consecutive output of a <code>Xorshift</code> generator.</p>
+<p>In this package there are four series of RNG types:</p>
+<ul>
+<li><a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift64"><code>Xorshift64</code></a> and <a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift64Star"><code>Xorshift64Star</code></a>:   They have a period of $2^{64}$, but not recommended because 64 bits of state are not enough for any   serious purpose.</li>
+<li><a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift128"><code>Xorshift128</code></a>, <a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift128Star"><code>Xorshift128Star</code></a> and <a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift128Plus"><code>Xorshift128Plus</code></a>:   They have a period of $2^{128}$. <code>Xorshift128Plus</code> is presently used in the JavaScript engines of   Chrome, Firefox and Safari.</li>
+<li><a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift1024"><code>Xorshift1024</code></a>, <a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift1024Star"><code>Xorshift1024Star</code></a> and <a href="../../lib/xorshifts/#RNG.Xorshifts.Xorshift1024Plus"><code>Xorshift1024Plus</code></a>:   They have a long period of $2^{1024}$, and takes some more space for storing the state. If you are   running large-scale parallel simulations, it's a good choice to use <code>Xorshift1024Star</code>.</li>
+<li><a href="../../lib/xorshifts/#RNG.Xorshifts.Xoroshiro128"><code>Xoroshiro128</code></a>, <a href="../../lib/xorshifts/#RNG.Xorshifts.Xoroshiro128Star"><code>Xoroshiro128Star</code></a> and <a href="../../lib/xorshifts/#RNG.Xorshifts.Xoroshiro128Plus"><code>Xoroshiro128Plus</code></a>:   The successor to <code>Xorshift128</code> series. They make use of a carefully handcrafted shift/rotate-based linear   transformation, resulting in a significant improvement in speed and in statistical quality. Therefore,   <code>Xoroshiro128Plus</code> is the current best suggestion for replacing other low-quality generators.</li>
+</ul>
+<p>All the RNG types produce <code>UInt64</code> numbers, if you have need for other output type, see <a href="../../lib/rng/#RNG.WrappedRNG"><code>WrappedRNG</code></a>.</p>
+<p><a id='Examples-1'></a></p>
+<h2 id="examples">Examples</h2>
+<p>The usage of <code>Xorshift</code> family is very simple and common:</p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="k">using</span> <span class="n">RNG</span><span class="o">.</span><span class="n">Xorshifts</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xoroshiro128Plus</span><span class="p">();</span>  <span class="c"># create a RNG with truly random seed.</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xoroshiro128Plus</span><span class="p">(</span><span class="mh">0x1234567890abcdef</span><span class="p">)</span>  <span class="c"># with a certain seed.</span>
+<span class="go">RNG.Xorshifts.Xoroshiro128Plus(0x13c5b80b0f92f3ac,0xcdd3f80fa9fb6887)</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="go">0.6054942367825447</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">)</span>
+<span class="go">0xa688929c</span>
+</pre></div>
+
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Marsaglia G. Xorshift rngs[J]. Journal of Statistical Software, 2003, 8(14): 1-6. doi:<a href="http://dx.doi.org/10.18637/jss.v008.i14">10.18637/jss.v008.i14</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Vigna S. An experimental exploration of Marsaglia's xorshift generators, scrambled[J]. arXiv preprint <a href="http://arxiv.org/abs/1402.6246">arXiv:1402.6246</a>, 2014.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Vigna S. Further scramblings of Marsaglia's xorshift generators[J]. arXiv preprint <a href="http://arxiv.org/abs/1404.0390">arXiv:1404.0390</a>, 2014.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
           <aside class="copyright" role="note">
             
             Documentation built with
@@ -355,14 +397,14 @@
     </div>
     <div class="next">
       
-        <a href="../ref/" title="Reference">
+        <a href="../../lib/rng/" title="RNG">
           <span class="direction">
             Next
           </span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                Reference
+                RNG
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">

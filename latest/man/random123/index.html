@@ -228,6 +228,22 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="Random123 RNGs" href="#random123-rngs">
+                Random123 RNGs
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Examples" href="#examples">
+                Examples
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -236,15 +252,6 @@
   <li>
     <a class="" title="Xorshift Family" href="../xorshifts/">
       Xorshift Family
-    </a>
-    
-  </li>
-
-      
-        
-  <li>
-    <a class="" title="Reference" href="../ref/">
-      Reference
     </a>
     
   </li>
@@ -320,6 +327,69 @@
           
           <p><a id='Random123-Family-1'></a></p>
 <h1 id="random123-family">Random123 Family</h1>
+<p><strong><a href="https://www.deshawresearch.com/resources_random123.html">Random123</a></strong> is a library of "counter-based" random number generators (CBRNGs), developed by D.E.Shaw Research<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. <em>Counter-based</em> means the RNGs in this family can produce the $\mathrm{N}^{th}$ number by applying a stateless mixing function to the <em>counter</em> $\mathrm{N}$, instead of the conventional approach of using $\mathrm{N}$ iterations of a stateful transformation. There are four kinds of RNGs in Random123: <a href="./#Threefry-1">Threefry</a>, <a href="./#Philox-1">Philox</a>, <a href="./#AESNI-1">AESNI</a>, <a href="./#ARS-1">ARS</a>.</p>
+<p>The original paper<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> says all the RNGs in Random123 can pass Big Crush in TestU01, but in the <a href="../benchmark/#Benchmark-1">benchmark</a> we did, <code>ARS1x128</code> and <code>Philox2x64</code> have a slight failure.</p>
+<p><a id='Random123-RNGs-1'></a></p>
+<h2 id="random123-rngs">Random123 RNGs</h2>
+<p>All the RNG types in Random123 have a property <code>ctr1</code>, which denotes to its first <em>counter</em>, and some of them have <code>ctr2</code> for the second <em>counter</em>. The suffix '-1x', '-2x' and '-4x' indicates how many numbers will be generated per time. The first one or two or four properties of a RNG type in Random123 are always <code>x</code>(or <code>x1</code>, <code>x2</code>, etc.), which denote to the produced numbers.</p>
+<p><a id='Threefry-1'></a></p>
+<h3 id="threefry">Threefry</h3>
+<p><code>Threefry</code> is a <strong>non-cryptographic</strong> adaptation of the Threefish block cipher from the <a href="http://www.skein-hash.info/">Skein Hash Function</a>.</p>
+<p>In this package, there are two <code>Type</code>s of <code>Threefry</code>: <a href="../../lib/random123/#RNG.Random123.Threefry4x"><code>Threefry4x</code></a> and <a href="../../lib/random123/#RNG.Random123.Threefry2x"><code>Threefry2x</code></a>. Besides the output type <code>T</code>, there is another parameter <code>R</code>, which denotes to the number of rounds, and must be at least 1 and no more than 32. With 20 rounds (by default), <code>Threefry</code> has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance. They both support <code>UInt32</code> and <code>UInt64</code> output.</p>
+<p><a id='Philox-1'></a></p>
+<h3 id="philox">Philox</h3>
+<p><code>Philox</code> uses a Feistel network and integer multiplication.</p>
+<p><code>Philox</code> also has two <code>Type</code>s: <a href="../../lib/random123/#RNG.Random123.Philox4x"><code>Philox4x</code></a> and <a href="../../lib/random123/#RNG.Random123.Philox2x"><code>Philox2x</code></a>. The number of rounds must be at least 1 and no more than 16. With 10 rounds (by default), Philox2x32 has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance. They both support <code>UInt32</code> and <code>UInt64</code> output.</p>
+<p><a id='AESNI-1'></a></p>
+<h3 id="aesni">AESNI</h3>
+<p><code>AESNI</code> uses the Advanced Encryption Standard (AES) New Instruction, available on certain modern x86 processors (some models of Intel Westmere and Sandy Bridge, and AMD Interlagos, as of 2011). AESNI CBRNGs can operate on <code>UInt128</code> type.</p>
+<p><code>AESNI</code> has two <code>Type</code>s: <a href="../@ref"><code>AESNI1x</code></a> and <a href="../@ref"><code>AESNI4x</code></a>. <code>AESNI4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>.</p>
+<p><a id='ARS-1'></a></p>
+<h3 id="ars">ARS</h3>
+<p><code>ARS</code> (Advanced Randomization System) is a <strong>non-cryptographic</strong> simplification of <a href="./#AESNI-1">AESNI</a>.</p>
+<p><code>ARS</code> has two <code>Type</code>s: <a href="../@ref"><code>ARS1x</code></a> and <a href="../@ref"><code>ARS4x</code></a>. <code>ARS4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>. Note that although it uses some cryptographic primitives, <code>ARS1x</code> uses a cryptographically weak key schedule and is <strong>not</strong> suitable for cryptographic use. The number of rounds must be at least 1 and no more than 10, and is 7 by default.</p>
+<p><a id='Examples-1'></a></p>
+<h2 id="examples">Examples</h2>
+<p>For detailed usage of each RNG, please refer to the <a href="../../lib/random123/#Random123-1">library docs</a>.</p>
+<p>To use Random123, firstly import the module:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RNG</span><span class="o">.</span><span class="n">Random123</span>
+</pre></div>
+
+
+<p>Take <code>Philox4x64</code> for example:</p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">();</span>  <span class="c"># will output UInt64 by default, and two seed integers are truly randomly produced.</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">((</span><span class="mh">0x12345678abcdef01</span><span class="p">,</span> <span class="mh">0x10fedcba87654321</span><span class="p">));</span>  <span class="c"># specify the seed.</span>
+
+<span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="p">(</span><span class="mh">0x12345678abcdef01</span><span class="p">,</span> <span class="mh">0x10fedcba87654321</span><span class="p">));</span>  <span class="c"># specify both the output type and seed.</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">NTuple</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">})</span>
+<span class="go">(0x00d626ee85b7d2ed,0xa57b4af2b68c655e,0x82dad737de789de2,0x8d390e05845e6c4d)</span>
+
+<span class="gp">julia&gt;</span> <span class="n">set_counter!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>  <span class="c"># update the counter manually.</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4-element Array{UInt64,1}:</span>
+<span class="go"> 0x56a4eb812faa9cd7</span>
+<span class="go"> 0xf3d3464a49b23b56</span>
+<span class="go"> 0xda5a5824aea0b2bb</span>
+<span class="go"> 0x097a8d117a2bb20a</span>
+
+<span class="gp">julia&gt;</span> <span class="n">set_counter!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">NTuple</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">})</span>
+<span class="go">(0x00d626ee85b7d2ed,0xa57b4af2b68c655e,0x82dad737de789de2,0x8d390e05845e6c4d)</span>
+</pre></div>
+
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>John K. Salmon, Mark A. Moraes, Ron O. Dror, and David E. Shaw, "Parallel Random Numbers: As Easy as 1, 2, 3," Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC11), New York, NY: ACM, 2011. doi:<a href="http://dx.doi.org/10.1145/2063384.2063405">10.1145/2063384.2063405</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
           <aside class="copyright" role="note">
             
             Documentation built with

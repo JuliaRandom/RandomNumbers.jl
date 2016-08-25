@@ -257,15 +257,6 @@
   </li>
 
       
-        
-  <li>
-    <a class="" title="Reference" href="../ref/">
-      Reference
-    </a>
-    
-  </li>
-
-      
     </ul>
   </li>
 
@@ -466,7 +457,80 @@
 <p>*<code>BaseMT19937</code> denotes to <code>Base.Random.MersenneTwister</code>.</p>
 <p><a id='Big-Crush-Test-1'></a></p>
 <h2 id="big-crush-test">Big Crush Test</h2>
-<p>10 kinds of RNGs (which are worth considering) have been tested with Big Crush test batteries: |RNG Type|Speed (ns/64 bits)|Total CPU time|Failed Test(s)| |–-|:-:|:-:|–-| |<a href="../@ref"><code>AESNI1x128</code></a>|18.304|04:14:22.19| | |<a href="../@ref"><code>ARS1x128</code></a>|17.081|04:13:27.54|55  SampleCorr, k = 1  7.0e-4| |<a href="../@ref"><code>BaseMT19937</code></a>|1.971|03:18:23.47| | |<a href="../@ref"><code>MT19937</code></a>|4.229|03:32:59.06|36  Gap, r = 0  eps<br>80  LinearComp, r = 0  1 - eps1<br>     81  LinearComp, r = 29  1 - eps1| |<a href="../@ref RXS_M_XS"><code>PCG\_RXS\_M\_XS\_64\_64</code></a>|1.522|03:23:44.44|21  BirthdaySpacings, t = 16  0.9994| |<a href="../@ref XSH_RS"><code>PCG\_XSH\_RS\_128\_64</code></a>|3.373|03:40:54.73|73  GCD  8.4e-4| |<a href="../@ref"><code>Philox2x64</code></a>|5.737|03:28:52.27|35  Gap, r = 25  3.4e-4| |<a href="../@ref"><code>Threefry2x64</code></a>|5.965|03:37:53.53| | |<a href="../@ref"><code>Xoroshiro128Plus</code></a>|1.393|03:33:16.51| | |<a href="../@ref"><code>Xorshift1024Star</code></a>|3.748|03:39:15.19| | eps  means a value &lt; 1.0e-300, and eps1 means a value &lt; 1.0e-15.</p>
+<p>10 kinds of RNGs (which are worth considering) have been tested with Big Crush test batteries:</p>
+<table>
+<thead>
+<tr>
+<th align="right">RNG Type</th>
+<th align="center">Speed (ns/64 bits)</th>
+<th align="center">Total CPU time</th>
+<th align="right">Failed Test(s)*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">AESNI1x128</td>
+<td align="center">18.304</td>
+<td align="center">04:14:22.19</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">ARS1x128</td>
+<td align="center">17.081</td>
+<td align="center">04:13:27.54</td>
+<td align="right">55 SampleCorr, k = 1 p-value = 7.0e-4</td>
+</tr>
+<tr>
+<td align="right">BaseMT19937</td>
+<td align="center">1.971</td>
+<td align="center">03:18:23.47</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">MT19937</td>
+<td align="center">4.229</td>
+<td align="center">03:32:59.06</td>
+<td align="right">36 Gap, r = 0 p-value = eps<br>80LinearComp, r = 0 p-value = 1-eps1<br>81  LinearComp, r = 29 p-value = 1-eps1</td>
+</tr>
+<tr>
+<td align="right">PCG_RXS_M_XS_64_64</td>
+<td align="center">1.522</td>
+<td align="center">03:23:44.44</td>
+<td align="right">21  BirthdaySpacings, t = 16  0.9994</td>
+</tr>
+<tr>
+<td align="right">PCG_XSH_RS_128_64`</td>
+<td align="center">3.373</td>
+<td align="center">03:40:54.73</td>
+<td align="right">73  GCD  8.4e-4</td>
+</tr>
+<tr>
+<td align="right">Philox2x64</td>
+<td align="center">5.737</td>
+<td align="center">03:28:52.27</td>
+<td align="right">35  Gap, r = 25  3.4e-4</td>
+</tr>
+<tr>
+<td align="right">Threefry2x64</td>
+<td align="center">5.965</td>
+<td align="center">03:37:53.53</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">Xoroshiro128Plus</td>
+<td align="center">1.393</td>
+<td align="center">03:33:16.51</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">Xorshift1024Star</td>
+<td align="center">3.748</td>
+<td align="center">03:39:15.19</td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<p>*eps means a value &lt; 1.0e-300, and eps1 means a value &lt; 1.0e-15.</p>
 <p>It is interesting that BaseMT19937 passes all the tests when generating <code>UInt64</code> (by generating two <code>UInt32</code> with dSFMT). The PCG ones do not pass all the tests as the paper says, but the failures are just near the threshold. The RNG with best performance here is <code>Xoroshiro128Plus</code>, which passes all the tests and has an excellent speed.</p>
           <aside class="copyright" role="note">
             

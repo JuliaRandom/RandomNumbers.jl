@@ -210,6 +210,28 @@
         
       
       
+        <ul>
+          
+            <li class="anchor">
+              <a title="PCG Type" href="#pcg-type">
+                PCG Type
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="PCG Method Type" href="#pcg-method-type">
+                PCG Method Type
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Interface and Examples" href="#interface-and-examples">
+                Interface and Examples
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -236,15 +258,6 @@
   <li>
     <a class="" title="Xorshift Family" href="../xorshifts/">
       Xorshift Family
-    </a>
-    
-  </li>
-
-      
-        
-  <li>
-    <a class="" title="Reference" href="../ref/">
-      Reference
     </a>
     
   </li>
@@ -318,8 +331,76 @@
       <article class="article">
         <div class="wrapper">
           
-          <p><a id='Permuted-Congruential-Generators-1'></a></p>
-<h1 id="permuted-congruential-generators">Permuted Congruential Generators</h1>
+          <p><a id='PCG-Family-1'></a></p>
+<h1 id="pcg-family">PCG Family</h1>
+<p><strong><a href="http://www.pcg-random.org/">Permuted Congruential Generators</a></strong> (PCGs) are a family of RNGs which uses a <em>linear congruential generator</em> as the state-transition function, and uses <em>permutation functions on tuples</em> to produce output that is much more random than the RNG's internal state.</p>
+<p><a id='PCG-Type-1'></a></p>
+<h2 id="pcg-type">PCG Type</h2>
+<p>Each PCG generator is available in four variants, based on how it applies the additive constant for its underlying LCG; the variations are:</p>
+<ul>
+<li><a href="../../lib/pcg/#RNG.PCG.PCGStateOneseq"><code>PCGStateOneseq</code></a> (single stream):   all instances use the same fixed constant, thus the RNG always somewhere in same sequence.</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCGStateMCG"><code>PCGStateMCG</code></a> (mcg):   adds zero, resulting in a single stream and reduced period.</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCGStateSetseq"><code>PCGStateSetseq</code></a> (specific stream):   the constant can be changed at any time, selecting a different random sequence.</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCGStateUnique"><code>PCGStateUnique</code></a> (unique stream):   the constant is based on the memory address of the object, thus every RNG has its own unique sequence.</li>
+</ul>
+<p><a id='PCG-Method-Type-1'></a></p>
+<h2 id="pcg-method-type">PCG Method Type</h2>
+<ul>
+<li><a href="../../lib/pcg/#RNG.PCG.PCG_XSH_RS"><code>PCG_XSH_RS</code></a>: high xorshift, followed by a random shift.   It's fast and is a good performer.</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCG_XSH_RR"><code>PCG_XSH_RR</code></a>: high xorshift, followed by a random rotate.   It's fast and is a good performer. Slightly better statistically than <code>PCG_XSH_RS</code>.</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCG_RXS_M_XS"><code>PCG_RXS_M_XS</code></a>: fixed xorshift (to low bits), random rotate.   The most statistically powerful generator, but all those steps make it slower than some of the others.   (but in this package the benchmark shows it's even fast than <code>PCG_XSH_RS</code>, which is an current issue.)</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCG_XSL_RR"><code>PCG_XSL_RR</code></a>: fixed xorshift (to low bits), random rotate.   Useful for 128-bit types that are split across two CPU registers.</li>
+<li><a href="../../lib/pcg/#RNG.PCG.PCG_XSL_RR_RR"><code>PCG_XSL_RR_RR</code></a>: fixed xorshift (to low bits), random rotate (both parts).   Useful for 128-bit types that are split across two CPU registers. Use this in need of an invertable   128-bit RNG.</li>
+</ul>
+<p><a id='Interface-and-Examples-1'></a></p>
+<h2 id="interface-and-examples">Interface and Examples</h2>
+<p>An instance of PCG generator can be created by specify the state type, the output type, the method and seed. When seed is missing it is set to truly random numbers. The default output type is <code>UInt64</code>, and the default method is <code>PCG_XSH_RS</code>. The seed will be converted to the internal state type (a kind of unsigned integer), and for PCGs with specific stream (<code>PCGStateSetseq</code>) the seed should be a <code>Tuple</code> of two <code>Integer</code>s. Note that not all parameter combinations are available (see <a href="../../lib/pcg/#RNG.PCG.PCG_LIST"><code>PCG_LIST</code></a>). For example:</p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="k">using</span> <span class="n">RNG</span><span class="o">.</span><span class="n">PCG</span>
+
+<span class="gp">julia&gt;</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">)</span>  <span class="c"># create a single stream PCG, specifying the output type and seed.</span>
+<span class="go">RNG.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)</span>
+
+<span class="gp">julia&gt;</span> <span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">PCG_RXS_M_XS</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">);</span>  <span class="c"># unique stream PCG, specifying the method and seed.</span>
+
+<span class="gp">julia&gt;</span> <span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">UInt32</span><span class="p">,</span> <span class="n">PCG_XSH_RR</span><span class="p">,</span> <span class="p">(</span><span class="mi">1234567</span><span class="p">,</span> <span class="mi">7654321</span><span class="p">))</span>
+<span class="go">RNG.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85,0x0000000000e99763)</span>
+</pre></div>
+
+
+<p><a href="../../lib/pcg/#RNG.PCG.bounded_rand-Tuple{RNG.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="mi">1234567</span><span class="p">)</span>
+<span class="go">RNG.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)</span>
+
+<span class="gp">julia&gt;</span> <span class="p">[</span><span class="n">bounded_rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="go">6-element Array{UInt64,1}:</span>
+<span class="go"> 0x0000000000000012</span>
+<span class="go"> 0x000000000000000a</span>
+<span class="go"> 0x000000000000002e</span>
+<span class="go"> 0x0000000000000049</span>
+<span class="go"> 0x0000000000000043</span>
+<span class="go"> 0x000000000000002b</span>
+</pre></div>
+
+
+<p>PCG also has an <a href="../../lib/pcg/#RNG.PCG.advance!-Tuple{RNG.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}"><code>advance!</code></a> function, used to advance the state of a PCG instance.</p>
+<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">srand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4-element Array{Float64,1}:</span>
+<span class="go"> 0.571626 </span>
+<span class="go"> 0.994506 </span>
+<span class="go"> 0.888622 </span>
+<span class="go"> 0.0876384</span>
+
+<span class="gp">julia&gt;</span> <span class="n">advance!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4-element Array{Float64,1}:</span>
+<span class="go"> 0.571626 </span>
+<span class="go"> 0.994506 </span>
+<span class="go"> 0.888622 </span>
+<span class="go"> 0.0876384</span>
+</pre></div>
           <aside class="copyright" role="note">
             
             Documentation built with
