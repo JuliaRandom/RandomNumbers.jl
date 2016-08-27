@@ -343,11 +343,11 @@
 <p><a id='AESNI-1'></a></p>
 <h3 id="aesni">AESNI</h3>
 <p><code>AESNI</code> uses the Advanced Encryption Standard (AES) New Instruction, available on certain modern x86 processors (some models of Intel Westmere and Sandy Bridge, and AMD Interlagos, as of 2011). AESNI CBRNGs can operate on <code>UInt128</code> type.</p>
-<p><code>AESNI</code> has two <code>Type</code>s: <a href="../@ref"><code>AESNI1x</code></a> and <a href="../@ref"><code>AESNI4x</code></a>. <code>AESNI4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>.</p>
+<p><code>AESNI</code> has two <code>Type</code>s: <a href="../../lib/random123/#RNG.Random123.AESNI1x"><code>AESNI1x</code></a> and <a href="../../lib/random123/#RNG.Random123.AESNI4x"><code>AESNI4x</code></a>. <code>AESNI4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>.</p>
 <p><a id='ARS-1'></a></p>
 <h3 id="ars">ARS</h3>
 <p><code>ARS</code> (Advanced Randomization System) is a <strong>non-cryptographic</strong> simplification of <a href="./#AESNI-1">AESNI</a>.</p>
-<p><code>ARS</code> has two <code>Type</code>s: <a href="../@ref"><code>ARS1x</code></a> and <a href="../@ref"><code>ARS4x</code></a>. <code>ARS4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>. Note that although it uses some cryptographic primitives, <code>ARS1x</code> uses a cryptographically weak key schedule and is <strong>not</strong> suitable for cryptographic use. The number of rounds must be at least 1 and no more than 10, and is 7 by default.</p>
+<p><code>ARS</code> has two <code>Type</code>s: <a href="../../lib/random123/#RNG.Random123.ARS1x"><code>ARS1x</code></a> and <a href="../../lib/random123/#RNG.Random123.ARS4x"><code>ARS4x</code></a>. <code>ARS4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>. Note that although it uses some cryptographic primitives, <code>ARS1x</code> uses a cryptographically weak key schedule and is <strong>not</strong> suitable for cryptographic use. The number of rounds must be at least 1 and no more than 10, and is 7 by default.</p>
 <p><a id='Examples-1'></a></p>
 <h2 id="examples">Examples</h2>
 <p>For detailed usage of each RNG, please refer to the <a href="../../lib/random123/#Random123-1">library docs</a>.</p>
