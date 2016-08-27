@@ -10,7 +10,7 @@ end
 
 **[Permuted Congruential Generators](http://www.pcg-random.org/)** (PCGs) are a family of RNGs which uses a
 *linear congruential generator* as the state-transition function, and uses *permutation functions on tuples*
-to produce output that is much more random than the RNG's internal state.
+to produce output that is much more random than the RNG's internal state.[^1]
 
 ## PCG Type
 
@@ -95,3 +95,6 @@ julia> rand(r, 4)
  0.888622 
  0.0876384
 ```
+
+[^1]:
+    O’NEILL M E. PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Number Generation[J].
