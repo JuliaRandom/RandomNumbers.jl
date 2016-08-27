@@ -9,6 +9,14 @@ mkpath("./actual")
 numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
 suit = ['h', 'c', 'd', 's'];
 
+PCGStateOneseq()
+PCGStateOneseq(UInt32)
+PCGStateMCG()
+PCGStateMCG(UInt32)
+PCGStateSetseq()
+PCGStateSetseq(UInt32)
+PCGStateUnique()
+PCGStateUnique(UInt32)
 
 for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
     state_type = eval(Symbol("PCGState$state_type_t"))
@@ -25,7 +33,9 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
 
     # Unique state won't produce the same sequence every time.
     if state_type_t == :Unique
-        rand(r, return_type)
+        t = rand(r, return_type)
+        advance!(r, -1)
+        @test t == rand(r, return_type)
         bounded_rand(r, 200701281 % return_type)
         continue
     end

@@ -25,7 +25,10 @@ for (rng_name, rng) in (
     ), "w")
     redirect_stdout(outfile)
 
-    x = @eval $rng
+    @eval x = $rng_name()
+    srand(x)
+    srand(x, 1)
+    @eval x = $rng
 
     for i in 1:100
         @printf "%.9f\n" rand(x)

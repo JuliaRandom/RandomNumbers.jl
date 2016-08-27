@@ -14,7 +14,7 @@ endif
 
 CFLAGS = -shared -fPIC -O3 -maes
 
-OBJ = 	aesni.c ars.c
+OBJ = 	aesni.cpp ars.cpp
 
 all:
 	$(CC) $(CFLAGS) $(OBJ) -o librandom123.$(SLIB)

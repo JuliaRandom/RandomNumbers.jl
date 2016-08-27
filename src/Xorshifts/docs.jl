@@ -3,8 +3,6 @@ xorshift_next
 
 # We'll define a new type to support UInt32 type, so no need for rand(T, seed) now.
 
-# TODO: "not recommended", and remove the need of `T`.
-
 let doc_xorshift64(r) = """
 ```julia
 $r <: AbstractXorshift64

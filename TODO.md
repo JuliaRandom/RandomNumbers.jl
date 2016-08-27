@@ -16,7 +16,12 @@
 ## Random123
 - Make use of `CUDA` or `OpenCL`.
 - Improve the performance.
+- Store counters in a better way.
+
+## Wrapped RNG
+- A function to be constructed from another `WrappedRNG`.
 
 ## Others
 - Perhaps consider implementing `arc4random` or `Chacha20`, which is slow but cryptographically secure.
 - Something like `seed_seq` in C++.
+- Test submodules separately.

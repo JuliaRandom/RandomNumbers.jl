@@ -60,7 +60,7 @@ end
     if s2 >= s1
         t = rand(rng.base_rng, T1) % T2
         for i in 2:(s2 ÷ s1)
-            t |= rand(rng.base_rng, T1) << ((s1 << 3) * (i - 1))
+            t |= (rand(rng.base_rng, T1) % T2) << ((s1 << 3) * (i - 1))
         end
     else
         t = rng.x % T2

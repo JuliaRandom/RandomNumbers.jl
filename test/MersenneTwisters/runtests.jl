@@ -13,6 +13,7 @@ for mt_name in (:MT19937, )
     ), "w")
     redirect_stdout(outfile)
 
+    @eval $mt_name()
     x = @eval $mt_name(123)
 
     for i in 1:100

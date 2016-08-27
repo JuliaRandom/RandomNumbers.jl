@@ -24,9 +24,17 @@ for (rng_name, stype, seed, args) in (
     @eval $rng_name($stype)
     x = @eval $rng_name($stype, $seed, $(args...))
 
+    x.p = 1
+    rand(x, UInt64)
+    x.p = 1
+    rand(x, UInt128)
+    @eval rand(x, NTuple{$(string(rng_name)[end-1]-'0'), $stype})
+
+    set_counter!(x, 0)
     for i in 1:100
         @printf "%.9f\n" rand(x)
     end
+
 
     close(outfile)
 end
