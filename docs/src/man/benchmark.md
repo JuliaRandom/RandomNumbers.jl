@@ -59,8 +59,8 @@ and detailed in the table (sorted by speed):
 |ARS1x128|17.081|04:13:27.54|55 SampleCorr, k = 1 p-value = 7.0e-4|
 |BaseMT19937|1.971|03:18:23.47| |
 |MT19937|4.229|03:32:59.06|36 Gap, r = 0 p-value = eps<br>80LinearComp, r = 0 p-value = 1-eps1<br>81  LinearComp, r = 29 p-value = 1-eps1|
-|PCG\_RXS\_M\_XS\_64\_64|1.522|03:23:44.44|21  BirthdaySpacings, t = 16  0.9994|
-|PCG\_XSH\_RS\_128\_64`|3.373|03:40:54.73|73  GCD  8.4e-4|
+|PCG\_RXS\_M\_XS\_64\_64|1.522|03:20:07.97| |
+|PCG\_XSH\_RS\_128\_64`|3.373|03:24:57.54|54  SampleMean, r = 10              0.9991|
 |Philox2x64|5.737|03:28:52.27|35  Gap, r = 25  3.4e-4|
 |Threefry2x64|5.965|03:37:53.53| |
 |Xoroshiro128Plus|1.393|03:33:16.51| |
