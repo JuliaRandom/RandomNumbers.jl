@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,37 +13,37 @@
         
     <url>
      <loc>None/man/bases/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/man/benchmark/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/man/pcg/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/man/mersenne-twisters/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/man/random123/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/man/xorshifts/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -53,31 +53,31 @@
         
     <url>
      <loc>None/lib/rng/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/lib/pcg/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/lib/mersenne-twisters/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/lib/random123/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/lib/xorshifts/</loc>
-     <lastmod>2016-08-27</lastmod>
+     <lastmod>2016-08-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
