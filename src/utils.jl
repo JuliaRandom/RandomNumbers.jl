@@ -24,6 +24,9 @@ gen_seed{T<:Number}(::Type{T}, n) = tuple(rand(RandomDevice(), T, n)...)
 "Get the original output type of a RNG."
 @inline output_type{T}(::AbstractRNG{T}) = T
 
+"Get the default seed type of a RNG."
+@inline seed_type(r::AbstractRNG) = seed_type(typeof(r))
+
 @inline split_uint(x::UInt128) = (x % UInt64, (x >> 64) % UInt64)
 @inline split_uint(x::UInt64) = (x % UInt32, (x >> 32) % UInt32)
 @inline union_uint(x::NTuple{2, UInt32}) = unsafe_load(Ptr{UInt64}(pointer_from_objref(x)), 1)

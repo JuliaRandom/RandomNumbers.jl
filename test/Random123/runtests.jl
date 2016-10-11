@@ -4,17 +4,18 @@ using RNG.Random123
 stdout_ = STDOUT
 pwd_ = pwd()
 cd(joinpath(Pkg.dir("RNG"), "test/Random123"))
+rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
-for (rng_name, stype, seed, args) in (
-    (:Threefry2x, UInt32, (123, 321), (32,)),
-    (:Threefry2x, UInt64, (123, 321), (32,)),
-    (:Threefry4x, UInt32, (123, 321, 456, 654), (72,)),
-    (:Threefry4x, UInt64, (123, 321, 456, 654), (72,)),
-    (:Philox2x, UInt32, 123, (16,)),
-    (:Philox2x, UInt64, 123, (16,)),
-    (:Philox4x, UInt32, (123, 321), (16,)),
-    (:Philox4x, UInt64, (123, 321), (16,))
+for (rng_name, seed_t, stype, seed, args) in (
+    (:Threefry2x, NTuple{2, UInt32}, UInt32, (123, 321), (32,)),
+    (:Threefry2x, NTuple{2, UInt64}, UInt64, (123, 321), (32,)),
+    (:Threefry4x, NTuple{4, UInt32}, UInt32, (123, 321, 456, 654), (72,)),
+    (:Threefry4x, NTuple{4, UInt64}, UInt64, (123, 321, 456, 654), (72,)),
+    (:Philox2x,   UInt32, UInt32, 123, (16,)),
+    (:Philox2x,   UInt64, UInt64, 123, (16,)),
+    (:Philox4x,   NTuple{2, UInt32}, UInt32, (123, 321), (16,)),
+    (:Philox4x,   NTuple{2, UInt64}, UInt64, (123, 321), (16,))
 )
     outfile = open(string(
         "./actual/check-$(string(lowercase("$rng_name"), sizeof(stype)<<3)).out"
@@ -23,6 +24,7 @@ for (rng_name, stype, seed, args) in (
 
     @eval $rng_name($stype)
     x = @eval $rng_name($stype, $seed, $(args...))
+    @test seed_type(x) == seed_t
 
     x.p = 1
     rand(x, UInt64)

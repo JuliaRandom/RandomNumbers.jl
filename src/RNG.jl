@@ -17,6 +17,7 @@ module RNG
 
     export AbstractRNG
     export WrappedRNG
+    export output_type, seed_type
     export PCG, MersenneTwisters, Random123, Xorshifts
 
     include("common.jl")

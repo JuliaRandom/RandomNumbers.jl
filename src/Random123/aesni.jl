@@ -1,4 +1,4 @@
-import RNG: gen_seed, union_uint
+import RNG: gen_seed, union_uint, seed_type
 
 "The key for AESNI."
 type AESNIKey
@@ -45,6 +45,8 @@ function srand(r::AESNI1x, seed::Integer=gen_seed(UInt128))
     r
 end
 
+@inline seed_type(::Type{AESNI1x}) = UInt128
+
 """
 ```julia
 AESNI4x <: R123Generator4x{UInt32}
@@ -79,6 +81,8 @@ function srand(r::AESNI4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
     random123_r(r)
     r
 end
+
+@inline seed_type(::Type{AESNI4x}) = NTuple{4, UInt32}
 
 @inline function initkey(r, key)
     k = Ptr{UInt128}(pointer_from_objref(r.key))

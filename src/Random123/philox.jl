@@ -1,5 +1,5 @@
 import Base.Random: srand
-import RNG: gen_seed
+import RNG: gen_seed, seed_type
 
 for (w, T, Td) in ((32, UInt32, UInt64), (64, UInt64, UInt128))
     @eval @inline function philox_mulhilo(a::$T, b::$T)
@@ -65,6 +65,8 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox2x{T}, seed::Integer=gen_seed(
     random123_r(r)
     r
 end
+
+@inline seed_type{T, R}(::Type{Philox2x{T, R}}) = T
 
 @inline function philox2x_round{T<:Union{UInt32, UInt64}}(ctr1::T, ctr2::T, key::T)
     hi, lo = philox_mulhilo(PHILOX_M2x_0(T), ctr1)
@@ -144,6 +146,8 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::NTuple{2, Integer
     r.p = 0
     r
 end
+
+@inline seed_type{T, R}(::Type{Philox4x{T, R}}) = NTuple{2, T}
 
 @inline function philox4x_round{T<:Union{UInt32, UInt64}}(
         ctr1::T, ctr2::T, ctr3::T, ctr4::T, key1::T, key2::T)

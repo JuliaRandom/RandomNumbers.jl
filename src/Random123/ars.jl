@@ -1,4 +1,4 @@
-import RNG: gen_seed
+import RNG: gen_seed, union_uint, seed_type
 
 """
 ```julia
@@ -34,6 +34,8 @@ function srand(r::ARS1x, seed::Integer=gen_seed(UInt128))
     random123_r(r)
     r
 end
+
+@inline seed_type{R}(::Type{ARS1x{R}}) = UInt128
 
 for R = 1:10
     @eval @inline function ars1xm128i(r, ::Type{Val{$R}}, ctr, key)
@@ -85,12 +87,14 @@ function ARS4x(seed::NTuple{4, Integer}=gen_seed(UInt32, 4), R::Integer=7)
 end
 
 function srand(r::ARS4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
-    r.key = unsafe_load(Ptr{UInt128}(pointer_from_objref(seed)), 1)
+    r.key = union_uint(map(x -> x % UInt32, seed))
     r.ctr1 = 0
     p = 0
     random123_r(r)
     r
 end
+
+@inline seed_type{R}(::Type{ARS4x{R}}) = NTuple{4, UInt32}
 
 @inline function random123_r{R}(r::ARS4x{R})
     ars1xm128i(r, Val{R}, r.ctr1, r.key)

@@ -1,4 +1,4 @@
-import RNG: gen_seed
+import RNG: gen_seed, seed_type
 
 # Random and Bounded Random functions
 import Base.Random: rand, srand
@@ -19,8 +19,12 @@ end
 @inline srand{StateType<:PCGUInt}(r::AbstractPCG{StateType},
     seed::Integer=gen_seed(StateType)) = pcg_srand(r, seed % StateType)
 @inline srand{StateType<:PCGUInt}(r::PCGStateSetseq{StateType},
-    seed::Tuple{Integer, Integer}=gen_seed(StateType, 2)) = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
+    seed::NTuple{2, Integer}=gen_seed(StateType, 2)) = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
 
+@inline seed_type{T, T1, T2}(::Type{PCGStateOneseq{T, T1, T2}}) = T
+@inline seed_type{T, T1, T2}(::Type{PCGStateMCG{T,    T1, T2}}) = T
+@inline seed_type{T, T1, T2}(::Type{PCGStateUnique{T, T1, T2}}) = T
+@inline seed_type{T, T1, T2}(::Type{PCGStateSetseq{T, T1, T2}}) = NTuple{2, T}
 
 """
 ```julia

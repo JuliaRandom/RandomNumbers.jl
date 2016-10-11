@@ -1,5 +1,5 @@
 import Base.Random: rand, srand
-import RNG: AbstractRNG, gen_seed
+import RNG: AbstractRNG, gen_seed, seed_type
 
 """
 ```julia
@@ -88,5 +88,7 @@ function srand(r::AbstractXorshift1024, seed::Integer...)
     end
     srand(r, map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
 end
+
+@inline seed_type{T<:AbstractXorshift1024}(::Type{T}) = NTuple{16, UInt64}
 
 @inline rand(r::AbstractXorshift1024, ::Type{UInt64}) = xorshift_next(r)

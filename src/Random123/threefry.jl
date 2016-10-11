@@ -1,5 +1,5 @@
 import Base.Random: srand
-import RNG: gen_seed
+import RNG: gen_seed, seed_type
 
 @inline threefry_rotl(x::UInt64, N) = (x << (N & 63)) | (x >> ((64-N) & 63))
 @inline threefry_rotl(x::UInt32, N) = (x << (N & 31)) | (x >> ((32-N) & 31))
@@ -100,6 +100,8 @@ function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::NTuple{2, Integ
     random123_r(r)
     r
 end
+
+@inline seed_type{T, R}(::Type{Threefry2x{T, R}}) = NTuple{2, T}
 
 @inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry2x{T, R})
     ks2 = SKEIN_KS_PARITY(T)
@@ -228,6 +230,8 @@ function srand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T},
     random123_r(r)
     r
 end
+
+@inline seed_type{T, R}(::Type{Threefry4x{T, R}}) = NTuple{4, T}
 
 @inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry4x{T, R})
     ks4 = SKEIN_KS_PARITY(T)

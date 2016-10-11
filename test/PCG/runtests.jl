@@ -4,6 +4,7 @@ using RNG.PCG
 stdout_ = STDOUT
 pwd_ = pwd()
 cd(joinpath(Pkg.dir("RNG"), "test/PCG"))
+rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
 numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
@@ -27,8 +28,10 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
 
     if state_type_t == :Setseq
         r = state_type(return_type, method, (42, 54))
+        @test seed_type(r) == NTuple{2, uint_type}
     else
         r = state_type(return_type, method, 42)
+        @test seed_type(r) == uint_type
     end
 
     # Unique state won't produce the same sequence every time.
