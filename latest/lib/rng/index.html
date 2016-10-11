@@ -341,6 +341,7 @@
 <li><a href="./#RNG.WrappedRNG"><code>RNG.WrappedRNG</code></a></li>
 <li><a href="./#RNG.gen_seed-Tuple{Type{T&lt;:Number}}"><code>RNG.gen_seed</code></a></li>
 <li><a href="./#RNG.output_type-Tuple{RNG.AbstractRNG{T}}"><code>RNG.output_type</code></a></li>
+<li><a href="./#RNG.seed_type-Tuple{RNG.AbstractRNG}"><code>RNG.seed_type</code></a></li>
 </ul>
 <p><a id='Public-1'></a></p>
 <h2 id="public">Public</h2>
@@ -356,7 +357,7 @@
 <li><a href="../random123/#RNG.Random123"><code>Random123</code></a>.</li>
 <li><a href="../xorshifts/#RNG.Xorshifts"><code>Xorshifts</code></a>.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/1b9570351f85f4702e3454e02d1ec9e77b9cd9ce/src/RNG.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/5d8b39ab13cffbc51f0386c186537083d61ea375/src/RNG.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RNG.AbstractRNG' href='#RNG.AbstractRNG'>#</a>
 <strong><code>RNG.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">AbstractRNG</span>
@@ -364,7 +365,7 @@
 
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/1b9570351f85f4702e3454e02d1ec9e77b9cd9ce/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/5d8b39ab13cffbc51f0386c186537083d61ea375/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RNG.WrappedRNG' href='#RNG.WrappedRNG'>#</a>
 <strong><code>RNG.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">WrappedRNG</span><span class="p">{</span><span class="n">R</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractRNG</span><span class="p">{</span><span class="n">T2</span><span class="p">}</span>
@@ -397,7 +398,15 @@
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/1b9570351f85f4702e3454e02d1ec9e77b9cd9ce/src/wrapped_rng.jl#L3-L34' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/5d8b39ab13cffbc51f0386c186537083d61ea375/src/wrapped_rng.jl#L3-L34' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.output_type-Tuple{RNG.AbstractRNG{T}}' href='#RNG.output_type-Tuple{RNG.AbstractRNG{T}}'>#</a>
+<strong><code>RNG.output_type</code></strong> &mdash; <em>Method</em>.</p>
+<p>Get the original output type of a RNG.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/5d8b39ab13cffbc51f0386c186537083d61ea375/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a id='RNG.seed_type-Tuple{RNG.AbstractRNG}' href='#RNG.seed_type-Tuple{RNG.AbstractRNG}'>#</a>
+<strong><code>RNG.seed_type</code></strong> &mdash; <em>Method</em>.</p>
+<p>Get the default seed type of a RNG.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/5d8b39ab13cffbc51f0386c186537083d61ea375/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RNG.gen_seed-Tuple{Type{T<:Number}}' href='#RNG.gen_seed-Tuple{Type{T<:Number}}'>#</a>
@@ -416,11 +425,7 @@
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/1b9570351f85f4702e3454e02d1ec9e77b9cd9ce/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
-<p><a id='RNG.output_type-Tuple{RNG.AbstractRNG{T}}' href='#RNG.output_type-Tuple{RNG.AbstractRNG{T}}'>#</a>
-<strong><code>RNG.output_type</code></strong> &mdash; <em>Method</em>.</p>
-<p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/1b9570351f85f4702e3454e02d1ec9e77b9cd9ce/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RNG.jl/tree/5d8b39ab13cffbc51f0386c186537083d61ea375/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
           <aside class="copyright" role="note">
             
             Documentation built with
