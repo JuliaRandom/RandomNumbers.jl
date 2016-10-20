@@ -1,4 +1,5 @@
-import RNG: gen_seed, union_uint, seed_type
+import Base: copy, copy!, ==
+import RNG: gen_seed, union_uint, seed_type, unsafe_copy!, unsafe_compare
 
 "The key for AESNI."
 type AESNIKey
@@ -15,6 +16,12 @@ type AESNIKey
     key11::UInt128
     AESNIKey() = new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 end
+
+copy!(dest::AESNIKey, src::AESNIKey) = unsafe_copy!(dest, src, UInt128, 11)
+
+copy(src::AESNIKey) = copy!(AESNIKey(), src)
+
+==(key1::AESNIKey, key2::AESNIKey) = unsafe_compare(key1, key2, UInt128, 11)
 
 """
 ```julia
@@ -46,6 +53,17 @@ function srand(r::AESNI1x, seed::Integer=gen_seed(UInt128))
 end
 
 @inline seed_type(::Type{AESNI1x}) = UInt128
+
+function copy!(dest::AESNI1x, src::AESNI1x)
+    dest.x = src.x
+    copy!(dest.key, src.key)
+    dest.ctr = src.ctr
+    dest
+end
+
+copy(src::AESNI1x) = copy!(AESNI1x(), src)
+
+==(r1::AESNI1x, r2::AESNI1x) = r1.x == r2.x && r1.key == r2.key && r1.ctr == r2.ctr
 
 """
 ```julia
@@ -84,6 +102,19 @@ end
 
 @inline seed_type(::Type{AESNI4x}) = NTuple{4, UInt32}
 
+function copy!(dest::AESNI4x, src::AESNI4x)
+    unsafe_copy!(dest, src, UInt32, 4)
+    copy!(dest.key, src.key)
+    dest.ctr1 = src.ctr1
+    dest.p = src.p
+    dest
+end
+  
+copy(src::AESNI4x) = copy!(AESNI4x(), src)
+
+==(r1::AESNI4x, r2::AESNI4x) = unsafe_compare(r1, r2, UInt32, 4) && r1.key == r2.key &&
+    r1.ctr1 == r2.ctr1 && r1.p == r2.p
+  
 @inline function initkey(r, key)
     k = Ptr{UInt128}(pointer_from_objref(r.key))
     ccall((:keyinit, librandom123), Void, (

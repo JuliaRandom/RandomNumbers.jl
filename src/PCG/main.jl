@@ -1,7 +1,34 @@
+import Base: copy, copy!, ==
+import Base.Random: rand, srand
 import RNG: gen_seed, seed_type
 
-# Random and Bounded Random functions
-import Base.Random: rand, srand
+# Generic functions
+
+@inline srand{StateType<:PCGUInt}(r::AbstractPCG{StateType},
+    seed::Integer=gen_seed(StateType)) = pcg_srand(r, seed % StateType)
+@inline srand{StateType<:PCGUInt}(r::PCGStateSetseq{StateType},
+    seed::NTuple{2, Integer}=gen_seed(StateType, 2)) = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
+
+@inline seed_type{T, T1, T2}(::Type{PCGStateOneseq{T, T1, T2}}) = T
+@inline seed_type{T, T1, T2}(::Type{PCGStateMCG{T,    T1, T2}}) = T
+@inline seed_type{T, T1, T2}(::Type{PCGStateUnique{T, T1, T2}}) = T
+@inline seed_type{T, T1, T2}(::Type{PCGStateSetseq{T, T1, T2}}) = NTuple{2, T}
+
+function copy!{T<:AbstractPCG}(dest::T, src::T)
+    dest.state = src.state
+    dest
+end
+function copy!{T<:PCGStateSetseq}(dest::T, src::T)
+    dest.state = src.state
+    dest.inc = src.inc
+    dest
+end
+
+copy{T<:AbstractPCG}(src::T) = copy!(T(), src)
+
+=={T<:AbstractPCG}(r1::T, r2::T) = r1.state == r2.state
+=={T<:PCGStateSetseq}(r1::T, r2::T) = r1.state == r2.state && r1.inc == r2.inc
+
 
 @inline function rand{StateType<:Union{pcg_uints[1:end-1]...}, MethodType<:PCGMethod, OutputType<:PCGUInt}(
         r::AbstractPCG{StateType, MethodType, OutputType}, ::Type{OutputType})
@@ -15,16 +42,6 @@ end
     pcg_step!(r)
     pcg_output(r.state, MethodType)
 end
-
-@inline srand{StateType<:PCGUInt}(r::AbstractPCG{StateType},
-    seed::Integer=gen_seed(StateType)) = pcg_srand(r, seed % StateType)
-@inline srand{StateType<:PCGUInt}(r::PCGStateSetseq{StateType},
-    seed::NTuple{2, Integer}=gen_seed(StateType, 2)) = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
-
-@inline seed_type{T, T1, T2}(::Type{PCGStateOneseq{T, T1, T2}}) = T
-@inline seed_type{T, T1, T2}(::Type{PCGStateMCG{T,    T1, T2}}) = T
-@inline seed_type{T, T1, T2}(::Type{PCGStateUnique{T, T1, T2}}) = T
-@inline seed_type{T, T1, T2}(::Type{PCGStateSetseq{T, T1, T2}}) = NTuple{2, T}
 
 """
 ```julia

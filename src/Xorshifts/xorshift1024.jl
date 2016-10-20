@@ -1,5 +1,6 @@
+import Base: copy, copy!, ==
 import Base.Random: rand, srand
-import RNG: AbstractRNG, gen_seed, seed_type
+import RNG: AbstractRNG, gen_seed, seed_type, unsafe_copy!, unsafe_compare
 
 """
 ```julia
@@ -69,6 +70,18 @@ for (star, plus) in (
     end
 end
 
+@inline seed_type{T<:AbstractXorshift1024}(::Type{T}) = NTuple{16, UInt64}
+
+function copy!{T<:AbstractXorshift1024}(dest::T, src::T)
+    unsafe_copy!(dest, src, UInt64, 16)
+    dest.p = src.p
+    dest
+end
+
+copy{T<:AbstractXorshift1024}(src::T) = copy!(T(), src)
+
+=={T<:AbstractXorshift1024}(r1::T, r2::T) = unsafe_compare(r1, r2, UInt64, 16) && r1.p == r2.p
+
 function srand(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
     @inbounds for i in 1:16
         unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), seed[i], i)
@@ -86,9 +99,8 @@ function srand(r::AbstractXorshift1024, seed::Integer...)
     if l == 0
         srand(r, gen_seed(UInt64, 16))
     end
+    # TODO: this is really awful..
     srand(r, map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
 end
-
-@inline seed_type{T<:AbstractXorshift1024}(::Type{T}) = NTuple{16, UInt64}
 
 @inline rand(r::AbstractXorshift1024, ::Type{UInt64}) = xorshift_next(r)

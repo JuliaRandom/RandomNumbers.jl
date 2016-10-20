@@ -1,5 +1,6 @@
+import Base: copy, copy!, ==
 import Base.Random: srand
-import RNG: gen_seed, seed_type
+import RNG: gen_seed, seed_type, unsafe_copy!, unsafe_compare
 
 for (w, T, Td) in ((32, UInt32, UInt64), (64, UInt64, UInt128))
     @eval @inline function philox_mulhilo(a::$T, b::$T)
@@ -67,6 +68,16 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox2x{T}, seed::Integer=gen_seed(
 end
 
 @inline seed_type{T, R}(::Type{Philox2x{T, R}}) = T
+
+function copy!{T, R}(dest::Philox2x{T, R}, src::Philox2x{T, R})
+    unsafe_copy!(dest, src, T, 5)
+    dest.p = src.p
+    dest
+end
+
+copy{T, R}(src::Philox2x{T, R}) = Philox2x{T, R}(src.x1, src.x2, src.key, src.ctr1, src.ctr2, src.p)
+
+=={T, R}(r1::Philox2x{T, R}, r2::Philox2x{T, R}) = unsafe_compare(r1, r2, T, 5) && r1.p == r2.p
 
 @inline function philox2x_round{T<:Union{UInt32, UInt64}}(ctr1::T, ctr2::T, key::T)
     hi, lo = philox_mulhilo(PHILOX_M2x_0(T), ctr1)
@@ -148,6 +159,17 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::NTuple{2, Integer
 end
 
 @inline seed_type{T, R}(::Type{Philox4x{T, R}}) = NTuple{2, T}
+
+function copy!{T, R}(dest::Philox4x{T, R}, src::Philox4x{T, R})
+    unsafe_copy!(dest, src, T, 10)
+    dest.p = src.p
+    dest
+end
+
+copy{T, R}(src::Philox4x{T, R}) = Philox4x{T, R}(src.x1, src.x2, src.x3, src.x4, src.key1, src.key2,
+    src.ctr1, src.ctr2, src.ctr3, src.ctr4, src.p)
+
+=={T, R}(r1::Philox4x{T, R}, r2::Philox4x{T, R}) = unsafe_compare(r1, r2, T, 10)  && r1.p == r2.p
 
 @inline function philox4x_round{T<:Union{UInt32, UInt64}}(
         ctr1::T, ctr2::T, ctr3::T, ctr4::T, key1::T, key2::T)

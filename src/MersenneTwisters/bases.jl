@@ -26,6 +26,10 @@ convert to an `UInt32` number.
 type MT19937 <: MersenneTwister{UInt32}
     mt::Vector{UInt32}
     mti::Int
+    function MT19937(x::Vector{UInt32}, i::Int) 
+        @assert length(x) == N
+        new(x, i)
+    end
 end
 MT19937(seed::Integer) = srand(MT19937(Vector{UInt32}(N), 1), seed % UInt32)
 MT19937(seed::NTuple{N, UInt32}=gen_seed(UInt32, N)) = srand(MT19937(Vector{UInt32}(N), 1), seed)

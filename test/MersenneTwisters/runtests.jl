@@ -18,6 +18,7 @@ for mt_name in (:MT19937, )
 
     @eval $mt_name()
     x = @eval $mt_name(123)
+    @test copy!(copy(x), x) == x
 
     for i in 1:100
         @printf "%.9f\n" rand(x)

@@ -1,3 +1,4 @@
+import Base: copy, copy!, ==
 import Base.Random: rand, srand
 import RNG: AbstractRNG, gen_seed, split_uint, seed_type
 
@@ -39,6 +40,18 @@ for (star, plus) in (
     end
 end
 
+@inline seed_type{T<:AbstractXorshift128}(::Type{T}) = NTuple{2, UInt64}
+
+function copy!{T<:AbstractXorshift128}(dest::T, src::T)
+    dest.x = src.x
+    dest.y = src.y
+    dest
+end
+
+copy{T<:AbstractXorshift128}(src::T) = copy!(T(), src)
+
+=={T<:AbstractXorshift128}(r1::T, r2::T) = r1.x == r2.x && r1.y == r2.y
+
 srand(r::AbstractXorshift128, seed::Integer) = srand(r, split_uint(seed % UInt128))
 
 function srand(r::AbstractXorshift128, seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
@@ -48,7 +61,5 @@ function srand(r::AbstractXorshift128, seed::NTuple{2, UInt64}=gen_seed(UInt64, 
     xorshift_next(r)
     r
 end
-
-@inline seed_type{T<:AbstractXorshift128}(::Type{T}) = NTuple{2, UInt64}
 
 @inline rand(r::AbstractXorshift128, ::Type{UInt64}) = xorshift_next(r)

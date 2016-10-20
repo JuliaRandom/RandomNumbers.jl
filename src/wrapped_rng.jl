@@ -1,4 +1,5 @@
-import RNG: AbstractRNG
+import Base: copy, copy!, ==
+import RNG: AbstractRNG, seed_type
 
 """
 ```julia
@@ -36,23 +37,57 @@ type WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} <: AbstractRNG{T2}
     base_rng::R
     x::T1
     p::Int
-    function WrappedRNG(r, x, p)
+    function WrappedRNG()
         @assert T1 ≠ T2
-        wr = new(r, x, p)
+        new()
+    end
+end
+
+function WrappedRNG{T1<:BitTypes, T2<:BitTypes}(base_rng::AbstractRNG{T1}, ::Type{T2})
+    wr = WrappedRNG{typeof(base_rng), T1, T2}()
+    wr.base_rng = copy(base_rng)
+    if sizeof(T1) > sizeof(T2)
+        wr.x = rand(wr.base_rng, T1)
+    end
+    wr.p = 0
+    wr
+end
+
+function WrappedRNG{R<:AbstractRNG, T2<:BitTypes}(::Type{R}, ::Type{T2}, args...)
+    base_rng = R(args...)
+    WrappedRNG(base_rng, T2)
+end
+
+WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes, T3<:BitTypes}(base_rng::WrappedRNG{R, T1, T2},
+                                                       ::Type{T3}) = WrappedRNG(base_rng.base_rng, T3)
+
+seed_type{R, T1, T2}(::Type{WrappedRNG{R, T1, T2}}) = seed_type(R)
+
+function copy!{R<:WrappedRNG}(dest::R, src::R)
+    copy!(dest.base_rng, src.base_rng)
+    dest.x = src.x
+    dest.p = src.p
+    dest
+end
+
+function copy{R<:WrappedRNG}(src::R)
+    wr = R()
+    wr.base_rng = copy(src.base_rng)
+    wr.x = src.x
+    wr.p = src.p
+    wr
+end
+
+=={R<:WrappedRNG}(r1::R, r2::R) = r1.base_rng == r2.base_rng && r1.x == r2.x && r1.p == r2.p
+
+function srand(wr::WrappedRNG, seed...)
+    srand(wr.base_rng, seed...)
         if sizeof(T1) > sizeof(T2)
             wr.x = rand(wr.base_rng, T1)
         end
-        wr
-    end
+    wr.p = 0
+    wr
 end
-WrappedRNG{T1<:BitTypes, T2<:BitTypes}(
-    base_rng::AbstractRNG{T1}, ::Type{T2}) = WrappedRNG{typeof(base_rng), T1, T2}(base_rng, 0, 0)
-function WrappedRNG{R<:AbstractRNG, T2<:BitTypes}(::Type{R}, ::Type{T2}, args...)
-    base_rng = R(args...)
-    WrappedRNG{R, output_type(base_rng), T2}(base_rng, 0, 0)
-end
-
-@inline rand{R<:AbstractRNG, T1<:BitTypes}(rng::WrappedRNG{R, T1}, ::Type{T1}) = rand(rng.base_rng, T1)
 
 @inline function rand{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes}(rng::WrappedRNG{R, T1, T2}, ::Type{T2})
     s1 = sizeof(T1)

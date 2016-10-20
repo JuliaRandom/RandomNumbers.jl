@@ -7,9 +7,13 @@ r1 = WrappedRNG(r, UInt32)
 r2 = WrappedRNG(Xoroshiro128, UInt32, seed)
 
 @test rand(r1, UInt64) == rand(r2, UInt64)
-@test rand(r1, UInt32) == rand(r2, UInt32)
 
-rand(r2, UInt32)
+r3 = WrappedRNG(r2, UInt128)
 
-r3 = WrappedRNG(r, UInt128)
+rand(r2, UInt64)
+
 @test rand(r3, UInt128) == rand(r2, UInt128)
+
+@test copy!(copy(r1), r1) == r1
+
+

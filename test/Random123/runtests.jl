@@ -25,6 +25,7 @@ for (rng_name, seed_t, stype, seed, args) in (
     @eval $rng_name($stype)
     x = @eval $rng_name($stype, $seed, $(args...))
     @test seed_type(x) == seed_t
+    @test copy!(copy(x), x) == x
 
     x.p = 1
     rand(x, UInt64)

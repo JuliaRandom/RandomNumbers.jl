@@ -33,6 +33,7 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
         r = state_type(return_type, method, 42)
         @test seed_type(r) == uint_type
     end
+    @test copy!(copy(r), r) == r
 
     # Unique state won't produce the same sequence every time.
     if state_type_t == :Unique

@@ -1,4 +1,5 @@
-import RNG: gen_seed, union_uint, seed_type
+import Base: copy, copy!, ==
+import RNG: gen_seed, union_uint, seed_type, unsafe_copy!, unsafe_compare
 
 """
 ```julia
@@ -48,6 +49,12 @@ for R = 1:10
         unsafe_load(p, 1)
     end
 end
+
+copy!{R}(dest::ARS1x{R}, src::ARS1x{R}) = unsafe_copy!(dest, src, UInt128, 3)
+
+copy{R}(src::ARS1x{R}) = ARS1x{R}(src.x, src.key, src.ctr)
+
+=={R}(r1::ARS1x{R}, r2::ARS1x{R}) = unsafe_compare(r1, r2, UInt128, 3)
 
 @inline function random123_r{R}(r::ARS1x{R})
     ars1xm128i(r, Val{R}, r.ctr, r.key)
@@ -100,3 +107,13 @@ end
     ars1xm128i(r, Val{R}, r.ctr1, r.key)
     (r.x1, r.x2, r.x3, r.x4)
 end
+
+function copy!{R}(dest::ARS4x{R}, src::ARS4x{R})
+    unsafe_copy!(dest, src, UInt128, 3)
+    dest.p = src.p
+    dest
+end
+
+copy{R}(src::ARS4x{R}) = ARS4x{R}(src.x1, src.x2, src.x3, src.x4, src.key, src.ctr1, src.p)
+
+=={R}(r1::ARS4x{R}, r2::ARS4x{R}) = unsafe_compare(r1, r2, UInt128, 3) && r1.p == r2.p

@@ -30,6 +30,7 @@ for (rng_name, rng, seed_t) in (
     srand(x)
     srand(x, 1)
     @test seed_type(x) == seed_t
+    @test copy!(copy(x), x) == x
     @eval x = $rng
 
     for i in 1:100

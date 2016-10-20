@@ -32,3 +32,18 @@ gen_seed{T<:Number}(::Type{T}, n) = tuple(rand(RandomDevice(), T, n)...)
 @inline union_uint(x::NTuple{2, UInt32}) = unsafe_load(Ptr{UInt64}(pointer_from_objref(x)), 1)
 @inline union_uint(x::NTuple{2, UInt64}) = unsafe_load(Ptr{UInt128}(pointer_from_objref(x)), 1)
 @inline union_uint(x::NTuple{4, UInt32}) = unsafe_load(Ptr{UInt128}(pointer_from_objref(x)), 1)
+
+@inline function unsafe_copy!{R, T}(r1::R, r2::R, ::Type{T}, len)
+    arr1 = Ptr{T}(pointer_from_objref(r1))
+    arr2 = Ptr{T}(pointer_from_objref(r2))
+    for i = 1:len
+        unsafe_store!(arr1, unsafe_load(arr2, i), i)
+    end
+    r1
+end
+
+@inline function unsafe_compare{R, T}(r1::R, r2::R, ::Type{T}, len)
+    arr1 = Ptr{T}(pointer_from_objref(r1))
+    arr2 = Ptr{T}(pointer_from_objref(r2))
+    all(unsafe_load(arr1, i) == unsafe_load(arr2, i) for i in 1:len)
+end
