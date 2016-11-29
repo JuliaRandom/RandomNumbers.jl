@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,38 +12,38 @@
     
         
     <url>
-     <loc>None/man/bases/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/man/bases/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/man/benchmark/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/man/benchmark/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/man/pcg/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/man/pcg/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/man/mersenne-twisters/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/man/mersenne-twisters/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/man/random123/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/man/random123/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/man/xorshifts/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/man/xorshifts/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -52,32 +52,32 @@
     
         
     <url>
-     <loc>None/lib/rng/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/lib/rng/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/lib/pcg/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/lib/pcg/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/lib/mersenne-twisters/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/lib/mersenne-twisters/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/lib/random123/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/lib/random123/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/lib/xorshifts/</loc>
-     <lastmod>2016-10-20</lastmod>
+     <loc>/lib/xorshifts/</loc>
+     <lastmod>2016-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
