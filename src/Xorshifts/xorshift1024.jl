@@ -99,6 +99,10 @@ function srand(r::AbstractXorshift1024, seed::Integer...)
     if l == 0
         srand(r, gen_seed(UInt64, 16))
     end
+    if 0 < l < 16
+        warn("Seed sequencing for Xorshift1024 family is unconfirmed. Please use 0 or 16 UInt64 numbers" +
+             " for the seed.")
+    end
     # TODO: this is really awful..
     srand(r, map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
 end
