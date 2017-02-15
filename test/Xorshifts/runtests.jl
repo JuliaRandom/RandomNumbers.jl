@@ -1,4 +1,5 @@
 import Base.Test: @test
+using RandomNumbers
 using RandomNumbers.Xorshifts
 
 stdout_ = STDOUT
@@ -7,18 +8,23 @@ cd(joinpath(Pkg.dir("RandomNumbers"), "test/Xorshifts"))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
-for (rng_name, rng, seed_t) in (
-        (:Xorshift64,       :(Xorshift64(123))      , UInt64),
-        (:Xorshift64Star,   :(Xorshift64Star(123))  , UInt64),
-        (:Xorshift128,      :(Xorshift128(123))     , NTuple{2, UInt64}),
-        (:Xorshift128Star,  :(Xorshift128Star(123)) , NTuple{2, UInt64}),
-        (:Xorshift128Plus,  :(Xorshift128Plus(123)) , NTuple{2, UInt64}),
-        (:Xorshift1024,     :(Xorshift1024(123))    , NTuple{16, UInt64}),
-        (:Xorshift1024Star, :(Xorshift1024Star(123)), NTuple{16, UInt64}),
-        (:Xorshift1024Plus, :(Xorshift1024Plus(123)), NTuple{16, UInt64}),
-        (:Xoroshiro128,     :(Xoroshiro128(123))    , NTuple{2, UInt64}),
-        (:Xoroshiro128Star, :(Xoroshiro128Star(123)), NTuple{2, UInt64}),
-        (:Xoroshiro128Plus, :(Xoroshiro128Plus(123)), NTuple{2, UInt64}),
+seeds = [0x1ed73cdc948901ab, 0x6d76dcf952161e22, 0x8d0eba5421bc695b, 0xa16065e26c36cce2,
+         0x944867a9aacc1bfa, 0x173d478b3ac9de91, 0x97becbc60ac9c1f2, 0x1b1cfeff0505b998,
+         0x815a28dc8372d7ab, 0x5c6746d45ae2c5c4, 0x17f22f9aa839c717, 0x1fd7e8194bb9c598,
+         0x442ffe4a57ed7987, 0xfd686ec417788eb6, 0x1ec96940807a8749, 0x64d93a8608a988ef]
+
+for (rng_name, seed_t) in (
+        (:Xorshift64,       UInt64),
+        (:Xorshift64Star,   UInt64),
+        (:Xorshift128,      NTuple{2, UInt64}),
+        (:Xorshift128Star,  NTuple{2, UInt64}),
+        (:Xorshift128Plus,  NTuple{2, UInt64}),
+        (:Xorshift1024,     NTuple{16, UInt64}),
+        (:Xorshift1024Star, NTuple{16, UInt64}),
+        (:Xorshift1024Plus, NTuple{16, UInt64}),
+        (:Xoroshiro128,     NTuple{2, UInt64}),
+        (:Xoroshiro128Star, NTuple{2, UInt64}),
+        (:Xoroshiro128Plus, NTuple{2, UInt64}),
     )
 
     outfile = open(string(
@@ -28,10 +34,15 @@ for (rng_name, rng, seed_t) in (
 
     @eval x = $rng_name()
     srand(x)
-    srand(x, 1)
     @test seed_type(x) == seed_t
     @test copy!(copy(x), x) == x
-    @eval x = $rng
+    if seed_t <: Tuple
+        seed = (seeds[1:length(seed_t.types)]...)
+    else
+        seed = seeds[1]
+    end
+    @eval x = $rng_name($seed)
+    println(seed)
 
     for i in 1:100
         @printf "%.9f\n" rand(x)
