@@ -1,9 +1,9 @@
 # PCG Family
 
 ```@meta
-CurrentModule = RNG.PCG
+CurrentModule = RandomNumebrs.PCG
 DocTestSetup = quote
-    using RNG.PCG
+    using RandomNumbers.PCG
     r = PCGStateOneseq(1234567)
 end
 ```
@@ -49,21 +49,21 @@ method is `PCG_XSH_RS`. The seed will be converted to the internal state type (a
 and for PCGs with specific stream (`PCGStateSetseq`) the seed should be a `Tuple` of two `Integer`s. Note that
 not all parameter combinations are available (see [`PCG_LIST`](@ref)). For example:
 ```jldoctest
-julia> using RNG.PCG
+julia> using RandomNumbers.PCG
 
 julia> PCGStateOneseq(UInt64, 1234567)  # create a single stream PCG, specifying the output type and seed.
-RNG.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
+RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
 
 julia> PCGStateUnique(PCG_RXS_M_XS, 1234567);  # unique stream PCG, specifying the method and seed.
 
 julia> PCGStateSetseq(UInt32, PCG_XSH_RR, (1234567, 7654321))
-RNG.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85,0x0000000000e99763)
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85,0x0000000000e99763)
 ```
 
 [`bounded_rand`](@ref) is provided by this module, in which the bound is must an integer in the output type:
 ```jldoctest
 julia> r = PCGStateOneseq(1234567)
-RNG.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
+RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
 
 julia> [bounded_rand(r, UInt64(100)) for i in 1:6]
 6-element Array{UInt64,1}:

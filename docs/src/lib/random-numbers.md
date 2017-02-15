@@ -1,24 +1,24 @@
-# RNG
+# RandomNumbers
 
 ```@meta
 DocTestSetup = quote
-    using RNG
+    using RandomNumbers
 end
 ```
 
 ## Index
 ```@index
-Pages = ["rng.md"]
+Pages = ["random-numbers.md"]
 ```
 
 ## Public
 ```@autodocs
-Modules = [RNG]
+Modules = [RandomNumbers]
 Private = false
 ```
 
 ## Internal
 ```@autodocs
-Modules = [RNG]
+Modules = [RandomNumbers]
 Public = false
 ```

@@ -1,9 +1,9 @@
 import Base.Test: @test
-using RNG.PCG
+using RandomNumbers.PCG
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RNG"), "test/PCG"))
+cd(joinpath(Pkg.dir("RandomNumbers"), "test/PCG"))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 

@@ -2,7 +2,7 @@ const TEST_NAME = "Xoroshiro128Plus"
 
 include("common.jl")
 
-using RNG.Xorshifts
+using RandomNumbers.Xorshifts
 
 r = Xoroshiro128Plus(123)
 

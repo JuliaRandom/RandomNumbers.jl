@@ -1,9 +1,9 @@
 # Mersenne Twisters
 
 ```@meta
-CurrentModule = RNG.MersenneTwisters
+CurrentModule = RandomNumbers.MersenneTwisters
 DocTestSetup = quote
-    using RNG.MersenneTwisters
+    using RandomNumbers.MersenneTwisters
     r = MT19937(((UInt32(i) for i in 1:624)...))
 end
 ```
@@ -25,7 +25,7 @@ can only produce `UInt32` numbers as output. Its state is an array of 624 `UInt3
 
 To use the Mersenne Twisters, firstly import the module:
 ```jldoctest
-julia> using RNG.MersenneTwisters
+julia> using RandomNumbers.MersenneTwisters
 ```
 
 A certain sequence can be used to initialize an instance of MT19937:

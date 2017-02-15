@@ -1,6 +1,6 @@
 import Base: copy, copy!, ==
 import Base.Random: srand
-import RNG: gen_seed, seed_type, unsafe_copy!, unsafe_compare
+import RandomNumbers: gen_seed, seed_type, unsafe_copy!, unsafe_compare
 
 for (w, T, Td) in ((32, UInt32, UInt64), (64, UInt64, UInt128))
     @eval @inline function philox_mulhilo(a::$T, b::$T)

@@ -1,9 +1,9 @@
 # Random123 Family
 
 ```@meta
-CurrentModule = RNG.Random123
+CurrentModule = RandomNumbers.Random123
 DocTestSetup = quote
-    using RNG.Random123
+    using RandomNumbers.Random123
 end
 ```
 
@@ -69,7 +69,7 @@ For detailed usage of each RNG, please refer to the [library docs](@ref Random12
 
 To use Random123, firstly import the module:
 ```julia
-julia> using RNG.Random123
+julia> using RandomNumbers.Random123
 ```
 
 Take `Philox4x64` for example:

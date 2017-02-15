@@ -1,9 +1,9 @@
 import Base.Test: @test
-using RNG.Xorshifts
+using RandomNumbers.Xorshifts
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RNG"), "test/Xorshifts"))
+cd(joinpath(Pkg.dir("RandomNumbers"), "test/Xorshifts"))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 

@@ -1,13 +1,13 @@
 import Base.Test: @test
-using RNG.MersenneTwisters
+using RandomNumbers.MersenneTwisters
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RNG"), "test/MersenneTwisters"))
+cd(joinpath(Pkg.dir("RandomNumbers"), "test/MersenneTwisters"))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
-@test seed_type(MT19937) == NTuple{RNG.MersenneTwisters.N, UInt32}
+@test seed_type(MT19937) == NTuple{RandomNumbers.MersenneTwisters.N, UInt32}
 
 for mt_name in (:MT19937, )
 

@@ -1,4 +1,4 @@
-import RNG: AbstractRNG
+import RandomNumbers: AbstractRNG
 
 """
 ```julia
@@ -11,10 +11,10 @@ The "truly" random numbers are provided by the random device of system. See
 
 # Examples
 ```julia
-julia> RNG.gen_seed(UInt64, 2)  # The output should probably be different on different computers.
+julia> RandomNumbers.gen_seed(UInt64, 2)  # The output should probably be different on different computers.
 (0x26aa3fe5e306f725,0x7b9dc3c227d8acc9)
 
-julia> RNG.gen_seed(UInt32)
+julia> RandomNumbers.gen_seed(UInt32)
 0x9ba60fdc
 ```
 """

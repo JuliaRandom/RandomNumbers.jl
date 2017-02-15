@@ -2,7 +2,7 @@ const TEST_NAME = "MT19937"
 
 include("common.jl")
 
-using RNG.MersenneTwisters
+using RandomNumbers.MersenneTwisters
 
 r = MT19937(123)
 

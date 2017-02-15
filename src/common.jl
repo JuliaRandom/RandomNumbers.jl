@@ -15,7 +15,7 @@ typealias BitTypes Union{Bool, Signed, Unsigned}
     rand(rng, UInt64) & Base.significand_mask(Float64)
 end
 
-# see https://github.com/sunoru/RNG.jl/issues/8
+# see https://github.com/sunoru/RandomNumbers.jl/issues/8
 # TODO: find a better approach.
 @inline function rand{T<:Union{UInt64, UInt128}}(rng::AbstractRNG{T}, ::Type{Float64}=Float64)
     reinterpret(Float64, Base.exponent_one(Float64) | rand_ui52(rng)) - 1.0

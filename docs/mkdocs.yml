@@ -1,5 +1,5 @@
-site_name:        RNG.jl
-repo_url:         https://github.com/sunoru/RNG.jl
+site_name:        RandomNumbers.jl
+repo_url:         https://github.com/sunoru/RandomNumbers.jl
 site_description: Random number generators for Julia language.
 site_author:      Sunoru
 
@@ -37,7 +37,7 @@ pages:
     - Random123 Family: man/random123.md
     - Xorshift Family: man/xorshifts.md
 - Library:
-    - RNG: lib/rng.md
+    - RandomNumbers: lib/random-numbers.md
     - PCG: lib/pcg.md
     - MersenneTwisters: lib/mersenne-twisters.md
     - Random123: lib/random123.md

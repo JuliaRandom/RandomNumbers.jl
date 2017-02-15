@@ -1,5 +1,5 @@
 import Base: copy, copy!, ==
-import RNG: AbstractRNG, seed_type
+import RandomNumbers: AbstractRNG, seed_type
 
 """
 ```julia
@@ -14,17 +14,17 @@ Wrap a RNG which originally provides output in T1 into a RNG that provides outpu
 ```jldoctest
 julia> r = Xorshifts.Xorshift128Star(123);
 
-julia> RNG.output_type(r)
+julia> RandomNumbers.output_type(r)
 UInt64
 
 julia> r1 = WrappedRNG(r, UInt32);
 
-julia> RNG.output_type(r1)
+julia> RandomNumbers.output_type(r1)
 UInt32
 
 julia> r2 = WrappedRNG(Xorshifts.Xorshift128Star, UInt32, 123);
 
-julia> RNG.output_type(r2)
+julia> RandomNumbers.output_type(r2)
 UInt32
 
 julia> @Test.test rand(r1, UInt32, 3) == rand(r2, UInt32, 3)

@@ -1,6 +1,6 @@
 # Bases
 
-This page describes basic concepts and fundanmental knowledge of **RNG.jl**.
+This page describes basic concepts and fundanmental knowledge of **RandomNumbers.jl**.
 
 !!! note
     Unless otherwise specified, all the random number generators in this package are *pseudorandom* number
@@ -12,31 +12,31 @@ This page describes basic concepts and fundanmental knowledge of **RNG.jl**.
 
 This package is currently not registered, so you have to directly clone it for installation:
 ```julia
-julia> Pkg.clone("https://github.com/sunoru/RNG.jl.git")
+julia> Pkg.clone("https://github.com/sunoru/RandomNumbers.jl.git")
 ```
 And build the dependencies:
 ```julia
-julia> Pkg.build("RNG")
+julia> Pkg.build("RandomNumbers")
 ```
 
 It is recommended to run the test suites before using the package:
 ```julia
-julia> Pkg.test("RNG")
+julia> Pkg.test("RandomNumbers")
 ```
 
 ## Interface
 
-First of all, to use a RNG from this package, you can import `RNG.jl` and use RNG by declare its submodule's
-name, or directly import the submodule. Then you can create a random number generator of certain type.
-For example:
+First of all, to use a RNG from this package, you can import `RandomNumbers.jl` and use RNG by declare its
+submodule's name, or directly import the submodule. Then you can create a random number generator of certain
+type. For example:
 
 ```julia
-julia> using RNG
+julia> using RandomNumbers
 julia> r = Xorshifts.Xorshift1024Plus()
 ```
 or
 ```julia
-julia> using RNG.Xorshifts
+julia> using RandomNumbers.Xorshifts
 julia> r = Xorshift1024Plus()
 ```
 
@@ -69,10 +69,10 @@ defined in `Base.Random` still work.
 The constructors of all the types of RNG are designed to take the same kind of parameters as `srand`. For example:
 
 ```jldoctest
-julia> using RNG.Xorshifts
+julia> using RandomNumbers.Xorshifts
 
 julia> r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed "123"
-RNG.Xorshifts.Xorshift128Star(0x000000003a300074,0x000000003a30004e)
+RandomNumbers.Xorshifts.Xorshift128Star(0x000000003a300074,0x000000003a30004e)
 
 julia> r2 = Xorshift128Star();  # Use a random value to be the seed.
 
@@ -100,11 +100,11 @@ Empirical statistical testing is very important for random number generation, be
 mathematical analysis is insufficient to verify the performance of a random number generator.
 
 The famous and highly evaluated [**TestU01** library](http://simul.iro.umontreal.ca/testu01/tu01.html) is
-chosen to test the RNGs in `RNG.jl`. **TestU01** offers a collection of test suites, and *Big Crush* is
-the largest and most stringent test battery for empirical testing (which usually takes several hours to run).
-*Big Crush* has revealed a number of flaws of lots of well-used generators, even including the
+chosen to test the RNGs in `RandomNumbers.jl`. **TestU01** offers a collection of test suites, and
+*Big Crush* is the largest and most stringent test battery for empirical testing (which usually takes several
+hours to run). *Big Crush* has revealed a number of flaws of lots of well-used generators, even including the
 *Mersenne Twister* (or to be more exact, the *dSFMT*) which is currently used in `Base.Random` as
-`GLOBAL_RAND`.[^1]
+GLOBAL_RAND`.[^1]
 
 This package chooses [RNGTest.jl](https://github.com/andreasnoack/RNGTest.jl) to use TestU01.
 

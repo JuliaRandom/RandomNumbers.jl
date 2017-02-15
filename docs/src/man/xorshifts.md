@@ -1,7 +1,7 @@
 # Xorshift Family
 
 ```@meta
-CurrentModule = RNG.Xorshifts
+CurrentModule = RandomNumbers.Xorshifts
 ```
 [`Xorshift`](http://xoroshiro.di.unimi.it/) family is a class of PRNGs based on linear transformation that
 takes the *exclusive or* of a number with a *bit-shifted* version of itself[^1]. They are extremely fast on
@@ -30,7 +30,7 @@ In this package there are four series of RNG types:
     `Xoroshiro128Plus` is the current best suggestion for replacing other low-quality generators.
 
 ```@meta
-CurrentModule = RNG
+CurrentModule = RandomNumbers
 ```
 All the RNG types produce `UInt64` numbers, if you have need for other output type, see [`WrappedRNG`](@ref).
 
@@ -38,12 +38,12 @@ All the RNG types produce `UInt64` numbers, if you have need for other output ty
 The usage of `Xorshift` family is very simple and common:
 
 ```jldoctest
-julia> using RNG.Xorshifts
+julia> using RandomNumbers.Xorshifts
 
 julia> r = Xoroshiro128Plus();  # create a RNG with truly random seed.
 
 julia> r = Xoroshiro128Plus(0x1234567890abcdef)  # with a certain seed.
-RNG.Xorshifts.Xoroshiro128Plus(0x13c5b80b0f92f3ac,0xcdd3f80fa9fb6887)
+RandomNumbers.Xorshifts.Xoroshiro128Plus(0x13c5b80b0f92f3ac,0xcdd3f80fa9fb6887)
 
 julia> rand(r)
 0.6054942367825447

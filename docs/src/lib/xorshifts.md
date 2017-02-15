@@ -7,12 +7,12 @@ Pages = ["xorshifts.md"]
 
 ## Public
 ```@autodocs
-Modules = [RNG.Xorshifts]
+Modules = [RandomNumbers.Xorshifts]
 Private = false
 ```
 
 ## Internal
 ```@autodocs
-Modules = [RNG.Xorshifts]
+Modules = [RandomNumbers.Xorshifts]
 Public = false
 ```

@@ -1,7 +1,7 @@
 # Benchmark
 
 ```@meta
-CurrentModule = RNG
+CurrentModule = RandomNumbers
 ```
 
 This page includes the results of speed tests and big crush tests of several kinds of RNGs in this package.
@@ -19,7 +19,7 @@ Platform Info:
   LIBM: libopenlibm
   LLVM: libLLVM-3.7.1 (ORCJIT, ivybridge)
 ```
-All the benchmark scripts are in the [benchmark](https://github.com/sunoru/RNG.jl/tree/master/benchmark)
+All the benchmark scripts are in the [benchmark](https://github.com/sunoru/RandomNumbers.jl/tree/master/benchmark)
 directory, you can do the tests by yourself.
 
 !!!note

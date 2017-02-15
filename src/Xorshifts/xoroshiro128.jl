@@ -1,6 +1,6 @@
 import Base: copy, copy!, ==
 import Base.Random: rand, srand
-import RNG: AbstractRNG, gen_seed, split_uint, seed_type
+import RandomNumbers: AbstractRNG, gen_seed, split_uint, seed_type
 
 """
 ```julia

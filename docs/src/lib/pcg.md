@@ -2,7 +2,7 @@
 
 ```@meta
 DocTestSetup = quote
-    using RNG.PCG
+    using RandomNumbers.PCG
 end
 ```
 
@@ -13,12 +13,12 @@ Pages = ["pcg.md"]
 
 ## Public
 ```@autodocs
-Modules = [RNG.PCG]
+Modules = [RandomNumbers.PCG]
 Private = false
 ```
 
 ## Internal
 ```@autodocs
-Modules = [RNG.PCG]
+Modules = [RandomNumbers.PCG]
 Public = false
 ```

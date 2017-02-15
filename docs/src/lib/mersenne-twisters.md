@@ -7,12 +7,12 @@ Pages = ["mersenne-twisters.md"]
 
 ## Public
 ```@autodocs
-Modules = [RNG.MersenneTwisters]
+Modules = [RandomNumbers.MersenneTwisters]
 Private = false
 ```
 
 ## Internal
 ```@autodocs
-Modules = [RNG.MersenneTwisters]
+Modules = [RandomNumbers.MersenneTwisters]
 Public = false
 ```

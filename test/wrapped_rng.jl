@@ -1,6 +1,6 @@
-using RNG.Xorshifts
+using RandomNumbers.Xorshifts
 
-seed = RNG.gen_seed(UInt64, 2)
+seed = RandomNumbers.gen_seed(UInt64, 2)
 r = Xoroshiro128(seed)
 
 r1 = WrappedRNG(r, UInt32)

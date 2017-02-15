@@ -1,9 +1,9 @@
 import Base.Test: @test
-using RNG.Random123
+using RandomNumbers.Random123
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RNG"), "test/Random123"))
+cd(joinpath(Pkg.dir("RandomNumbers"), "test/Random123"))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 

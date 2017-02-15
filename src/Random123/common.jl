@@ -1,7 +1,7 @@
 import Base.Random: rand, srand
-import RNG: AbstractRNG
+import RandomNumbers: AbstractRNG
 
-const librandom123 = Libdl.find_library(["librandom123"], [Pkg.dir("RNG/deps/Random123/")])
+const librandom123 = Libdl.find_library(["librandom123"], [Pkg.dir("RandomNumbers/deps/Random123/")])
 "True when AES-NI library has been compiled."
 const R123_USE_AESNI = librandom123 != ""
 

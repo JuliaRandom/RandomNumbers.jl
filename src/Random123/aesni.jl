@@ -1,5 +1,5 @@
 import Base: copy, copy!, ==
-import RNG: gen_seed, union_uint, seed_type, unsafe_copy!, unsafe_compare
+import RandomNumbers: gen_seed, union_uint, seed_type, unsafe_copy!, unsafe_compare
 
 "The key for AESNI."
 type AESNIKey

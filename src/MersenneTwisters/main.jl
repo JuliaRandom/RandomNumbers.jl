@@ -1,6 +1,6 @@
 import Base: copy, copy!, ==
 import Base.Random: rand, srand
-import RNG: gen_seed, seed_type
+import RandomNumbers: gen_seed, seed_type
 
 @inline rand(r::MT19937, ::Type{UInt32}) = mt_get(r)
 

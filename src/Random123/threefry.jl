@@ -1,6 +1,6 @@
 import Base: copy, copy!, ==
 import Base.Random: srand
-import RNG: gen_seed, seed_type, unsafe_copy!, unsafe_compare
+import RandomNumbers: gen_seed, seed_type, unsafe_copy!, unsafe_compare
 
 @inline threefry_rotl(x::UInt64, N) = (x << (N & 63)) | (x >> ((64-N) & 63))
 @inline threefry_rotl(x::UInt32, N) = (x << (N & 31)) | (x >> ((32-N) & 31))

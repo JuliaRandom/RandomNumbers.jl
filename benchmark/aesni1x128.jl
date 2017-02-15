@@ -2,7 +2,7 @@ const TEST_NAME = "AESNI1x128"
 
 include("common.jl")
 
-using RNG.Random123
+using RandomNumbers.Random123
 
 r = AESNI1x(123)
 

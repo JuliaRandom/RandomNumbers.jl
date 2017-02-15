@@ -1,8 +1,8 @@
-import RNG: AbstractRNG, gen_seed
+import RandomNumbers: AbstractRNG, gen_seed
 
 """
 ```julia
-MersenneTwister{T} <: RNG.AbstractRNG{T}
+MersenneTwister{T} <: AbstractRNG{T}
 ```
 
 The base type of Mersenne Twisters.

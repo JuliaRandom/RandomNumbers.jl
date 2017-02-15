@@ -1,5 +1,5 @@
 using RNGTest
-using RNG
+using RandomNumbers
 
 function bigcrush{T<:Number}(rng::RNG.AbstractRNG{T})
     p = RNGTest.wrap(r, T)

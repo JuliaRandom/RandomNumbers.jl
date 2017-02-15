@@ -1,6 +1,6 @@
-# RNG.jl Documentation
+# RandomNumbers.jl Documentation
 
-**RNG.jl** is a collection of Random Number Generators for the Julia language.
+**RandomNumbers.jl** is a collection of Random Number Generators for the Julia language.
 
 There are several kinds of RNG families in this package, provided as submodules.
 
@@ -23,7 +23,7 @@ Depth = 2
 ## Library Outline
 ```@contents
 Pages = [
-    "lib/rng.md",
+    "lib/random-numbers.md",
     "lib/pcg.md",
     "lib/mersenne-twisters.md",
     "lib/random123.md",

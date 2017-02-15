@@ -1,4 +1,4 @@
-The RNG.jl package is licensed under the MIT "Expat" License:
+The RandomNumbers.jl package is licensed under the MIT "Expat" License:
 
 > Copyright (c) 2016: sunoru.
 > 

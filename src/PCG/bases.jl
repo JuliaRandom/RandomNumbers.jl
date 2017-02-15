@@ -1,5 +1,5 @@
 # This file contains the basic functions of PCG.
-import RNG: AbstractRNG
+import RandomNumbers: AbstractRNG
 
 "Return the default multiplier for a certain type."
 @inline default_multiplier(::Type{UInt8}) = 0x8d

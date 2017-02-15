@@ -2,7 +2,7 @@ const TEST_NAME = "ARS1x128"
 
 include("common.jl")
 
-using RNG.Random123
+using RandomNumbers.Random123
 
 r = ARS1x(123)
 
