@@ -1,5 +1,7 @@
-import Base.Test: @test
 using RandomNumbers.Random123
+if !isdefined(:RandomNumbers)
+    include("../common.jl")
+end
 
 stdout_ = STDOUT
 pwd_ = pwd()

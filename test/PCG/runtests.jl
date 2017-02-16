@@ -1,5 +1,7 @@
-import Base.Test: @test
 using RandomNumbers.PCG
+if !isdefined(:RandomNumbers)
+    include("../common.jl")
+end
 
 stdout_ = STDOUT
 pwd_ = pwd()

@@ -1,6 +1,7 @@
-import Base.Test: @test
-using RandomNumbers
 using RandomNumbers.Xorshifts
+if !isdefined(:RandomNumbers)
+    include("../common.jl")
+end
 
 stdout_ = STDOUT
 pwd_ = pwd()
@@ -42,7 +43,6 @@ for (rng_name, seed_t) in (
         seed = seeds[1]
     end
     @eval x = $rng_name($seed)
-    println(seed)
 
     for i in 1:100
         @printf "%.9f\n" rand(x)
