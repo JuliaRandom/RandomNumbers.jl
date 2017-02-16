@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Random number generators for Julia language.">
+      
+      
+      
+        <meta name="author" content="Sunoru">
+      
+      
+        <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>Random123 - RandomNumbers.jl</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-02ce7adcc2.palette.css">
+      
+      
+        <link rel="stylesheet" href="../../assets/Documenter.css">
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="RandomNumbers.jl" class=" md-icon md-icon--home  md-header-nav__button">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Library
+                </span>
+              
+            
+            Random123
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-icon md-icon--home  md-nav__button">
+      
+    </i>
+    RandomNumbers.jl
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Manual
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-2">
+        Manual
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../man/bases/" title="Bases" class="md-nav__link">
+        Bases
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../man/benchmark/" title="Benchmark" class="md-nav__link">
+        Benchmark
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../man/pcg/" title="PCG Family" class="md-nav__link">
+        PCG Family
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../man/mersenne-twisters/" title="Mersenne Twisters" class="md-nav__link">
+        Mersenne Twisters
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../man/random123/" title="Random123 Family" class="md-nav__link">
+        Random123 Family
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../man/xorshifts/" title="Xorshift Family" class="md-nav__link">
+        Xorshift Family
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../random-numbers/" title="RandomNumbers" class="md-nav__link">
+        RandomNumbers
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../pcg/" title="PCG" class="md-nav__link">
+        PCG
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../mersenne-twisters/" title="MersenneTwisters" class="md-nav__link">
+        MersenneTwisters
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Random123
+      </label>
+    
+    <a href="./" title="Random123" class="md-nav__link md-nav__link--active">
+      Random123
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#index" title="Index" class="md-nav__link">
+    Index
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public" title="Public" class="md-nav__link">
+    Public
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal" title="Internal" class="md-nav__link">
+    Internal
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../xorshifts/" title="Xorshifts" class="md-nav__link">
+        Xorshifts
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#index" title="Index" class="md-nav__link">
+    Index
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public" title="Public" class="md-nav__link">
+    Public
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal" title="Internal" class="md-nav__link">
+    Internal
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/lib/random123.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <p><a id='Random123-1'></a></p>
+<h1 id="random123">Random123</h1>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="./#RandomNumbers.Random123"><code>RandomNumbers.Random123</code></a></li>
+<li><a href="./#RandomNumbers.Random123.R123_USE_AESNI"><code>RandomNumbers.Random123.R123_USE_AESNI</code></a></li>
+<li><a href="./#RandomNumbers.Random123.AESNI1x"><code>RandomNumbers.Random123.AESNI1x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.AESNI4x"><code>RandomNumbers.Random123.AESNI4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.AESNIKey"><code>RandomNumbers.Random123.AESNIKey</code></a></li>
+<li><a href="./#RandomNumbers.Random123.ARS1x"><code>RandomNumbers.Random123.ARS1x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.ARS4x"><code>RandomNumbers.Random123.ARS4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.AbstractR123"><code>RandomNumbers.Random123.AbstractR123</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Philox2x"><code>RandomNumbers.Random123.Philox2x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Philox4x"><code>RandomNumbers.Random123.Philox4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.R123Generator1x"><code>RandomNumbers.Random123.R123Generator1x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.R123Generator2x"><code>RandomNumbers.Random123.R123Generator2x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.R123Generator4x"><code>RandomNumbers.Random123.R123Generator4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Threefry2x"><code>RandomNumbers.Random123.Threefry2x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Threefry4x"><code>RandomNumbers.Random123.Threefry4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.random123_r"><code>RandomNumbers.Random123.random123_r</code></a></li>
+<li><a href="./#RandomNumbers.Random123.set_counter!-Tuple{RandomNumbers.Random123.R123Generator1x{T&lt;:UInt128},Integer}"><code>RandomNumbers.Random123.set_counter!</code></a></li>
+</ul>
+<p><a id='Public-1'></a></p>
+<h2 id="public">Public</h2>
+<p><a id='RandomNumbers.Random123' href='#RandomNumbers.Random123'>#</a>
+<strong><code>RandomNumbers.Random123</code></strong> &mdash; <em>Module</em>.</p>
+<p>The module for <a href="../../man/random123/#Random123-Family-1">Random123 Family</a>.</p>
+<p>Provide 8 RNG types:</p>
+<ul>
+<li><a href="./#RandomNumbers.Random123.Threefry2x"><code>Threefry2x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Threefry4x"><code>Threefry4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Philox2x"><code>Philox2x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.Philox4x"><code>Philox4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.AESNI1x"><code>AESNI1x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.AESNI4x"><code>AESNI4x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.ARS1x"><code>ARS1x</code></a></li>
+<li><a href="./#RandomNumbers.Random123.ARS4x"><code>ARS4x</code></a></li>
+</ul>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/Random123.jl#L3-L16' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.R123_USE_AESNI' href='#RandomNumbers.Random123.R123_USE_AESNI'>#</a>
+<strong><code>RandomNumbers.Random123.R123_USE_AESNI</code></strong> &mdash; <em>Constant</em>.</p>
+<p>True when AES-NI library has been compiled.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L7' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.AESNI1x' href='#RandomNumbers.Random123.AESNI1x'>#</a>
+<strong><code>RandomNumbers.Random123.AESNI1x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">AESNI1x</span> <span class="o">&lt;:</span> <span class="n">R123Generator1x</span><span class="p">{</span><span class="kt">UInt128</span><span class="p">}</span>
+<span class="n">AESNI1x</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>AESNI1x is one kind of AESNI Counter-Based RNGs. It generates one <code>UInt128</code> number at a time.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>UInt128</code>.</p>
+<p>Only available when <a href="./#RandomNumbers.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/aesni.jl#L26-L37' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.AESNI4x' href='#RandomNumbers.Random123.AESNI4x'>#</a>
+<strong><code>RandomNumbers.Random123.AESNI4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">AESNI4x</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="kt">UInt32</span><span class="p">}</span>
+<span class="n">AESNI4x</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>AESNI4x is one kind of AESNI Counter-Based RNGs. It generates four <code>UInt32</code> numbers at a time.</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>UInt32</code>.</p>
+<p>Only available when <a href="./#RandomNumbers.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/aesni.jl#L68-L79' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.ARS1x' href='#RandomNumbers.Random123.ARS1x'>#</a>
+<strong><code>RandomNumbers.Random123.ARS1x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">ARS1x</span><span class="p">{</span><span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator1x</span><span class="p">{</span><span class="kt">UInt128</span><span class="p">}</span>
+<span class="n">ARS1x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+
+
+<p>ARS1x is one kind of ARS Counter-Based RNGs. It generates one <code>UInt128</code> number at a time.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>UInt128</code>.</p>
+<p><code>R</code> denotes to the Rounds which should be at least 1 and no more than 10. With 7 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p>Only available when <a href="./#RandomNumbers.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/ars.jl#L4-L19' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.ARS4x' href='#RandomNumbers.Random123.ARS4x'>#</a>
+<strong><code>RandomNumbers.Random123.ARS4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">ARS4x</span><span class="p">{</span><span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="kt">UInt32</span><span class="p">}</span>
+<span class="n">ARS4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+
+
+<p>ARS4x is one kind of ARS Counter-Based RNGs. It generates four <code>UInt32</code> numbers at a time.</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>UInt32</code>.</p>
+<p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 10. With 7 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p>Only available when <a href="./#RandomNumbers.Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/ars.jl#L64-L79' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.Philox2x' href='#RandomNumbers.Random123.Philox2x'>#</a>
+<strong><code>RandomNumbers.Random123.Philox2x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Philox2x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator2x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Philox2x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Philox2x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Philox2x is one kind of Philox Counter-Based RNGs. It generates two numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 16. With 10 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/philox.jl#L29-L45' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.Philox4x' href='#RandomNumbers.Random123.Philox4x'>#</a>
+<strong><code>RandomNumbers.Random123.Philox4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Philox4x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Philox4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Philox4x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Philox4x is one kind of Philox Counter-Based RNGs. It generates four numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 16. With 10 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/philox.jl#L112-L128' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.Threefry2x' href='#RandomNumbers.Random123.Threefry2x'>#</a>
+<strong><code>RandomNumbers.Random123.Threefry2x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Threefry2x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator2x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Threefry2x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Threefry2x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Threefry2x is one kind of Threefry Counter-Based RNGs. It generates two numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/threefry.jl#L62-L78' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.Threefry4x' href='#RandomNumbers.Random123.Threefry4x'>#</a>
+<strong><code>RandomNumbers.Random123.Threefry4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">Threefry4x</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">R123Generator4x</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">Threefry4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+<span class="n">Threefry4x</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Threefry2x is one kind of Threefry Counter-Based RNGs. It generates four numbers at a time.</p>
+<p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>T</code>.</p>
+<p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/threefry.jl#L197-L213' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.set_counter!-Tuple{RandomNumbers.Random123.R123Generator1x{T<:UInt128},Integer}' href='#RandomNumbers.Random123.set_counter!-Tuple{RandomNumbers.Random123.R123Generator1x{T<:UInt128},Integer}'>#</a>
+<strong><code>RandomNumbers.Random123.set_counter!</code></strong> &mdash; <em>Method</em>.</p>
+<p>Set the counter of a Random123 RNG.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a id='Internal-1'></a></p>
+<h2 id="internal">Internal</h2>
+<p><a id='RandomNumbers.Random123.AESNIKey' href='#RandomNumbers.Random123.AESNIKey'>#</a>
+<strong><code>RandomNumbers.Random123.AESNIKey</code></strong> &mdash; <em>Type</em>.</p>
+<p>The key for AESNI.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/aesni.jl#L4' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.AbstractR123' href='#RandomNumbers.Random123.AbstractR123'>#</a>
+<strong><code>RandomNumbers.Random123.AbstractR123</code></strong> &mdash; <em>Type</em>.</p>
+<p>The base abstract type for RNGs in <a href="../../man/random123/#Random123-Family-1">Random123 Family</a>.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L14' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.R123Generator1x' href='#RandomNumbers.Random123.R123Generator1x'>#</a>
+<strong><code>RandomNumbers.Random123.R123Generator1x</code></strong> &mdash; <em>Type</em>.</p>
+<p>RNG that generates one number at a time.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L17' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.R123Generator2x' href='#RandomNumbers.Random123.R123Generator2x'>#</a>
+<strong><code>RandomNumbers.Random123.R123Generator2x</code></strong> &mdash; <em>Type</em>.</p>
+<p>RNG that generates two numbers at a time.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L19' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.R123Generator4x' href='#RandomNumbers.Random123.R123Generator4x'>#</a>
+<strong><code>RandomNumbers.Random123.R123Generator4x</code></strong> &mdash; <em>Type</em>.</p>
+<p>RNG that generates four numbers at a time.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L21' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Random123.random123_r' href='#RandomNumbers.Random123.random123_r'>#</a>
+<strong><code>RandomNumbers.Random123.random123_r</code></strong> &mdash; <em>Function</em>.</p>
+<p>Do one iteration and return the a tuple of a Random123 RNG object.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/15f227f9680591f805950cde09c469d73f069b21/src/./Random123/common.jl#L108' class='documenter-source'>source</a><br></p>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../mersenne-twisters/" title="MersenneTwisters" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                MersenneTwisters
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../xorshifts/" title="Xorshifts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Xorshifts
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      
+        <script src="../../assets/mathjaxhelper.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
