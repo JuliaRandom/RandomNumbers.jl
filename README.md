@@ -5,7 +5,7 @@ Linux, OSX:
 [![Build Status](https://travis-ci.org/sunoru/RandomNumbers.jl.svg?branch=master)](https://travis-ci.org/sunoru/RandomNumbers.jl)
 
 Windows:
-[![Build status](https://ci.appveyor.com/api/projects/status/d163dycsbyd8p4ng?svg=true)](https://ci.appveyor.com/project/sunoru/rng-jl)
+[![Build status](https://ci.appveyor.com/api/projects/status/xlkbmyasu096a34l?svg=true)](https://ci.appveyor.com/project/sunoru/randomnumbers-jl)
 
 Code Coverage:
 [![Coverage Status](https://coveralls.io/repos/sunoru/RandomNumbers.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/sunoru/RandomNumbers.jl?branch=master)
