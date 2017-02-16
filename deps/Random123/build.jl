@@ -1,8 +1,18 @@
 function build()
     p = pwd()
-    cd(Pkg.dir("RNG/deps/Random123"))
+    cd(dirname(@__FILE__))
     if is_windows()
-        run(`mingw32-make`)
+        try
+            run(`mingw32-make`)
+        catch
+            if sizeof(Int) == 4
+                url = "https://github.com/sunoru/RandomNumbers.jl/releases/download/deplib-0.1/librandom123-32.dll"
+            else
+                url = "https://github.com/sunoru/RandomNumbers.jl/releases/download/deplib-0.1/librandom123.dll"
+            end
+            info("You don't have MinGW32 installed, so now download the library binary from github.")
+            download(url, "librandom123.dll")
+        end
     else
         run(`make`)
     end
@@ -10,7 +20,7 @@ function build()
 end
 
 function have_aesni()
-    if VERSION < v"0.5-" || sizeof(Int) != 8
+    if VERSION < v"0.5-"
         return false
     end
     @eval begin # use `@eval` to avoid errors while compiling (with julia 0.4)

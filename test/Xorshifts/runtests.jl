@@ -4,7 +4,7 @@ using RandomNumbers.Xorshifts
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RandomNumbers"), "test/Xorshifts"))
+cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
@@ -52,5 +52,5 @@ for (rng_name, seed_t) in (
 end
 redirect_stdout(stdout_)
 
-@test success(`diff -ru expected actual`)
+@test_diff "expected" "actual"
 cd(pwd_)

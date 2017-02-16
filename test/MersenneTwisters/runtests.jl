@@ -3,7 +3,7 @@ using RandomNumbers.MersenneTwisters
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RandomNumbers"), "test/MersenneTwisters"))
+cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
@@ -28,5 +28,5 @@ for mt_name in (:MT19937, )
 end
 redirect_stdout(stdout_)
 
-@test success(`diff -ru expected actual`)
+@test_diff "expected" "actual"
 cd(pwd_)

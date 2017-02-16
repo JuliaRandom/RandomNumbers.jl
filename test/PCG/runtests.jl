@@ -3,7 +3,7 @@ using RandomNumbers.PCG
 
 stdout_ = STDOUT
 pwd_ = pwd()
-cd(joinpath(Pkg.dir("RandomNumbers"), "test/PCG"))
+cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
 mkpath("./actual")
 
@@ -119,5 +119,5 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
 end
 redirect_stdout(stdout_)
 
-@test success(`diff -ru expected actual`)
+@test_diff "expected" "actual"
 cd(pwd_)
