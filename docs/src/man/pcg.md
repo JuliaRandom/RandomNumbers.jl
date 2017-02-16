@@ -1,7 +1,7 @@
 # PCG Family
 
 ```@meta
-CurrentModule = RandomNumebrs.PCG
+CurrentModule = RandomNumbers.PCG
 DocTestSetup = quote
     using RandomNumbers.PCG
     r = PCGStateOneseq(1234567)

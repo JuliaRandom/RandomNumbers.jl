@@ -12,6 +12,7 @@ Code Coverage:
 [![codecov.io](http://codecov.io/github/sunoru/RandomNumbers.jl/coverage.svg?branch=master)](http://codecov.io/github/sunoru/RandomNumbers.jl?branch=master)
 
 Documentation:
+[![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://sunoru.github.io/RandomNumbers.jl/stable/)
 [![Latest Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://sunoru.github.io/RandomNumbers.jl/latest/)
 
 **RandomNumbers.jl** is a package of [Julia](http://julialang.org/), in which several random number generators (RNGs)

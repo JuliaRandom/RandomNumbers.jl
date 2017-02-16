@@ -54,7 +54,7 @@ Consistent to what `Base.Random` does, there are generic functions:
     initializes a RNG by one or a sequence of numbers (called *seed*). The output sequences by two RNGs of
     the same type should be the same if they are initialized by the same seed, which makes them
     *deterministic*. The seed type of each RNG type can be different, you can refer to the corresponding
-    manual pages for details. If no `seed` provided, then it will use [`RNG.gen_seed`](@ref) to get a "truly"
+    manual pages for details. If no `seed` provided, then it will use [`RandomNumbers.gen_seed`](@ref) to get a "truly"
     random one.
 
 - `rand(::AbstractRNG{T}[, ::Type{TP}=Float64])`
