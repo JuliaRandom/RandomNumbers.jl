@@ -20,7 +20,7 @@ function build()
 end
 
 function have_aesni()
-    if VERSION < v"0.5-"
+    if VERSION < v"0.5-" || sizeof(Int) != 8
         return false
     end
     @eval begin # use `@eval` to avoid errors while compiling (with julia 0.4)
