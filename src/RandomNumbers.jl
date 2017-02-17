@@ -25,9 +25,9 @@ module RandomNumbers
     
     include("wrapped_rng.jl")
 
-    include("./PCG/PCG.jl")
-    include("./MersenneTwisters/MersenneTwisters.jl")
-    include("./Random123/Random123.jl")
-    include("./Xorshifts/Xorshifts.jl")
+    include(joinpath("PCG", "PCG.jl"))
+    include(joinpath("MersenneTwisters", "MersenneTwisters.jl"))
+    include(joinpath("Random123", "Random123.jl"))
+    include(joinpath("Xorshifts", "Xorshifts.jl"))
 
 end
