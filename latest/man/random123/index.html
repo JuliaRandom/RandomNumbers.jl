@@ -1,358 +1,539 @@
+
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
-<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
-<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
-<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <title>Random123 Family - RNG.jl</title>
-      
+        <meta name="description" content="Random number generators for Julia language.">
       
       
       
         <meta name="author" content="Sunoru">
       
-    
-    <meta property="og:url" content="None">
-    <meta property="og:title" content="RNG.jl">
-    <meta property="og:image" content="None/../../">
-    <meta name="apple-mobile-web-app-title" content="RNG.jl">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    
-    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/favicon-e565ddfa3b.ico">
-    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon-e565ddfa3b.ico">
-    <style>
-      @font-face {
-      	font-family: 'Icon';
-      	src: url('../../assets/fonts/icon.eot?52m981');
-      	src: url('../../assets/fonts/icon.eot?#iefix52m981')
-               format('embedded-opentype'),
-      		   url('../../assets/fonts/icon.woff?52m981')
-               format('woff'),
-      		   url('../../assets/fonts/icon.ttf?52m981')
-               format('truetype'),
-      		   url('../../assets/fonts/icon.svg?52m981#icon')
-               format('svg');
-      	font-weight: normal;
-      	font-style: normal;
-      }
-    </style>
-    <link rel="stylesheet" href="../../assets/stylesheets/application-a422ff04cc.css">
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/palettes-05ab2406df.css">
+      
+        <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+      
+      <meta name="generator" content="mkdocs-0.16.1, mkdocs-material-1.0.5">
     
     
       
+        <title>Random123 Family - RandomNumbers.jl</title>
       
+    
+    
+      <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-9c62e3c932.css">
       
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
-      <style>
-        body, input {
-          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-        }
-        pre, code {
-          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
-        }
-      </style>
+        <link rel="stylesheet" href="../../assets/stylesheets/application-02ce7adcc2.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
     
       <link rel="stylesheet" href="../../assets/Documenter.css">
     
-    <script src="../../assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
   </head>
   
   
   
-  <body class="palette-primary-indigo palette-accent-blue">
-    
-      
-      
-    
-    <div class="backdrop">
-      <div class="backdrop-paper"></div>
-    </div>
-    <input class="toggle" type="checkbox" id="toggle-drawer">
-    <input class="toggle" type="checkbox" id="toggle-search">
-    <label class="toggle-button overlay" for="toggle-drawer"></label>
-    <header class="header">
-      <nav aria-label="Header">
-  <div class="bar default">
-    <div class="button button-menu" role="button" aria-label="Menu">
-      <label class="toggle-button icon icon-menu" for="toggle-drawer">
-        <span></span>
-      </label>
-    </div>
-    <div class="stretch">
-      <div class="title">
-        
-          <span class="path">
-            
-              
-                Manual <i class="icon icon-link"></i>
-              
-            
-          </span>
-        
-        Random123 Family
-      </div>
-    </div>
-    
-    
-    <div class="button button-search" role="button" aria-label="Search">
-      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
-    </div>
-  </div>
-  <div class="bar search">
-    <div class="button button-close" role="button" aria-label="Close">
-      <label class="toggle-button icon icon-back" for="toggle-search"></label>
-    </div>
-    <div class="stretch">
-      <div class="field">
-        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
-      </div>
-    </div>
-    <div class="button button-reset" role="button" aria-label="Search">
-      <button class="toggle-button icon icon-close" id="reset-search"></button>
-    </div>
-  </div>
-</nav>
-    </header>
-    <main class="main">
-      
-      <div class="drawer">
-        <nav aria-label="Navigation">
   
-  <a href="https://github.com/sunoru/RNG.jl" class="project">
-    <div class="banner">
-      
-      <div class="name">
-        <strong>
-          RNG.jl
-          <span class="version">
-            
-          </span>
-        </strong>
+    <body data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
         
-          <br>
-          sunoru/RNG.jl
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="RandomNumbers.jl" class=" md-icon md-icon--home  md-header-nav__button">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Manual
+                </span>
+              
+            
+            Random123 Family
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
         
       </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
     </div>
   </a>
-  <div class="scrollable">
-    <div class="wrapper">
-      
-        <ul class="repo">
-          <li class="repo-download">
+
             
-            <a href="https://github.com/sunoru/RNG.jl/archive/master.zip" target="_blank" title="Download" data-action="download">
-              <i class="icon icon-download"></i> Download
-            </a>
-          </li>
-          <li class="repo-stars">
-            <a href="https://github.com/sunoru/RNG.jl/stargazers" target="_blank" title="Stargazers" data-action="star">
-              <i class="icon icon-star"></i> Stars
-              <span class="count">&ndash;</span>
-            </a>
-          </li>
-        </ul>
-        <hr>
-      
-      <div class="toc">
-        <ul>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
           
             
-  <li>
-    <a class="" title="Home" href="../..">
-      Home
-    </a>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-icon md-icon--home  md-nav__button">
+      
+    </i>
+    RandomNumbers.jl
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
     
   </li>
 
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Manual
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-2">
+        Manual
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
           
-            
-  <li>
-    <span class="section">Manual</span>
-    <ul>
-      
-        
-  <li>
-    <a class="" title="Bases" href="../bases/">
-      Bases
-    </a>
+          
+  <li class="md-nav__item">
+    
+      <a href="../bases/" title="Bases" class="md-nav__link">
+        Bases
+      </a>
     
   </li>
 
-      
         
-  <li>
-    <a class="" title="Benchmark" href="../benchmark/">
-      Benchmark
-    </a>
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../benchmark/" title="Benchmark" class="md-nav__link">
+        Benchmark
+      </a>
     
   </li>
 
-      
         
-  <li>
-    <a class="" title="PCG Family" href="../pcg/">
-      PCG Family
-    </a>
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../pcg/" title="PCG Family" class="md-nav__link">
+        PCG Family
+      </a>
     
   </li>
 
-      
         
-  <li>
-    <a class="" title="Mersenne Twisters" href="../mersenne-twisters/">
-      Mersenne Twisters
-    </a>
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../mersenne-twisters/" title="Mersenne Twisters" class="md-nav__link">
+        Mersenne Twisters
+      </a>
     
   </li>
 
-      
         
-  <li>
-    <a class="current" title="Random123 Family" href="./">
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Random123 Family
+      </label>
+    
+    <a href="./" title="Random123 Family" class="md-nav__link md-nav__link--active">
       Random123 Family
     </a>
     
       
-        
-      
-      
-        <ul>
-          
-            <li class="anchor">
-              <a title="Random123 RNGs" href="#random123-rngs">
-                Random123 RNGs
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Examples" href="#examples">
-                Examples
-              </a>
-            </li>
-          
-        </ul>
-      
+<nav class="md-nav md-nav--secondary">
+  
+  
     
-  </li>
-
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
       
+        <li class="md-nav__item">
+  <a href="#random123-rngs" title="Random123 RNGs" class="md-nav__link">
+    Random123 RNGs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
-  <li>
-    <a class="" title="Xorshift Family" href="../xorshifts/">
-      Xorshift Family
-    </a>
-    
-  </li>
-
+          <li class="md-nav__item">
+  <a href="#threefry" title="Threefry" class="md-nav__link">
+    Threefry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#philox" title="Philox" class="md-nav__link">
+    Philox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aesni" title="AESNI" class="md-nav__link">
+    AESNI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ars" title="ARS" class="md-nav__link">
+    ARS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" title="Examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
       
     </ul>
-  </li>
-
-          
-            
-  <li>
-    <span class="section">Library</span>
-    <ul>
-      
-        
-  <li>
-    <a class="" title="RNG" href="../../lib/rng/">
-      RNG
-    </a>
-    
-  </li>
-
-      
-        
-  <li>
-    <a class="" title="PCG" href="../../lib/pcg/">
-      PCG
-    </a>
-    
-  </li>
-
-      
-        
-  <li>
-    <a class="" title="MersenneTwisters" href="../../lib/mersenne-twisters/">
-      MersenneTwisters
-    </a>
-    
-  </li>
-
-      
-        
-  <li>
-    <a class="" title="Random123" href="../../lib/random123/">
-      Random123
-    </a>
-    
-  </li>
-
-      
-        
-  <li>
-    <a class="" title="Xorshifts" href="../../lib/xorshifts/">
-      Xorshifts
-    </a>
-    
-  </li>
-
-      
-    </ul>
-  </li>
-
-          
-        </ul>
-        
-      </div>
-    </div>
-  </div>
+  
 </nav>
-      </div>
-      <article class="article">
-        <div class="wrapper">
+    
+  </li>
+
+        
           
-          <p><a id='Random123-Family-1'></a></p>
+          
+  <li class="md-nav__item">
+    
+      <a href="../xorshifts/" title="Xorshift Family" class="md-nav__link">
+        Xorshift Family
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../lib/random-numbers/" title="RandomNumbers" class="md-nav__link">
+        RandomNumbers
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../lib/pcg/" title="PCG" class="md-nav__link">
+        PCG
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../lib/mersenne-twisters/" title="MersenneTwisters" class="md-nav__link">
+        MersenneTwisters
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../lib/random123/" title="Random123" class="md-nav__link">
+        Random123
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../lib/xorshifts/" title="Xorshifts" class="md-nav__link">
+        Xorshifts
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#random123-rngs" title="Random123 RNGs" class="md-nav__link">
+    Random123 RNGs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threefry" title="Threefry" class="md-nav__link">
+    Threefry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#philox" title="Philox" class="md-nav__link">
+    Philox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aesni" title="AESNI" class="md-nav__link">
+    AESNI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ars" title="ARS" class="md-nav__link">
+    ARS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" title="Examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/man/random123.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <p><a id='Random123-Family-1'></a></p>
 <h1 id="random123-family">Random123 Family</h1>
 <p><strong><a href="https://www.deshawresearch.com/resources_random123.html">Random123</a></strong> is a library of "counter-based" random number generators (CBRNGs), developed by D.E.Shaw Research<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. <em>Counter-based</em> means the RNGs in this family can produce the $\mathrm{N}^{th}$ number by applying a stateless mixing function to the <em>counter</em> $\mathrm{N}$, instead of the conventional approach of using $\mathrm{N}$ iterations of a stateful transformation. There are four kinds of RNGs in Random123: <a href="./#Threefry-1">Threefry</a>, <a href="./#Philox-1">Philox</a>, <a href="./#AESNI-1">AESNI</a>, <a href="./#ARS-1">ARS</a>.</p>
-<p>The original paper<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> says all the RNGs in Random123 can pass Big Crush in TestU01, but in the <a href="../benchmark/#Benchmark-1">benchmark</a> we did, <code>ARS1x128</code> and <code>Philox2x64</code> have a slight failure.</p>
+<p>The original paper<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> says all the RNGs in Random123 can pass Big Crush in TestU01, but in the <a href="../benchmark/#Benchmark-1">benchmark</a> we did, <code>ARS1x128</code> and <code>Philox2x64</code> have a slight failure.</p>
 <p><a id='Random123-RNGs-1'></a></p>
 <h2 id="random123-rngs">Random123 RNGs</h2>
 <p>All the RNG types in Random123 have a property <code>ctr1</code>, which denotes to its first <em>counter</em>, and some of them have <code>ctr2</code> for the second <em>counter</em>. The suffix '-1x', '-2x' and '-4x' indicates how many numbers will be generated per time. The first one or two or four properties of a RNG type in Random123 are always <code>x</code>(or <code>x1</code>, <code>x2</code>, etc.), which denote to the produced numbers.</p>
 <p><a id='Threefry-1'></a></p>
 <h3 id="threefry">Threefry</h3>
 <p><code>Threefry</code> is a <strong>non-cryptographic</strong> adaptation of the Threefish block cipher from the <a href="http://www.skein-hash.info/">Skein Hash Function</a>.</p>
-<p>In this package, there are two <code>Type</code>s of <code>Threefry</code>: <a href="../../lib/random123/#RNG.Random123.Threefry4x"><code>Threefry4x</code></a> and <a href="../../lib/random123/#RNG.Random123.Threefry2x"><code>Threefry2x</code></a>. Besides the output type <code>T</code>, there is another parameter <code>R</code>, which denotes to the number of rounds, and must be at least 1 and no more than 32. With 20 rounds (by default), <code>Threefry</code> has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance. They both support <code>UInt32</code> and <code>UInt64</code> output.</p>
+<p>In this package, there are two <code>Type</code>s of <code>Threefry</code>: <a href="../../lib/random123/#RandomNumbers.Random123.Threefry4x"><code>Threefry4x</code></a> and <a href="../../lib/random123/#RandomNumbers.Random123.Threefry2x"><code>Threefry2x</code></a>. Besides the output type <code>T</code>, there is another parameter <code>R</code>, which denotes to the number of rounds, and must be at least 1 and no more than 32. With 20 rounds (by default), <code>Threefry</code> has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance. They both support <code>UInt32</code> and <code>UInt64</code> output.</p>
 <p><a id='Philox-1'></a></p>
 <h3 id="philox">Philox</h3>
 <p><code>Philox</code> uses a Feistel network and integer multiplication.</p>
-<p><code>Philox</code> also has two <code>Type</code>s: <a href="../../lib/random123/#RNG.Random123.Philox4x"><code>Philox4x</code></a> and <a href="../../lib/random123/#RNG.Random123.Philox2x"><code>Philox2x</code></a>. The number of rounds must be at least 1 and no more than 16. With 10 rounds (by default), Philox2x32 has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance. They both support <code>UInt32</code> and <code>UInt64</code> output.</p>
+<p><code>Philox</code> also has two <code>Type</code>s: <a href="../../lib/random123/#RandomNumbers.Random123.Philox4x"><code>Philox4x</code></a> and <a href="../../lib/random123/#RandomNumbers.Random123.Philox2x"><code>Philox2x</code></a>. The number of rounds must be at least 1 and no more than 16. With 10 rounds (by default), Philox2x32 has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance. They both support <code>UInt32</code> and <code>UInt64</code> output.</p>
 <p><a id='AESNI-1'></a></p>
 <h3 id="aesni">AESNI</h3>
 <p><code>AESNI</code> uses the Advanced Encryption Standard (AES) New Instruction, available on certain modern x86 processors (some models of Intel Westmere and Sandy Bridge, and AMD Interlagos, as of 2011). AESNI CBRNGs can operate on <code>UInt128</code> type.</p>
-<p><code>AESNI</code> has two <code>Type</code>s: <a href="../../lib/random123/#RNG.Random123.AESNI1x"><code>AESNI1x</code></a> and <a href="../../lib/random123/#RNG.Random123.AESNI4x"><code>AESNI4x</code></a>. <code>AESNI4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>.</p>
+<p><code>AESNI</code> has two <code>Type</code>s: <a href="../../lib/random123/#RandomNumbers.Random123.AESNI1x"><code>AESNI1x</code></a> and <a href="../../lib/random123/#RandomNumbers.Random123.AESNI4x"><code>AESNI4x</code></a>. <code>AESNI4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>.</p>
 <p><a id='ARS-1'></a></p>
 <h3 id="ars">ARS</h3>
 <p><code>ARS</code> (Advanced Randomization System) is a <strong>non-cryptographic</strong> simplification of <a href="./#AESNI-1">AESNI</a>.</p>
-<p><code>ARS</code> has two <code>Type</code>s: <a href="../../lib/random123/#RNG.Random123.ARS1x"><code>ARS1x</code></a> and <a href="../../lib/random123/#RNG.Random123.ARS4x"><code>ARS4x</code></a>. <code>ARS4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>. Note that although it uses some cryptographic primitives, <code>ARS1x</code> uses a cryptographically weak key schedule and is <strong>not</strong> suitable for cryptographic use. The number of rounds must be at least 1 and no more than 10, and is 7 by default.</p>
+<p><code>ARS</code> has two <code>Type</code>s: <a href="../../lib/random123/#RandomNumbers.Random123.ARS1x"><code>ARS1x</code></a> and <a href="../../lib/random123/#RandomNumbers.Random123.ARS4x"><code>ARS4x</code></a>. <code>ARS4x</code> only internally converts <code>UInt128</code> to <code>UInt32</code>. Note that although it uses some cryptographic primitives, <code>ARS1x</code> uses a cryptographically weak key schedule and is <strong>not</strong> suitable for cryptographic use. The number of rounds must be at least 1 and no more than 10, and is 7 by default.</p>
 <p><a id='Examples-1'></a></p>
 <h2 id="examples">Examples</h2>
 <p>For detailed usage of each RNG, please refer to the <a href="../../lib/random123/#Random123-1">library docs</a>.</p>
 <p>To use Random123, firstly import the module:</p>
-<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RNG</span><span class="o">.</span><span class="n">Random123</span>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RandomNumbers</span><span class="o">.</span><span class="n">Random123</span>
 </pre></div>
 
 
@@ -361,14 +542,14 @@
 
 <span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">((</span><span class="mh">0x12345678abcdef01</span><span class="p">,</span> <span class="mh">0x10fedcba87654321</span><span class="p">));</span>  <span class="c"># specify the seed.</span>
 
-<span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="p">(</span><span class="mh">0x12345678abcdef01</span><span class="p">,</span> <span class="mh">0x10fedcba87654321</span><span class="p">));</span>  <span class="c"># specify both the output type and seed.</span>
+<span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">(</span><span class="kt">UInt64</span><span class="p">,</span> <span class="p">(</span><span class="mh">0x12345678abcdef01</span><span class="p">,</span> <span class="mh">0x10fedcba87654321</span><span class="p">));</span>  <span class="c"># specify both the output type and seed.</span>
 
-<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">NTuple</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">})</span>
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">NTuple</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">})</span>
 <span class="go">(0x00d626ee85b7d2ed,0xa57b4af2b68c655e,0x82dad737de789de2,0x8d390e05845e6c4d)</span>
 
 <span class="gp">julia&gt;</span> <span class="n">set_counter!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>  <span class="c"># update the counter manually.</span>
 
-<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="go">4-element Array{UInt64,1}:</span>
 <span class="go"> 0x56a4eb812faa9cd7</span>
 <span class="go"> 0xf3d3464a49b23b56</span>
@@ -377,7 +558,7 @@
 
 <span class="gp">julia&gt;</span> <span class="n">set_counter!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">NTuple</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">})</span>
+<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">NTuple</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">})</span>
 <span class="go">(0x00d626ee85b7d2ed,0xa57b4af2b68c655e,0x82dad737de789de2,0x8d390e05845e6c4d)</span>
 </pre></div>
 
@@ -386,87 +567,83 @@
 <hr />
 <ol>
 <li id="fn:1">
-<p>John K. Salmon, Mark A. Moraes, Ron O. Dror, and David E. Shaw, "Parallel Random Numbers: As Easy as 1, 2, 3," Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC11), New York, NY: ACM, 2011. doi:<a href="http://dx.doi.org/10.1145/2063384.2063405">10.1145/2063384.2063405</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>John K. Salmon, Mark A. Moraes, Ron O. Dror, and David E. Shaw, "Parallel Random Numbers: As Easy as 1, 2, 3," Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC11), New York, NY: ACM, 2011. doi:<a href="http://dx.doi.org/10.1145/2063384.2063405">10.1145/2063384.2063405</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
-          <aside class="copyright" role="note">
-            
-            Documentation built with
-            <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
-            using the
-            <a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
-              Material
-            </a>
-            theme.
-          </aside>
-          
-            <footer class="footer">
               
-  <nav class="pagination" aria-label="Footer">
-    <div class="previous">
+            </article>
+          </div>
+        </div>
+      </main>
       
-        <a href="../mersenne-twisters/" title="Mersenne Twisters">
-          <span class="direction">
-            Previous
-          </span>
-          <div class="page">
-            <div class="button button-previous" role="button" aria-label="Previous">
-              <i class="icon icon-back"></i>
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../mersenne-twisters/" title="Mersenne Twisters" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
-            <div class="stretch">
-              <div class="title">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
                 Mersenne Twisters
-              </div>
+              </span>
             </div>
-          </div>
-        </a>
-      
-    </div>
-    <div class="next">
-      
-        <a href="../xorshifts/" title="Xorshift Family">
-          <span class="direction">
-            Next
-          </span>
-          <div class="page">
-            <div class="stretch">
-              <div class="title">
+          </a>
+        
+        
+          <a href="../xorshifts/" title="Xorshift Family" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
                 Xorshift Family
-              </div>
+              </span>
             </div>
-            <div class="button button-next" role="button" aria-label="Next">
-              <i class="icon icon-forward"></i>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
             </div>
-          </div>
-        </a>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
       
     </div>
-  </nav>
-
-            </footer>
-          
-        </div>
-      </article>
-      <div class="results" role="status" aria-live="polite">
-        <div class="scrollable">
-          <div class="wrapper">
-            <div class="meta"></div>
-            <div class="list"></div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <script>
-      var base_url = '../..';
-      var repo_id  = 'sunoru/RNG.jl';
-    </script>
-    <script src="../../assets/javascripts/application-997097ee0c.js"></script>
+  </div>
+</footer>
+      
+    </div>
     
-      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      <script src="../../assets/javascripts/application-f7ac33b6fb.js"></script>
+      <script>app.initialize({url:{base:"../.."}})</script>
+      
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      
+        <script src="../../assets/mathjaxhelper.js"></script>
+      
     
-      <script src="../../assets/mathjaxhelper.js"></script>
     
+      
     
   </body>
 </html>
