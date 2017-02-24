@@ -64,6 +64,7 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox2x{T}, seed::Integer=gen_seed(
     r.key = seed % T
     r.ctr1 = r.ctr2 = 0
     random123_r(r)
+    r.p = 0
     r
 end
 
