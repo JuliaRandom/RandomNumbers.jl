@@ -35,7 +35,7 @@ end
 
 check_compiler() = is_windows() ? true : success(`gcc --version`)
 
-if have_aesni() && check_compiler()
+if have_aesni() && check_compiler() && false
     build()
 else
     warn("AES-NI will not be compiled.")
