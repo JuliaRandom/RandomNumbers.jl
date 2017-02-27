@@ -5,7 +5,7 @@ function build()
         try
             run(`mingw32-make`)
         catch
-            if sizeof(Int) == 4
+            if Sys.WORD_SIZE == 32
                 url = "https://github.com/sunoru/RandomNumbers.jl/releases/download/deplib-0.1/librandom123-32.dll"
             else
                 url = "https://github.com/sunoru/RandomNumbers.jl/releases/download/deplib-0.1/librandom123.dll"
