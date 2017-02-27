@@ -1,4 +1,4 @@
-import Base.Random: rand, rand_ui52
+import Base.Random: rand, rand_ui52_raw
 
 """
 ```julia
@@ -11,8 +11,9 @@ abstract AbstractRNG{T<:Number} <: Base.Random.AbstractRNG
 
 typealias BitTypes Union{Bool, Signed, Unsigned}
 
-@inline function rand_ui52(rng::AbstractRNG)
-    rand(rng, UInt64) & Base.significand_mask(Float64)
+# implement `rand_ui52_raw` instead of `rand_ui52` to avoid issues about `CloseOpen`.
+@inline function rand_ui52_raw(rng::AbstractRNG)
+    rand(rng, UInt64)
 end
 
 # see https://github.com/sunoru/RandomNumbers.jl/issues/8
