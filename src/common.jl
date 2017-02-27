@@ -1,4 +1,4 @@
-import Base.Random: rand, rand_ui52_raw
+import Base.Random: rand, rand_ui52, rand_ui52_raw
 
 """
 ```julia
