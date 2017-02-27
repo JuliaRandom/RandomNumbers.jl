@@ -10,7 +10,7 @@ function build()
             else
                 url = "https://github.com/sunoru/RandomNumbers.jl/releases/download/deplib-0.1/librandom123.dll"
             end
-            info("You don't have MinGW32 installed, so now download the library binary from github.")
+            info("You don't have MinGW32 installed, so now downloading the library binary from github.")
             download(url, "librandom123.dll")
         end
     else
@@ -33,7 +33,7 @@ function have_aesni()
     end
 end
 
-check_compiler() = success(`gcc --version`)
+check_compiler() = is_windows() ? true : success(`gcc --version`)
 
 if have_aesni() && check_compiler()
     build()
