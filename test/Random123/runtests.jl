@@ -45,7 +45,7 @@ for (rng_name, seed_t, stype, seed, args) in (
 end
 redirect_stdout(stdout_)
 
-@test_diff "expected" "actual"
+compare_dirs("expected", "actual")
 cd(pwd_)
 
 include("aesni.jl")
