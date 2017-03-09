@@ -11,6 +11,20 @@ end
 Pages = ["random-numbers.md"]
 ```
 
+## [Generic Functions](@id generic_funcions)
+```@docs
+rand
+srand
+randn
+randexp
+bitrand
+randstring
+randsubseq
+shuffle
+randperm
+randcycle
+```
+
 ## Public
 ```@autodocs
 Modules = [RandomNumbers]

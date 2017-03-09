@@ -1,5 +1,6 @@
 site_name:        RandomNumbers.jl
 repo_url:         https://github.com/sunoru/RandomNumbers.jl
+edit_uri:         edit/master/docs/src/
 site_description: Random number generators for Julia language.
 site_author:      Sunoru
 

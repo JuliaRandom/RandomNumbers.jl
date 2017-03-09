@@ -54,17 +54,20 @@ Consistent to what `Base.Random` does, there are generic functions:
     initializes a RNG by one or a sequence of numbers (called *seed*). The output sequences by two RNGs of
     the same type should be the same if they are initialized by the same seed, which makes them
     *deterministic*. The seed type of each RNG type can be different, you can refer to the corresponding
-    manual pages for details. If no `seed` provided, then it will use [`RandomNumbers.gen_seed`](@ref) to get a "truly"
-    random one.
+    manual pages for details. If no `seed` provided, then it will use [`RandomNumbers.gen_seed`](@ref) to get
+    a "truly" random one.
 
 - `rand(::AbstractRNG{T}[, ::Type{TP}=Float64])`
     returns a random number in the type `TP`. `TP` is usually an `Unsigned` type, and the return value is
     expected to be uniformly distributed in {0, 1} at every bit. When `TP` is `Float64` (as default), this
-    function returns a `Float64` value that is expected to be uniformly distributed in ``[0, 1)``. The discussion
-    about this is in the [Conversion to Float](@ref) section.
+    function returns a `Float64` value that is expected to be uniformly distributed in ``[0, 1)``. The
+    discussion about this is in the [Conversion to Float](@ref) section.
 
-The other generic functions such as `rand(::AbstractRNG, ::Dims)` and `rand!(::AbstractRNG, ::AbstractArray)`
-defined in `Base.Random` still work.
+The other generic functions such as `rand(::AbstractRNG, ::Dims)` and
+`rand!(::AbstractRNG, ::AbstractArray)`, and the ones that generate random numbers in a certain distribution
+such as `randn`, `randexp`, `randcycle`, etc. defined in `Base.Random` still work well. However the
+[official docs](http://docs.julialang.org/en/release-0.5/stdlib/numbers/#random-numbers) don't include all of
+them, so you can refer to [this section](@ref generic_funcions) for details.
 
 The constructors of all the types of RNG are designed to take the same kind of parameters as `srand`. For example:
 
