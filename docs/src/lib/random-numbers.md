@@ -11,7 +11,7 @@ end
 Pages = ["random-numbers.md"]
 ```
 
-## [Generic Functions](@id generic_funcions)
+## [Generic Functions](@id generic-functions)
 ```@docs
 rand
 srand

@@ -67,7 +67,7 @@ The other generic functions such as `rand(::AbstractRNG, ::Dims)` and
 `rand!(::AbstractRNG, ::AbstractArray)`, and the ones that generate random numbers in a certain distribution
 such as `randn`, `randexp`, `randcycle`, etc. defined in `Base.Random` still work well. However the
 [official docs](http://docs.julialang.org/en/release-0.5/stdlib/numbers/#random-numbers) don't include all of
-them, so you can refer to [this section](@ref generic_funcions) for details.
+them, so you can refer to [this section](@ref generic-functions) for details.
 
 The constructors of all the types of RNG are designed to take the same kind of parameters as `srand`. For example:
 
