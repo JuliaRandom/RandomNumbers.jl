@@ -52,5 +52,5 @@ for (rng_name, seed_t) in (
 end
 redirect_stdout(stdout_)
 
-@test_diff "expected" "actual"
+compare_dirs("expected", "actual")
 cd(pwd_)

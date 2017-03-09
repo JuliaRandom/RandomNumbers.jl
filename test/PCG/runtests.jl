@@ -121,5 +121,5 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
 end
 redirect_stdout(stdout_)
 
-@test_diff "expected" "actual"
+compare_dirs("expected", "actual")
 cd(pwd_)

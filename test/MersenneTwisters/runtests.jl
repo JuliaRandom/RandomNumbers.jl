@@ -30,5 +30,5 @@ for mt_name in (:MT19937, )
 end
 redirect_stdout(stdout_)
 
-@test_diff "expected" "actual"
+compare_dirs("expected", "actual")
 cd(pwd_)
