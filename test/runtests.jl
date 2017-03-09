@@ -1,4 +1,5 @@
 include("common.jl")
+include("generic.jl")
 include("wrapped_rng.jl")
 include("PCG/runtests.jl")
 include("MersenneTwisters/runtests.jl")
