@@ -17,7 +17,7 @@ excellent performance.
 
 Only available when [`R123_USE_AESNI`](@ref).
 """
-type ARS1x{R} <: R123Generator1x{UInt128}
+mutable struct ARS1x{R} <: R123Generator1x{UInt128}
     x::UInt128
     key::UInt128
     ctr::UInt128
@@ -77,7 +77,7 @@ excellent performance.
 
 Only available when [`R123_USE_AESNI`](@ref).
 """
-type ARS4x{R} <: R123Generator4x{UInt32}
+mutable struct ARS4x{R} <: R123Generator4x{UInt32}
     x1::UInt32
     x2::UInt32
     x3::UInt32

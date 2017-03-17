@@ -9,7 +9,7 @@ AbstractXoroshiro128 <: AbstractRNG{UInt64}
 
 The base abstract type for `Xoroshiro128`, `Xoroshiro128Star` and `Xoroshiro128Plus`.
 """
-abstract AbstractXoroshiro128 <: AbstractRNG{UInt64}
+abstract type AbstractXoroshiro128 <: AbstractRNG{UInt64} end
 
 @inline xorshift_rotl(x::UInt64, k) = (x << k) | (x >> (64 - k))
 
@@ -20,7 +20,7 @@ for (star, plus) in (
     )
     rng_name = Symbol(string("Xoroshiro128", star ? "Star" : plus ? "Plus" :""))
     @eval begin
-        type $rng_name <: AbstractXoroshiro128
+        mutable struct $rng_name <: AbstractXoroshiro128
             x::UInt64
             y::UInt64
             function $rng_name(seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
@@ -34,8 +34,8 @@ for (star, plus) in (
 
         @inline function xorshift_next(r::$rng_name)
             $(plus ? :(p = r.x + r.y) : nothing)
-            s1 = r.y $ r.x
-            r.x = xorshift_rotl(r.x, 55) $ s1 $ (s1 << 14)
+            s1 = r.y ⊻ r.x
+            r.x = xorshift_rotl(r.x, 55) ⊻ s1 ⊻ (s1 << 14)
             r.y = xorshift_rotl(s1, 36)
             $(star ? :(r.y * 2685821657736338717) :
               plus ? :(p) : :(r.y))

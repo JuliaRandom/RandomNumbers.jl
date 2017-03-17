@@ -9,8 +9,8 @@ function compare_dirs(dir1::AbstractString, dir2::AbstractString)
     for file in files1
         file1 = joinpath(dir1, file)
         file2 = joinpath(dir2, file)
-        lines1 = strip_cr.(readlines(file1))
-        lines2 = strip_cr.(readlines(file2))
+        lines1 = readlines(file1)
+        lines2 = readlines(file2)
         @test lines1 == lines2
     end
 end

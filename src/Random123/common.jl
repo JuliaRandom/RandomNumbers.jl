@@ -7,19 +7,19 @@ const librandom123 = Libdl.find_library(["librandom123"],
 "True when AES-NI library has been compiled."
 const R123_USE_AESNI = librandom123 != ""
 
-typealias R123Array1x{T<:Union{UInt128}} NTuple{1, T}
-typealias R123Array2x{T<:Union{UInt32, UInt64}} NTuple{2, T}
-typealias R123Array4x{T<:Union{UInt32, UInt64}} NTuple{4, T}
+const R123Array1x{T<:Union{UInt128}}        = NTuple{1, T}
+const R123Array2x{T<:Union{UInt32, UInt64}} = NTuple{2, T}
+const R123Array4x{T<:Union{UInt32, UInt64}} = NTuple{4, T}
 
 "The base abstract type for RNGs in [Random123 Family](@ref)."
-abstract AbstractR123{T<:Union{UInt32, UInt64, UInt128}} <: AbstractRNG{T}
+abstract type AbstractR123{T<:Union{UInt32, UInt64, UInt128}} <: AbstractRNG{T} end
 
 "RNG that generates one number at a time."
-abstract R123Generator1x{T} <: AbstractR123{T}
+abstract type R123Generator1x{T} <: AbstractR123{T} end
 "RNG that generates two numbers at a time."
-abstract R123Generator2x{T} <: AbstractR123{T}
+abstract type R123Generator2x{T} <: AbstractR123{T} end
 "RNG that generates four numbers at a time."
-abstract R123Generator4x{T} <: AbstractR123{T}
+abstract type R123Generator4x{T} <: AbstractR123{T} end
 
 "Set the counter of a Random123 RNG."
 @inline function set_counter!{T<:UInt128}(r::R123Generator1x{T}, ctr::Integer)

@@ -7,9 +7,9 @@ AbstractRNG{T} <: Base.Random.AbstractRNG
 
 The abstract type of Random Number Generators. T indicates the original output type of a RNG.
 """
-abstract AbstractRNG{T<:Number} <: Base.Random.AbstractRNG
+abstract type AbstractRNG{T<:Number} <: Base.Random.AbstractRNG end
 
-typealias BitTypes Union{Bool, Signed, Unsigned}
+const BitTypes = Union{Bool, Signed, Unsigned}
 
 # implement `rand_ui52_raw` instead of `rand_ui52` to avoid issues about `CloseOpen`.
 @inline function rand_ui52_raw(rng::AbstractRNG)

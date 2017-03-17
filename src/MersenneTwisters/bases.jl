@@ -7,7 +7,7 @@ MersenneTwister{T} <: AbstractRNG{T}
 
 The base type of Mersenne Twisters.
 """
-abstract MersenneTwister{T<:Number} <: AbstractRNG{T}
+abstract type MersenneTwister{T<:Number} <: AbstractRNG{T} end
 
 const N = 624
 const M = 397
@@ -23,7 +23,7 @@ MT19937([seed])
 MT19937 RNG. The `seed` is a `Tuple` of $N `UInt32` numbers, or an `Integer` which will be automatically
 convert to an `UInt32` number.
 """
-type MT19937 <: MersenneTwister{UInt32}
+mutable struct MT19937 <: MersenneTwister{UInt32}
     mt::Vector{UInt32}
     mti::Int
     function MT19937(x::Vector{UInt32}, i::Int) 
@@ -47,7 +47,7 @@ end
 @inline function mt_set!(r::MT19937, s::UInt32)
     r.mt[1] = s
     @inbounds for i in 2:N
-        r.mt[i] = (0x6c078965 * (r.mt[i-1] $ (r.mt[i-1] >> 30)) + i - 1)
+        r.mt[i] = (0x6c078965 * (r.mt[i-1] ⊻ (r.mt[i-1] >> 30)) + i - 1)
     end
     r.mti = N + 1
     r
@@ -60,23 +60,23 @@ end
     if r.mti > N
         @inbounds for i in 1:N-M
             y = (mt[i] & UPPER_MASK) | (mt[i+1] & LOWER_MASK)
-            mt[i] = mt[i + M] $ (y >> 1) $ mt_magic(y)
+            mt[i] = mt[i + M] ⊻ (y >> 1) ⊻ mt_magic(y)
         end
         @inbounds for i in N-M+1:N-1
             y = (mt[i] & UPPER_MASK) | (mt[i+1] & LOWER_MASK)
-            mt[i] = mt[i + M - N] $ (y >> 1) $ mt_magic(y)
+            mt[i] = mt[i + M - N] ⊻ (y >> 1) ⊻ mt_magic(y)
         end
         @inbounds begin
             y = (mt[N] & UPPER_MASK) | (mt[1] & LOWER_MASK)
-            mt[N] = mt[M] $ (y >> 1) $ mt_magic(y)
+            mt[N] = mt[M] ⊻ (y >> 1) ⊻ mt_magic(y)
         end
         r.mti = 1
     end
     k = mt[r.mti]
-    k $= (k >> 11)
-    k $= (k >> 7) & 0x9d2c5680
-    k $= (k >> 15) & 0xefc60000
-    k $= (k >> 18)
+    k ⊻= (k >> 11)
+    k ⊻= (k >> 7) & 0x9d2c5680
+    k ⊻= (k >> 15) & 0xefc60000
+    k ⊻= (k >> 18)
 
     r.mti += 1
     k

@@ -33,14 +33,11 @@ Test Passed
    Evaluated: UInt32[0x18a21796,0x20241598,0x63c65407] == UInt32[0x18a21796,0x20241598,0x63c65407]
 ```
 """
-type WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} <: AbstractRNG{T2}
+mutable struct WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} <: AbstractRNG{T2}
     base_rng::R
     x::T1
     p::Int
-    function WrappedRNG()
-        @assert T1 ≠ T2
-        new()
-    end
+    WrappedRNG{R, T1, T2}() where {R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} = (@assert T1 ≠ T2; new())
 end
 
 function WrappedRNG{T1<:BitTypes, T2<:BitTypes}(base_rng::AbstractRNG{T1}, ::Type{T2})

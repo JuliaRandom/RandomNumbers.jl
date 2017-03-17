@@ -9,7 +9,7 @@ AbstractXorshift1024 <: AbstractRNG{UInt64}
 
 The base abstract type for `Xorshift1024`, `Xorshift1024Star` and `Xorshift1024Plus`.
 """
-abstract AbstractXorshift1024 <: AbstractRNG{UInt64}
+abstract type AbstractXorshift1024 <: AbstractRNG{UInt64} end
 
 for (star, plus) in (
         (false, false),
@@ -18,7 +18,7 @@ for (star, plus) in (
     )
     rng_name = Symbol(string("Xorshift1024", star ? "Star" : plus ? "Plus" :""))
     @eval begin
-        type $rng_name <: AbstractXorshift1024
+        mutable struct $rng_name <: AbstractXorshift1024
             s0::UInt64
             s1::UInt64
             s2::UInt64
@@ -58,10 +58,10 @@ for (star, plus) in (
             s0 = unsafe_load(Ptr{UInt64}(pointer_from_objref(r)), p + 1)
             p = (p + 1) % 16
             s1 = unsafe_load(Ptr{UInt64}(pointer_from_objref(r)), p + 1)
-            s1 $= s1 << 31
-            s1 $= s1 >> 11
-            s1 $= s0 >> 30
-            s1 $= s0
+            s1 ⊻= s1 << 31
+            s1 ⊻= s1 >> 11
+            s1 ⊻= s0 >> 30
+            s1 ⊻= s0
             unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), s1, p + 1)
             r.p = p
             $(star ? :(s1 * 2685821657736338717) :

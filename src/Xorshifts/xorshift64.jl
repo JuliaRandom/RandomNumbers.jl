@@ -9,12 +9,12 @@ AbstractXorshift64 <: AbstractRNG{UInt64}
 
 The base abstract type for `Xorshift64` and `Xorshift64Star`.
 """
-abstract AbstractXorshift64 <: AbstractRNG{UInt64}
+abstract type AbstractXorshift64 <: AbstractRNG{UInt64} end
 
 for star in (false, true)
     rng_name = Symbol(string("Xorshift64", star ? "Star" : ""))
     @eval begin
-        type $rng_name <: AbstractXorshift64
+        mutable struct $rng_name <: AbstractXorshift64
             x::UInt64
             function $rng_name(seed::UInt64=gen_seed(UInt64))
                 r = new(0)
@@ -26,9 +26,9 @@ for star in (false, true)
         $rng_name(seed::Integer) = $rng_name(seed % UInt64)
 
         @inline function xorshift_next(r::$rng_name)
-            r.x $= r.x << 18
-            r.x $= r.x >> 31
-            r.x $= r.x << 11
+            r.x ⊻= r.x << 18
+            r.x ⊻= r.x >> 31
+            r.x ⊻= r.x << 11
             $(star ? :(r.x * 2685821657736338717) : :(r.x))
         end
     end

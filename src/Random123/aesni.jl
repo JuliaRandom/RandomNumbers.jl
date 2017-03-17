@@ -2,7 +2,7 @@ import Base: copy, copy!, ==
 import RandomNumbers: gen_seed, union_uint, seed_type, unsafe_copy!, unsafe_compare
 
 "The key for AESNI."
-type AESNIKey
+mutable struct AESNIKey
     key1::UInt128
     key2::UInt128
     key3::UInt128
@@ -35,7 +35,7 @@ AESNI1x is one kind of AESNI Counter-Based RNGs. It generates one `UInt128` numb
 
 Only available when [`R123_USE_AESNI`](@ref).
 """
-type AESNI1x <: R123Generator1x{UInt128}
+mutable struct AESNI1x <: R123Generator1x{UInt128}
     x::UInt128
     key::AESNIKey
     ctr::UInt128
@@ -77,7 +77,7 @@ AESNI4x is one kind of AESNI Counter-Based RNGs. It generates four `UInt32` numb
 
 Only available when [`R123_USE_AESNI`](@ref).
 """
-type AESNI4x <: R123Generator4x{UInt32}
+mutable struct AESNI4x <: R123Generator4x{UInt32}
     x1::UInt32
     x2::UInt32
     x3::UInt32

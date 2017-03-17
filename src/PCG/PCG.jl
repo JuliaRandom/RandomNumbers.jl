@@ -14,7 +14,7 @@ export PCGUInt, PCGMethod, PCG_LIST
 export bounded_rand, advance!
 
 const pcg_uints = (UInt8, UInt16, UInt32, UInt64, UInt128)
-typealias PCGUInt Union{pcg_uints...}
+const PCGUInt = Union{pcg_uints...}
 
 """
 One of PCG output method: high xorshift, followed by a random shift.
@@ -53,7 +53,7 @@ const pcg_methods = (PCG_XSH_RS, PCG_XSH_RR, PCG_RXS_M_XS, PCG_XSL_RR, PCG_XSL_R
 """
 The `Union` of all the PCG method types: `PCG_XSH_RS`, `PCG_XSH_RR`, `PCG_RXS_M_XS`, `PCG_XSL_RR`, and `PCG_XSL_RR_RR`.
 """
-typealias PCGMethod Union{pcg_methods...}
+const PCGMethod = Union{pcg_methods...}
 
 include("pcg_list.jl")
 

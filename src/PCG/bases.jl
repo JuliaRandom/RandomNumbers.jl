@@ -82,7 +82,7 @@ end
     mask = (1 << op_bits) - 1
     xshift = op_bits + (return_bits + mask) >> 1
     rshift = op_bits != 0 ? (state >> (bits - op_bits)) & mask : 0 % T
-    state = state $ (state >> xshift)
+    state = state ⊻ (state >> xshift)
     (state >> (spare_bits - op_bits - mask + rshift)) % half_width(T)
 end
 
@@ -100,7 +100,7 @@ end
     mask = (1 << op_bits) - 1
     xshift = (op_bits + return_bits) >> 1
     rot = (state >> (bits - op_bits)) & mask
-    state $= (state >> xshift)
+    state ⊻= (state >> xshift)
     result = (state >> (spare_bits - op_bits)) % half_width(T)
     pcg_rotr(result, rot % half_width(T))
 end
@@ -117,9 +117,9 @@ end
               return_bits >=  16 ? 3 : 2
     mask = (1 << op_bits) - 1
     rshift = (state >> (bits - op_bits)) & mask
-    state $= state >> (op_bits + rshift)
+    state ⊻= state >> (op_bits + rshift)
     state *= mcg_multiplier(T)
-    state $ (state >> ((return_bits << 1 + 2) ÷ 3))
+    state ⊻ (state >> ((return_bits << 1 + 2) ÷ 3))
 end
 
 # output_xsl_rr
@@ -136,7 +136,7 @@ end
     mask = (1 << op_bits) - 1
     xshift = (spare_bits + return_bits) >> 1
     rot = (state >> (bits - op_bits)) & mask
-    pcg_rotr((state $ (state >> xshift)) % half_width(T), rot % half_width(T))
+    pcg_rotr((state ⊻ (state >> xshift)) % half_width(T), rot % half_width(T))
 end
 
 # output_xsl_rr_rr
@@ -154,13 +154,13 @@ end
     mask = (1 << op_bits) - 1
     xshift = (spare_bits + half_bits) >> 1
     rot = (state >> (bits - op_bits)) & mask
-    state $= state >> xshift
+    state ⊻= state >> xshift
     low_bits = state % half_width(T)
     low_bits = pcg_rotr(low_bits, rot % half_width(T))
     high_bits = (state >> spare_bits) % half_width(T)
     rot2 = low_bits & mask
     high_bits = pcg_rotr(high_bits, rot2 % half_width(T))
-    ((high_bits % T) << spare_bits) $ (low_bits % T)
+    ((high_bits % T) << spare_bits) ⊻ (low_bits % T)
 end
 
 # PCGState types, SRandom and Step functions.
@@ -171,15 +171,16 @@ AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <: A
 
 The base abstract type for PCGs.
 """
-abstract AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
-    AbstractRNG{OutputType}
+abstract type AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt
+                         } <: AbstractRNG{OutputType} end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateOneseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+mutable struct PCGStateOneseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
         AbstractPCG{StateType, MethodType, OutputType}
     state::StateType
-    PCGStateOneseq() = new()
+    PCGStateOneseq{StateType, MethodType, OutputType}() where 
+        {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
 @inline function pcg_srand{T<:PCGUInt}(s::PCGStateOneseq{T}, init_state::T)
@@ -204,10 +205,11 @@ end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateMCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+mutable struct PCGStateMCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
         AbstractPCG{StateType, MethodType, OutputType}
     state::StateType
-    PCGStateMCG() = new()
+    PCGStateMCG{StateType, MethodType, OutputType}() where
+        {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
 @inline function pcg_srand{T<:PCGUInt}(s::PCGStateMCG{T}, init_state::T)
@@ -229,10 +231,11 @@ end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateUnique{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+mutable struct PCGStateUnique{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
         AbstractPCG{StateType, MethodType, OutputType}
     state::StateType
-    PCGStateUnique() = new()
+    PCGStateUnique{StateType, MethodType, OutputType}() where
+        {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
 @inline function pcg_srand{T<:PCGUInt}(s::PCGStateUnique{T}, init_state::T)
@@ -258,11 +261,12 @@ end
 
 # pcg_state_XX
 # XX is one of the UInt types.
-type PCGStateSetseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
+mutable struct PCGStateSetseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <:
         AbstractPCG{StateType, MethodType, OutputType}
     state::StateType
     inc::StateType
-    PCGStateSetseq() = new()
+    PCGStateSetseq{StateType, MethodType, OutputType}() where
+        {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
 @inline function pcg_srand{T<:PCGUInt}(s::PCGStateSetseq{T}, init_state::T, init_seq::T)
