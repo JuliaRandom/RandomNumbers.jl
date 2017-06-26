@@ -9,7 +9,7 @@ The examples and detailed descriptions of each RNG can be found on the Manual pa
 ## Manual Outline
 ```@contents
 Pages = [
-    "man/bases.md",
+    "man/basics.md",
     "man/benchmark.md",
     "man/pcg.md",
     "man/mersenne-twisters.md",

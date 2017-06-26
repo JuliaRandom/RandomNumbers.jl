@@ -1,6 +1,6 @@
-# Bases
+# Basics
 
-This page describes basic concepts and fundanmental knowledge of **RandomNumbers.jl**.
+This page describes basic concepts and fundamental knowledge of **RandomNumbers.jl**.
 
 !!! note
     Unless otherwise specified, all the random number generators in this package are *pseudorandom* number
@@ -113,7 +113,7 @@ This package chooses [RNGTest.jl](https://github.com/andreasnoack/RNGTest.jl) to
 
 The testing results are available on [Benchmark](@ref) page.
 
-[^1]: 
+[^1]:
     [`rand` fails bigcrush #6464](https://github.com/JuliaLang/julia/issues/6464)
 
 
