@@ -31,7 +31,7 @@ docs_dir: 'build'
 pages:
 - Home: index.md
 - Manual:
-    - Bases: man/bases.md
+    - Basics: man/basics.md
     - Benchmark: man/benchmark.md
     - PCG Family: man/pcg.md
     - Mersenne Twisters: man/mersenne-twisters.md
