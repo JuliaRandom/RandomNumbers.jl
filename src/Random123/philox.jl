@@ -52,14 +52,14 @@ mutable struct Philox2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     p::Int
 end
 
-function Philox2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::Integer=gen_seed(T), R::Integer=10)
+function Philox2x(::Type{T}=UInt64, seed::Integer=gen_seed(T), R::Integer=10) where T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 16
     r = Philox2x{T, Int(R)}(0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 Philox2x(seed::Integer, R::Integer=10) = Philox2x(UInt64, seed, R)
 
-function srand{T<:Union{UInt32, UInt64}}(r::Philox2x{T}, seed::Integer=gen_seed(T))
+function srand(r::Philox2x{T}, seed::Integer=gen_seed(T)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = 0
     r.key = seed % T
     r.ctr1 = r.ctr2 = 0
@@ -68,28 +68,28 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox2x{T}, seed::Integer=gen_seed(
     r
 end
 
-@inline seed_type{T, R}(::Type{Philox2x{T, R}}) = T
+@inline seed_type(::Type{Philox2x{T, R}}) where {T, R} = T
 
-function copy!{T, R}(dest::Philox2x{T, R}, src::Philox2x{T, R})
+function copy!(dest::Philox2x{T, R}, src::Philox2x{T, R}) where {T, R}
     unsafe_copy!(dest, src, T, 5)
     dest.p = src.p
     dest
 end
 
-copy{T, R}(src::Philox2x{T, R}) = Philox2x{T, R}(src.x1, src.x2, src.key, src.ctr1, src.ctr2, src.p)
+copy(src::Philox2x{T, R}) where {T, R} = Philox2x{T, R}(src.x1, src.x2, src.key, src.ctr1, src.ctr2, src.p)
 
-=={T, R}(r1::Philox2x{T, R}, r2::Philox2x{T, R}) = unsafe_compare(r1, r2, T, 5) && r1.p == r2.p
+==(r1::Philox2x{T, R}, r2::Philox2x{T, R}) where {T, R} = unsafe_compare(r1, r2, T, 5) && r1.p == r2.p
 
-@inline function philox2x_round{T<:Union{UInt32, UInt64}}(ctr1::T, ctr2::T, key::T)
+@inline function philox2x_round(ctr1::T, ctr2::T, key::T) where T <: Union{UInt32, UInt64}
     hi, lo = philox_mulhilo(PHILOX_M2x_0(T), ctr1)
     hi ⊻ key ⊻ ctr2, lo
 end
 
-@inline function philox2x_bumpkey{T<:Union{UInt32, UInt64}}(key::T)
+@inline function philox2x_bumpkey(key::T) where T <: Union{UInt32, UInt64}
     key + PHILOX_W_0(T)
 end
 
-@inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Philox2x{T, R})
+@inline function random123_r(r::Philox2x{T, R}) where {T <: Union{UInt32, UInt64}, R}
     ctr1, ctr2, key = r.ctr1, r.ctr2, r.key
     if R > 0                               ctr1, ctr2 = philox2x_round(ctr1, ctr2, key); end
     if R > 1  key = philox2x_bumpkey(key); ctr1, ctr2 = philox2x_round(ctr1, ctr2, key); end
@@ -141,15 +141,15 @@ mutable struct Philox4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
     p::Int
 end
 
-function Philox4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
-        seed::NTuple{2, Integer}=gen_seed(T, 2), R::Integer=10)
+function Philox4x(::Type{T}=UInt64, seed::NTuple{2, Integer}=gen_seed(T, 2), R::Integer=10) where
+        T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 16
     r = Philox4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 Philox4x(seed::NTuple{2, Integer}, R::Integer=10) = Philox4x(UInt64, seed, R)
 
-function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2))
+function srand(r::Philox4x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = r.x3 = r.x4 = 0
     r.key1 = seed[1] % T
     r.key2 = seed[2] % T
@@ -159,31 +159,31 @@ function srand{T<:Union{UInt32, UInt64}}(r::Philox4x{T}, seed::NTuple{2, Integer
     r
 end
 
-@inline seed_type{T, R}(::Type{Philox4x{T, R}}) = NTuple{2, T}
+@inline seed_type(::Type{Philox4x{T, R}}) where {T, R} = NTuple{2, T}
 
-function copy!{T, R}(dest::Philox4x{T, R}, src::Philox4x{T, R})
+function copy!(dest::Philox4x{T, R}, src::Philox4x{T, R}) where {T, R}
     unsafe_copy!(dest, src, T, 10)
     dest.p = src.p
     dest
 end
 
-copy{T, R}(src::Philox4x{T, R}) = Philox4x{T, R}(src.x1, src.x2, src.x3, src.x4, src.key1, src.key2,
-    src.ctr1, src.ctr2, src.ctr3, src.ctr4, src.p)
+copy(src::Philox4x{T, R}) where {T, R} = Philox4x{T, R}(src.x1, src.x2, src.x3, src.x4, src.key1, src.key2,
+                                                        src.ctr1, src.ctr2, src.ctr3, src.ctr4, src.p)
 
-=={T, R}(r1::Philox4x{T, R}, r2::Philox4x{T, R}) = unsafe_compare(r1, r2, T, 10)  && r1.p == r2.p
+==(r1::Philox4x{T, R}, r2::Philox4x{T, R}) where {T, R} = unsafe_compare(r1, r2, T, 10)  && r1.p == r2.p
 
-@inline function philox4x_round{T<:Union{UInt32, UInt64}}(
-        ctr1::T, ctr2::T, ctr3::T, ctr4::T, key1::T, key2::T)
+@inline function philox4x_round(ctr1::T, ctr2::T, ctr3::T, ctr4::T, key1::T, key2::T) where
+        T <: Union{UInt32, UInt64}
     hi1, lo1 = philox_mulhilo(PHILOX_M4x_0(T), ctr1)
     hi2, lo2 = philox_mulhilo(PHILOX_M4x_1(T), ctr3)
     hi2 ⊻ ctr2 ⊻ key1, lo2, hi1 ⊻ ctr4 ⊻ key2, lo1
 end
 
-@inline function philox4x_bumpkey{T<:Union{UInt32, UInt64}}(key1::T, key2::T)
+@inline function philox4x_bumpkey(key1::T, key2::T) where T <: Union{UInt32, UInt64}
     key1 + PHILOX_W_0(T), key2 + PHILOX_W_1(T)
 end
 
-@inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Philox4x{T, R})
+@inline function random123_r(r::Philox4x{T, R}) where {T <: Union{UInt32, UInt64}, R}
     ctr1, ctr2, ctr3, ctr4 = r.ctr1, r.ctr2, r.ctr3, r.ctr4
     key1, key2 = r.key1, r.key2
     if R > 0

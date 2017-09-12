@@ -18,11 +18,11 @@ julia> RandomNumbers.gen_seed(UInt32)
 0x9ba60fdc
 ```
 """
-gen_seed{T<:Number}(::Type{T}) = rand(RandomDevice(), T)
-gen_seed{T<:Number}(::Type{T}, n) = tuple(rand(RandomDevice(), T, n)...)
+gen_seed(::Type{T}) where T <: Number = rand(RandomDevice(), T)
+gen_seed(::Type{T}, n) where T <: Number = tuple(rand(RandomDevice(), T, n)...)
 
 "Get the original output type of a RNG."
-@inline output_type{T}(::AbstractRNG{T}) = T
+@inline output_type(::AbstractRNG{T}) where T = T
 
 "Get the default seed type of a RNG."
 @inline seed_type(r::AbstractRNG) = seed_type(typeof(r))
@@ -33,7 +33,7 @@ gen_seed{T<:Number}(::Type{T}, n) = tuple(rand(RandomDevice(), T, n)...)
 @inline union_uint(x::NTuple{2, UInt64}) = unsafe_load(Ptr{UInt128}(pointer_from_objref(x)), 1)
 @inline union_uint(x::NTuple{4, UInt32}) = unsafe_load(Ptr{UInt128}(pointer_from_objref(x)), 1)
 
-@inline function unsafe_copy!{R, T}(r1::R, r2::R, ::Type{T}, len)
+@inline function unsafe_copy!(r1::R, r2::R, ::Type{T}, len) where {R, T}
     arr1 = Ptr{T}(pointer_from_objref(r1))
     arr2 = Ptr{T}(pointer_from_objref(r2))
     for i = 1:len
@@ -42,7 +42,7 @@ gen_seed{T<:Number}(::Type{T}, n) = tuple(rand(RandomDevice(), T, n)...)
     r1
 end
 
-@inline function unsafe_compare{R, T}(r1::R, r2::R, ::Type{T}, len)
+@inline function unsafe_compare(r1::R, r2::R, ::Type{T}, len) where {R, T}
     arr1 = Ptr{T}(pointer_from_objref(r1))
     arr2 = Ptr{T}(pointer_from_objref(r2))
     all(unsafe_load(arr1, i) == unsafe_load(arr2, i) for i in 1:len)

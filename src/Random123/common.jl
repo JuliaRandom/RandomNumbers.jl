@@ -22,26 +22,26 @@ abstract type R123Generator2x{T} <: AbstractR123{T} end
 abstract type R123Generator4x{T} <: AbstractR123{T} end
 
 "Set the counter of a Random123 RNG."
-@inline function set_counter!{T<:UInt128}(r::R123Generator1x{T}, ctr::Integer)
+@inline function set_counter!(r::R123Generator1x{T}, ctr::Integer) where T <: UInt128
     r.ctr = ctr % T
     random123_r(r)
     r
 end
 
-@inline function set_counter!{T<:Union{UInt32, UInt64}}(r::AbstractR123{T}, ctr::Integer)
+@inline function set_counter!(r::AbstractR123{T}, ctr::Integer) where T <: Union{UInt32, UInt64}
     r.p = 0
     r.ctr1 = ctr % T
     random123_r(r)
     r
 end
 
-@inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{T})
+@inline function rand(r::R123Generator1x{T}, ::Type{T}) where T <: UInt128
     r.ctr += 1
     random123_r(r)
     r.x
 end
 
-@inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator2x{T}, ::Type{T})
+@inline function rand(r::R123Generator2x{T}, ::Type{T}) where T <: Union{UInt32, UInt64}
     if r.p == 1
         r.ctr1 += 1
         random123_r(r)
@@ -52,7 +52,7 @@ end
     r.x1
 end
 
-@inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator4x{T}, ::Type{T})
+@inline function rand(r::R123Generator4x{T}, ::Type{T}) where T <: Union{UInt32, UInt64}
     if r.p == 4
         r.ctr1 += 1
         random123_r(r)
@@ -62,12 +62,12 @@ end
     unsafe_load(Ptr{T}(pointer_from_objref(r)), r.p)
 end
 
-@inline function rand{T<:UInt128}(r::R123Generator1x{T}, ::Type{R123Array1x{T}})
+@inline function rand(r::R123Generator1x{T}, ::Type{R123Array1x{T}}) where T <: UInt128
     r.ctr += 1
     random123_r(r)
 end
 
-@inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator2x{T}, ::Type{R123Array2x{T}})
+@inline function rand(r::R123Generator2x{T}, ::Type{R123Array2x{T}}) where T <: Union{UInt32, UInt64}
     if r.p > 0
         r.ctr1 += 1
     end
@@ -76,7 +76,7 @@ end
     ret
 end
 
-@inline function rand{T<:Union{UInt32, UInt64}}(r::R123Generator4x{T}, ::Type{R123Array4x{T}})
+@inline function rand(r::R123Generator4x{T}, ::Type{R123Array4x{T}}) where T <: Union{UInt32, UInt64}
     if r.p > 0
         r.ctr1 += 1
     end

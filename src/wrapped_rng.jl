@@ -37,10 +37,11 @@ mutable struct WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} <: Abstrac
     base_rng::R
     x::T1
     p::Int
-    WrappedRNG{R, T1, T2}() where {R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} = (@assert T1 ≠ T2; new())
+    WrappedRNG{R, T1, T2}() where {R <: AbstractRNG, T1 <: BitTypes, T2 <: BitTypes} = 
+        (@assert T1 ≠ T2; new())
 end
 
-function WrappedRNG{T1<:BitTypes, T2<:BitTypes}(base_rng::AbstractRNG{T1}, ::Type{T2})
+function WrappedRNG(base_rng::AbstractRNG{T1}, ::Type{T2}) where {T1 <: BitTypes, T2 <: BitTypes}
     wr = WrappedRNG{typeof(base_rng), T1, T2}()
     wr.base_rng = copy(base_rng)
     if sizeof(T1) > sizeof(T2)
@@ -50,24 +51,24 @@ function WrappedRNG{T1<:BitTypes, T2<:BitTypes}(base_rng::AbstractRNG{T1}, ::Typ
     wr
 end
 
-function WrappedRNG{R<:AbstractRNG, T2<:BitTypes}(::Type{R}, ::Type{T2}, args...)
+function WrappedRNG(::Type{R}, ::Type{T2}, args...) where {R <: AbstractRNG, T2 <: BitTypes}
     base_rng = R(args...)
     WrappedRNG(base_rng, T2)
 end
 
-WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes, T3<:BitTypes}(base_rng::WrappedRNG{R, T1, T2},
-                                                       ::Type{T3}) = WrappedRNG(base_rng.base_rng, T3)
+WrappedRNG(base_rng::WrappedRNG{R, T1, T2}, ::Type{T3}) where 
+    {R <: AbstractRNG, T1 <: BitTypes, T2 <: BitTypes, T3 <: BitTypes} = WrappedRNG(base_rng.base_rng, T3)
 
-seed_type{R, T1, T2}(::Type{WrappedRNG{R, T1, T2}}) = seed_type(R)
+seed_type(::Type{WrappedRNG{R, T1, T2}}) where {R, T1, T2} = seed_type(R)
 
-function copy!{R<:WrappedRNG}(dest::R, src::R)
+function copy!(dest::R, src::R) where R <: WrappedRNG
     copy!(dest.base_rng, src.base_rng)
     dest.x = src.x
     dest.p = src.p
     dest
 end
 
-function copy{R<:WrappedRNG}(src::R)
+function copy(src::R) where R <: WrappedRNG
     wr = R()
     wr.base_rng = copy(src.base_rng)
     wr.x = src.x
@@ -75,7 +76,7 @@ function copy{R<:WrappedRNG}(src::R)
     wr
 end
 
-=={R<:WrappedRNG}(r1::R, r2::R) = r1.base_rng == r2.base_rng && r1.x == r2.x && r1.p == r2.p
+==(r1::R, r2::R) where R <: WrappedRNG = r1.base_rng == r2.base_rng && r1.x == r2.x && r1.p == r2.p
 
 function srand(wr::WrappedRNG, seed...)
     srand(wr.base_rng, seed...)
@@ -86,7 +87,8 @@ function srand(wr::WrappedRNG, seed...)
     wr
 end
 
-@inline function rand{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes}(rng::WrappedRNG{R, T1, T2}, ::Type{T2})
+@inline function rand(rng::WrappedRNG{R, T1, T2}, ::Type{T2}) where
+        {R <: AbstractRNG, T1 <: BitTypes, T2 <: BitTypes}
     s1 = sizeof(T1)
     s2 = sizeof(T2)
     if s2 >= s1

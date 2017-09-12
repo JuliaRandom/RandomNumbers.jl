@@ -44,14 +44,14 @@ import RandomNumbers: AbstractRNG
 # Shift and Rotate functions
 
 # Rotate functions.
-@inline function pcg_rotr{T<:PCGUInt}(value::T, rot::T)
+@inline function pcg_rotr(value::T, rot::T) where T <: PCGUInt
     s = sizeof(T) << 3
     (value >> (rot % s)) | (value << (-rot % s))
 end
 
 
 "General advance functions."
-@inline function pcg_advance_lcg{T<:PCGUInt}(state::T, delta::T, cur_mult::T, cur_plus::T)
+@inline function pcg_advance_lcg(state::T, delta::T, cur_mult::T, cur_plus::T) where T <: PCGUInt
     acc_mult = 1 % T
     acc_plus = 0 % T
     while delta > 0
@@ -70,7 +70,7 @@ end
 # output_xsh_rs
 # Xorshift High, Random Shift.
 # return half bits of T.
-@inline function pcg_output{T<:Union{pcg_uints[2:end]...}}(state::T, ::Type{PCG_XSH_RS})
+@inline function pcg_output(state::T, ::Type{PCG_XSH_RS}) where T <: Union{pcg_uints[2:end]...}
     return_bits = sizeof(T) << 2
     bits = return_bits << 1
     spare_bits = bits - return_bits
@@ -89,7 +89,7 @@ end
 # output_xsh_rr
 # Xorshift High, Random Rotation.
 # return half bits of T.
-@inline function pcg_output{T<:Union{pcg_uints[2:end]...}}(state::T, ::Type{PCG_XSH_RR})
+@inline function pcg_output(state::T, ::Type{PCG_XSH_RR}) where T <: Union{pcg_uints[2:end]...}
     return_bits = sizeof(T) << 2
     bits = return_bits << 1
     spare_bits = bits - return_bits
@@ -109,7 +109,7 @@ end
 # Random Xorshift, Multiplication, Xorshift.
 # return the same bits as T.
 # Insecure.
-@inline function pcg_output{T<:PCGUInt}(state::T, ::Type{PCG_RXS_M_XS})
+@inline function pcg_output(state::T, ::Type{PCG_RXS_M_XS}) where T <: PCGUInt
     bits = return_bits = sizeof(T) << 3
     op_bits = return_bits >= 128 ? 6 :
               return_bits >=  64 ? 5 :
@@ -125,7 +125,7 @@ end
 # output_xsl_rr
 # Xorshift Low, Random Rotation.
 # return half bits of T.
-@inline function pcg_output{T<:Union{UInt64, UInt128}}(state::T, ::Type{PCG_XSL_RR})
+@inline function pcg_output(state::T, ::Type{PCG_XSL_RR}) where T <: Union{UInt64, UInt128}
     return_bits = sizeof(T) << 2
     bits = return_bits << 1
     spare_bits = bits - return_bits
@@ -143,7 +143,7 @@ end
 # Xorshift Low, Random Rotation, Random Rotation.
 # return the same bits as T.
 # Insecure.
-@inline function pcg_output{T<:Union{UInt64, UInt128}}(state::T, ::Type{PCG_XSL_RR_RR})
+@inline function pcg_output(state::T, ::Type{PCG_XSL_RR_RR}) where T <: Union{UInt64, UInt128}
     half_bits = sizeof(T) << 2
     bits = half_bits << 1
     spare_bits = bits - half_bits
@@ -183,7 +183,7 @@ mutable struct PCGStateOneseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputT
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand{T<:PCGUInt}(s::PCGStateOneseq{T}, init_state::T)
+@inline function pcg_srand(s::PCGStateOneseq{T}, init_state::T) where T <: PCGUInt
     s.state = 0 % T
     pcg_step!(s)
     s.state += init_state
@@ -193,13 +193,13 @@ end
 
 # pcg_oneseq_XX_step_r
 # XX is one of the UInt types.
-@inline function pcg_step!{T<:PCGUInt}(s::PCGStateOneseq{T})
+@inline function pcg_step!(s::PCGStateOneseq{T}) where T <: PCGUInt
     s.state = s.state * default_multiplier(T) + default_increment(T)
 end
 
 # pcg_oneseq_XX_advance_r
 # XX is one of the UInt types.
-@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateOneseq{T}, delta::T)
+@inline function pcg_advance!(s::PCGStateOneseq{T}, delta::T) where T <: PCGUInt
     s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), default_increment(T))
 end
 
@@ -212,20 +212,20 @@ mutable struct PCGStateMCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand{T<:PCGUInt}(s::PCGStateMCG{T}, init_state::T)
+@inline function pcg_srand(s::PCGStateMCG{T}, init_state::T) where T <: PCGUInt
     s.state = init_state | 1
     s
 end
 
 # pcg_mcg_XX_step_r
 # XX is one of the UInt types.
-@inline function pcg_step!{T<:PCGUInt}(s::PCGStateMCG{T})
+@inline function pcg_step!(s::PCGStateMCG{T}) where T <: PCGUInt
     s.state = s.state * default_multiplier(T)
 end
 
 # pcg_mcg_XX_advance_r
 # XX is one of the UInt types.
-@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateMCG{T}, delta::T)
+@inline function pcg_advance!(s::PCGStateMCG{T}, delta::T) where T <: PCGUInt
     s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), 0 % T)
 end
 
@@ -238,7 +238,7 @@ mutable struct PCGStateUnique{StateType<:PCGUInt, MethodType<:PCGMethod, OutputT
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand{T<:PCGUInt}(s::PCGStateUnique{T}, init_state::T)
+@inline function pcg_srand(s::PCGStateUnique{T}, init_state::T) where T <: PCGUInt
     s.state = 0 % T
     pcg_step!(s)
     s.state += init_state
@@ -248,13 +248,13 @@ end
 
 # pcg_unique_XX_step_r
 # XX is one of the UInt types.
-@inline function pcg_step!{T<:PCGUInt}(s::PCGStateUnique{T})
+@inline function pcg_step!(s::PCGStateUnique{T}) where T <: PCGUInt
     s.state = s.state * default_multiplier(T) + (UInt(pointer_from_objref(s)) | 1) % T
 end
 
 # pcg_unique_XX_advance_r
 # XX is one of the UInt types.
-@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateUnique{T}, delta::T)
+@inline function pcg_advance!(s::PCGStateUnique{T}, delta::T) where T <: PCGUInt
     s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T),
         (UInt(pointer_from_objref(s)) | 1) % T)
 end
@@ -269,7 +269,7 @@ mutable struct PCGStateSetseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputT
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand{T<:PCGUInt}(s::PCGStateSetseq{T}, init_state::T, init_seq::T)
+@inline function pcg_srand(s::PCGStateSetseq{T}, init_state::T, init_seq::T) where T <: PCGUInt
     s.state = 0
     s.inc = (init_seq << 1) | 1
     pcg_step!(s)
@@ -280,13 +280,13 @@ end
 
 # pcg_setseq_XX_step_r
 # XX is one of the UInt types.
-@inline function pcg_step!{T<:PCGUInt}(s::PCGStateSetseq{T})
+@inline function pcg_step!(s::PCGStateSetseq{T}) where T <: PCGUInt
     s.state = s.state * default_multiplier(T) + s.inc
 end
 
 # pcg_setseq_XX_advance_r
 # XX is one of the UInt types.
-@inline function pcg_advance!{T<:PCGUInt}(s::PCGStateSetseq{T}, delta::T)
+@inline function pcg_advance!(s::PCGStateSetseq{T}, delta::T) where T <: PCGUInt
     s.state = pcg_advance_lcg(s.state, delta, default_multiplier(T), s.inc)
 end
 

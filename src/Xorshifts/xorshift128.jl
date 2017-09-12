@@ -16,7 +16,7 @@ for (star, plus) in (
         (false, true),
         (true, false),
     )
-    rng_name = Symbol(string("Xorshift128", star ? "Star" : plus ? "Plus" :""))
+    rng_name = Symbol(string("Xorshift128", star ? "Star" : plus ? "Plus" : ""))
     @eval begin
         mutable struct $rng_name <: AbstractXorshift128
             x::UInt64
@@ -40,17 +40,17 @@ for (star, plus) in (
     end
 end
 
-@inline seed_type{T<:AbstractXorshift128}(::Type{T}) = NTuple{2, UInt64}
+@inline seed_type(::Type{T}) where T <: AbstractXorshift128 = NTuple{2, UInt64}
 
-function copy!{T<:AbstractXorshift128}(dest::T, src::T)
+function copy!(dest::T, src::T) where T <: AbstractXorshift128
     dest.x = src.x
     dest.y = src.y
     dest
 end
 
-copy{T<:AbstractXorshift128}(src::T) = copy!(T(), src)
+copy(src::T) where T <: AbstractXorshift128 = copy!(T(), src)
 
-=={T<:AbstractXorshift128}(r1::T, r2::T) = r1.x == r2.x && r1.y == r2.y
+==(r1::T, r2::T) where T <: AbstractXorshift128 = r1.x == r2.x && r1.y == r2.y
 
 srand(r::AbstractXorshift128, seed::Integer) = srand(r, split_uint(seed % UInt128))
 

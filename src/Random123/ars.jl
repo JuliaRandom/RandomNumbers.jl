@@ -36,7 +36,7 @@ function srand(r::ARS1x, seed::Integer=gen_seed(UInt128))
     r
 end
 
-@inline seed_type{R}(::Type{ARS1x{R}}) = UInt128
+@inline seed_type(::Type{ARS1x{R}}) where R = UInt128
 
 for R = 1:10
     @eval @inline function ars1xm128i(r, ::Type{Val{$R}}, ctr, key)
@@ -50,13 +50,13 @@ for R = 1:10
     end
 end
 
-copy!{R}(dest::ARS1x{R}, src::ARS1x{R}) = unsafe_copy!(dest, src, UInt128, 3)
+copy!(dest::ARS1x{R}, src::ARS1x{R}) where R = unsafe_copy!(dest, src, UInt128, 3)
 
-copy{R}(src::ARS1x{R}) = ARS1x{R}(src.x, src.key, src.ctr)
+copy(src::ARS1x{R}) where R = ARS1x{R}(src.x, src.key, src.ctr)
 
-=={R}(r1::ARS1x{R}, r2::ARS1x{R}) = unsafe_compare(r1, r2, UInt128, 3)
+==(r1::ARS1x{R}, r2::ARS1x{R}) where R = unsafe_compare(r1, r2, UInt128, 3)
 
-@inline function random123_r{R}(r::ARS1x{R})
+@inline function random123_r(r::ARS1x{R}) where R
     ars1xm128i(r, Val{R}, r.ctr, r.key)
     (r.x,)
 end
@@ -101,19 +101,19 @@ function srand(r::ARS4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
     r
 end
 
-@inline seed_type{R}(::Type{ARS4x{R}}) = NTuple{4, UInt32}
+@inline seed_type(::Type{ARS4x{R}}) where R = NTuple{4, UInt32}
 
-@inline function random123_r{R}(r::ARS4x{R})
+@inline function random123_r(r::ARS4x{R}) where R
     ars1xm128i(r, Val{R}, r.ctr1, r.key)
     (r.x1, r.x2, r.x3, r.x4)
 end
 
-function copy!{R}(dest::ARS4x{R}, src::ARS4x{R})
+function copy!(dest::ARS4x{R}, src::ARS4x{R}) where R
     unsafe_copy!(dest, src, UInt128, 3)
     dest.p = src.p
     dest
 end
 
-copy{R}(src::ARS4x{R}) = ARS4x{R}(src.x1, src.x2, src.x3, src.x4, src.key, src.ctr1, src.p)
+copy(src::ARS4x{R}) where R = ARS4x{R}(src.x1, src.x2, src.x3, src.x4, src.key, src.ctr1, src.p)
 
-=={R}(r1::ARS4x{R}, r2::ARS4x{R}) = unsafe_compare(r1, r2, UInt128, 3) && r1.p == r2.p
+==(r1::ARS4x{R}, r2::ARS4x{R}) where R = unsafe_compare(r1, r2, UInt128, 3) && r1.p == r2.p

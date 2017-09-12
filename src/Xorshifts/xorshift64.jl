@@ -34,16 +34,16 @@ for star in (false, true)
     end
 end
 
-@inline seed_type{T<:AbstractXorshift64}(::Type{T}) = UInt64
+@inline seed_type(::Type{T}) where T <: AbstractXorshift64 = UInt64
 
-function copy!{T<:AbstractXorshift64}(dest::T, src::T)
+function copy!(dest::T, src::T) where T <: AbstractXorshift64
     dest.x = src.x
     dest
 end
 
-copy{T<:AbstractXorshift64}(src::T) = copy!(T(), src)
+copy(src::T) where T <: AbstractXorshift64 = copy!(T(), src)
 
-=={T<:AbstractXorshift64}(r1::T, r2::T) = r1.x == r2.x
+==(r1::T, r2::T) where T <: AbstractXorshift64 = r1.x == r2.x
 
 function srand(r::AbstractXorshift64, seed::Integer=gen_seed(UInt64))
     r.x = seed % UInt64

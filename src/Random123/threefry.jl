@@ -86,15 +86,15 @@ mutable struct Threefry2x{T<:Union{UInt32, UInt64}, R} <: R123Generator2x{T}
     p::Int
 end
 
-function Threefry2x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64, seed::NTuple{2, Integer}=gen_seed(T, 2),
-                                              R::Integer=20)
+function Threefry2x(::Type{T}=UInt64, seed::NTuple{2, Integer}=gen_seed(T, 2), R::Integer=20) where
+        T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 32
     r = Threefry2x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 Threefry2x(seed::NTuple{2, Integer}, R::Integer=20) = Threefry2x(UInt64, seed, R)
 
-function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2))
+function srand(r::Threefry2x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = 0
     r.key1 = seed[1] % T
     r.key2 = seed[2] % T
@@ -103,20 +103,20 @@ function srand{T<:Union{UInt32, UInt64}}(r::Threefry2x{T}, seed::NTuple{2, Integ
     r
 end
 
-@inline seed_type{T, R}(::Type{Threefry2x{T, R}}) = NTuple{2, T}
+@inline seed_type(::Type{Threefry2x{T, R}}) where {T, R} = NTuple{2, T}
 
-function copy!{T, R}(dest::Threefry2x{T, R}, src::Threefry2x{T, R})
+function copy!(dest::Threefry2x{T, R}, src::Threefry2x{T, R}) where {T, R}
     unsafe_copy!(dest, src, T, 6)
     dest.p = src.p
     dest
 end
 
-copy{T, R}(src::Threefry2x{T, R}) = Threefry2x{T, R}(src.x1, src.x2, src.key1, src.key2, src.ctr1, src.ctr2,
-                                                     src.p)
+copy(src::Threefry2x{T, R}) where {T, R} = Threefry2x{T, R}(src.x1, src.x2, src.key1, src.key2,
+                                                            src.ctr1, src.ctr2, src.p)
 
-=={T, R}(r1::Threefry2x{T, R}, r2::Threefry2x{T, R}) = unsafe_compare(r1, r2, T, 6) && r1.p == r2.p
+==(r1::Threefry2x{T, R}, r2::Threefry2x{T, R}) where {T, R} = unsafe_compare(r1, r2, T, 6) && r1.p == r2.p
 
-@inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry2x{T, R})
+@inline function random123_r(r::Threefry2x{T, R}) where {T <: Union{UInt32, UInt64}, R}
     ks2 = SKEIN_KS_PARITY(T)
     ks0 = r.key1
     x0 = r.ctr1
@@ -227,16 +227,15 @@ mutable struct Threefry4x{T<:Union{UInt32, UInt64}, R} <: R123Generator4x{T}
     p::Int
 end
 
-function Threefry4x{T<:Union{UInt32, UInt64}}(::Type{T}=UInt64,
-                                              seed::NTuple{4, Integer}=gen_seed(T, 4), R::Integer=20)
+function Threefry4x(::Type{T}=UInt64, seed::NTuple{4, Integer}=gen_seed(T, 4), R::Integer=20) where
+        T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 72
     r = Threefry4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     srand(r, seed)
 end
 Threefry4x(seed::NTuple{4, Integer}, R::Integer=20) = Threefry4x(UInt64, seed, R)
 
-function srand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T},
-                                         seed::NTuple{4, Integer}=gen_seed(T, 4))
+function srand(r::Threefry4x{T}, seed::NTuple{4, Integer}=gen_seed(T, 4)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = r.x3 = r.x4 = 0
     r.key1, r.key2, r.key3, r.key4 = seed[1] % T, seed[2] % T, seed[3] % T, seed[4] % T
     r.ctr1 = r.ctr2 = r.ctr3 = r.ctr4 = 0
@@ -244,21 +243,21 @@ function srand{T<:Union{UInt32, UInt64}}(r::Threefry4x{T},
     r
 end
 
-@inline seed_type{T, R}(::Type{Threefry4x{T, R}}) = NTuple{4, T}
+@inline seed_type(::Type{Threefry4x{T, R}}) where {T, R} = NTuple{4, T}
 
-function copy!{T, R}(dest::Threefry4x{T, R}, src::Threefry4x{T, R})
+function copy!(dest::Threefry4x{T, R}, src::Threefry4x{T, R}) where {T, R}
     unsafe_copy!(dest, src, T, 12)
     dest.p = src.p
     dest
 end
 
-copy{T, R}(src::Threefry4x{T, R}) = Threefry4x{T, R}(src.x1, src.x2, src.x3, src.x4,
+copy(src::Threefry4x{T, R}) where {T, R} = Threefry4x{T, R}(src.x1, src.x2, src.x3, src.x4,
                                                      src.key1, src.key2, src.key3, src.key4,
                                                      src.ctr1, src.ctr2, src.ctr3, src.ctr4, src.p)
 
-=={T, R}(r1::Threefry4x{T, R}, r2::Threefry4x{T, R}) = unsafe_compare(r1, r2, T, 12) && r1.p == r2.p
+==(r1::Threefry4x{T, R}, r2::Threefry4x{T, R}) where {T, R} = unsafe_compare(r1, r2, T, 12) && r1.p == r2.p
 
-@inline function random123_r{T<:Union{UInt32, UInt64}, R}(r::Threefry4x{T, R})
+@inline function random123_r(r::Threefry4x{T, R}) where {T <: Union{UInt32, UInt64}, R}
     ks4 = SKEIN_KS_PARITY(T)
     ks0 = r.key1
     x0 = r.ctr1

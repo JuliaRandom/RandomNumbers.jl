@@ -4,41 +4,41 @@ import RandomNumbers: gen_seed, seed_type
 
 # Generic functions
 
-@inline srand{StateType<:PCGUInt}(r::AbstractPCG{StateType},
-    seed::Integer=gen_seed(StateType)) = pcg_srand(r, seed % StateType)
-@inline srand{StateType<:PCGUInt}(r::PCGStateSetseq{StateType},
-    seed::NTuple{2, Integer}=gen_seed(StateType, 2)) = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
+@inline srand(r::AbstractPCG{StateType}, seed::Integer=gen_seed(StateType)) where
+    StateType <: PCGUInt = pcg_srand(r, seed % StateType)
+@inline srand(r::PCGStateSetseq{StateType}, seed::NTuple{2, Integer}=gen_seed(StateType, 2)) where
+    StateType <: PCGUInt = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
 
-@inline seed_type{T, T1, T2}(::Type{PCGStateOneseq{T, T1, T2}}) = T
-@inline seed_type{T, T1, T2}(::Type{PCGStateMCG{T,    T1, T2}}) = T
-@inline seed_type{T, T1, T2}(::Type{PCGStateUnique{T, T1, T2}}) = T
-@inline seed_type{T, T1, T2}(::Type{PCGStateSetseq{T, T1, T2}}) = NTuple{2, T}
+@inline seed_type(::Type{PCGStateOneseq{T, T1, T2}}) where {T, T1, T2} = T
+@inline seed_type(::Type{PCGStateMCG{   T, T1, T2}}) where {T, T1, T2} = T
+@inline seed_type(::Type{PCGStateUnique{T, T1, T2}}) where {T, T1, T2} = T
+@inline seed_type(::Type{PCGStateSetseq{T, T1, T2}}) where {T, T1, T2} = NTuple{2, T}
 
-function copy!{T<:AbstractPCG}(dest::T, src::T)
+function copy!(dest::T, src::T) where T <: AbstractPCG
     dest.state = src.state
     dest
 end
-function copy!{T<:PCGStateSetseq}(dest::T, src::T)
+function copy!(dest::T, src::T) where T <: PCGStateSetseq
     dest.state = src.state
     dest.inc = src.inc
     dest
 end
 
-copy{T<:AbstractPCG}(src::T) = copy!(T(), src)
+copy(src::T) where T <: AbstractPCG = copy!(T(), src)
 
-=={T<:AbstractPCG}(r1::T, r2::T) = r1.state == r2.state
-=={T<:PCGStateSetseq}(r1::T, r2::T) = r1.state == r2.state && r1.inc == r2.inc
+==(r1::T, r2::T) where T <: AbstractPCG = r1.state == r2.state
+==(r1::T, r2::T) where T <: PCGStateSetseq = r1.state == r2.state && r1.inc == r2.inc
 
 
-@inline function rand{StateType<:Union{pcg_uints[1:end-1]...}, MethodType<:PCGMethod, OutputType<:PCGUInt}(
-        r::AbstractPCG{StateType, MethodType, OutputType}, ::Type{OutputType})
+@inline function rand(r::AbstractPCG{StateType, MethodType, OutputType}, ::Type{OutputType}) where
+        {StateType <: Union{pcg_uints[1:end-1]...}, MethodType <: PCGMethod, OutputType <: PCGUInt}
     old_state = r.state
     pcg_step!(r)
     pcg_output(old_state, MethodType)
 end
 
-@inline function rand{MethodType<:PCGMethod, OutputType<:PCGUInt}(
-        r::AbstractPCG{UInt128, MethodType, OutputType}, ::Type{OutputType})
+@inline function rand(r::AbstractPCG{UInt128, MethodType, OutputType}, ::Type{OutputType}) where
+        {MethodType <: PCGMethod, OutputType <: PCGUInt}
     pcg_step!(r)
     pcg_output(r.state, MethodType)
 end
@@ -50,8 +50,8 @@ bounded_rand(r, bound)
 
 Producing a random number less than a given `bound` in the output type.
 """
-@inline function bounded_rand{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt}(
-        s::AbstractPCG{StateType, MethodType, OutputType}, bound::OutputType)
+@inline function bounded_rand(s::AbstractPCG{StateType, MethodType, OutputType}, bound::OutputType) where
+        {StateType <: PCGUInt, MethodType <: PCGMethod, OutputType <: PCGUInt}
     threshold = (-bound) % bound
     r = rand(s, OutputType)
     while r < threshold
@@ -93,7 +93,7 @@ Test Passed
    Evaluated: 0.3950038072091506 == 0.3950038072091506
 ```
 """
-@inline function advance!{StateType<:PCGUInt}(r::AbstractPCG{StateType}, Δ::Integer)
+@inline function advance!(r::AbstractPCG{StateType}, Δ::Integer) where StateType <: PCGUInt
     pcg_advance!(r, Δ % StateType)
     r
 end
@@ -142,10 +142,10 @@ somewhere in same sequence.
 See [`PCG_LIST`](@ref) for the available parameter combinations.
 """
 PCGStateOneseq(seed::Integer=gen_seed(UInt128)) = PCGStateOneseq(UInt64, PCG_XSH_RS, seed)
-PCGStateOneseq{T<:PCGUInt}(::Type{T}, seed::Integer=gen_seed(UInt128)) = PCGStateOneseq(
-    T, PCG_XSH_RS, seed)
-PCGStateOneseq{T<:PCGMethod}(::Type{T}, seed::Integer=gen_seed(UInt128)) = PCGStateOneseq(
-    UInt64, T, seed)
+PCGStateOneseq(::Type{T}, seed::Integer=gen_seed(UInt128)) where
+    T <: PCGUInt = PCGStateOneseq(T, PCG_XSH_RS, seed)
+PCGStateOneseq(::Type{T}, seed::Integer=gen_seed(UInt128)) where
+    T <: PCGMethod = PCGStateOneseq(UInt64, T, seed)
 
 """
 ```julia
@@ -168,10 +168,10 @@ PCG generator with *MCG*, where the increment is zero, resulting in a single str
 See [`PCG_LIST`](@ref) for the available parameter combinations.
 """
 PCGStateMCG(seed::Integer=gen_seed(UInt128)) = PCGStateMCG(UInt64, PCG_XSH_RS, seed)
-PCGStateMCG{T<:PCGUInt}(::Type{T}, seed::Integer=gen_seed(UInt128)) = PCGStateMCG(
-    T, PCG_XSH_RS, seed)
-PCGStateMCG{T<:PCGMethod}(::Type{T}, seed::Integer=gen_seed(UInt128)) = PCGStateMCG(
-    UInt64, T, seed)
+PCGStateMCG(::Type{T}, seed::Integer=gen_seed(UInt128)) where
+    T <: PCGUInt = PCGStateMCG(T, PCG_XSH_RS, seed)
+PCGStateMCG(::Type{T}, seed::Integer=gen_seed(UInt128)) where
+    T <: PCGMethod = PCGStateMCG(UInt64, T, seed)
 
 """
 ```julia
@@ -195,10 +195,10 @@ random sequence.
 See [`PCG_LIST`](@ref) for the available parameter combinations.
 """
 PCGStateSetseq(seed::NTuple{2, Integer}=gen_seed(UInt128, 2)) = PCGStateSetseq(UInt64, PCG_XSH_RS, seed)
-PCGStateSetseq{T<:PCGUInt}(::Type{T}, seed::NTuple{2, Integer}=gen_seed(UInt128, 2)) = PCGStateSetseq(
-    T, PCG_XSH_RS, seed)
-PCGStateSetseq{T<:PCGMethod}(::Type{T}, seed::NTuple{2, Integer}=gen_seed(UInt128, 2)) = PCGStateSetseq(
-    UInt64, T, seed)
+PCGStateSetseq(::Type{T}, seed::NTuple{2, Integer}=gen_seed(UInt128, 2)) where
+    T <: PCGUInt = PCGStateSetseq(T, PCG_XSH_RS, seed)
+PCGStateSetseq(::Type{T}, seed::NTuple{2, Integer}=gen_seed(UInt128, 2)) where
+    T <: PCGMethod = PCGStateSetseq(UInt64, T, seed)
 
 """
 ```julia
@@ -222,7 +222,7 @@ every RNG has its own unique sequence.
 See [`PCG_LIST`](@ref) for the available parameter combinations.
 """
 PCGStateUnique(seed::Integer=gen_seed(UInt128)) = PCGStateUnique(UInt64, PCG_XSH_RS, seed)
-PCGStateUnique{T<:PCGUInt}(::Type{T}, seed::Integer=gen_seed(UInt128)) = PCGStateUnique(
-    T, PCG_XSH_RS, seed)
-PCGStateUnique{T<:PCGMethod}(::Type{T}, seed::Integer=gen_seed(UInt128)) = PCGStateUnique(
-    UInt64, T, seed)
+PCGStateUnique(::Type{T}, seed::Integer=gen_seed(UInt128)) where
+    T <: PCGUInt = PCGStateUnique(T, PCG_XSH_RS, seed)
+PCGStateUnique(::Type{T}, seed::Integer=gen_seed(UInt128)) where
+    T <: PCGMethod = PCGStateUnique(UInt64, T, seed)
