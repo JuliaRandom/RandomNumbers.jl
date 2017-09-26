@@ -9,7 +9,7 @@ end
 
 **[Random123](https://www.deshawresearch.com/resources_random123.html)** is a library of "counter-based"
 random number generators (CBRNGs), developed by D.E.Shaw Research[^1]. *Counter-based* means the RNGs in this
-family can produce the ``\mathrm{N}^{th}`` number by applying a stateless mixing function to the *counter*
+family can produce the ``\mathrm{N}^\textrm{th}`` number by applying a stateless mixing function to the *counter*
 ``\mathrm{N}``, instead of the conventional approach of using ``\mathrm{N}`` iterations of a stateful
 transformation. There are four kinds of RNGs in Random123: [Threefry](@ref), [Philox](@ref), [AESNI](@ref),
 [ARS](@ref).
