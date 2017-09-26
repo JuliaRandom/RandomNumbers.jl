@@ -57,7 +57,7 @@ RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573
 julia> PCGStateUnique(PCG_RXS_M_XS, 1234567);  # unique stream PCG, specifying the method and seed.
 
 julia> PCGStateSetseq(UInt32, PCG_XSH_RR, (1234567, 7654321))
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85,0x0000000000e99763)
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85, 0x0000000000e99763)
 ```
 
 [`bounded_rand`](@ref) is provided by this module, in which the bound is must an integer in the output type:

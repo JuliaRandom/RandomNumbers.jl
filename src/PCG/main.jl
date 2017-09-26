@@ -70,27 +70,23 @@ Advance a PCG object `r` for `Δ` steps.
 # Examples
 ```jldoctest
 julia> r = PCGStateSetseq(UInt64, PCG_RXS_M_XS, (123, 321))
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29, 0x0000000000000283)
 
 julia> A = rand(r, UInt64, 2);
 
 julia> p = rand(r);
 
 julia> r
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702,0x0000000000000283)
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702, 0x0000000000000283)
 
 julia> advance!(r, -3)
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29, 0x0000000000000283)
 
 julia> @Test.test A == rand(r, UInt64, 2)
 Test Passed
-  Expression: A == rand(r,UInt64,2)
-   Evaluated: UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f] == UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f]
 
 julia> @Test.test p == rand(r)
 Test Passed
-  Expression: p == rand(r)
-   Evaluated: 0.3950038072091506 == 0.3950038072091506
 ```
 """
 @inline function advance!(r::AbstractPCG{StateType}, Δ::Integer) where StateType <: PCGUInt

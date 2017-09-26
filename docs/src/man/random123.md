@@ -81,7 +81,7 @@ julia> r = Philox4x((0x12345678abcdef01, 0x10fedcba87654321));  # specify the se
 julia> r = Philox4x(UInt64, (0x12345678abcdef01, 0x10fedcba87654321));  # specify both the output type and seed.
 
 julia> rand(r, NTuple{4, UInt64})
-(0x00d626ee85b7d2ed,0xa57b4af2b68c655e,0x82dad737de789de2,0x8d390e05845e6c4d)
+(0x00d626ee85b7d2ed, 0xa57b4af2b68c655e, 0x82dad737de789de2, 0x8d390e05845e6c4d)
 
 julia> set_counter!(r, 123);  # update the counter manually.
 
@@ -95,7 +95,7 @@ julia> rand(r, UInt64, 4)
 julia> set_counter!(r, 0);
 
 julia> rand(r, NTuple{4, UInt64})
-(0x00d626ee85b7d2ed,0xa57b4af2b68c655e,0x82dad737de789de2,0x8d390e05845e6c4d)
+(0x00d626ee85b7d2ed, 0xa57b4af2b68c655e, 0x82dad737de789de2, 0x8d390e05845e6c4d)
 ```
 
 [^1]:

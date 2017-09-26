@@ -29,8 +29,6 @@ UInt32
 
 julia> @Test.test rand(r1, UInt32, 3) == rand(r2, UInt32, 3)
 Test Passed
-  Expression: rand(r1,UInt32,3) == rand(r2,UInt32,3)
-   Evaluated: UInt32[0x18a21796,0x20241598,0x63c65407] == UInt32[0x18a21796,0x20241598,0x63c65407]
 ```
 """
 mutable struct WrappedRNG{R<:AbstractRNG, T1<:BitTypes, T2<:BitTypes} <: AbstractRNG{T2}

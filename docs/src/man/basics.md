@@ -75,7 +75,7 @@ The constructors of all the types of RNG are designed to take the same kind of p
 julia> using RandomNumbers.Xorshifts
 
 julia> r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed "123"
-RandomNumbers.Xorshifts.Xorshift128Star(0x000000003a300074,0x000000003a30004e)
+RandomNumbers.Xorshifts.Xorshift128Star(0x000000003a300074, 0x000000003a30004e)
 
 julia> r2 = Xorshift128Star();  # Use a random value to be the seed.
 

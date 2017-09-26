@@ -43,7 +43,7 @@ julia> using RandomNumbers.Xorshifts
 julia> r = Xoroshiro128Plus();  # create a RNG with truly random seed.
 
 julia> r = Xoroshiro128Plus(0x1234567890abcdef)  # with a certain seed.
-RandomNumbers.Xorshifts.Xoroshiro128Plus(0x13c5b80b0f92f3ac,0xcdd3f80fa9fb6887)
+RandomNumbers.Xorshifts.Xoroshiro128Plus(0x13c5b80b0f92f3ac, 0xcdd3f80fa9fb6887)
 
 julia> rand(r)
 0.6054942367825447
