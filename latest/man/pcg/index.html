@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Random number generators for Julia language.">
       
@@ -15,7 +16,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.1, mkdocs-material-1.2.0">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
     
     
       
@@ -23,12 +24,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-e17eeafcbc.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-892b79c5c5.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -64,14 +65,15 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <header class="md-header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <a href="../.." title="RandomNumbers.jl" class="md-icon md-icon--home md-header-nav__button">
-          </a>
-        
+        <a href="../.." title="RandomNumbers.jl" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
@@ -94,25 +96,31 @@
         
           <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
-<div class="md-search" data-md-component="search">
-  <div class="md-search__overlay"></div>
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
       <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
 </div>
         
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <div class="md-header-nav__source">
-          
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
             
 
 
@@ -132,9 +140,9 @@
     </div>
   </a>
 
-          
+          </div>
         </div>
-      </div>
+      
     </div>
   </nav>
 </header>
@@ -151,9 +159,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    
-      <i class="md-icon md-icon--home md-nav__button"></i>
-    
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
     RandomNumbers.jl
   </label>
   
@@ -220,8 +230,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../bases/" title="Bases" class="md-nav__link">
-      Bases
+    <a href="../basics/" title="Basics" class="md-nav__link">
+      Basics
     </a>
   </li>
 
@@ -290,6 +300,8 @@
   </a>
   
 </li>
+      
+      
       
     </ul>
   
@@ -464,6 +476,8 @@
   
 </li>
       
+      
+      
     </ul>
   
 </nav>
@@ -474,10 +488,10 @@
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
-               
-                 <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/man/pcg.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
-               
               
+                
+                  <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/man/pcg.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
                 
                 <p><a id='PCG-Family-1'></a></p>
 <h1 id="pcg-family">PCG Family</h1>
@@ -503,51 +517,51 @@
 <p><a id='Interface-and-Examples-1'></a></p>
 <h2 id="interface-and-examples">Interface and Examples</h2>
 <p>An instance of PCG generator can be created by specify the state type, the output type, the method and seed. When seed is missing it is set to truly random numbers. The default output type is <code>UInt64</code>, and the default method is <code>PCG_XSH_RS</code>. The seed will be converted to the internal state type (a kind of unsigned integer), and for PCGs with specific stream (<code>PCGStateSetseq</code>) the seed should be a <code>Tuple</code> of two <code>Integer</code>s. Note that not all parameter combinations are available (see <a href="../../lib/pcg/#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a>). For example:</p>
-<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="k">using</span> <span class="n">RandomNumbers</span><span class="o">.</span><span class="n">PCG</span>
+<div class="codehilite"><pre><span></span>julia&gt; using RandomNumbers.PCG
 
-<span class="gp">julia&gt;</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="kt">UInt64</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">)</span>  <span class="c"># create a single stream PCG, specifying the output type and seed.</span>
-<span class="go">RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)</span>
+julia&gt; PCGStateOneseq(UInt64, 1234567)  # create a single stream PCG, specifying the output type and seed.
+RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
 
-<span class="gp">julia&gt;</span> <span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">PCG_RXS_M_XS</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">);</span>  <span class="c"># unique stream PCG, specifying the method and seed.</span>
+julia&gt; PCGStateUnique(PCG_RXS_M_XS, 1234567);  # unique stream PCG, specifying the method and seed.
 
-<span class="gp">julia&gt;</span> <span class="n">PCGStateSetseq</span><span class="p">(</span><span class="kt">UInt32</span><span class="p">,</span> <span class="n">PCG_XSH_RR</span><span class="p">,</span> <span class="p">(</span><span class="mi">1234567</span><span class="p">,</span> <span class="mi">7654321</span><span class="p">))</span>
-<span class="go">RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85,0x0000000000e99763)</span>
+julia&gt; PCGStateSetseq(UInt32, PCG_XSH_RR, (1234567, 7654321))
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85,0x0000000000e99763)
 </pre></div>
 
 
-<p><a href="../../lib/pcg/#RandomNumbers.PCG.bounded_rand-Tuple{RandomNumbers.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
-<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="mi">1234567</span><span class="p">)</span>
-<span class="go">RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)</span>
+<p><a href="../../lib/pcg/#RandomNumbers.PCG.bounded_rand-Union{Tuple{MethodType}, Tuple{OutputType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType},OutputType}, Tuple{StateType}} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
+<div class="codehilite"><pre><span></span>julia&gt; r = PCGStateOneseq(1234567)
+RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
 
-<span class="gp">julia&gt;</span> <span class="p">[</span><span class="n">bounded_rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">]</span>
-<span class="go">6-element Array{UInt64,1}:</span>
-<span class="go"> 0x0000000000000012</span>
-<span class="go"> 0x000000000000000a</span>
-<span class="go"> 0x000000000000002e</span>
-<span class="go"> 0x0000000000000049</span>
-<span class="go"> 0x0000000000000043</span>
-<span class="go"> 0x000000000000002b</span>
+julia&gt; [bounded_rand(r, UInt64(100)) for i in 1:6]
+6-element Array{UInt64,1}:
+ 0x0000000000000012
+ 0x000000000000000a
+ 0x000000000000002e
+ 0x0000000000000049
+ 0x0000000000000043
+ 0x000000000000002b
 </pre></div>
 
 
-<p>PCG also has an <a href="../../lib/pcg/#RandomNumbers.PCG.advance!-Tuple{RandomNumbers.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}"><code>advance!</code></a> function, used to advance the state of a PCG instance.</p>
-<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">srand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">);</span>
+<p>PCG also has an <a href="../../lib/pcg/#RandomNumbers.PCG.advance!-Union{Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}},Integer}, Tuple{StateType}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>advance!</code></a> function, used to advance the state of a PCG instance.</p>
+<div class="codehilite"><pre><span></span>julia&gt; srand(r, 1234567);
 
-<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="go">4-element Array{Float64,1}:</span>
-<span class="go"> 0.571626 </span>
-<span class="go"> 0.994506 </span>
-<span class="go"> 0.888622 </span>
-<span class="go"> 0.0876384</span>
+julia&gt; rand(r, 4)
+4-element Array{Float64,1}:
+ 0.571626 
+ 0.994506 
+ 0.888622 
+ 0.0876384
 
-<span class="gp">julia&gt;</span> <span class="n">advance!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+julia&gt; advance!(r, -4);
 
-<span class="gp">julia&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="go">4-element Array{Float64,1}:</span>
-<span class="go"> 0.571626 </span>
-<span class="go"> 0.994506 </span>
-<span class="go"> 0.888622 </span>
-<span class="go"> 0.0876384</span>
+julia&gt; rand(r, 4)
+4-element Array{Float64,1}:
+ 0.571626 
+ 0.994506 
+ 0.888622 
+ 0.0876384
 </pre></div>
 
 
@@ -559,7 +573,12 @@
 </li>
 </ol>
 </div>
+                
+                  
+                
               
+              
+                
               
             </article>
           </div>
@@ -623,7 +642,9 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-30ac6a1727.js"></script>
+      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      
+      
       <script>app.initialize({url:{base:"../.."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>

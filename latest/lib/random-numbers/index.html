@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Random number generators for Julia language.">
       
@@ -15,7 +16,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.1, mkdocs-material-1.2.0">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
     
     
       
@@ -23,12 +24,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-e17eeafcbc.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-892b79c5c5.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -64,14 +65,15 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <header class="md-header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <a href="../.." title="RandomNumbers.jl" class="md-icon md-icon--home md-header-nav__button">
-          </a>
-        
+        <a href="../.." title="RandomNumbers.jl" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
@@ -94,25 +96,31 @@
         
           <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
-<div class="md-search" data-md-component="search">
-  <div class="md-search__overlay"></div>
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
       <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
 </div>
         
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <div class="md-header-nav__source">
-          
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
             
 
 
@@ -132,9 +140,9 @@
     </div>
   </a>
 
-          
+          </div>
         </div>
-      </div>
+      
     </div>
   </nav>
 </header>
@@ -151,9 +159,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    
-      <i class="md-icon md-icon--home md-nav__button"></i>
-    
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
     RandomNumbers.jl
   </label>
   
@@ -218,8 +228,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../man/bases/" title="Bases" class="md-nav__link">
-      Bases
+    <a href="../../man/basics/" title="Basics" class="md-nav__link">
+      Basics
     </a>
   </li>
 
@@ -370,6 +380,8 @@
   
 </li>
       
+      
+      
     </ul>
   
 </nav>
@@ -478,6 +490,8 @@
   
 </li>
       
+      
+      
     </ul>
   
 </nav>
@@ -488,10 +502,10 @@
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
-               
-                 <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/lib/random-numbers.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
-               
               
+                
+                  <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/lib/random-numbers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
                 
                 <p><a id='RandomNumbers-1'></a></p>
 <h1 id="randomnumbers">RandomNumbers</h1>
@@ -511,65 +525,66 @@
 <li><a href="./#Base.Random.randsubseq"><code>Base.Random.randsubseq</code></a></li>
 <li><a href="./#Base.Random.shuffle"><code>Base.Random.shuffle</code></a></li>
 <li><a href="./#Base.Random.srand"><code>Base.Random.srand</code></a></li>
-<li><a href="./#RandomNumbers.gen_seed-Tuple{Type{T&lt;:Number}}"><code>RandomNumbers.gen_seed</code></a></li>
-<li><a href="./#RandomNumbers.output_type-Tuple{RandomNumbers.AbstractRNG{T}}"><code>RandomNumbers.output_type</code></a></li>
+<li><a href="./#RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T&lt;:Number"><code>RandomNumbers.gen_seed</code></a></li>
+<li><a href="./#RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T"><code>RandomNumbers.output_type</code></a></li>
 <li><a href="./#RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}"><code>RandomNumbers.seed_type</code></a></li>
 </ul>
 <p><a id='generic-functions-1'></a></p>
 <h2 id="generic-functions">Generic Functions</h2>
 <p><a id='Base.Random.rand' href='#Base.Random.rand'>#</a>
 <strong><code>Base.Random.rand</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>rand([rng], [S], [dims...])
+<div class="codehilite"><pre><span></span>rand([rng=GLOBAL_RNG], [S], [dims...])
 </pre></div>
 
 
 <p>Pick a random element or array of random elements from the set of values specified by <code>S</code>; <code>S</code> can be</p>
 <ul>
 <li>an indexable collection (for example <code>1:n</code> or <code>['x','y','z']</code>), or</li>
-<li>a type: the set of values to pick from is then equivalent to <code>typemin(S):typemax(S)</code> for integers (this is not applicable to <code>BigInt</code>), and to $[0, 1)$ for floating point numbers;</li>
+<li>a type: the set of values to pick from is then equivalent to <code>typemin(S):typemax(S)</code> for integers (this is not applicable to <a href="../@ref"><code>BigInt</code></a>), and to $[0, 1)$ for floating point numbers;</li>
 </ul>
-<p><code>S</code> defaults to <code>Float64</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L3050-L3060' class='documenter-source'>source</a><br></p>
+<p><code>S</code> defaults to <a href="../@ref"><code>Float64</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L265-L276' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.srand' href='#Base.Random.srand'>#</a>
 <strong><code>Base.Random.srand</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>srand([rng], [seed])
+<div class="codehilite"><pre><span></span>srand([rng=GLOBAL_RNG], [seed]) -&gt; rng
+srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 </pre></div>
 
 
-<p>Reseed the random number generator. If a <code>seed</code> is provided, the RNG will give a reproducible sequence of numbers, otherwise Julia will get entropy from the system. For <code>MersenneTwister</code>, the <code>seed</code> may be a non-negative integer, a vector of <code>UInt32</code> integers or a filename, in which case the seed is read from a file. <code>RandomDevice</code> does not support seeding.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L953-L961' class='documenter-source'>source</a><br></p>
+<p>Reseed the random number generator. If a <code>seed</code> is provided, the RNG will give a reproducible sequence of numbers, otherwise Julia will get entropy from the system. For <code>MersenneTwister</code>, the <code>seed</code> may be a non-negative integer, a vector of <a href="../@ref"><code>UInt32</code></a> integers or a filename, in which case the seed is read from a file (<code>4n</code> bytes are read from the file, where <code>n</code> is an optional argument). <code>RandomDevice</code> does not support seeding.</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L222-L231' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randn' href='#Base.Random.randn'>#</a>
 <strong><code>Base.Random.randn</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>randn([rng], [T=Float64], [dims...])
+<div class="codehilite"><pre><span></span>randn([rng=GLOBAL_RNG], [T=Float64], [dims...])
 </pre></div>
 
 
-<p>Generate a normally-distributed random number of type <code>T</code> with mean 0 and standard deviation 1. Optionally generate an array of normally-distributed random numbers. The <code>Base</code> module currently provides an implementation for the types <code>Float16</code>, <code>Float32</code>, and <code>Float64</code> (the default).</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/random.jl#L1120-L1127' class='documenter-source'>source</a><br></p>
+<p>Generate a normally-distributed random number of type <code>T</code> with mean 0 and standard deviation 1. Optionally generate an array of normally-distributed random numbers. The <code>Base</code> module currently provides an implementation for the types <a href="../@ref"><code>Float16</code></a>, <a href="../@ref"><code>Float32</code></a>, and <a href="../@ref"><code>Float64</code></a> (the default).</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1196-L1203' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randexp' href='#Base.Random.randexp'>#</a>
 <strong><code>Base.Random.randexp</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>randexp([rng], [T=Float64], [dims...])
+<div class="codehilite"><pre><span></span>randexp([rng=GLOBAL_RNG], [T=Float64], [dims...])
 </pre></div>
 
 
-<p>Generate a random number of type <code>T</code> according to the exponential distribution with scale 1. Optionally generate an array of such random numbers. The <code>Base</code> module currently provides an implementation for the types <code>Float16</code>, <code>Float32</code>, and <code>Float64</code> (the default).</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/random.jl#L1154-L1161' class='documenter-source'>source</a><br></p>
+<p>Generate a random number of type <code>T</code> according to the exponential distribution with scale 1. Optionally generate an array of such random numbers. The <code>Base</code> module currently provides an implementation for the types <a href="../@ref"><code>Float16</code></a>, <a href="../@ref"><code>Float32</code></a>, and <a href="../@ref"><code>Float64</code></a> (the default).</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1230-L1237' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.bitrand' href='#Base.Random.bitrand'>#</a>
 <strong><code>Base.Random.bitrand</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>bitrand([rng], [dims...])
+<div class="codehilite"><pre><span></span>bitrand([rng=GLOBAL_RNG], [dims...])
 </pre></div>
 
 
 <p>Generate a <code>BitArray</code> of random boolean values.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L5279-L5283' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L691-L695' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randstring' href='#Base.Random.randstring'>#</a>
 <strong><code>Base.Random.randstring</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randstring([rng,] len=8)
 </pre></div>
 
 
-<p>Create a random ASCII string of length <code>len</code>, consisting of upper- and lower-case letters and the digits 0-9. The optional <code>rng</code> argument specifies a random number generator, see <a href="../:ref:Random Numbers &lt;random-numbers&gt;">Random Numbers</a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L2295-L2301' class='documenter-source'>source</a><br></p>
+<p>Create a random ASCII string of length <code>len</code>, consisting of upper- and lower-case letters and the digits 0-9. The optional <code>rng</code> argument specifies a random number generator, see <a href="../@ref">Random Numbers</a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/docs/helpdb/Base.jl#L792-L798' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randsubseq' href='#Base.Random.randsubseq'>#</a>
 <strong><code>Base.Random.randsubseq</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randsubseq(A, p) -&gt; Vector
@@ -577,31 +592,31 @@
 
 
 <p>Return a vector consisting of a random subsequence of the given array <code>A</code>, where each element of <code>A</code> is included (in order) with independent probability <code>p</code>. (Complexity is linear in <code>p*length(A)</code>, so this function is efficient even if <code>p</code> is small and <code>A</code> is large.) Technically, this process is known as "Bernoulli sampling" of <code>A</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L5350-L5357' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1450-L1457' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.shuffle' href='#Base.Random.shuffle'>#</a>
 <strong><code>Base.Random.shuffle</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>shuffle([rng,] v)
+<div class="codehilite"><pre><span></span>shuffle([rng=GLOBAL_RNG,] v)
 </pre></div>
 
 
-<p>Return a randomly permuted copy of <code>v</code>. The optional <code>rng</code> argument specifies a random number generator (see <a href="../:ref:Random Numbers &lt;random-numbers&gt;">Random Numbers</a>). To permute <code>v</code> in-place, see <a href="../:func:shuffle!"><code>shuffle!</code></a>.  To obtain randomly permuted indices, see <a href="../:func:randperm"><code>randperm</code></a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L4291-L4298' class='documenter-source'>source</a><br></p>
+<p>Return a randomly permuted copy of <code>v</code>. The optional <code>rng</code> argument specifies a random number generator (see <a href="../@ref">Random Numbers</a>). To permute <code>v</code> in-place, see <a href="../@ref"><code>shuffle!</code></a>.  To obtain randomly permuted indices, see <a href="./#Base.Random.randperm"><code>randperm</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1490-L1497' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randperm' href='#Base.Random.randperm'>#</a>
 <strong><code>Base.Random.randperm</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>randperm([rng,] n)
+<div class="codehilite"><pre><span></span>randperm([rng=GLOBAL_RNG,] n::Integer)
 </pre></div>
 
 
-<p>Construct a random permutation of length <code>n</code>. The optional <code>rng</code> argument specifies a random number generator (see <a href="../:ref:Random Numbers &lt;random-numbers&gt;">Random Numbers</a>). To randomly permute a arbitrary vector, see <a href="../:func:shuffle"><code>shuffle</code></a> or <a href="../:func:shuffle!"><code>shuffle!</code></a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L7396-L7403' class='documenter-source'>source</a><br></p>
+<p>Construct a random permutation of length <code>n</code>. The optional <code>rng</code> argument specifies a random number generator (see <a href="../@ref">Random Numbers</a>). To randomly permute a arbitrary vector, see <a href="./#Base.Random.shuffle"><code>shuffle</code></a> or <a href="../@ref"><code>shuffle!</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1501-L1508' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randcycle' href='#Base.Random.randcycle'>#</a>
 <strong><code>Base.Random.randcycle</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span>randcycle([rng,] n)
+<div class="codehilite"><pre><span></span>randcycle([rng=GLOBAL_RNG,] n::Integer)
 </pre></div>
 
 
-<p>Construct a random cyclic permutation of length <code>n</code>. The optional <code>rng</code> argument specifies a random number generator, see <a href="../:ref:Random Numbers &lt;random-numbers&gt;">Random Numbers</a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/6445c82d0060dbe82b88436f0f4371a4ee64d918/base/docs/helpdb/Base.jl#L5286-L5291' class='documenter-source'>source</a><br></p>
+<p>Construct a random cyclic permutation of length <code>n</code>. The optional <code>rng</code> argument specifies a random number generator, see <a href="../@ref">Random Numbers</a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1529-L1534' class='documenter-source'>source</a><br></p>
 <p><a id='Public-1'></a></p>
 <h2 id="public">Public</h2>
 <p><a id='RandomNumbers' href='#RandomNumbers'>#</a>
@@ -616,7 +631,7 @@
 <li><a href="../random123/#RandomNumbers.Random123"><code>Random123</code></a>.</li>
 <li><a href="../xorshifts/#RandomNumbers.Xorshifts"><code>Xorshifts</code></a>.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.AbstractRNG' href='#RandomNumbers.AbstractRNG'>#</a>
 <strong><code>RandomNumbers.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="kt">AbstractRNG</span>
@@ -624,7 +639,7 @@
 
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.WrappedRNG' href='#RandomNumbers.WrappedRNG'>#</a>
 <strong><code>RandomNumbers.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">WrappedRNG</span><span class="p">{</span><span class="n">R</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T2</span><span class="p">}</span>
@@ -635,40 +650,40 @@
 
 <p>Wrap a RNG which originally provides output in T1 into a RNG that provides output in T2.</p>
 <p><strong>Examples</strong></p>
-<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xorshifts</span><span class="o">.</span><span class="n">Xorshift128Star</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span>julia&gt; r = Xorshifts.Xorshift128Star(123);
 
-<span class="gp">julia&gt;</span> <span class="n">RandomNumbers</span><span class="o">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-<span class="go">UInt64</span>
+julia&gt; RandomNumbers.output_type(r)
+UInt64
 
-<span class="gp">julia&gt;</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">WrappedRNG</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">UInt32</span><span class="p">);</span>
+julia&gt; r1 = WrappedRNG(r, UInt32);
 
-<span class="gp">julia&gt;</span> <span class="n">RandomNumbers</span><span class="o">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
-<span class="go">UInt32</span>
+julia&gt; RandomNumbers.output_type(r1)
+UInt32
 
-<span class="gp">julia&gt;</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">WrappedRNG</span><span class="p">(</span><span class="n">Xorshifts</span><span class="o">.</span><span class="n">Xorshift128Star</span><span class="p">,</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
+julia&gt; r2 = WrappedRNG(Xorshifts.Xorshift128Star, UInt32, 123);
 
-<span class="gp">julia&gt;</span> <span class="n">RandomNumbers</span><span class="o">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
-<span class="go">UInt32</span>
+julia&gt; RandomNumbers.output_type(r2)
+UInt32
 
-<span class="gp">julia&gt;</span> <span class="nd">@Test</span><span class="o">.</span><span class="n">test</span> <span class="n">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">rand</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="go">Test Passed</span>
-<span class="go">  Expression: rand(r1,UInt32,3) == rand(r2,UInt32,3)</span>
-<span class="go">   Evaluated: UInt32[0x18a21796,0x20241598,0x63c65407] == UInt32[0x18a21796,0x20241598,0x63c65407]</span>
+julia&gt; @Test.test rand(r1, UInt32, 3) == rand(r2, UInt32, 3)
+Test Passed
+  Expression: rand(r1,UInt32,3) == rand(r2,UInt32,3)
+   Evaluated: UInt32[0x18a21796,0x20241598,0x63c65407] == UInt32[0x18a21796,0x20241598,0x63c65407]
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/wrapped_rng.jl#L4-L35' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.output_type-Tuple{RandomNumbers.AbstractRNG{T}}' href='#RandomNumbers.output_type-Tuple{RandomNumbers.AbstractRNG{T}}'>#</a>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/wrapped_rng.jl#L4-L35' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T' href='#RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T'>#</a>
 <strong><code>RandomNumbers.output_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}' href='#RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}'>#</a>
 <strong><code>RandomNumbers.seed_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the default seed type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
-<p><a id='RandomNumbers.gen_seed-Tuple{Type{T<:Number}}' href='#RandomNumbers.gen_seed-Tuple{Type{T<:Number}}'>#</a>
+<p><a id='RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T<:Number' href='#RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T<:Number'>#</a>
 <strong><code>RandomNumbers.gen_seed</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">gen_seed</span><span class="p">(</span><span class="n">T</span><span class="p">[,</span> <span class="n">n</span><span class="p">])</span>
 </pre></div>
@@ -684,8 +699,13 @@
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
+                
+                  
+                
               
+              
+                
               
             </article>
           </div>
@@ -749,7 +769,9 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-30ac6a1727.js"></script>
+      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      
+      
       <script>app.initialize({url:{base:"../.."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>

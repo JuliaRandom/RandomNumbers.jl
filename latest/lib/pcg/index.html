@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Random number generators for Julia language.">
       
@@ -15,7 +16,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.1, mkdocs-material-1.2.0">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
     
     
       
@@ -23,12 +24,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-e17eeafcbc.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-892b79c5c5.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -64,14 +65,15 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <header class="md-header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <a href="../.." title="RandomNumbers.jl" class="md-icon md-icon--home md-header-nav__button">
-          </a>
-        
+        <a href="../.." title="RandomNumbers.jl" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
@@ -94,25 +96,31 @@
         
           <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
-<div class="md-search" data-md-component="search">
-  <div class="md-search__overlay"></div>
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
       <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
 </div>
         
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <div class="md-header-nav__source">
-          
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
             
 
 
@@ -132,9 +140,9 @@
     </div>
   </a>
 
-          
+          </div>
         </div>
-      </div>
+      
     </div>
   </nav>
 </header>
@@ -151,9 +159,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    
-      <i class="md-icon md-icon--home md-nav__button"></i>
-    
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
     RandomNumbers.jl
   </label>
   
@@ -218,8 +228,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../man/bases/" title="Bases" class="md-nav__link">
-      Bases
+    <a href="../../man/basics/" title="Basics" class="md-nav__link">
+      Basics
     </a>
   </li>
 
@@ -375,6 +385,8 @@
   
 </li>
       
+      
+      
     </ul>
   
 </nav>
@@ -464,6 +476,8 @@
   
 </li>
       
+      
+      
     </ul>
   
 </nav>
@@ -474,10 +488,10 @@
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
-               
-                 <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/lib/pcg.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
-               
               
+                
+                  <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/lib/pcg.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
                 
                 <p><a id='PCG-1'></a></p>
 <h1 id="pcg">PCG</h1>
@@ -497,14 +511,14 @@
 <li><a href="./#RandomNumbers.PCG.PCG_XSH_RS"><code>RandomNumbers.PCG.PCG_XSH_RS</code></a></li>
 <li><a href="./#RandomNumbers.PCG.PCG_XSL_RR"><code>RandomNumbers.PCG.PCG_XSL_RR</code></a></li>
 <li><a href="./#RandomNumbers.PCG.PCG_XSL_RR_RR"><code>RandomNumbers.PCG.PCG_XSL_RR_RR</code></a></li>
-<li><a href="./#RandomNumbers.PCG.advance!-Tuple{RandomNumbers.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}"><code>RandomNumbers.PCG.advance!</code></a></li>
-<li><a href="./#RandomNumbers.PCG.bounded_rand-Tuple{RandomNumbers.PCG.AbstractPCG{StateType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType&lt;:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}"><code>RandomNumbers.PCG.bounded_rand</code></a></li>
+<li><a href="./#RandomNumbers.PCG.advance!-Union{Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}},Integer}, Tuple{StateType}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>RandomNumbers.PCG.advance!</code></a></li>
+<li><a href="./#RandomNumbers.PCG.bounded_rand-Union{Tuple{MethodType}, Tuple{OutputType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType},OutputType}, Tuple{StateType}} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>RandomNumbers.PCG.bounded_rand</code></a></li>
 <li><a href="./#RandomNumbers.PCG.default_increment-Tuple{Type{UInt8}}"><code>RandomNumbers.PCG.default_increment</code></a></li>
 <li><a href="./#RandomNumbers.PCG.default_multiplier-Tuple{Type{UInt8}}"><code>RandomNumbers.PCG.default_multiplier</code></a></li>
 <li><a href="./#RandomNumbers.PCG.mcg_multiplier-Tuple{Type{UInt8}}"><code>RandomNumbers.PCG.mcg_multiplier</code></a></li>
 <li><a href="./#RandomNumbers.PCG.mcg_unmultiplier-Tuple{Type{UInt8}}"><code>RandomNumbers.PCG.mcg_unmultiplier</code></a></li>
 <li><a href="./#RandomNumbers.PCG.pcg_advance!"><code>RandomNumbers.PCG.pcg_advance!</code></a></li>
-<li><a href="./#RandomNumbers.PCG.pcg_advance_lcg-Tuple{T&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T&lt;:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}"><code>RandomNumbers.PCG.pcg_advance_lcg</code></a></li>
+<li><a href="./#RandomNumbers.PCG.pcg_advance_lcg-Union{NTuple{4,T}, Tuple{T}} where T&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>RandomNumbers.PCG.pcg_advance_lcg</code></a></li>
 <li><a href="./#RandomNumbers.PCG.pcg_output"><code>RandomNumbers.PCG.pcg_output</code></a></li>
 <li><a href="./#RandomNumbers.PCG.pcg_srand"><code>RandomNumbers.PCG.pcg_srand</code></a></li>
 <li><a href="./#RandomNumbers.PCG.pcg_step!"><code>RandomNumbers.PCG.pcg_step!</code></a></li>
@@ -514,11 +528,79 @@
 <p><a id='RandomNumbers.PCG' href='#RandomNumbers.PCG'>#</a>
 <strong><code>RandomNumbers.PCG</code></strong> &mdash; <em>Module</em>.</p>
 <p>The module for <a href="../../man/pcg/#PCG-Family-1">PCG Family</a>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L3' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L3' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCGMethod' href='#RandomNumbers.PCG.PCGMethod'>#</a>
 <strong><code>RandomNumbers.PCG.PCGMethod</code></strong> &mdash; <em>Constant</em>.</p>
 <p>The <code>Union</code> of all the PCG method types: <code>PCG_XSH_RS</code>, <code>PCG_XSH_RR</code>, <code>PCG_RXS_M_XS</code>, <code>PCG_XSL_RR</code>, and <code>PCG_XSL_RR_RR</code>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L53-L55' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L53-L55' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.PCGStateMCG' href='#RandomNumbers.PCG.PCGStateMCG'>#</a>
+<strong><code>RandomNumbers.PCG.PCGStateMCG</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateMCG</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateMCG</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>MCG</em>, where the increment is zero, resulting in a single stream and reduced period.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/main.jl#L150-L169' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.PCGStateOneseq' href='#RandomNumbers.PCG.PCGStateOneseq'>#</a>
+<strong><code>RandomNumbers.PCG.PCGStateOneseq</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateOneseq</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateOneseq</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>single streams</em>, where all instances use the same fixed constant, thus the RNG always somewhere in same sequence.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/main.jl#L123-L143' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.PCGStateSetseq' href='#RandomNumbers.PCG.PCGStateSetseq'>#</a>
+<strong><code>RandomNumbers.PCG.PCGStateSetseq</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateSetseq</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateSetseq</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>specific streams</em>, where the constant can be changed at any time, selecting a different random sequence.</p>
+<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/main.jl#L176-L196' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.PCGStateUnique' href='#RandomNumbers.PCG.PCGStateUnique'>#</a>
+<strong><code>RandomNumbers.PCG.PCGStateUnique</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">PCGStateUnique</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
+    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
+<span class="n">PCGStateUnique</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
+<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
+</pre></div>
+
+
+<p>PCG generator with <em>unique streams</em>, where the constant is based on the memory address of the object, thus every RNG has its own unique sequence.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
+<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
+<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
+<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/main.jl#L203-L223' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCG_LIST' href='#RandomNumbers.PCG.PCG_LIST'>#</a>
 <strong><code>RandomNumbers.PCG.PCG_LIST</code></strong> &mdash; <em>Constant</em>.</p>
 <p>The list of all the parameter combinations that can be used for PCG.</p>
@@ -894,101 +976,33 @@
 </tr>
 </tbody>
 </table>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/pcg_list.jl#L68-L133' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.PCGStateMCG' href='#RandomNumbers.PCG.PCGStateMCG'>#</a>
-<strong><code>RandomNumbers.PCG.PCGStateMCG</code></strong> &mdash; <em>Type</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">PCGStateMCG</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
-    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
-<span class="n">PCGStateMCG</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateMCG</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
-</pre></div>
-
-
-<p>PCG generator with <em>MCG</em>, where the increment is zero, resulting in a single stream and reduced period.</p>
-<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
-<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
-<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
-<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/main.jl#L150-L169' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.PCGStateOneseq' href='#RandomNumbers.PCG.PCGStateOneseq'>#</a>
-<strong><code>RandomNumbers.PCG.PCGStateOneseq</code></strong> &mdash; <em>Type</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">PCGStateOneseq</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
-    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
-<span class="n">PCGStateOneseq</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
-</pre></div>
-
-
-<p>PCG generator with <em>single streams</em>, where all instances use the same fixed constant, thus the RNG always somewhere in same sequence.</p>
-<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
-<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
-<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
-<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/main.jl#L123-L143' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.PCGStateSetseq' href='#RandomNumbers.PCG.PCGStateSetseq'>#</a>
-<strong><code>RandomNumbers.PCG.PCGStateSetseq</code></strong> &mdash; <em>Type</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">PCGStateSetseq</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
-    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
-<span class="n">PCGStateSetseq</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
-</pre></div>
-
-
-<p>PCG generator with <em>specific streams</em>, where the constant can be changed at any time, selecting a different random sequence.</p>
-<p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to the state type.</p>
-<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
-<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
-<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/main.jl#L176-L196' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.PCGStateUnique' href='#RandomNumbers.PCG.PCGStateUnique'>#</a>
-<strong><code>RandomNumbers.PCG.PCGStateUnique</code></strong> &mdash; <em>Type</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">PCGStateUnique</span><span class="p">{</span><span class="n">StateType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">,</span> <span class="n">MethodType</span><span class="o">&lt;:</span><span class="n">PCGMethod</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">&lt;:</span><span class="n">PCGUInt</span><span class="p">}</span> <span class="o">&lt;:</span>
-    <span class="n">AbstractPCG</span><span class="p">{</span><span class="n">StateType</span><span class="p">,</span> <span class="n">MethodType</span><span class="p">,</span> <span class="n">OutputType</span><span class="p">}</span>
-<span class="n">PCGStateUnique</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">method</span><span class="p">[,</span> <span class="n">seed</span><span class="p">])</span>
-<span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">output_type</span><span class="p">[,</span> <span class="n">method</span><span class="p">,</span> <span class="n">seed</span><span class="p">])</span>
-</pre></div>
-
-
-<p>PCG generator with <em>unique streams</em>, where the constant is based on the memory address of the object, thus every RNG has its own unique sequence.</p>
-<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to the state type.</p>
-<p><code>output_type</code> is the type of the PCG's output. If missing it is set to <code>UInt64</code>.</p>
-<p><code>method</code> is one of the <a href="./#RandomNumbers.PCG.PCGMethod"><code>PCGMethod</code></a>. If missing it is set to <code>PCG_XSH_RS</code>.</p>
-<p>See <a href="./#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a> for the available parameter combinations.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/main.jl#L203-L223' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/pcg_list.jl#L68-L133' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCG_RXS_M_XS' href='#RandomNumbers.PCG.PCG_RXS_M_XS'>#</a>
 <strong><code>RandomNumbers.PCG.PCG_RXS_M_XS</code></strong> &mdash; <em>Type</em>.</p>
 <p>One of PCG output method: random xorshift, mcg multiply, fixed xorshift.</p>
 <p>The most statistically powerful generator, but slower than some of the others.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L31-L35' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L31-L35' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCG_XSH_RR' href='#RandomNumbers.PCG.PCG_XSH_RR'>#</a>
 <strong><code>RandomNumbers.PCG.PCG_XSH_RR</code></strong> &mdash; <em>Type</em>.</p>
 <p>One of PCG output method: high xorshift, followed by a random rotate.</p>
 <p>Fast. Slightly better statistically than <code>PCG_XSH_RS</code>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L25-L29' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L25-L29' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCG_XSH_RS' href='#RandomNumbers.PCG.PCG_XSH_RS'>#</a>
 <strong><code>RandomNumbers.PCG.PCG_XSH_RS</code></strong> &mdash; <em>Type</em>.</p>
 <p>One of PCG output method: high xorshift, followed by a random shift.</p>
 <p>Fast.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L19-L23' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L19-L23' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCG_XSL_RR' href='#RandomNumbers.PCG.PCG_XSL_RR'>#</a>
 <strong><code>RandomNumbers.PCG.PCG_XSL_RR</code></strong> &mdash; <em>Type</em>.</p>
 <p>One of PCG output method: fixed xorshift (to low bits), random rotate.</p>
 <p>Useful for 128-bit types that are split across two CPU registers.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L37-L41' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L37-L41' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.PCG_XSL_RR_RR' href='#RandomNumbers.PCG.PCG_XSL_RR_RR'>#</a>
 <strong><code>RandomNumbers.PCG.PCG_XSL_RR_RR</code></strong> &mdash; <em>Type</em>.</p>
 <p>One of PCG output method: fixed xorshift (to low bits), random rotate (both parts).</p>
 <p>Useful for 128-bit types that are split across two CPU registers. Use this in need of an invertable 128-bit RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/PCG.jl#L43-L48' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.advance!-Tuple{RandomNumbers.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}' href='#RandomNumbers.PCG.advance!-Tuple{RandomNumbers.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},Integer}'>#</a>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/PCG.jl#L43-L48' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.advance!-Union{Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType} where OutputType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType<:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}},Integer}, Tuple{StateType}} where StateType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8}' href='#RandomNumbers.PCG.advance!-Union{Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType} where OutputType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType<:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}},Integer}, Tuple{StateType}} where StateType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8}'>#</a>
 <strong><code>RandomNumbers.PCG.advance!</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">advance!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Δ</span><span class="p">)</span>
 </pre></div>
@@ -996,40 +1010,40 @@
 
 <p>Advance a PCG object <code>r</code> for <code>Δ</code> steps.</p>
 <p><strong>Examples</strong></p>
-<div class="codehilite"><pre><span></span><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">PCGStateSetseq</span><span class="p">(</span><span class="kt">UInt64</span><span class="p">,</span> <span class="n">PCG_RXS_M_XS</span><span class="p">,</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="mi">321</span><span class="p">))</span>
-<span class="go">RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)</span>
+<div class="codehilite"><pre><span></span>julia&gt; r = PCGStateSetseq(UInt64, PCG_RXS_M_XS, (123, 321))
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)
 
-<span class="gp">julia&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+julia&gt; A = rand(r, UInt64, 2);
 
-<span class="gp">julia&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+julia&gt; p = rand(r);
 
-<span class="gp">julia&gt;</span> <span class="n">r</span>
-<span class="go">RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702,0x0000000000000283)</span>
+julia&gt; r
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702,0x0000000000000283)
 
-<span class="gp">julia&gt;</span> <span class="n">advance!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)</span>
+julia&gt; advance!(r, -3)
+RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29,0x0000000000000283)
 
-<span class="gp">julia&gt;</span> <span class="nd">@Test</span><span class="o">.</span><span class="n">test</span> <span class="n">A</span> <span class="o">==</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">Test Passed</span>
-<span class="go">  Expression: A == rand(r,UInt64,2)</span>
-<span class="go">   Evaluated: UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f] == UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f]</span>
+julia&gt; @Test.test A == rand(r, UInt64, 2)
+Test Passed
+  Expression: A == rand(r,UInt64,2)
+   Evaluated: UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f] == UInt64[0x245806d421c0d835,0x5b6bc4b066eda37f]
 
-<span class="gp">julia&gt;</span> <span class="nd">@Test</span><span class="o">.</span><span class="n">test</span> <span class="n">p</span> <span class="o">==</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-<span class="go">Test Passed</span>
-<span class="go">  Expression: p == rand(r)</span>
-<span class="go">   Evaluated: 0.3950038072091506 == 0.3950038072091506</span>
+julia&gt; @Test.test p == rand(r)
+Test Passed
+  Expression: p == rand(r)
+   Evaluated: 0.3950038072091506 == 0.3950038072091506
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/main.jl#L63-L95' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.bounded_rand-Tuple{RandomNumbers.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}' href='#RandomNumbers.PCG.bounded_rand-Tuple{RandomNumbers.PCG.AbstractPCG{StateType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},MethodType<:Union{Val{:RXS_M_XS},Val{:XSH_RR},Val{:XSH_RS},Val{:XSL_RR_RR},Val{:XSL_RR}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}},OutputType<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}'>#</a>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/main.jl#L63-L95' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.bounded_rand-Union{Tuple{MethodType}, Tuple{OutputType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType},OutputType}, Tuple{StateType}} where OutputType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType<:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}} where StateType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8}' href='#RandomNumbers.PCG.bounded_rand-Union{Tuple{MethodType}, Tuple{OutputType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType},OutputType}, Tuple{StateType}} where OutputType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType<:Union{Val{:RXS_M_XS}, Val{:XSH_RR}, Val{:XSH_RS}, Val{:XSL_RR_RR}, Val{:XSL_RR}} where StateType<:Union{UInt128, UInt16, UInt32, UInt64, UInt8}'>#</a>
 <strong><code>RandomNumbers.PCG.bounded_rand</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">bounded_rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">bound</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Producing a random number less than a given <code>bound</code> in the output type.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/main.jl#L46-L52' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/main.jl#L46-L52' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RandomNumbers.PCG.AbstractPCG' href='#RandomNumbers.PCG.AbstractPCG'>#</a>
@@ -1039,44 +1053,49 @@
 
 
 <p>The base abstract type for PCGs.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L167-L173' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L167-L173' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.default_increment-Tuple{Type{UInt8}}' href='#RandomNumbers.PCG.default_increment-Tuple{Type{UInt8}}'>#</a>
 <strong><code>RandomNumbers.PCG.default_increment</code></strong> &mdash; <em>Method</em>.</p>
 <p>Return the default increment for a certain type.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.default_multiplier-Tuple{Type{UInt8}}' href='#RandomNumbers.PCG.default_multiplier-Tuple{Type{UInt8}}'>#</a>
 <strong><code>RandomNumbers.PCG.default_multiplier</code></strong> &mdash; <em>Method</em>.</p>
 <p>Return the default multiplier for a certain type.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L4' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L4' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.mcg_multiplier-Tuple{Type{UInt8}}' href='#RandomNumbers.PCG.mcg_multiplier-Tuple{Type{UInt8}}'>#</a>
 <strong><code>RandomNumbers.PCG.mcg_multiplier</code></strong> &mdash; <em>Method</em>.</p>
 <p>Return the default MCG multiplier for a certain type.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L18' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L18' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.mcg_unmultiplier-Tuple{Type{UInt8}}' href='#RandomNumbers.PCG.mcg_unmultiplier-Tuple{Type{UInt8}}'>#</a>
 <strong><code>RandomNumbers.PCG.mcg_unmultiplier</code></strong> &mdash; <em>Method</em>.</p>
 <p>Return the default MCG unmultiplier for a certain type.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L25' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L25' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.pcg_advance!' href='#RandomNumbers.PCG.pcg_advance!'>#</a>
 <strong><code>RandomNumbers.PCG.pcg_advance!</code></strong> &mdash; <em>Function</em>.</p>
 <p>Advance a PCG object.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L298' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.PCG.pcg_advance_lcg-Tuple{T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}' href='#RandomNumbers.PCG.pcg_advance_lcg-Tuple{T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8},T<:Union{UInt128,UInt16,UInt32,UInt64,UInt8}}'>#</a>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L302' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.PCG.pcg_advance_lcg-Union{NTuple{4,T}, Tuple{T}} where T<:Union{UInt128, UInt16, UInt32, UInt64, UInt8}' href='#RandomNumbers.PCG.pcg_advance_lcg-Union{NTuple{4,T}, Tuple{T}} where T<:Union{UInt128, UInt16, UInt32, UInt64, UInt8}'>#</a>
 <strong><code>RandomNumbers.PCG.pcg_advance_lcg</code></strong> &mdash; <em>Method</em>.</p>
 <p>General advance functions.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L53' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L53' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.pcg_output' href='#RandomNumbers.PCG.pcg_output'>#</a>
 <strong><code>RandomNumbers.PCG.pcg_output</code></strong> &mdash; <em>Function</em>.</p>
 <p>Return the output of a state for a certain PCG type.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L289' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L293' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.pcg_srand' href='#RandomNumbers.PCG.pcg_srand'>#</a>
 <strong><code>RandomNumbers.PCG.pcg_srand</code></strong> &mdash; <em>Function</em>.</p>
 <p>Initialize a PCG object.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L292' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L296' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.PCG.pcg_step!' href='#RandomNumbers.PCG.pcg_step!'>#</a>
 <strong><code>RandomNumbers.PCG.pcg_step!</code></strong> &mdash; <em>Function</em>.</p>
 <p>Do one iteration step for a PCG object.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/636804b778ed79c0863a6cb7736d5e2d71c17224/src/PCG/bases.jl#L295' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/7cd79ef1c1b96aa8a56d9f3088aa0539610e0784/src/PCG/bases.jl#L299' class='documenter-source'>source</a><br></p>
+                
+                  
+                
               
+              
+                
               
             </article>
           </div>
@@ -1140,7 +1159,9 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-30ac6a1727.js"></script>
+      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      
+      
       <script>app.initialize({url:{base:"../.."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
