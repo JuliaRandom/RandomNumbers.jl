@@ -13,6 +13,8 @@ function build()
             info("You don't have MinGW32 installed, so now downloading the library binary from github.")
             download(url, "librandom123.dll")
         end
+    elseif is_bsd() && !is_apple()  # e.g. FreeBSD
+        run(`gmake`)
     else
         run(`make`)
     end
