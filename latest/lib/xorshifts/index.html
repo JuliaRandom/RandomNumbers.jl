@@ -1,4 +1,7 @@
 
+
+
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
@@ -14,9 +17,22 @@
         <meta name="author" content="Sunoru">
       
       
-        <link rel="shortcut icon" href="../../assets/images/favicon.png">
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.4">
     
     
       
@@ -24,19 +40,14 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
+      
+    
+    
       <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
-      
-    
-    
-      
-        
-        
-        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
@@ -48,10 +59,7 @@
     
   </head>
   
-  
-  
-  
-    <body data-md-color-primary="indigo" data-md-color-accent="blue">
+    <body>
   
     <svg class="md-svg">
       <defs>
@@ -71,7 +79,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href="../.." title="RandomNumbers.jl" class="md-header-nav__button md-logo">
           
-            <i class="md-icon md-icon--home"></i>
+            <i class="md-icon"></i>
           
         </a>
       </div>
@@ -94,8 +102,9 @@
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
@@ -106,8 +115,8 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
-          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
             Type to start searching
           </div>
           <ol class="md-search-result__list"></ol>
@@ -116,6 +125,7 @@
     </div>
   </div>
 </div>
+          
         
       </div>
       
@@ -127,7 +137,7 @@
   
 
 
-  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/sunoru/RandomNumbers.jl/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -149,7 +159,6 @@
     
     <div class="md-container">
       
-      
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
@@ -159,11 +168,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    <div class="md-nav__button md-logo">
+    <span class="md-nav__button md-logo">
       
-        <i class="md-icon md-icon--home"></i>
+        <i class="md-icon"></i>
       
-    </div>
+    </span>
     RandomNumbers.jl
   </label>
   
@@ -174,7 +183,7 @@
   
 
 
-  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/sunoru/RandomNumbers.jl/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -535,7 +544,7 @@
 <li><a href="./#RandomNumbers.Xorshifts.Xoroshiro128Star"><code>Xoroshiro128Star</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoroshiro128Plus"><code>Xoroshiro128Plus</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/Xorshifts.jl#L3-L19' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/Xorshifts.jl#L3-L19' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128' href='#RandomNumbers.Xorshifts.Xoroshiro128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xoroshiro128</span> <span class="o">&lt;:</span> <span class="n">AbstractXoroshiro128</span>
@@ -544,7 +553,7 @@
 
 
 <p>Xoroshiro128 RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128Plus' href='#RandomNumbers.Xorshifts.Xoroshiro128Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xoroshiro128Plus</span> <span class="o">&lt;:</span> <span class="n">AbstractXoroshiro128</span>
@@ -553,7 +562,7 @@
 
 
 <p>Xoroshiro128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128Star' href='#RandomNumbers.Xorshifts.Xoroshiro128Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xoroshiro128Star</span> <span class="o">&lt;:</span> <span class="n">AbstractXoroshiro128</span>
@@ -562,7 +571,7 @@
 
 
 <p>Xoroshiro128Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift1024' href='#RandomNumbers.Xorshifts.Xorshift1024'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift1024</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift1024</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift1024</span>
@@ -571,7 +580,7 @@
 
 
 <p>Xorshift1024 RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or several (no more than 16) <code>Integer</code>s which will all be automatically converted to <code>UInt64</code> numbers.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L32-L40' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L32-L40' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift1024Plus' href='#RandomNumbers.Xorshifts.Xorshift1024Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift1024Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift1024Plus</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift1024</span>
@@ -580,7 +589,7 @@
 
 
 <p>Xorshift1024Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or several (no more than 16) <code>Integer</code>s which will all be automatically converted to <code>UInt64</code> numbers.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L32-L40' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L32-L40' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift1024Star' href='#RandomNumbers.Xorshifts.Xorshift1024Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift1024Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift1024Star</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift1024</span>
@@ -589,7 +598,7 @@
 
 
 <p>Xorshift1024Star RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or several (no more than 16) <code>Integer</code>s which will all be automatically converted to <code>UInt64</code> numbers.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L32-L40' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L32-L40' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift128' href='#RandomNumbers.Xorshifts.Xorshift128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift128</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift128</span>
@@ -598,7 +607,7 @@
 
 
 <p>Xorshift128 RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L18-L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L18-L26' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift128Plus' href='#RandomNumbers.Xorshifts.Xorshift128Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift128Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift128Plus</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift128</span>
@@ -607,7 +616,7 @@
 
 
 <p>Xorshift128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L18-L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L18-L26' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift128Star' href='#RandomNumbers.Xorshifts.Xorshift128Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift128Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift128Star</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift128</span>
@@ -616,7 +625,7 @@
 
 
 <p>Xorshift128Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L18-L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L18-L26' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift64' href='#RandomNumbers.Xorshifts.Xorshift64'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift64</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift64</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift64</span>
@@ -625,7 +634,7 @@
 
 
 <p>Xorshift64 RNG. The <code>seed</code> will be automatically convert to an <code>UInt64</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L6-L13' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L6-L13' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift64Star' href='#RandomNumbers.Xorshifts.Xorshift64Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift64Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">Xorshift64Star</span> <span class="o">&lt;:</span> <span class="n">AbstractXorshift64</span>
@@ -634,7 +643,7 @@
 
 
 <p>Xorshift64Star RNG. The <code>seed</code> will be automatically convert to an <code>UInt64</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L6-L13' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L6-L13' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RandomNumbers.Xorshifts.AbstractXoroshiro128' href='#RandomNumbers.Xorshifts.AbstractXoroshiro128'>#</a>
@@ -644,7 +653,7 @@
 
 
 <p>The base abstract type for <code>Xoroshiro128</code>, <code>Xoroshiro128Star</code> and <code>Xoroshiro128Plus</code>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/xoroshiro128.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/xoroshiro128.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXorshift1024' href='#RandomNumbers.Xorshifts.AbstractXorshift1024'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXorshift1024</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">AbstractXorshift1024</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
@@ -652,7 +661,7 @@
 
 
 <p>The base abstract type for <code>Xorshift1024</code>, <code>Xorshift1024Star</code> and <code>Xorshift1024Plus</code>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/xorshift1024.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/xorshift1024.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXorshift128' href='#RandomNumbers.Xorshifts.AbstractXorshift128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXorshift128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">AbstractXorshift128</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
@@ -660,7 +669,7 @@
 
 
 <p>The base abstract type for <code>Xorshift128</code>, <code>Xorshift128Star</code> and <code>Xorshift128Plus</code>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/xorshift128.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/xorshift128.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXorshift64' href='#RandomNumbers.Xorshifts.AbstractXorshift64'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXorshift64</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">AbstractXorshift64</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
@@ -668,11 +677,11 @@
 
 
 <p>The base abstract type for <code>Xorshift64</code> and <code>Xorshift64Star</code>.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/xorshift64.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/xorshift64.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.xorshift_next' href='#RandomNumbers.Xorshifts.xorshift_next'>#</a>
 <strong><code>RandomNumbers.Xorshifts.xorshift_next</code></strong> &mdash; <em>Function</em>.</p>
 <p>Do one iteration and get the current value of a Xorshift RNG object.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/Xorshifts/docs.jl#L1' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/Xorshifts/docs.jl#L1' class='documenter-source'>source</a><br></p>
                 
                   
                 
@@ -728,10 +737,9 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
       
-      
-      <script>app.initialize({url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.1",url:{base:"../.."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       

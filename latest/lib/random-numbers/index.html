@@ -1,4 +1,7 @@
 
+
+
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
@@ -14,9 +17,22 @@
         <meta name="author" content="Sunoru">
       
       
-        <link rel="shortcut icon" href="../../assets/images/favicon.png">
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.4">
     
     
       
@@ -24,19 +40,14 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
+      
+    
+    
       <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
-      
-    
-    
-      
-        
-        
-        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
@@ -48,10 +59,7 @@
     
   </head>
   
-  
-  
-  
-    <body data-md-color-primary="indigo" data-md-color-accent="blue">
+    <body>
   
     <svg class="md-svg">
       <defs>
@@ -71,7 +79,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href="../.." title="RandomNumbers.jl" class="md-header-nav__button md-logo">
           
-            <i class="md-icon md-icon--home"></i>
+            <i class="md-icon"></i>
           
         </a>
       </div>
@@ -94,8 +102,9 @@
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
@@ -106,8 +115,8 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
-          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
             Type to start searching
           </div>
           <ol class="md-search-result__list"></ol>
@@ -116,6 +125,7 @@
     </div>
   </div>
 </div>
+          
         
       </div>
       
@@ -127,7 +137,7 @@
   
 
 
-  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/sunoru/RandomNumbers.jl/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -149,7 +159,6 @@
     
     <div class="md-container">
       
-      
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
@@ -159,11 +168,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    <div class="md-nav__button md-logo">
+    <span class="md-nav__button md-logo">
       
-        <i class="md-icon md-icon--home"></i>
+        <i class="md-icon"></i>
       
-    </div>
+    </span>
     RandomNumbers.jl
   </label>
   
@@ -174,7 +183,7 @@
   
 
 
-  <a href="https://github.com/sunoru/RandomNumbers.jl" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/sunoru/RandomNumbers.jl/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -543,7 +552,7 @@
 <li>a type: the set of values to pick from is then equivalent to <code>typemin(S):typemax(S)</code> for integers (this is not applicable to <a href="../@ref"><code>BigInt</code></a>), and to $[0, 1)$ for floating point numbers;</li>
 </ul>
 <p><code>S</code> defaults to <a href="../@ref"><code>Float64</code></a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L265-L276' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L270-L281' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.srand' href='#Base.Random.srand'>#</a>
 <strong><code>Base.Random.srand</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>srand([rng=GLOBAL_RNG], [seed]) -&gt; rng
@@ -552,7 +561,7 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Reseed the random number generator. If a <code>seed</code> is provided, the RNG will give a reproducible sequence of numbers, otherwise Julia will get entropy from the system. For <code>MersenneTwister</code>, the <code>seed</code> may be a non-negative integer, a vector of <a href="../@ref"><code>UInt32</code></a> integers or a filename, in which case the seed is read from a file (<code>4n</code> bytes are read from the file, where <code>n</code> is an optional argument). <code>RandomDevice</code> does not support seeding.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L222-L231' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L227-L236' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randn' href='#Base.Random.randn'>#</a>
 <strong><code>Base.Random.randn</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randn([rng=GLOBAL_RNG], [T=Float64], [dims...])
@@ -560,7 +569,20 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Generate a normally-distributed random number of type <code>T</code> with mean 0 and standard deviation 1. Optionally generate an array of normally-distributed random numbers. The <code>Base</code> module currently provides an implementation for the types <a href="../@ref"><code>Float16</code></a>, <a href="../@ref"><code>Float32</code></a>, and <a href="../@ref"><code>Float64</code></a> (the default).</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1196-L1203' class='documenter-source'>source</a><br></p>
+<p><strong>Examples</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; randn(rng, Float64)
+0.8673472019512456
+
+julia&gt; randn(rng, Float32, (2, 4))
+2×4 Array{Float32,2}:
+ -0.901744  -0.902914  2.21188   -0.271735
+ -0.494479   0.864401  0.532813   0.502334
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L1234-L1255' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randexp' href='#Base.Random.randexp'>#</a>
 <strong><code>Base.Random.randexp</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randexp([rng=GLOBAL_RNG], [T=Float64], [dims...])
@@ -568,7 +590,21 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Generate a random number of type <code>T</code> according to the exponential distribution with scale 1. Optionally generate an array of such random numbers. The <code>Base</code> module currently provides an implementation for the types <a href="../@ref"><code>Float16</code></a>, <a href="../@ref"><code>Float32</code></a>, and <a href="../@ref"><code>Float64</code></a> (the default).</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1230-L1237' class='documenter-source'>source</a><br></p>
+<p><strong>Examples</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; randexp(rng, Float32)
+2.4835055f0
+
+julia&gt; randexp(rng, 3, 3)
+3×3 Array{Float64,2}:
+ 1.5167    1.30652   0.344435
+ 0.604436  2.78029   0.418516
+ 0.695867  0.693292  0.643644
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L1282-L1304' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.bitrand' href='#Base.Random.bitrand'>#</a>
 <strong><code>Base.Random.bitrand</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>bitrand([rng=GLOBAL_RNG], [dims...])
@@ -576,7 +612,25 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Generate a <code>BitArray</code> of random boolean values.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L691-L695' class='documenter-source'>source</a><br></p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; bitrand(rng, 10)
+10-element BitArray{1}:
+  true
+  true
+  true
+ false
+  true
+ false
+ false
+  true
+ false
+  true
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L710-L733' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randstring' href='#Base.Random.randstring'>#</a>
 <strong><code>Base.Random.randstring</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randstring([rng,] len=8)
@@ -584,7 +638,15 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Create a random ASCII string of length <code>len</code>, consisting of upper- and lower-case letters and the digits 0-9. The optional <code>rng</code> argument specifies a random number generator, see <a href="../@ref">Random Numbers</a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/docs/helpdb/Base.jl#L792-L798' class='documenter-source'>source</a><br></p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; randstring(rng, 4)
+&quot;mbDd&quot;
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/docs/helpdb/Base.jl#L907-L922' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randsubseq' href='#Base.Random.randsubseq'>#</a>
 <strong><code>Base.Random.randsubseq</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randsubseq(A, p) -&gt; Vector
@@ -592,7 +654,7 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Return a vector consisting of a random subsequence of the given array <code>A</code>, where each element of <code>A</code> is included (in order) with independent probability <code>p</code>. (Complexity is linear in <code>p*length(A)</code>, so this function is efficient even if <code>p</code> is small and <code>A</code> is large.) Technically, this process is known as "Bernoulli sampling" of <code>A</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1450-L1457' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L1571-L1578' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.shuffle' href='#Base.Random.shuffle'>#</a>
 <strong><code>Base.Random.shuffle</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>shuffle([rng=GLOBAL_RNG,] v)
@@ -600,7 +662,25 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Return a randomly permuted copy of <code>v</code>. The optional <code>rng</code> argument specifies a random number generator (see <a href="../@ref">Random Numbers</a>). To permute <code>v</code> in-place, see <a href="../@ref"><code>shuffle!</code></a>.  To obtain randomly permuted indices, see <a href="./#Base.Random.randperm"><code>randperm</code></a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1490-L1497' class='documenter-source'>source</a><br></p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; shuffle(rng, collect(1:10))
+10-element Array{Int64,1}:
+  6
+  1
+ 10
+  2
+  3
+  9
+  5
+  7
+  4
+  8
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L1636-L1662' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randperm' href='#Base.Random.randperm'>#</a>
 <strong><code>Base.Random.randperm</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randperm([rng=GLOBAL_RNG,] n::Integer)
@@ -608,7 +688,19 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Construct a random permutation of length <code>n</code>. The optional <code>rng</code> argument specifies a random number generator (see <a href="../@ref">Random Numbers</a>). To randomly permute a arbitrary vector, see <a href="./#Base.Random.shuffle"><code>shuffle</code></a> or <a href="../@ref"><code>shuffle!</code></a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1501-L1508' class='documenter-source'>source</a><br></p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; randperm(rng, 4)
+4-element Array{Int64,1}:
+ 2
+ 1
+ 4
+ 3
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L1666-L1686' class='documenter-source'>source</a><br></p>
 <p><a id='Base.Random.randcycle' href='#Base.Random.randcycle'>#</a>
 <strong><code>Base.Random.randcycle</code></strong> &mdash; <em>Function</em>.</p>
 <div class="codehilite"><pre><span></span>randcycle([rng=GLOBAL_RNG,] n::Integer)
@@ -616,7 +708,21 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>Construct a random cyclic permutation of length <code>n</code>. The optional <code>rng</code> argument specifies a random number generator, see <a href="../@ref">Random Numbers</a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaLang/julia/tree/903644385b91ed8d95e5e3a5716c089dd1f1b08a/base/random.jl#L1529-L1534' class='documenter-source'>source</a><br></p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span>julia&gt; rng = MersenneTwister(1234);
+
+julia&gt; randcycle(rng, 6)
+6-element Array{Int64,1}:
+ 3
+ 5
+ 4
+ 6
+ 1
+ 2
+</pre></div>
+
+
+<p><a target='_blank' href='https://github.com/JuliaLang/julia/blob/0d7248e2ff65bd6886ba3f003bf5aeab929edab5/base/random.jl#L1707-L1727' class='documenter-source'>source</a><br></p>
 <p><a id='Public-1'></a></p>
 <h2 id="public">Public</h2>
 <p><a id='RandomNumbers' href='#RandomNumbers'>#</a>
@@ -631,7 +737,7 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 <li><a href="../random123/#RandomNumbers.Random123"><code>Random123</code></a>.</li>
 <li><a href="../xorshifts/#RandomNumbers.Xorshifts"><code>Xorshifts</code></a>.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.AbstractRNG' href='#RandomNumbers.AbstractRNG'>#</a>
 <strong><code>RandomNumbers.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="kt">AbstractRNG</span>
@@ -639,7 +745,7 @@ srand([rng=GLOBAL_RNG], filename, n=4) -&gt; rng
 
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.WrappedRNG' href='#RandomNumbers.WrappedRNG'>#</a>
 <strong><code>RandomNumbers.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">WrappedRNG</span><span class="p">{</span><span class="n">R</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T2</span><span class="p">}</span>
@@ -670,15 +776,15 @@ Test Passed
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T' href='#RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T'>#</a>
 <strong><code>RandomNumbers.output_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}' href='#RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}'>#</a>
 <strong><code>RandomNumbers.seed_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the default seed type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T<:Number' href='#RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T<:Number'>#</a>
@@ -697,7 +803,7 @@ Test Passed
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/tree/0d9ba6ef94fe15c7769189d7a6ee0b0ba1c6e3a7/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
                 
                   
                 
@@ -767,10 +873,9 @@ Test Passed
       
     </div>
     
-      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
       
-      
-      <script>app.initialize({url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.1",url:{base:"../.."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       
