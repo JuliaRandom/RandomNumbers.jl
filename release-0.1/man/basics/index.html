@@ -1,0 +1,693 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Random number generators for Julia language.">
+      
+      
+      
+        <meta name="author" content="Sunoru">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.4">
+    
+    
+      
+        <title>Basics - RandomNumbers.jl</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/Documenter.css">
+    
+    
+  </head>
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="RandomNumbers.jl" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Manual
+                </span>
+              
+            
+            Basics
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/sunoru/RandomNumbers.jl/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    RandomNumbers.jl
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/sunoru/RandomNumbers.jl/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Manual
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Manual
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Basics
+      </label>
+    
+    <a href="./" title="Basics" class="md-nav__link md-nav__link--active">
+      Basics
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface" title="Interface" class="md-nav__link">
+    Interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empirical-statistical-testing" title="Empirical Statistical Testing" class="md-nav__link">
+    Empirical Statistical Testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion-to-float" title="Conversion to Float" class="md-nav__link">
+    Conversion to Float
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../benchmark/" title="Benchmark" class="md-nav__link">
+      Benchmark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pcg/" title="PCG Family" class="md-nav__link">
+      PCG Family
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mersenne-twisters/" title="Mersenne Twisters" class="md-nav__link">
+      Mersenne Twisters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../random123/" title="Random123 Family" class="md-nav__link">
+      Random123 Family
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../xorshifts/" title="Xorshift Family" class="md-nav__link">
+      Xorshift Family
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lib/random-numbers/" title="RandomNumbers" class="md-nav__link">
+      RandomNumbers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lib/pcg/" title="PCG" class="md-nav__link">
+      PCG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lib/mersenne-twisters/" title="MersenneTwisters" class="md-nav__link">
+      MersenneTwisters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lib/random123/" title="Random123" class="md-nav__link">
+      Random123
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lib/xorshifts/" title="Xorshifts" class="md-nav__link">
+      Xorshifts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface" title="Interface" class="md-nav__link">
+    Interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empirical-statistical-testing" title="Empirical Statistical Testing" class="md-nav__link">
+    Empirical Statistical Testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion-to-float" title="Conversion to Float" class="md-nav__link">
+    Conversion to Float
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sunoru/RandomNumbers.jl/edit/master/docs/src/man/basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <p><a id='Basics-1'></a></p>
+<h1 id="basics">Basics</h1>
+<p>This page describes basic concepts and fundamental knowledge of <strong>RandomNumbers.jl</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unless otherwise specified, all the random number generators in this package are <em>pseudorandom</em> number generators (or <em>deterministic</em> random bit generator), which means they only provide numbers whose properties approximate the properties of <em>truly random</em> numbers. Always, especially in secure-sensitive cases, keep in mind that they do not gaurantee a totally random performance.</p>
+</div>
+<p><a id='Installation-1'></a></p>
+<h2 id="installation">Installation</h2>
+<p>This package is currently not registered, so you have to directly clone it for installation:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s">&quot;https://github.com/sunoru/RandomNumbers.jl.git&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And build the dependencies:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s">&quot;RandomNumbers&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>It is recommended to run the test suites before using the package:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s">&quot;RandomNumbers&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a id='Interface-1'></a></p>
+<h2 id="interface">Interface</h2>
+<p>First of all, to use a RNG from this package, you can import <code>RandomNumbers.jl</code> and use RNG by declare its submodule's name, or directly import the submodule. Then you can create a random number generator of certain type. For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RandomNumbers</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xorshifts</span><span class="o">.</span><span class="n">Xorshift1024Plus</span><span class="p">()</span>
+</pre></div>
+
+
+<p>or</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RandomNumbers</span><span class="o">.</span><span class="n">Xorshifts</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Xorshift1024Plus</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The submodules have some API in common and a few differently.</p>
+<p>All the Random Number Generators (RNGs) are child types of <code>AbstractRNG{T}</code>, which is a child type of <code>Base.Random.AbstractRNG</code> and replaces it. (<code>Base.Random</code> may be refactored sometime, anyway.) The type parameter <code>T</code> indicates the original output type of a RNG, and it is usually a child type of <code>Unsigned</code>, such as <code>UInt64</code>, <code>UInt32</code>, etc. Users can change the output type of a certain RNG type by use a wrapped type: <a href="../../lib/random-numbers/#RandomNumbers.WrappedRNG"><code>WrappedRNG</code></a>.</p>
+<p>Consistent to what <code>Base.Random</code> does, there are generic functions:</p>
+<ul>
+<li><code>srand(::AbstractRNG{T}[, seed])</code>   initializes a RNG by one or a sequence of numbers (called <em>seed</em>). The output sequences by two RNGs of   the same type should be the same if they are initialized by the same seed, which makes them   <em>deterministic</em>. The seed type of each RNG type can be different, you can refer to the corresponding   manual pages for details. If no <code>seed</code> provided, then it will use <a href="../../lib/random-numbers/#RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T&lt;:Number"><code>RandomNumbers.gen_seed</code></a> to get   a "truly" random one.</li>
+<li><code>rand(::AbstractRNG{T}[, ::Type{TP}=Float64])</code>   returns a random number in the type <code>TP</code>. <code>TP</code> is usually an <code>Unsigned</code> type, and the return value is   expected to be uniformly distributed in {0, 1} at every bit. When <code>TP</code> is <code>Float64</code> (as default), this   function returns a <code>Float64</code> value that is expected to be uniformly distributed in $[0, 1)$. The   discussion about this is in the <a href="./#Conversion-to-Float-1">Conversion to Float</a> section.</li>
+</ul>
+<p>The other generic functions such as <code>rand(::AbstractRNG, ::Dims)</code> and <code>rand!(::AbstractRNG, ::AbstractArray)</code>, and the ones that generate random numbers in a certain distribution such as <code>randn</code>, <code>randexp</code>, <code>randcycle</code>, etc. defined in <code>Base.Random</code> still work well. However the <a href="http://docs.julialang.org/en/release-0.5/stdlib/numbers/#random-numbers">official docs</a> don't include all of them, so you can refer to <a href="../../lib/random-numbers/#generic-functions-1">this section</a> for details.</p>
+<p>The constructors of all the types of RNG are designed to take the same kind of parameters as <code>srand</code>. For example:</p>
+<div class="codehilite"><pre><span></span>julia&gt; using RandomNumbers.Xorshifts
+
+julia&gt; r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed &quot;123&quot;
+RandomNumbers.Xorshifts.Xorshift128Star(0x000000003a300074, 0x000000003a30004e)
+
+julia&gt; r2 = Xorshift128Star();  # Use a random value to be the seed.
+
+julia&gt; rand(r1)  # Generate a number uniformly distributed in ``[0, 1)``.
+0.2552720033868119
+
+julia&gt; A = rand(r1, UInt64, 2, 3)  # Generate a 2x3 matrix `A` in `UInt64` type.
+2×3 Array{UInt64,2}:
+ 0xbed3dea863c65407  0x607f5f9815f515af  0x807289d8f9847407
+ 0x4ab80d43269335ee  0xf78b56ada11ea641  0xc2306a55acfb4aaa
+
+julia&gt; rand!(r1, A)  # Refill `A` with random numbers.
+2×3 Array{UInt64,2}:
+ 0xf729352e2a72b541  0xe89948b5582a85f0  0x8a95ebd6aa34fcf4
+ 0xc0c5a8df4c1b160f  0x8b5269ed6c790e08  0x930b89985ae0c865
+</pre></div>
+
+
+<p>People will get the same results in their own computers of the above lines. For more interfaces and usage examples, please refer to the manual pages of each RNG.</p>
+<p><a id='Empirical-Statistical-Testing-1'></a></p>
+<h2 id="empirical-statistical-testing">Empirical Statistical Testing</h2>
+<p>Empirical statistical testing is very important for random number generation, because the theoretical mathematical analysis is insufficient to verify the performance of a random number generator.</p>
+<p>The famous and highly evaluated <a href="http://simul.iro.umontreal.ca/testu01/tu01.html"><strong>TestU01</strong> library</a> is chosen to test the RNGs in <code>RandomNumbers.jl</code>. <strong>TestU01</strong> offers a collection of test suites, and <em>Big Crush</em> is the largest and most stringent test battery for empirical testing (which usually takes several hours to run). <em>Big Crush</em> has revealed a number of flaws of lots of well-used generators, even including the <em>Mersenne Twister</em> (or to be more exact, the <em>dSFMT</em>) which is currently used in <code>Base.Random</code> as GLOBAL_RAND`.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<p>This package chooses <a href="https://github.com/andreasnoack/RNGTest.jl">RNGTest.jl</a> to use TestU01.</p>
+<p>The testing results are available on <a href="../benchmark/#Benchmark-1">Benchmark</a> page.</p>
+<p><a id='Conversion-to-Float-1'></a></p>
+<h2 id="conversion-to-float">Conversion to Float</h2>
+<p>Besides the statistical flaws, popular generators often neglect the importance of converting unsigned integers to floating numbers. The most common situation is to convert an <code>UInt</code> to a <code>Float64</code> which is uniformly distributed in $[0.0, 1.0)$. For example, neither the <code>std::uniform_real_distribution</code> in libstdc++ from gcc, libc++ from llvm, nor the standard library from MSVC has a correct performance, as they all have a non-zero probability for generating the max value which is an open bound and should not be produced.</p>
+<p>The cause is that a <code>Float64</code> number in $[0.0, 1.0)$ has only 53 <em>significand</em> bits (52 explicitly stored), which means at least 11 bits of an <code>UInt64</code> are abandoned when being converted to <code>Float64</code>. If using the naive approach to multiply an <code>UInt64</code> by $2^{-64}$, users may get 1.0, and the distribution is not good (although using $2^{-32}$ for an <code>UInt32</code> is OK).</p>
+<p>In this package, we make use of the fact that the distribution of the least 52 bits can be the same in an <code>UInt64</code> and a <code>Float64</code> (if you are familiar with <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> this is easy to understand). An <code>UInt64</code> will firstly be converted to a <code>Float64</code> that is perfectly uniformly distributed in [1.0, 2.0), and then be minus by one. This is a very fast approach, but not completely ideal, since the one bit is wasted. The current default RNG in <code>Base.Random</code> library does the same thing, so it also causes some tricky problems.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://github.com/JuliaLang/julia/issues/6464"><code>rand</code> fails bigcrush #6464</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://github.com/JuliaLang/julia/issues/16344">Least significant bit of rand() is always zero #16344</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../benchmark/" title="Benchmark" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Benchmark
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
+      
+      <script>app.initialize({version:"0.17.1",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
+      
+        <script src="../../assets/mathjaxhelper.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
