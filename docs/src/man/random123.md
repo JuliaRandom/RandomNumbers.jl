@@ -11,8 +11,8 @@ end
 random number generators (CBRNGs), developed by D.E.Shaw Research[^1]. *Counter-based* means the RNGs in this
 family can produce the ``\mathrm{N}^\textrm{th}`` number by applying a stateless mixing function to the *counter*
 ``\mathrm{N}``, instead of the conventional approach of using ``\mathrm{N}`` iterations of a stateful
-transformation. There are four kinds of RNGs in Random123: [Threefry](@ref), [Philox](@ref), [AESNI](@ref),
-[ARS](@ref).
+transformation. The current version of Random123 in this package is 1.09, and there are four kinds of RNGs:
+[Threefry](@ref), [Philox](@ref), [AESNI](@ref), [ARS](@ref).
 
 The original paper[^1] says all the RNGs in Random123 can pass Big Crush in TestU01, but in the
 [benchmark](@ref Benchmark) we did, `ARS1x128` and `Philox2x64` have a slight failure.
