@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.4">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.0.4">
     
     
       
@@ -558,7 +558,7 @@
                 
                 <p><a id='Random123-Family-1'></a></p>
 <h1 id="random123-family">Random123 Family</h1>
-<p><strong><a href="https://www.deshawresearch.com/resources_random123.html">Random123</a></strong> is a library of "counter-based" random number generators (CBRNGs), developed by D.E.Shaw Research<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. <em>Counter-based</em> means the RNGs in this family can produce the $\mathrm{N}^\textrm{th}$ number by applying a stateless mixing function to the <em>counter</em> $\mathrm{N}$, instead of the conventional approach of using $\mathrm{N}$ iterations of a stateful transformation. There are four kinds of RNGs in Random123: <a href="./#Threefry-1">Threefry</a>, <a href="./#Philox-1">Philox</a>, <a href="./#AESNI-1">AESNI</a>, <a href="./#ARS-1">ARS</a>.</p>
+<p><strong><a href="https://www.deshawresearch.com/resources_random123.html">Random123</a></strong> is a library of "counter-based" random number generators (CBRNGs), developed by D.E.Shaw Research<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. <em>Counter-based</em> means the RNGs in this family can produce the $\mathrm{N}^\textrm{th}$ number by applying a stateless mixing function to the <em>counter</em> $\mathrm{N}$, instead of the conventional approach of using $\mathrm{N}$ iterations of a stateful transformation. The current version of Random123 in this package is 1.09, and there are four kinds of RNGs: <a href="./#Threefry-1">Threefry</a>, <a href="./#Philox-1">Philox</a>, <a href="./#AESNI-1">AESNI</a>, <a href="./#ARS-1">ARS</a>.</p>
 <p>The original paper<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> says all the RNGs in Random123 can pass Big Crush in TestU01, but in the <a href="../benchmark/#Benchmark-1">benchmark</a> we did, <code>ARS1x128</code> and <code>Philox2x64</code> have a slight failure.</p>
 <p><a id='Random123-RNGs-1'></a></p>
 <h2 id="random123-rngs">Random123 RNGs</h2>
@@ -692,7 +692,7 @@ julia&gt; rand(r, NTuple{4, UInt64})
     
       <script src="../../assets/javascripts/application-8e4952e681.js"></script>
       
-      <script>app.initialize({version:"0.17.1",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       

@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.4">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.0.4">
     
     
       
@@ -737,7 +737,7 @@ julia&gt; randcycle(rng, 6)
 <li><a href="../random123/#RandomNumbers.Random123"><code>Random123</code></a>.</li>
 <li><a href="../xorshifts/#RandomNumbers.Xorshifts"><code>Xorshifts</code></a>.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.AbstractRNG' href='#RandomNumbers.AbstractRNG'>#</a>
 <strong><code>RandomNumbers.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="kt">AbstractRNG</span>
@@ -745,7 +745,7 @@ julia&gt; randcycle(rng, 6)
 
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/common.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.WrappedRNG' href='#RandomNumbers.WrappedRNG'>#</a>
 <strong><code>RandomNumbers.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">WrappedRNG</span><span class="p">{</span><span class="n">R</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T2</span><span class="p">}</span>
@@ -776,15 +776,15 @@ Test Passed
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T' href='#RandomNumbers.output_type-Union{Tuple{RandomNumbers.AbstractRNG{T}}, Tuple{T}} where T'>#</a>
 <strong><code>RandomNumbers.output_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/utils.jl#L24' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}' href='#RandomNumbers.seed_type-Tuple{RandomNumbers.AbstractRNG}'>#</a>
 <strong><code>RandomNumbers.seed_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the default seed type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/utils.jl#L27' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T<:Number' href='#RandomNumbers.gen_seed-Union{Tuple{T}, Tuple{Type{T}}} where T<:Number'>#</a>
@@ -803,7 +803,7 @@ Test Passed
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/e1b65c2d55f8cfe2899b890cd17969bedb8cad0a/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/utils.jl#L3-L20' class='documenter-source'>source</a><br></p>
                 
                   
                 
@@ -875,7 +875,7 @@ Test Passed
     
       <script src="../../assets/javascripts/application-8e4952e681.js"></script>
       
-      <script>app.initialize({version:"0.17.1",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       
