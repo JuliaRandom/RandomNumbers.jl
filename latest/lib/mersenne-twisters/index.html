@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.0.4">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.3.0">
     
     
       
@@ -40,11 +40,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0e9c8aca.css">
       
     
     
-      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       
@@ -87,18 +87,18 @@
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
-        <span class="md-flex__ellipsis md-header-nav__title">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             
-              
-                <span class="md-header-nav__parent">
-                  Library
-                </span>
-              
+              <span class="md-header-nav__topic">
+                RandomNumbers.jl
+              </span>
+              <span class="md-header-nav__topic">
+                MersenneTwisters
+              </span>
             
-            MersenneTwisters
           
-        </span>
+        </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
@@ -158,6 +158,9 @@
 </header>
     
     <div class="md-container">
+      
+        
+      
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -511,8 +514,8 @@
 <li><a href="./#RandomNumbers.MersenneTwisters.MT19937"><code>RandomNumbers.MersenneTwisters.MT19937</code></a></li>
 <li><a href="./#RandomNumbers.MersenneTwisters.MersenneTwister"><code>RandomNumbers.MersenneTwisters.MersenneTwister</code></a></li>
 <li><a href="./#RandomNumbers.MersenneTwisters.mt_get-Tuple{RandomNumbers.MersenneTwisters.MT19937}"><code>RandomNumbers.MersenneTwisters.mt_get</code></a></li>
-<li><a href="./#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,NTuple{624,UInt32}}"><code>RandomNumbers.MersenneTwisters.mt_set!</code></a></li>
 <li><a href="./#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,UInt32}"><code>RandomNumbers.MersenneTwisters.mt_set!</code></a></li>
+<li><a href="./#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,NTuple{624,UInt32}}"><code>RandomNumbers.MersenneTwisters.mt_set!</code></a></li>
 </ul>
 <p><a id='Public-1'></a></p>
 <h2 id="public">Public</h2>
@@ -523,7 +526,7 @@
 <ul>
 <li><a href="./#RandomNumbers.MersenneTwisters.MT19937"><code>MT19937</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/MersenneTwisters/MersenneTwisters.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/a0f2423aebdb18a3c128693c9468714784ee9450/src/MersenneTwisters/MersenneTwisters.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.MT19937' href='#RandomNumbers.MersenneTwisters.MT19937'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.MT19937</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">MT19937</span> <span class="o">&lt;:</span> <span class="kt">MersenneTwister</span><span class="p">{</span><span class="kt">UInt32</span><span class="p">}</span>
@@ -532,7 +535,7 @@
 
 
 <p>MT19937 RNG. The <code>seed</code> is a <code>Tuple</code> of 624 <code>UInt32</code> numbers, or an <code>Integer</code> which will be automatically convert to an <code>UInt32</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/MersenneTwisters/bases.jl#L17-L25' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/a0f2423aebdb18a3c128693c9468714784ee9450/src/MersenneTwisters/bases.jl#L17-L25' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RandomNumbers.MersenneTwisters.MersenneTwister' href='#RandomNumbers.MersenneTwisters.MersenneTwister'>#</a>
@@ -542,19 +545,19 @@
 
 
 <p>The base type of Mersenne Twisters.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/MersenneTwisters/bases.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/a0f2423aebdb18a3c128693c9468714784ee9450/src/MersenneTwisters/bases.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.mt_get-Tuple{RandomNumbers.MersenneTwisters.MT19937}' href='#RandomNumbers.MersenneTwisters.mt_get-Tuple{RandomNumbers.MersenneTwisters.MT19937}'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.mt_get</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get a random <code>UInt32</code> number from a <code>MT19937</code> object.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/MersenneTwisters/bases.jl#L57' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/a0f2423aebdb18a3c128693c9468714784ee9450/src/MersenneTwisters/bases.jl#L57' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,NTuple{624,UInt32}}' href='#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,NTuple{624,UInt32}}'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
 <p>Set up a <code>MT19937</code> RNG object using a <code>Tuple</code> of 624 <code>UInt32</code> numbers.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/MersenneTwisters/bases.jl#L37' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/a0f2423aebdb18a3c128693c9468714784ee9450/src/MersenneTwisters/bases.jl#L37' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,UInt32}' href='#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937,UInt32}'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
 <p>Set up a <code>MT19937</code> RNG object using an <code>UInt32</code> number.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/51ddbe079ea6fc83dfca60c6c2970ac48f9d2fb8/src/MersenneTwisters/bases.jl#L46' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/a0f2423aebdb18a3c128693c9468714784ee9450/src/MersenneTwisters/bases.jl#L46' class='documenter-source'>source</a><br></p>
                 
                   
                 
@@ -610,9 +613,9 @@
       <div class="md-footer-copyright">
         
         powered by
-        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        <a href="http://www.mkdocs.org">MkDocs</a>
         and
-        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+        <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
       </div>
       
@@ -624,7 +627,7 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
+      <script src="../../assets/javascripts/application.cae2244d.js"></script>
       
       <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
       
