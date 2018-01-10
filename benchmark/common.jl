@@ -1,12 +1,16 @@
-using RNGTest
+try
+    using RNGTest
+catch
+    warn("No RNGTest package found. Only speed benchmarks can be run.")
+end
 using RandomNumbers
 
-function bigcrush{T<:Number}(rng::RNG.AbstractRNG{T})
+function bigcrush{T<:Number}(rng::RandomNumbers.AbstractRNG{T})
     p = RNGTest.wrap(r, T)
     RNGTest.bigcrushTestU01(p)
 end
 
-function speed_test{T<:Number}(rng::RNG.AbstractRNG{T}, n=100_000_000)
+function speed_test{T<:Number}(rng::RandomNumbers.AbstractRNG{T}, n=100_000_000)
     A = Array{T}(n)
     rand!(rng, A)
     elapsed = @elapsed rand!(rng, A)
