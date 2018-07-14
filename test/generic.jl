@@ -1,3 +1,5 @@
+import Random: randn, randexp, bitrand, randstring, randsubseq, shuffle, randperm, randcycle
+
 r = PCG.PCGStateOneseq(123)
 @test randn(r) == -0.4957408739873887
 @test randn(r, Float64, 8) == [
@@ -6,7 +8,7 @@ r = PCG.PCGStateOneseq(123)
 ]
 @test randexp(r) == 1.0279939998988223
 @test bitrand(r, 3, 3) == [false false false; false true false; false true true]
-@test randstring(r) == "Y047GAwe"
+@test randstring(r) == "KuSFMMEc"
 a = 1:100
 @test randsubseq(r, a, 0.1) == [1, 11, 12, 17, 19, 21, 27, 38, 44, 54, 58, 78, 80]
 a = 1:10

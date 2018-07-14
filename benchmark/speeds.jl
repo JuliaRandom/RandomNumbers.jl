@@ -2,7 +2,8 @@ using RandomNumbers.MersenneTwisters
 using RandomNumbers.Random123
 using RandomNumbers.PCG
 using RandomNumbers.Xorshifts
-import Base: rand
+import Random: rand
+import Printf: @printf
 
 include("common.jl")
 

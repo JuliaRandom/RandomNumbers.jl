@@ -1,9 +1,10 @@
 using RandomNumbers.Xorshifts
-if !isdefined(:RandomNumbers)
+
+if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
-stdout_ = STDOUT
+stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
@@ -36,9 +37,9 @@ for (rng_name, seed_t) in (
     @eval x = $rng_name()
     srand(x)
     @test seed_type(x) == seed_t
-    @test copy!(copy(x), x) == x
+    @test copyto!(copy(x), x) == x
     if seed_t <: Tuple
-        seed = (seeds[1:length(seed_t.types)]...)
+        seed = (seeds[1:length(seed_t.types)]...,)
     else
         seed = seeds[1]
     end

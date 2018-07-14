@@ -1,7 +1,7 @@
 function build()
     p = pwd()
     cd(dirname(@__FILE__))
-    if is_windows()
+    if Sys.iswindows()
         try
             run(`mingw32-make`)
         catch
@@ -34,7 +34,7 @@ function have_aesni()
     end
 end
 
-check_compiler() = is_windows() ? true : success(`gcc --version`)
+check_compiler() = Sys.iswindows() ? true : success(`gcc --version`)
 
 if have_aesni() && check_compiler()
     build()

@@ -1,5 +1,5 @@
-import Base: copy, copy!, ==
-import Base.Random: rand, srand
+import Base: copy, copyto!, ==
+import Random: rand, srand
 import RandomNumbers: gen_seed, seed_type
 
 # Generic functions
@@ -14,17 +14,17 @@ import RandomNumbers: gen_seed, seed_type
 @inline seed_type(::Type{PCGStateUnique{T, T1, T2}}) where {T, T1, T2} = T
 @inline seed_type(::Type{PCGStateSetseq{T, T1, T2}}) where {T, T1, T2} = NTuple{2, T}
 
-function copy!(dest::T, src::T) where T <: AbstractPCG
+function copyto!(dest::T, src::T) where T <: AbstractPCG
     dest.state = src.state
     dest
 end
-function copy!(dest::T, src::T) where T <: PCGStateSetseq
+function copyto!(dest::T, src::T) where T <: PCGStateSetseq
     dest.state = src.state
     dest.inc = src.inc
     dest
 end
 
-copy(src::T) where T <: AbstractPCG = copy!(T(), src)
+copy(src::T) where T <: AbstractPCG = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractPCG = r1.state == r2.state
 ==(r1::T, r2::T) where T <: PCGStateSetseq = r1.state == r2.state && r1.inc == r2.inc

@@ -1,5 +1,5 @@
-import Base: copy, copy!, ==
-import Base.Random: rand, srand
+import Base: copy, copyto!, ==
+import Random: rand, srand
 import RandomNumbers: AbstractRNG, gen_seed, split_uint, seed_type
 
 """
@@ -42,13 +42,13 @@ end
 
 @inline seed_type(::Type{T}) where T <: AbstractXorshift128 = NTuple{2, UInt64}
 
-function copy!(dest::T, src::T) where T <: AbstractXorshift128
+function copyto!(dest::T, src::T) where T <: AbstractXorshift128
     dest.x = src.x
     dest.y = src.y
     dest
 end
 
-copy(src::T) where T <: AbstractXorshift128 = copy!(T(), src)
+copy(src::T) where T <: AbstractXorshift128 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXorshift128 = r1.x == r2.x && r1.y == r2.y
 

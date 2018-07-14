@@ -1,9 +1,9 @@
 using RandomNumbers.Random123
-if !isdefined(:RandomNumbers)
+if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
-stdout_ = STDOUT
+stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
@@ -27,19 +27,18 @@ for (rng_name, seed_t, stype, seed, args) in (
     @eval $rng_name($stype)
     x = @eval $rng_name($stype, $seed, $(args...))
     @test seed_type(x) == seed_t
-    @test copy!(copy(x), x) == x
+    @test copyto!(copy(x), x) == x
 
     x.p = 1
     rand(x, UInt64)
     x.p = 1
     rand(x, UInt128)
-    @eval rand(x, NTuple{$(string(rng_name)[end-1]-'0'), $stype})
+    @eval rand($x, NTuple{$(string(rng_name)[end-1]-'0'), $stype})
 
     set_counter!(x, 0)
     for i in 1:100
         @printf "%.9f\n" rand(x)
     end
-
 
     close(outfile)
 end

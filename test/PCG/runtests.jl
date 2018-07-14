@@ -1,9 +1,9 @@
 using RandomNumbers.PCG
-if !isdefined(:RandomNumbers)
+if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
-stdout_ = STDOUT
+stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
@@ -35,7 +35,7 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
         r = state_type(return_type, method, 42)
         @test seed_type(r) == uint_type
     end
-    @test copy!(copy(r), r) == r
+    @test copyto!(copy(r), r) == r
 
     # Unique state won't produce the same sequence every time.
     if state_type_t == :Unique
@@ -47,7 +47,7 @@ for (state_type_t, uint_type, method_symbol, return_type) in PCG_LIST
     end
     outfile = open(string(
         "./actual/check-$(lowercase("$state_type_t"))-$(sizeof(uint_type) << 3)-",
-        "$(replace(lowercase("$method_symbol"), "_", "-"))-$(sizeof(return_type) << 3).out"
+        "$(replace(lowercase("$method_symbol"), "_" => "-"))-$(sizeof(return_type) << 3).out"
     ), "w")
     redirect_stdout(outfile)
     for round in 1:5

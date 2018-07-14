@@ -1,5 +1,5 @@
-import Base: copy, copy!, ==
-import Base.Random: rand, srand
+import Base: copy, copyto!, ==
+import Random: rand, srand
 import RandomNumbers: AbstractRNG, gen_seed, seed_type
 
 """
@@ -36,12 +36,12 @@ end
 
 @inline seed_type(::Type{T}) where T <: AbstractXorshift64 = UInt64
 
-function copy!(dest::T, src::T) where T <: AbstractXorshift64
+function copyto!(dest::T, src::T) where T <: AbstractXorshift64
     dest.x = src.x
     dest
 end
 
-copy(src::T) where T <: AbstractXorshift64 = copy!(T(), src)
+copy(src::T) where T <: AbstractXorshift64 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXorshift64 = r1.x == r2.x
 

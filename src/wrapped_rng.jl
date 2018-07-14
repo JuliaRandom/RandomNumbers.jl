@@ -1,4 +1,4 @@
-import Base: copy, copy!, ==
+import Base: copy, copyto!, ==
 import RandomNumbers: AbstractRNG, seed_type
 
 """
@@ -59,8 +59,8 @@ WrappedRNG(base_rng::WrappedRNG{R, T1, T2}, ::Type{T3}) where
 
 seed_type(::Type{WrappedRNG{R, T1, T2}}) where {R, T1, T2} = seed_type(R)
 
-function copy!(dest::R, src::R) where R <: WrappedRNG
-    copy!(dest.base_rng, src.base_rng)
+function copyto!(dest::R, src::R) where R <: WrappedRNG
+    copyto!(dest.base_rng, src.base_rng)
     dest.x = src.x
     dest.p = src.p
     dest

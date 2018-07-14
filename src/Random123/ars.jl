@@ -1,5 +1,5 @@
-import Base: copy, copy!, ==
-import RandomNumbers: gen_seed, union_uint, seed_type, unsafe_copy!, unsafe_compare
+import Base: copy, copyto!, ==
+import RandomNumbers: gen_seed, union_uint, seed_type, unsafe_copyto!, unsafe_compare
 
 """
 ```julia
@@ -19,8 +19,8 @@ Only available when [`R123_USE_AESNI`](@ref).
 """
 mutable struct ARS1x{R} <: R123Generator1x{UInt128}
     x::UInt128
-    key::UInt128
     ctr::UInt128
+    key::UInt128
 end
 
 function ARS1x(seed::Integer=gen_seed(UInt128), R::Integer=7)
@@ -39,25 +39,23 @@ end
 @inline seed_type(::Type{ARS1x{R}}) where R = UInt128
 
 for R = 1:10
-    @eval @inline function ars1xm128i(r, ::Type{Val{$R}}, ctr, key)
-        p1 = Ptr{UInt128}(pointer_from_objref(ctr))
-        p2 = Ptr{UInt128}(pointer_from_objref(key))
+    @eval @inline function ars1xm128i(r, ::Type{Val{$R}})
         p = Ptr{UInt128}(pointer_from_objref(r))
-        ccall(($("ars1xm128i$R"), librandom123), Void, (
+        ccall(($("ars1xm128i$R"), librandom123), Nothing, (
         Ptr{UInt128}, Ptr{UInt128}, Ptr{UInt128}
-        ), p1, p2, p)
+        ), p + 16, p + 32, p)
         unsafe_load(p, 1)
     end
 end
 
-copy!(dest::ARS1x{R}, src::ARS1x{R}) where R = unsafe_copy!(dest, src, UInt128, 3)
+copyto!(dest::ARS1x{R}, src::ARS1x{R}) where R = unsafe_copyto!(dest, src, UInt128, 3)
 
 copy(src::ARS1x{R}) where R = ARS1x{R}(src.x, src.key, src.ctr)
 
 ==(r1::ARS1x{R}, r2::ARS1x{R}) where R = unsafe_compare(r1, r2, UInt128, 3)
 
 @inline function random123_r(r::ARS1x{R}) where R
-    ars1xm128i(r, Val{R}, r.ctr, r.key)
+    ars1xm128i(r, Val{R})
     (r.x,)
 end
 
@@ -82,8 +80,8 @@ mutable struct ARS4x{R} <: R123Generator4x{UInt32}
     x2::UInt32
     x3::UInt32
     x4::UInt32
-    key::UInt128
     ctr1::UInt128
+    key::UInt128
     p::Int
 end
 
@@ -104,12 +102,12 @@ end
 @inline seed_type(::Type{ARS4x{R}}) where R = NTuple{4, UInt32}
 
 @inline function random123_r(r::ARS4x{R}) where R
-    ars1xm128i(r, Val{R}, r.ctr1, r.key)
+    ars1xm128i(r, Val{R})
     (r.x1, r.x2, r.x3, r.x4)
 end
 
-function copy!(dest::ARS4x{R}, src::ARS4x{R}) where R
-    unsafe_copy!(dest, src, UInt128, 3)
+function copyto!(dest::ARS4x{R}, src::ARS4x{R}) where R
+    unsafe_copyto!(dest, src, UInt128, 3)
     dest.p = src.p
     dest
 end

@@ -1,11 +1,12 @@
-if R123_USE_AESNI
+if R123_USE_AESNI && !Sys.iswindows() # unstable now
+    import RandomNumbers: split_uint
     key = rand(UInt128)
     r = AESNI1x(key)
-    r1 = AESNI4x((unsafe_wrap(Array, Ptr{UInt32}(pointer_from_objref(key)), 4)...))
+    r1 = AESNI4x(split_uint(key, UInt32))
     @test seed_type(r) == UInt128
     @test seed_type(r1) == NTuple{4, UInt32}
-    @test copy!(copy(r), r) == r
-    @test copy!(copy(r1), r1) == r1
+    @test copyto!(copy(r), r) == r
+    @test copyto!(copy(r1), r1) == r1
     @test r.x == rand(r1, UInt128)
     @test rand(r, UInt128) == rand(r1, UInt128)
     set_counter!(r, 0)

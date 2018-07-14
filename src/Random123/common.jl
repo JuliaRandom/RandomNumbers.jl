@@ -1,4 +1,5 @@
-import Base.Random: rand, srand
+import Libdl
+import Random: rand, srand
 import RandomNumbers: AbstractRNG
 
 const librandom123 = Libdl.find_library(["librandom123"], 

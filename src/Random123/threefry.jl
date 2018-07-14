@@ -1,6 +1,6 @@
-import Base: copy, copy!, ==
-import Base.Random: srand
-import RandomNumbers: gen_seed, seed_type, unsafe_copy!, unsafe_compare
+import Base: copy, copyto!, ==
+import Random: srand
+import RandomNumbers: gen_seed, seed_type, unsafe_copyto!, unsafe_compare
 
 @inline threefry_rotl(x::UInt64, N) = (x << (N & 63)) | (x >> ((64-N) & 63))
 @inline threefry_rotl(x::UInt32, N) = (x << (N & 31)) | (x >> ((32-N) & 31))
@@ -105,8 +105,8 @@ end
 
 @inline seed_type(::Type{Threefry2x{T, R}}) where {T, R} = NTuple{2, T}
 
-function copy!(dest::Threefry2x{T, R}, src::Threefry2x{T, R}) where {T, R}
-    unsafe_copy!(dest, src, T, 6)
+function copyto!(dest::Threefry2x{T, R}, src::Threefry2x{T, R}) where {T, R}
+    unsafe_copyto!(dest, src, T, 6)
     dest.p = src.p
     dest
 end
@@ -245,8 +245,8 @@ end
 
 @inline seed_type(::Type{Threefry4x{T, R}}) where {T, R} = NTuple{4, T}
 
-function copy!(dest::Threefry4x{T, R}, src::Threefry4x{T, R}) where {T, R}
-    unsafe_copy!(dest, src, T, 12)
+function copyto!(dest::Threefry4x{T, R}, src::Threefry4x{T, R}) where {T, R}
+    unsafe_copyto!(dest, src, T, 12)
     dest.p = src.p
     dest
 end

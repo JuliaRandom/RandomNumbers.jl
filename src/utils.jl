@@ -1,3 +1,5 @@
+# import Random
+import Random: RandomDevice
 import RandomNumbers: AbstractRNG
 
 """
@@ -7,7 +9,7 @@ gen_seed(T[, n])
 
 Generate a tuple of `n` truly random numbers in type `T`. If `n` is missing, return only one number.
 The "truly" random numbers are provided by the random device of system. See
-[`Base.Random.RandomDevice`](https://github.com/JuliaLang/julia/blob/master/base/random.jl#L29).
+[`Random.RandomDevice`](https://github.com/JuliaLang/julia/blob/master/base/random.jl#L29).
 
 # Examples
 ```julia
@@ -18,22 +20,27 @@ julia> RandomNumbers.gen_seed(UInt32)
 0x9ba60fdc
 ```
 """
-gen_seed(::Type{T}) where T <: Number = rand(RandomDevice(), T)
-gen_seed(::Type{T}, n) where T <: Number = tuple(rand(RandomDevice(), T, n)...)
+gen_seed(::Type{T}) where {T<:Number} = rand(RandomDevice(), T)
+gen_seed(::Type{T}, n) where {T<:Number} = tuple(rand(RandomDevice(), T, n)...)
 
 "Get the original output type of a RNG."
-@inline output_type(::AbstractRNG{T}) where T = T
+@inline output_type(::AbstractRNG{T}) where {T} = T
+
+# For 1.0
+# Random.gentype(::Type{T}) where {T<:AbstractRNG} = output_type(T)
 
 "Get the default seed type of a RNG."
 @inline seed_type(r::AbstractRNG) = seed_type(typeof(r))
 
-@inline split_uint(x::UInt128) = (x % UInt64, (x >> 64) % UInt64)
-@inline split_uint(x::UInt64) = (x % UInt32, (x >> 32) % UInt32)
-@inline union_uint(x::NTuple{2, UInt32}) = unsafe_load(Ptr{UInt64}(pointer_from_objref(x)), 1)
-@inline union_uint(x::NTuple{2, UInt64}) = unsafe_load(Ptr{UInt128}(pointer_from_objref(x)), 1)
-@inline union_uint(x::NTuple{4, UInt32}) = unsafe_load(Ptr{UInt128}(pointer_from_objref(x)), 1)
+@inline split_uint(x::UInt128, ::Type{UInt64}=UInt64) = (x % UInt64, (x >> 64) % UInt64)
+@inline split_uint(x::UInt128, ::Type{UInt32}) = (x % UInt32, (x >> 32) % UInt32,
+    (x >> 64) % UInt32, (x >> 96) % UInt32)
+@inline split_uint(x::UInt64, ::Type{UInt32}=UInt32) = (x % UInt32, (x >> 32) % UInt32)
+@inline union_uint(x::NTuple{2, UInt32}) = unsafe_load(Ptr{UInt64}(pointer(collect(x))), 1)
+@inline union_uint(x::NTuple{2, UInt64}) = unsafe_load(Ptr{UInt128}(pointer(collect(x))), 1)
+@inline union_uint(x::NTuple{4, UInt32}) = unsafe_load(Ptr{UInt128}(pointer(collect(x))), 1)
 
-@inline function unsafe_copy!(r1::R, r2::R, ::Type{T}, len) where {R, T}
+@inline function unsafe_copyto!(r1::R, r2::R, ::Type{T}, len) where {R, T}
     arr1 = Ptr{T}(pointer_from_objref(r1))
     arr2 = Ptr{T}(pointer_from_objref(r2))
     for i = 1:len

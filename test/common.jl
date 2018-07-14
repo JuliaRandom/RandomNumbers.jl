@@ -1,5 +1,7 @@
 using RandomNumbers
-using Base.Test: @test
+import Random: srand
+using Test: @test
+using Printf: @printf
 
 function compare_dirs(dir1::AbstractString, dir2::AbstractString)
     files1 = readdir(dir1)
@@ -15,4 +17,4 @@ function compare_dirs(dir1::AbstractString, dir2::AbstractString)
     end
 end
 
-strip_cr(line::String) = replace(line, r"\r\n$", "\n")
+strip_cr(line::String) = replace(line, r"\r\n$" => "\n")

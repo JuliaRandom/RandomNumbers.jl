@@ -1,6 +1,6 @@
-import Base: copy, copy!, ==
-import Base.Random: rand, srand
-import RandomNumbers: AbstractRNG, gen_seed, seed_type, unsafe_copy!, unsafe_compare
+import Base: copy, copyto!, ==
+import Random: rand, srand
+import RandomNumbers: AbstractRNG, gen_seed, seed_type, unsafe_copyto!, unsafe_compare
 
 """
 ```julia
@@ -54,15 +54,16 @@ for (star, plus) in (
         end
 
         @inline function xorshift_next(r::$rng_name)
+            ptr = Ptr{UInt64}(pointer_from_objref(r))
             p = r.p
-            s0 = unsafe_load(Ptr{UInt64}(pointer_from_objref(r)), p + 1)
+            s0 = unsafe_load(ptr, p + 1)
             p = (p + 1) % 16
-            s1 = unsafe_load(Ptr{UInt64}(pointer_from_objref(r)), p + 1)
+            s1 = unsafe_load(ptr, p + 1)
             s1 ⊻= s1 << 31
             s1 ⊻= s1 >> 11
             s1 ⊻= s0 >> 30
             s1 ⊻= s0
-            unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), s1, p + 1)
+            unsafe_store!(ptr, s1, p + 1)
             r.p = p
             $(star ? :(s1 * 2685821657736338717) :
               plus ? :(s1 + s0) : :s1)
@@ -72,19 +73,20 @@ end
 
 @inline seed_type(::Type{T}) where T <: AbstractXorshift1024 = NTuple{16, UInt64}
 
-function copy!(dest::T, src::T) where T <: AbstractXorshift1024
-    unsafe_copy!(dest, src, UInt64, 16)
+function copyto!(dest::T, src::T) where T <: AbstractXorshift1024
+    unsafe_copyto!(dest, src, UInt64, 16)
     dest.p = src.p
     dest
 end
 
-copy(src::T) where T <: AbstractXorshift1024 = copy!(T(), src)
+copy(src::T) where T <: AbstractXorshift1024 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXorshift1024 = unsafe_compare(r1, r2, UInt64, 16) && r1.p == r2.p
 
 function srand(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
+    ptr = Ptr{UInt64}(pointer_from_objref(r))
     @inbounds for i in 1:16
-        unsafe_store!(Ptr{UInt64}(pointer_from_objref(r)), seed[i], i)
+        unsafe_store!(ptr, seed[i], i)
     end
     r.p = 0
     for i in 1:16

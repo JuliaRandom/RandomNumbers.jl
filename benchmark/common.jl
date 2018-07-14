@@ -4,6 +4,7 @@ catch
     warn("No RNGTest package found. Only speed benchmarks can be run.")
 end
 using RandomNumbers
+import Printf: @printf
 
 function bigcrush{T<:Number}(rng::RandomNumbers.AbstractRNG{T})
     p = RNGTest.wrap(r, T)

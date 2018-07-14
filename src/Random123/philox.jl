@@ -1,6 +1,6 @@
-import Base: copy, copy!, ==
-import Base.Random: srand
-import RandomNumbers: gen_seed, seed_type, unsafe_copy!, unsafe_compare
+import Base: copy, copyto!, ==
+import Random: srand
+import RandomNumbers: gen_seed, seed_type, unsafe_copyto!, unsafe_compare
 
 for (w, T, Td) in ((32, UInt32, UInt64), (64, UInt64, UInt128))
     @eval @inline function philox_mulhilo(a::$T, b::$T)
@@ -70,8 +70,8 @@ end
 
 @inline seed_type(::Type{Philox2x{T, R}}) where {T, R} = T
 
-function copy!(dest::Philox2x{T, R}, src::Philox2x{T, R}) where {T, R}
-    unsafe_copy!(dest, src, T, 5)
+function copyto!(dest::Philox2x{T, R}, src::Philox2x{T, R}) where {T, R}
+    unsafe_copyto!(dest, src, T, 5)
     dest.p = src.p
     dest
 end
@@ -161,8 +161,8 @@ end
 
 @inline seed_type(::Type{Philox4x{T, R}}) where {T, R} = NTuple{2, T}
 
-function copy!(dest::Philox4x{T, R}, src::Philox4x{T, R}) where {T, R}
-    unsafe_copy!(dest, src, T, 10)
+function copyto!(dest::Philox4x{T, R}, src::Philox4x{T, R}) where {T, R}
+    unsafe_copyto!(dest, src, T, 10)
     dest.p = src.p
     dest
 end

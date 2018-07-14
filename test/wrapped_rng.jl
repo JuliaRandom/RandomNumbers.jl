@@ -14,6 +14,6 @@ rand(r2, UInt64)
 
 @test rand(r3, UInt128) == rand(r2, UInt128)
 
-@test copy!(copy(r1), r1) == r1
+@test copyto!(copy(r1), r1) == r1
 
 

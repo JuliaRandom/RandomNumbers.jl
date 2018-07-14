@@ -1,0 +1,9 @@
+name = "RandomNumbers"
+uuid = "e6cf234a-135c-5ec9-84dd-332b85af5143"
+author = ["Sunoru <s@sunoru.com>"]
+repo = "https://github.com/sunoru/RandomNumbers.jl.git"
+version = "0.2.0"
+
+[deps]
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"

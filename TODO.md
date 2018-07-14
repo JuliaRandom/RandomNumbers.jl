@@ -3,7 +3,7 @@
 ## General
 - Redesign the framework of RNG in Julia Base.
     - `advance!` function whenever possible.
-    - `copy` and `copy!`.
+    - `copy` and `copyto!`.
 - Help improve `Distributions.jl`.
 
 ## PCG

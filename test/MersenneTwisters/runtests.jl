@@ -1,9 +1,9 @@
 using RandomNumbers.MersenneTwisters
-if !isdefined(:RandomNumbers)
+if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
-stdout_ = STDOUT
+stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))
 rm("./actual"; force=true, recursive=true)
@@ -20,7 +20,7 @@ for mt_name in (:MT19937, )
 
     @eval $mt_name()
     x = @eval $mt_name(123)
-    @test copy!(copy(x), x) == x
+    @test copyto!(copy(x), x) == x
 
     for i in 1:100
         @printf "%.9f\n" rand(x)
