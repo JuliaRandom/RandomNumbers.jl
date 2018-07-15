@@ -10,7 +10,7 @@ notifications:
   email: false
 after_success:
   # push coverage results to Coveralls
-  - julia -e 'cd(Pkg.dir("RandomNumbers")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  - julia -e 'import Pkg; cd(Pkg.dir("RandomNumbers")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
   # push coverage results to Codecov
-  - julia -e 'cd(Pkg.dir("RandomNumbers")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
-  - julia -e 'cd(Pkg.dir("RandomNumbers")); Pkg.add("Documenter"); include(joinpath("docs", "make.jl"))'
+  - julia -e 'import Pkg; cd(Pkg.dir("RandomNumbers")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
+  - julia -e 'import Pkg; cd(Pkg.dir("RandomNumbers")); Pkg.add("Documenter"); include(joinpath("docs", "make.jl"))'

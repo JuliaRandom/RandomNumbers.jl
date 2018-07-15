@@ -4,6 +4,7 @@ if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
+@info "Testing Xorshifts"
 stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))

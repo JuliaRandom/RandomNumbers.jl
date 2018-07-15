@@ -3,6 +3,7 @@ if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
+@info "Testing MersenneTwisters"
 stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))

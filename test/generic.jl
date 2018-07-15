@@ -1,5 +1,6 @@
 import Random: randn, randexp, bitrand, randstring, randsubseq, shuffle, randperm, randcycle
 
+@info "Testing Generic functions"
 r = PCG.PCGStateOneseq(123)
 @test randn(r) == -0.4957408739873887
 @test randn(r, Float64, 8) == [

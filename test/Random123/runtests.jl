@@ -3,6 +3,7 @@ if !@isdefined RandomNumbers
     include("../common.jl")
 end
 
+@info "Testing Random123"
 stdout_ = stdout
 pwd_ = pwd()
 cd(dirname(@__FILE__))
