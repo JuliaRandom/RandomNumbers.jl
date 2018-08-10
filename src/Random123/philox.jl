@@ -1,5 +1,5 @@
 import Base: copy, copyto!, ==
-import Random: srand
+import Random: seed!
 import RandomNumbers: gen_seed, seed_type, unsafe_copyto!, unsafe_compare
 
 for (w, T, Td) in ((32, UInt32, UInt64), (64, UInt64, UInt128))
@@ -55,11 +55,11 @@ end
 function Philox2x(::Type{T}=UInt64, seed::Integer=gen_seed(T), R::Integer=10) where T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 16
     r = Philox2x{T, Int(R)}(0, 0, 0, 0, 0, 0)
-    srand(r, seed)
+    seed!(r, seed)
 end
 Philox2x(seed::Integer, R::Integer=10) = Philox2x(UInt64, seed, R)
 
-function srand(r::Philox2x{T}, seed::Integer=gen_seed(T)) where T <: Union{UInt32, UInt64}
+function seed!(r::Philox2x{T}, seed::Integer=gen_seed(T)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = 0
     r.key = seed % T
     r.ctr1 = r.ctr2 = 0
@@ -145,11 +145,11 @@ function Philox4x(::Type{T}=UInt64, seed::NTuple{2, Integer}=gen_seed(T, 2), R::
         T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 16
     r = Philox4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-    srand(r, seed)
+    seed!(r, seed)
 end
 Philox4x(seed::NTuple{2, Integer}, R::Integer=10) = Philox4x(UInt64, seed, R)
 
-function srand(r::Philox4x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2)) where T <: Union{UInt32, UInt64}
+function seed!(r::Philox4x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = r.x3 = r.x4 = 0
     r.key1 = seed[1] % T
     r.key2 = seed[2] % T
@@ -251,4 +251,3 @@ end
     end
     r.x1, r.x2, r.x3, r.x4 = ctr1, ctr2, ctr3, ctr4
 end
-

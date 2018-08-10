@@ -1,13 +1,13 @@
 import Base: copy, copyto!, ==
-import Random: rand, srand
+import Random: rand, seed!
 import RandomNumbers: gen_seed, seed_type
 
 # Generic functions
 
-@inline srand(r::AbstractPCG{StateType}, seed::Integer=gen_seed(StateType)) where
-    StateType <: PCGUInt = pcg_srand(r, seed % StateType)
-@inline srand(r::PCGStateSetseq{StateType}, seed::NTuple{2, Integer}=gen_seed(StateType, 2)) where
-    StateType <: PCGUInt = pcg_srand(r, seed[1] % StateType, seed[2] % StateType)
+@inline seed!(r::AbstractPCG{StateType}, seed::Integer=gen_seed(StateType)) where
+    StateType <: PCGUInt = pcg_seed!(r, seed % StateType)
+@inline seed!(r::PCGStateSetseq{StateType}, seed::NTuple{2, Integer}=gen_seed(StateType, 2)) where
+    StateType <: PCGUInt = pcg_seed!(r, seed[1] % StateType, seed[2] % StateType)
 
 @inline seed_type(::Type{PCGStateOneseq{T, T1, T2}}) where {T, T1, T2} = T
 @inline seed_type(::Type{PCGStateMCG{   T, T1, T2}}) where {T, T1, T2} = T
@@ -103,14 +103,14 @@ for (pcg_type_t, uint_type, method_symbol, output_type) in PCG_LIST
         @eval function $pcg_type(output_type::Type{$output_type}, method::Type{$method},
                 seed::Integer=gen_seed($uint_type))
             s = $pcg_type{$uint_type, method, output_type}()
-            srand(s, seed)
+            seed!(s, seed)
             s
         end
     else
         @eval function $pcg_type(output_type::Type{$output_type}, method::Type{$method},
                 seed::NTuple{2, Integer}=gen_seed($uint_type, 2))
             s = $pcg_type{$uint_type, method, output_type}()
-            srand(s, seed)
+            seed!(s, seed)
             s
         end
     end

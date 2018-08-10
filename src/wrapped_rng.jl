@@ -76,8 +76,8 @@ end
 
 ==(r1::R, r2::R) where R <: WrappedRNG = r1.base_rng == r2.base_rng && r1.x == r2.x && r1.p == r2.p
 
-function srand(wr::WrappedRNG, seed...)
-    srand(wr.base_rng, seed...)
+function seed!(wr::WrappedRNG, seed...)
+    seed!(wr.base_rng, seed...)
         if sizeof(T1) > sizeof(T2)
             wr.x = rand(wr.base_rng, T1)
         end

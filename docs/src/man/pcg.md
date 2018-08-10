@@ -77,7 +77,7 @@ julia> [bounded_rand(r, UInt64(100)) for i in 1:6]
 
 PCG also has an [`advance!`](@ref) function, used to advance the state of a PCG instance.
 ```jldoctest
-julia> srand(r, 1234567);
+julia> seed!(r, 1234567);
 
 julia> rand(r, 4)
 4-element Array{Float64,1}:

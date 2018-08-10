@@ -1,5 +1,5 @@
 import Base: copy, copyto!, ==
-import Random: rand, srand
+import Random: rand, seed!
 import RandomNumbers: AbstractRNG, gen_seed, split_uint, seed_type
 
 """
@@ -23,7 +23,7 @@ for (star, plus) in (
             y::UInt64
             function $rng_name(seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
                 r = new(0, 0)
-                srand(r, seed)
+                seed!(r, seed)
                 r
             end
         end
@@ -52,9 +52,9 @@ copy(src::T) where T <: AbstractXorshift128 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXorshift128 = r1.x == r2.x && r1.y == r2.y
 
-srand(r::AbstractXorshift128, seed::Integer) = srand(r, split_uint(seed % UInt128))
+seed!(r::AbstractXorshift128, seed::Integer) = seed!(r, split_uint(seed % UInt128))
 
-function srand(r::AbstractXorshift128, seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
+function seed!(r::AbstractXorshift128, seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
     r.x = seed[1]
     r.y = seed[2]
     xorshift_next(r)

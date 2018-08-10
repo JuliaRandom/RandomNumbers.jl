@@ -1,5 +1,5 @@
 import Base: copy, copyto!, ==
-import Random: srand
+import Random: seed!
 import RandomNumbers: gen_seed, seed_type, unsafe_copyto!, unsafe_compare
 
 @inline threefry_rotl(x::UInt64, N) = (x << (N & 63)) | (x >> ((64-N) & 63))
@@ -90,11 +90,11 @@ function Threefry2x(::Type{T}=UInt64, seed::NTuple{2, Integer}=gen_seed(T, 2), R
         T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 32
     r = Threefry2x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0)
-    srand(r, seed)
+    seed!(r, seed)
 end
 Threefry2x(seed::NTuple{2, Integer}, R::Integer=20) = Threefry2x(UInt64, seed, R)
 
-function srand(r::Threefry2x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2)) where T <: Union{UInt32, UInt64}
+function seed!(r::Threefry2x{T}, seed::NTuple{2, Integer}=gen_seed(T, 2)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = 0
     r.key1 = seed[1] % T
     r.key2 = seed[2] % T
@@ -231,11 +231,11 @@ function Threefry4x(::Type{T}=UInt64, seed::NTuple{4, Integer}=gen_seed(T, 4), R
         T <: Union{UInt32, UInt64}
     @assert 1 <= R <= 72
     r = Threefry4x{T, Int(R)}(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-    srand(r, seed)
+    seed!(r, seed)
 end
 Threefry4x(seed::NTuple{4, Integer}, R::Integer=20) = Threefry4x(UInt64, seed, R)
 
-function srand(r::Threefry4x{T}, seed::NTuple{4, Integer}=gen_seed(T, 4)) where T <: Union{UInt32, UInt64}
+function seed!(r::Threefry4x{T}, seed::NTuple{4, Integer}=gen_seed(T, 4)) where T <: Union{UInt32, UInt64}
     r.x1 = r.x2 = r.x3 = r.x4 = 0
     r.key1, r.key2, r.key3, r.key4 = seed[1] % T, seed[2] % T, seed[3] % T, seed[4] % T
     r.ctr1 = r.ctr2 = r.ctr3 = r.ctr4 = 0

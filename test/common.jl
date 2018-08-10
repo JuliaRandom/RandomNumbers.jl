@@ -1,5 +1,5 @@
 using RandomNumbers
-import Random: srand
+import Random: seed!
 using Test: @test
 using Printf: @printf
 
