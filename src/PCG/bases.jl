@@ -163,7 +163,7 @@ end
     ((high_bits % T) << spare_bits) ⊻ (low_bits % T)
 end
 
-# PCGState types, seed!om and Step functions.
+# PCGState types, SRandom and Step functions.
 """
 ```julia
 AbstractPCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} <: AbstractRNG{OutputType}
