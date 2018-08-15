@@ -1,5 +1,5 @@
 import Libdl
-import Random: rand, srand
+import Random: rand, seed!
 import RandomNumbers: AbstractRNG
 
 const librandom123 = Libdl.find_library(["librandom123"], 

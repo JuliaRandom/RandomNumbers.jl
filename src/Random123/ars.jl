@@ -26,10 +26,10 @@ end
 function ARS1x(seed::Integer=gen_seed(UInt128), R::Integer=7)
     @assert 1 <= R <= 10
     r = ARS1x{Int(R)}(0, 0, 0)
-    srand(r, seed)
+    seed!(r, seed)
 end
 
-function srand(r::ARS1x, seed::Integer=gen_seed(UInt128))
+function seed!(r::ARS1x, seed::Integer=gen_seed(UInt128))
     r.key = seed % UInt128
     r.ctr = 0
     random123_r(r)
@@ -88,10 +88,10 @@ end
 function ARS4x(seed::NTuple{4, Integer}=gen_seed(UInt32, 4), R::Integer=7)
     @assert 1 <= R <= 10
     r = ARS4x{Int(R)}(0, 0, 0, 0, 0, 0, 0)
-    srand(r, seed)
+    seed!(r, seed)
 end
 
-function srand(r::ARS4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
+function seed!(r::ARS4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
     r.key = union_uint(map(x -> x % UInt32, seed))
     r.ctr1 = 0
     p = 0

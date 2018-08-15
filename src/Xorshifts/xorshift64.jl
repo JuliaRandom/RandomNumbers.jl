@@ -1,5 +1,5 @@
 import Base: copy, copyto!, ==
-import Random: rand, srand
+import Random: rand, seed!
 import RandomNumbers: AbstractRNG, gen_seed, seed_type
 
 """
@@ -18,7 +18,7 @@ for star in (false, true)
             x::UInt64
             function $rng_name(seed::UInt64=gen_seed(UInt64))
                 r = new(0)
-                srand(r, seed)
+                seed!(r, seed)
                 r
             end
         end
@@ -45,7 +45,7 @@ copy(src::T) where T <: AbstractXorshift64 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXorshift64 = r1.x == r2.x
 
-function srand(r::AbstractXorshift64, seed::Integer=gen_seed(UInt64))
+function seed!(r::AbstractXorshift64, seed::Integer=gen_seed(UInt64))
     r.x = seed % UInt64
     xorshift_next(r)
     r

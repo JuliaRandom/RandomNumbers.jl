@@ -50,7 +50,7 @@ as `UInt64`, `UInt32`, etc. Users can change the output type of a certain RNG ty
 
 Consistent to what `Base.Random` does, there are generic functions:
 
-- `srand(::AbstractRNG{T}[, seed])`
+- `seed!(::AbstractRNG{T}[, seed])`
     initializes a RNG by one or a sequence of numbers (called *seed*). The output sequences by two RNGs of
     the same type should be the same if they are initialized by the same seed, which makes them
     *deterministic*. The seed type of each RNG type can be different, you can refer to the corresponding
@@ -69,7 +69,7 @@ such as `randn`, `randexp`, `randcycle`, etc. defined in `Base.Random` still wor
 [official docs](http://docs.julialang.org/en/release-0.5/stdlib/numbers/#random-numbers) don't include all of
 them, so you can refer to [this section](@ref generic-functions) for details.
 
-The constructors of all the types of RNG are designed to take the same kind of parameters as `srand`. For example:
+The constructors of all the types of RNG are designed to take the same kind of parameters as `seed!`. For example:
 
 ```jldoctest
 julia> using RandomNumbers.Xorshifts

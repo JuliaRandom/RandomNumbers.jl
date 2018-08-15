@@ -1,5 +1,5 @@
 import Base: copy, copyto!, ==
-import Random: rand, srand
+import Random: rand, seed!
 import RandomNumbers: AbstractRNG, gen_seed, seed_type, unsafe_copyto!, unsafe_compare
 
 """
@@ -38,7 +38,7 @@ for (star, plus) in (
             p::Int
             function $rng_name(seed::NTuple{16, UInt64}=gen_seed(UInt64, 16))
                 r = new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                srand(r, seed)
+                seed!(r, seed)
                 r
             end
         end
@@ -83,7 +83,7 @@ copy(src::T) where T <: AbstractXorshift1024 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXorshift1024 = unsafe_compare(r1, r2, UInt64, 16) && r1.p == r2.p
 
-function srand(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
+function seed!(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
     ptr = Ptr{UInt64}(pointer_from_objref(r))
     @inbounds for i in 1:16
         unsafe_store!(ptr, seed[i], i)
@@ -95,18 +95,18 @@ function srand(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
     r
 end
 
-function srand(r::AbstractXorshift1024, seed::Integer...)
+function seed!(r::AbstractXorshift1024, seed::Integer...)
     l = length(seed)
     @assert 0 ≤ l ≤ 16 
     if l == 0
-        srand(r, gen_seed(UInt64, 16))
+        seed!(r, gen_seed(UInt64, 16))
     end
     if 0 < l < 16
         warn("Seed sequencing for Xorshift1024 family is unconfirmed. Please use 0 or 16 UInt64 numbers" *
              " for the seed.")
     end
     # TODO: this is really awful..
-    srand(r, map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
+    seed!(r, map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
 end
 
 @inline rand(r::AbstractXorshift1024, ::Type{UInt64}) = xorshift_next(r)

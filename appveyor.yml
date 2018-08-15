@@ -28,7 +28,7 @@ build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
   - SET PATH=C:\MinGW\bin;%PATH%
-  - C:\projects\julia\bin\julia -e "versioninfo(); import Pkg;
+  - C:\projects\julia\bin\julia -e "using InteractiveUtils; versioninfo(); import Pkg;
       Pkg.clone(pwd(), \"RandomNumbers\"); Pkg.build(\"RandomNumbers\")"
 
 test_script:

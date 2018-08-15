@@ -36,7 +36,7 @@ for (rng_name, seed_t) in (
     redirect_stdout(outfile)
 
     @eval x = $rng_name()
-    srand(x)
+    seed!(x)
     @test seed_type(x) == seed_t
     @test copyto!(copy(x), x) == x
     if seed_t <: Tuple

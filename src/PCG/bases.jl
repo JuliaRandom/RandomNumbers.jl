@@ -183,7 +183,7 @@ mutable struct PCGStateOneseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputT
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand(s::PCGStateOneseq{T}, init_state::T) where T <: PCGUInt
+@inline function pcg_seed!(s::PCGStateOneseq{T}, init_state::T) where T <: PCGUInt
     s.state = 0 % T
     pcg_step!(s)
     s.state += init_state
@@ -212,7 +212,7 @@ mutable struct PCGStateMCG{StateType<:PCGUInt, MethodType<:PCGMethod, OutputType
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand(s::PCGStateMCG{T}, init_state::T) where T <: PCGUInt
+@inline function pcg_seed!(s::PCGStateMCG{T}, init_state::T) where T <: PCGUInt
     s.state = init_state | 1
     s
 end
@@ -238,7 +238,7 @@ mutable struct PCGStateUnique{StateType<:PCGUInt, MethodType<:PCGMethod, OutputT
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand(s::PCGStateUnique{T}, init_state::T) where T <: PCGUInt
+@inline function pcg_seed!(s::PCGStateUnique{T}, init_state::T) where T <: PCGUInt
     s.state = 0 % T
     pcg_step!(s)
     s.state += init_state
@@ -269,7 +269,7 @@ mutable struct PCGStateSetseq{StateType<:PCGUInt, MethodType<:PCGMethod, OutputT
         {StateType<:PCGUInt, MethodType<:PCGMethod, OutputType<:PCGUInt} = new()
 end
 
-@inline function pcg_srand(s::PCGStateSetseq{T}, init_state::T, init_seq::T) where T <: PCGUInt
+@inline function pcg_seed!(s::PCGStateSetseq{T}, init_state::T, init_seq::T) where T <: PCGUInt
     s.state = 0
     s.inc = (init_seq << 1) | 1
     pcg_step!(s)
@@ -294,7 +294,7 @@ end
 pcg_output
 
 "Initialize a PCG object."
-pcg_srand
+pcg_seed!
 
 "Do one iteration step for a PCG object."
 pcg_step!

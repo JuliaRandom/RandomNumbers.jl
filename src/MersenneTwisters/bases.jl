@@ -31,8 +31,8 @@ mutable struct MT19937 <: MersenneTwister{UInt32}
         new(x, i)
     end
 end
-MT19937(seed::Integer) = srand(MT19937(Vector{UInt32}(undef, N), 1), seed % UInt32)
-MT19937(seed::NTuple{N, UInt32}=gen_seed(UInt32, N)) = srand(MT19937(Vector{UInt32}(undef, N), 1), seed)
+MT19937(seed::Integer) = seed!(MT19937(Vector{UInt32}(undef, N), 1), seed % UInt32)
+MT19937(seed::NTuple{N, UInt32}=gen_seed(UInt32, N)) = seed!(MT19937(Vector{UInt32}(undef, N), 1), seed)
 
 "Set up a `MT19937` RNG object using a `Tuple` of $N `UInt32` numbers."
 @inline function mt_set!(r::MT19937, s::NTuple{N, UInt32})

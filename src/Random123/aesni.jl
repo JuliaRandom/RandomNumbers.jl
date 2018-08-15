@@ -42,12 +42,12 @@ mutable struct AESNI1x <: R123Generator1x{UInt128}
     function AESNI1x(seed::Integer=gen_seed(UInt128))
         @warn "`AESNI1x` would be unstable on Windows platform in this version, please use other RNGs."
         r = new(0, 0, AESNIKey())
-        srand(r, seed)
+        seed!(r, seed)
         r
     end
 end
 
-function srand(r::AESNI1x, seed::Integer=gen_seed(UInt128))
+function seed!(r::AESNI1x, seed::Integer=gen_seed(UInt128))
     initkey(r, seed % UInt128)
     r.ctr = 0
     random123_r(r)
@@ -90,12 +90,12 @@ mutable struct AESNI4x <: R123Generator4x{UInt32}
     function AESNI4x(seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
         @warn "`AESNI4x` would be unstable on Windows platform in this version, please use other RNGs."
         r = new(0, 0, 0, 0, 0, AESNIKey(), 0)
-        srand(r, seed)
+        seed!(r, seed)
         r
     end
 end
 
-function srand(r::AESNI4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
+function seed!(r::AESNI4x, seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
     key = union_uint(map(x -> x % UInt32, seed))
     initkey(r, key)
     r.ctr1 = 0

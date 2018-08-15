@@ -14,7 +14,7 @@ Pages = ["random-numbers.md"]
 ## [Generic Functions](@id generic-functions)
 ```@docs
 rand
-srand
+seed!
 randn
 randexp
 bitrand
