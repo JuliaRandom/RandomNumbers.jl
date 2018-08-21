@@ -10,7 +10,7 @@ function build()
             else
                 url = "https://github.com/sunoru/RandomNumbers.jl/releases/download/deplib-0.1/librandom123.dll"
             end
-            info("You don't have MinGW32 installed, so now downloading the library binary from github.")
+            @info("You don't have MinGW32 installed, so now downloading the library binary from github.")
             download(url, "librandom123.dll")
         end
     elseif Sys.isbsd() && !Sys.isapple()  # e.g. FreeBSD
@@ -39,5 +39,5 @@ check_compiler() = Sys.iswindows() ? true : success(`gcc --version`)
 if have_aesni() && check_compiler()
     build()
 else
-    warn("AES-NI will not be compiled.")
+    @warn("AES-NI will not be compiled.")
 end
