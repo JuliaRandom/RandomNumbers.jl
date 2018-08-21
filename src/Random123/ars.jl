@@ -1,4 +1,5 @@
 import Base: copy, copyto!, ==
+import Random: rand, seed!
 import RandomNumbers: gen_seed, union_uint, seed_type, unsafe_copyto!, unsafe_compare
 
 """

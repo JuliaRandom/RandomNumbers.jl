@@ -61,7 +61,9 @@ someone needs the reproducibility, just save the state `r.mt` and use it for nex
 An initialization function described in the original paper[^1] is also implemented here, so the seed can also
 be just one `UInt32` number (or an `Integer` whose least 32 bits will be truncated):
 ```jldoctest
-julia> seed!(r, 0xabcdef12);
+julia> import Random
+
+julia> Random.seed!(r, 0xabcdef12);
 
 julia> rand(r, UInt32, 10)
 10-element Array{UInt32,1}:

@@ -1,4 +1,5 @@
 import Base: copy, copyto!, ==
+import Random: rand, seed!
 import RandomNumbers: gen_seed, union_uint, seed_type, unsafe_copyto!, unsafe_compare
 
 "The key for AESNI."
@@ -40,7 +41,7 @@ mutable struct AESNI1x <: R123Generator1x{UInt128}
     ctr::UInt128
     key::AESNIKey
     function AESNI1x(seed::Integer=gen_seed(UInt128))
-        @warn "`AESNI1x` would be unstable on Windows platform in this version, please use other RNGs."
+        Sys.iswindows() && @warn "`AESNI1x` would be unstable on Windows platform in this version, please use other RNGs."
         r = new(0, 0, AESNIKey())
         seed!(r, seed)
         r
@@ -88,7 +89,7 @@ mutable struct AESNI4x <: R123Generator4x{UInt32}
     key::AESNIKey
     p::Int
     function AESNI4x(seed::NTuple{4, Integer}=gen_seed(UInt32, 4))
-        @warn "`AESNI4x` would be unstable on Windows platform in this version, please use other RNGs."
+        Sys.iswindows() && @warn "`AESNI4x` would be unstable on Windows platform in this version, please use other RNGs."
         r = new(0, 0, 0, 0, 0, AESNIKey(), 0)
         seed!(r, seed)
         r
