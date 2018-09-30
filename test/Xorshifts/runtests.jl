@@ -36,6 +36,10 @@ for (rng_name, seed_t) in (
     redirect_stdout(outfile)
 
     @eval x = $rng_name()
+    @test_throws(
+        ErrorException("0 cannot be the seed"),
+        seed_t === NTuple{16, UInt64} ? seed!(x, zeros(UInt64, 16)...) : seed!(x, 0)
+    )
     seed!(x)
     @test seed_type(x) == seed_t
     @test copyto!(copy(x), x) == x
@@ -53,6 +57,7 @@ for (rng_name, seed_t) in (
     close(outfile)
 end
 redirect_stdout(stdout_)
+
 
 compare_dirs("expected", "actual")
 cd(pwd_)

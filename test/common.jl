@@ -1,6 +1,6 @@
 using RandomNumbers
 import Random: seed!
-using Test: @test
+using Test: @test, @test_throws
 using Base.Printf: @printf
 
 function compare_dirs(dir1::AbstractString, dir2::AbstractString)

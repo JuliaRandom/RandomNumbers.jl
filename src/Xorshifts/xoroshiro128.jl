@@ -57,6 +57,7 @@ copy(src::T) where T <: AbstractXoroshiro128 = copyto!(T(), src)
 
 seed!(r::AbstractXoroshiro128, seed::Integer) = seed!(r, split_uint(seed % UInt128))
 function seed!(r::AbstractXoroshiro128, seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
+    all(==(0), seed) && error("0 cannot be the seed")
     r.x = seed[1]
     r.y = seed[2]
     xorshift_next(r)

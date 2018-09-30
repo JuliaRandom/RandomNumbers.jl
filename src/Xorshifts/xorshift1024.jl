@@ -84,6 +84,7 @@ copy(src::T) where T <: AbstractXorshift1024 = copyto!(T(), src)
 ==(r1::T, r2::T) where T <: AbstractXorshift1024 = unsafe_compare(r1, r2, UInt64, 16) && r1.p == r2.p
 
 function seed!(r::AbstractXorshift1024, seed::NTuple{16, UInt64})
+    all(==(0), seed) && error("0 cannot be the seed")
     ptr = Ptr{UInt64}(pointer_from_objref(r))
     @inbounds for i in 1:16
         unsafe_store!(ptr, seed[i], i)

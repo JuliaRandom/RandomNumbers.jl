@@ -9,7 +9,7 @@ $r <: AbstractXorshift64
 $r([seed])
 ```
 
-$r RNG. The `seed` will be automatically convert to an `UInt64` number.
+$r RNG. The `seed` will be automatically convert to an `UInt64` number. A zero seed is not acceptable.
 """
     @doc doc_xorshift64("Xorshift64") Xorshift64
     @doc doc_xorshift64("Xorshift64Star") Xorshift64Star
@@ -22,7 +22,7 @@ $r([seed])
 ```
 
 $r RNG. The `seed` can be a `Tuple` of two `UInt64`s, or an `Integer` which will be automatically convert to
-an `UInt128` number.
+an `UInt128` number. Zero seeds are not acceptable.
 """
     @doc doc_xorshift128("Xorshift128") Xorshift128
     @doc doc_xorshift128("Xorshift128Star") Xorshift128Star
@@ -36,7 +36,7 @@ $r([seed...])
 ```
 
 $r RNG. The `seed` can be a `Tuple` of 16 `UInt64`s, or several (no more than 16) `Integer`s which will all
-be automatically converted to `UInt64` numbers.
+be automatically converted to `UInt64` numbers. Zero seeds are not acceptable.
 """
     @doc doc_xorshift1024("Xorshift1024") Xorshift1024
     @doc doc_xorshift1024("Xorshift1024Star") Xorshift1024Star
@@ -50,7 +50,7 @@ $r([seed])
 ```
 
 $r RNG. The `seed` can be a `Tuple` of two `UInt64`s, or an `Integer` which will be automatically convert to
-an `UInt128` number.
+an `UInt128` number. Zero seeds are not acceptable.
 """
     @doc doc_xoroshiro128("Xoroshiro128") Xoroshiro128
     @doc doc_xoroshiro128("Xoroshiro128Star") Xoroshiro128Star

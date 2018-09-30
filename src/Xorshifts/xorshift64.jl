@@ -46,6 +46,7 @@ copy(src::T) where T <: AbstractXorshift64 = copyto!(T(), src)
 ==(r1::T, r2::T) where T <: AbstractXorshift64 = r1.x == r2.x
 
 function seed!(r::AbstractXorshift64, seed::Integer=gen_seed(UInt64))
+    seed == 0 && error("0 cannot be the seed")
     r.x = seed % UInt64
     xorshift_next(r)
     r
