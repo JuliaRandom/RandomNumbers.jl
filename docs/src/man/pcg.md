@@ -52,18 +52,18 @@ not all parameter combinations are available (see [`PCG_LIST`](@ref)). For examp
 julia> using RandomNumbers.PCG
 
 julia> PCGStateOneseq(UInt64, 1234567)  # create a single stream PCG, specifying the output type and seed.
-RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
+PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
 
 julia> PCGStateUnique(PCG_RXS_M_XS, 1234567);  # unique stream PCG, specifying the method and seed.
 
 julia> PCGStateSetseq(UInt32, PCG_XSH_RR, (1234567, 7654321))
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85, 0x0000000000e99763)
+PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85, 0x0000000000e99763)
 ```
 
 [`bounded_rand`](@ref) is provided by this module, in which the bound is must an integer in the output type:
 ```jldoctest
 julia> r = PCGStateOneseq(1234567)
-RandomNumbers.PCG.PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
+PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
 
 julia> [bounded_rand(r, UInt64(100)) for i in 1:6]
 6-element Array{UInt64,1}:
@@ -83,19 +83,19 @@ julia> Random.seed!(r, 1234567);
 
 julia> rand(r, 4)
 4-element Array{Float64,1}:
- 0.571626 
- 0.994506 
- 0.888622 
- 0.0876384
+ 0.5716257379273757
+ 0.9945058856417783
+ 0.8886220302794352
+ 0.08763836824057081
 
 julia> advance!(r, -4);
 
 julia> rand(r, 4)
 4-element Array{Float64,1}:
- 0.571626 
- 0.994506 
- 0.888622 
- 0.0876384
+ 0.5716257379273757
+ 0.9945058856417783
+ 0.8886220302794352
+ 0.08763836824057081
 ```
 
 [^1]:

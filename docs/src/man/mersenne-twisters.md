@@ -4,7 +4,7 @@
 CurrentModule = RandomNumbers.MersenneTwisters
 DocTestSetup = quote
     using RandomNumbers.MersenneTwisters
-    r = MT19937(((UInt32(i) for i in 1:624)...))
+    r = MT19937(Tuple(UInt32(i) for i in 1:624))
 end
 ```
 
@@ -30,7 +30,7 @@ julia> using RandomNumbers.MersenneTwisters
 
 A certain sequence can be used to initialize an instance of MT19937:
 ```jldoctest
-julia> seed = ((UInt32(i) for i in 1:624)...);  # This is a Tuple of 1..624
+julia> seed = Tuple(UInt32(i) for i in 1:624);  # This is a Tuple of 1..624
 
 julia> r = MT19937(seed);
 ```

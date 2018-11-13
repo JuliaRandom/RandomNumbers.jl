@@ -6,12 +6,12 @@ Main module for `RandomNumbers.jl` -- a random number generator package for Juli
 
 This module exports two types and four submodules:
 
-- [`AbstractRNG`](@ref).
-- [`WrappedRNG`](@ref).
-- [`PCG`](@ref).
-- [`MersenneTwisters`](@ref).
-- [`Random123`](@ref).
-- [`Xorshifts`](@ref).
+- [`AbstractRNG`](@ref)
+- [`WrappedRNG`](@ref)
+- [`PCG`](@ref)
+- [`MersenneTwisters`](@ref)
+- [`Random123`](@ref)
+- [`Xorshifts`](@ref)
 """
 module RandomNumbers
 

@@ -3,6 +3,7 @@
 ```@meta
 DocTestSetup = quote
     using RandomNumbers
+    import Test
 end
 ```
 
@@ -11,19 +12,24 @@ end
 Pages = ["random-numbers.md"]
 ```
 
-## [Generic Functions](@id generic-functions)
-```@docs
-rand
-seed!
-randn
-randexp
-bitrand
-randstring
-randsubseq
-shuffle
-randperm
-randcycle
-```
+## [Common Functions](@id common-functions)
+- [Base.rand](https://docs.julialang.org/en/v1/stdlib/Random/#Base.rand)
+- [Random.rand!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.rand!)
+- [Random.seed!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.seed!)
+- [Base.randn](https://docs.julialang.org/en/v1/stdlib/Random/#Base.randn)
+- [Random.randn!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randn!)
+- [Random.randexp](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randexp)
+- [Random.randexp!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randexp!)
+- [Random.bitrand](https://docs.julialang.org/en/v1/stdlib/Random/#Random.bitrand)
+- [Random.randstring](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randstring)
+- [Random.randsubseq](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randsubseq)
+- [Random.randsubseq!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randsubseq!)
+- [Random.randperm](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randperm)
+- [Random.randperm!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randperm!)
+- [Random.randcycle](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randcycle)
+- [Random.randcycle!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.randcycle!)
+- [Random.shuffle](https://docs.julialang.org/en/v1/stdlib/Random/#Random.shuffle)
+- [Random.shuffle!](https://docs.julialang.org/en/v1/stdlib/Random/#Random.shuffle!)
 
 ## Public
 ```@autodocs

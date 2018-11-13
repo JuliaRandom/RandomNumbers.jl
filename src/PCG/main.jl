@@ -70,17 +70,17 @@ Advance a PCG object `r` for `Δ` steps.
 # Examples
 ```jldoctest
 julia> r = PCGStateSetseq(UInt64, PCG_RXS_M_XS, (123, 321))
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29, 0x0000000000000283)
+PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29, 0x0000000000000283)
 
 julia> A = rand(r, UInt64, 2);
 
 julia> p = rand(r);
 
 julia> r
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702, 0x0000000000000283)
+PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x9b1fc763ae0ad702, 0x0000000000000283)
 
 julia> advance!(r, -3)
-RandomNumbers.PCG.PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29, 0x0000000000000283)
+PCGStateSetseq{UInt64,Val{:RXS_M_XS},UInt64}(0x45389f8b27528b29, 0x0000000000000283)
 
 julia> @Test.test A == rand(r, UInt64, 2)
 Test Passed

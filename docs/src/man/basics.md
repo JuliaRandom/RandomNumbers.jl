@@ -63,19 +63,21 @@ Consistent to what `Base.Random` does, there are generic functions:
     function returns a `Float64` value that is expected to be uniformly distributed in ``[0, 1)``. The
     discussion about this is in the [Conversion to Float](@ref) section.
 
-The other generic functions such as `rand(::AbstractRNG, ::Dims)` and
-`rand!(::AbstractRNG, ::AbstractArray)`, and the ones that generate random numbers in a certain distribution
-such as `randn`, `randexp`, `randcycle`, etc. defined in `Base.Random` still work well. However the
-[official docs](http://docs.julialang.org/en/release-0.5/stdlib/numbers/#random-numbers) don't include all of
-them, so you can refer to [this section](@ref generic-functions) for details.
+The other common functions such as `rand(::AbstractRNG, ::Dims)` and `rand!(::AbstractRNG, ::AbstractArray)`,
+and the ones that generate random numbers in a certain distribution such as `randn`, `randexp`, `randcycle`,
+etc. defined in the standard library `Random` still work well.
+See the [official docs](https://docs.julialang.org/en/latest/stdlib/Random/) for details. You can also refer
+to [this section](@ref common-functions) for the common functions.
 
 The constructors of all the types of RNG are designed to take the same kind of parameters as `seed!`. For example:
 
 ```jldoctest
 julia> using RandomNumbers.Xorshifts
 
+julia> import Random: rand!
+
 julia> r1 = Xorshift128Star(123)  # Create a RNG of Xorshift128Star with the seed "123"
-RandomNumbers.Xorshifts.Xorshift128Star(0x000000003a300074, 0x000000003a30004e)
+Xorshift128Star(0x000000003a300074, 0x000000003a30004e)
 
 julia> r2 = Xorshift128Star();  # Use a random value to be the seed.
 

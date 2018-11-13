@@ -13,7 +13,7 @@ Code Coverage:
 
 Documentation:
 [![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://sunoru.github.io/RandomNumbers.jl/stable/)
-[![Latest Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://sunoru.github.io/RandomNumbers.jl/latest/)
+[![Devel Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://sunoru.github.io/RandomNumbers.jl/dev/)
 
 **RandomNumbers.jl** is a package of [Julia](http://julialang.org/), in which several random number generators (RNGs)
 are provided.
@@ -36,19 +36,19 @@ Pkg.test("RandomNumbers")
 
 There are four RNG families in this package:
 
-- [PCG](http://sunoru.github.io/RandomNumbers.jl/latest/man/pcg/):
+- [PCG](http://sunoru.github.io/RandomNumbers.jl/stable/man/pcg/):
     A new family of RNG, based on *linear congruential generators*, using a *permuted function* to produce much
     more random output.
-- [Mersenne Twister](http://sunoru.github.io/RandomNumbers.jl/latest/man/mersenne-twisters/):
+- [Mersenne Twister](http://sunoru.github.io/RandomNumbers.jl/stable/man/mersenne-twisters/):
     The most widely used RNG, with long period.
-- [Random123](http://sunoru.github.io/RandomNumbers.jl/latest/man/random123/):
+- [Random123](http://sunoru.github.io/RandomNumbers.jl/stable/man/random123/):
     A family of good-performance *counter-based* RNG.
-- [Xorshift](http://sunoru.github.io/RandomNumbers.jl/latest/man/xorshifts/):
+- [Xorshift](http://sunoru.github.io/RandomNumbers.jl/stable/man/xorshifts/):
     A class of RNG based on *exclusive or* and *bit shift*.
 
 ## Usage
 
-Please see the [documentation](http://sunoru.github.io/RandomNumbers.jl/latest/man/basics/) for usage of this package.
+Please see the [documentation](http://sunoru.github.io/RandomNumbers.jl/stable/man/basics/) for usage of this package.
 
 ## License
 

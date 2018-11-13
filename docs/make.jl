@@ -1,10 +1,14 @@
-using Documenter, RandomNumbers
+using Documenter, RandomNumbers, DocumenterMarkdown
+import Random
 
-makedocs()
+makedocs(
+#    modules = [RandomNumbers],
+    format = :markdown
+)
 
 deploydocs(
-    deps   = Deps.pip("pygments", "mkdocs", "python-markdown-math", "mkdocs-material"),
     repo   = "github.com/sunoru/RandomNumbers.jl.git",
-    julia  = "1.0",
-    osname = "linux"
+    deps   = Deps.pip("pygments", "mkdocs", "python-markdown-math", "mkdocs-material"),
+    make = () -> run(`mkdocs build`),
+    target = "site"
 )
