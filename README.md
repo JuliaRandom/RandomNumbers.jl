@@ -48,7 +48,7 @@ There are four RNG families in this package:
 
 ## Usage
 
-Please see the [documentation](http://sunoru.github.io/RandomNumbers.jl/latest/man/bases/) for usage of this package.
+Please see the [documentation](http://sunoru.github.io/RandomNumbers.jl/latest/man/basics/) for usage of this package.
 
 ## License
 
