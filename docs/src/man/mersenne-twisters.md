@@ -10,7 +10,7 @@ end
 
 The **Mersenne Twister**[^1] is so far the most widely used PRNG. Mersenne Twisters are taken as default
 random number generators of a great many of software systems, including the Julia language until the current
-0.5 version. The most commonly used version of Mersenne Twisters is **MT19937**, which has a very long period
+1.0 version. The most commonly used version of Mersenne Twisters is **MT19937**, which has a very long period
 of ``2^{19937}-1`` and passes numerous tests including the Diehard tests.
 
 However, it also has many flaws by today's standards. For the large period, MT19937 has to use a 2.5 KiB
