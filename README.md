@@ -23,13 +23,13 @@ choice for random number generation.
 
 ## Installation
 
-This package is registered.
+This package is registered. The stable version of this package requires Julia `0.7+`. You can install it by:
 ```julia
-Pkg.add("RandomNumbers")
+(v1.0) pkg> add RandomNumbers
 ```
 It is recommended to run the test suites before using the package:
 ```julia
-Pkg.test("RandomNumbers")
+(v1.0) pkg> test RandomNumbers
 ```
 
 ## RNG Families

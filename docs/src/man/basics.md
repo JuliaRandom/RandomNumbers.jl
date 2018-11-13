@@ -10,18 +10,14 @@ This page describes basic concepts and fundamental knowledge of **RandomNumbers.
 
 ## Installation
 
-This package is currently not registered, so you have to directly clone it for installation:
+This package is registered. The stable version of this package requires Julia `0.7+`. You can install it by:
 ```julia
-julia> Pkg.clone("https://github.com/sunoru/RandomNumbers.jl.git")
-```
-And build the dependencies:
-```julia
-julia> Pkg.build("RandomNumbers")
+(v1.0) pkg> add RandomNumbers
 ```
 
 It is recommended to run the test suites before using the package:
 ```julia
-julia> Pkg.test("RandomNumbers")
+(v1.0) pkg> test RandomNumbers
 ```
 
 ## Interface
