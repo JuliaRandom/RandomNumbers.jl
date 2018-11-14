@@ -1,8 +1,7 @@
 using Documenter, RandomNumbers, DocumenterMarkdown
-import Random
 
 makedocs(
-#    modules = [RandomNumbers],
+    modules = [RandomNumbers],
     format = :markdown
 )
 
