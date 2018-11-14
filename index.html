@@ -1,8 +1,19 @@
 <html>
-  <h3>Documentation of RandomNumbers.jl</h3>
-  <ul>
-    <li><a href="https://sunoru.github.io/RandomNumbers.jl/dev">devel</a></li>
-    <li><a href="https://sunoru.github.io/RandomNumbers.jl/stable">stable</a></li>
-    <li><a href="https://sunoru.github.io/RandomNumbers.jl/v0.1">v0.1</a></li>
-  </ul>
+  <head>
+    <script src="./versions.js" type="text/javascript" charset="UTF-8"></script>
+    <title>RandomNumbers.jl</title>
+  </head>
+  <body>
+    <h3>Documentation of RandomNumbers.jl</h3>
+    <ul id="version-list">
+    </ul>
+    <script>
+      const list = document.getElementById('version-list')
+      DOC_VERSIONS.forEach(v => {
+        const li = document.createElement('li')
+        list.appendChild(li)
+        li.innerHTML = `<a href="./${v}">${v}</a>`
+      })
+    </script>
+  </body>
 </html>
