@@ -3,33 +3,38 @@ __precompile__(true)
 """
 The module for [Xorshift Family](@ref).
 
-Provide 11 RNG types:
+Provide 8 RNG types (others are to be deprecated):
 
-- [`Xorshift64`](@ref)
-- [`Xorshift64Star`](@ref)
-- [`Xorshift128`](@ref)
-- [`Xorshift128Star`](@ref)
-- [`Xorshift128Plus`](@ref)
-- [`Xorshift1024`](@ref)
-- [`Xorshift1024Star`](@ref)
-- [`Xorshift1024Plus`](@ref)
-- [`Xoroshiro128`](@ref)
-- [`Xoroshiro128Star`](@ref)
+- [`Xoroshiro64Star`](@ref)
+- [`Xoroshiro64StarStar`](@ref)
 - [`Xoroshiro128Plus`](@ref)
+- [`Xoroshiro128StarStar`](@ref)
+- [`Xoshiro128Plus`](@ref)
+- [`Xoshiro128StarStar`](@ref)
+- [`Xoshiro256Plus`](@ref)
+- [`Xoshiro256StarStar`](@ref)
 """
 module Xorshifts
 
-export Xorshift64, Xorshift64Star
+include("common.jl")
+
 include("xorshift64.jl")
 
-export Xorshift128, Xorshift128Star, Xorshift128Plus
 include("xorshift128.jl")
 
-export Xorshift1024, Xorshift1024Star, Xorshift1024Plus
 include("xorshift1024.jl")
 
-export Xoroshiro128, Xoroshiro128Star, Xoroshiro128Plus
+export Xoroshiro64Star, Xoroshiro64StarStar
+include("xoroshiro64.jl")
+
+export Xoroshiro128Plus, Xoroshiro128StarStar
 include("xoroshiro128.jl")
+
+export Xoshiro128Plus, Xoshiro128StarStar
+include("xoshiro128.jl")
+
+export Xoshiro256Plus, Xoshiro256StarStar
+include("xoshiro256.jl")
 
 include("docs.jl")
 

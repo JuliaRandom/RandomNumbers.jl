@@ -7,18 +7,17 @@ import RandomNumbers: AbstractRNG, gen_seed, split_uint, seed_type
 AbstractXoroshiro128 <: AbstractRNG{UInt64}
 ```
 
-The base abstract type for `Xoroshiro128`, `Xoroshiro128Star` and `Xoroshiro128Plus`.
+The base abstract type for `Xoroshiro128`, `Xoroshiro128Star`, `Xoroshiro128Plus` and `Xoroshiro128StarStar`.
 """
 abstract type AbstractXoroshiro128 <: AbstractRNG{UInt64} end
 
-@inline xorshift_rotl(x::UInt64, k) = (x << k) | (x >> (64 - k))
-
-for (star, plus) in (
-        (false, false),
-        (false, true),
-        (true, false),
+for (star, plus, starstar) in (
+        (false, false, false),
+        (true, false, false),
+        (false, true, false),
+        (false, false, true),
     )
-    rng_name = Symbol(string("Xoroshiro128", star ? "Star" : plus ? "Plus" : ""))
+    rng_name = Symbol(string("Xoroshiro128", star ? "Star" : plus ? "Plus" : starstar ? "StarStar" : ""))
     @eval begin
         mutable struct $rng_name <: AbstractXoroshiro128
             x::UInt64
@@ -33,12 +32,13 @@ for (star, plus) in (
         $rng_name(seed::Integer) = $rng_name(split_uint(seed % UInt128))
 
         @inline function xorshift_next(r::$rng_name)
-            $(plus ? :(p = r.x + r.y) : nothing)
+            $(plus ? :(p = r.x + r.y)
+                : starstar ? :(p = xorshift_rotl(r.x * 5, 7) * 9) : nothing)
             s1 = r.y ⊻ r.x
-            r.x = xorshift_rotl(r.x, 55) ⊻ s1 ⊻ (s1 << 14)
-            r.y = xorshift_rotl(s1, 36)
+            r.x = xorshift_rotl(r.x, 24) ⊻ s1 ⊻ (s1 << 16)
+            r.y = xorshift_rotl(s1, 37)
             $(star ? :(r.y * 2685821657736338717) :
-              plus ? :(p) : :(r.y))
+              (plus || starstar) ? :(p) : :(r.y))
         end
     end
 end

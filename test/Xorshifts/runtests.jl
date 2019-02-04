@@ -17,6 +17,15 @@ seeds = [0x1ed73cdc948901ab, 0x6d76dcf952161e22, 0x8d0eba5421bc695b, 0xa16065e26
          0x442ffe4a57ed7987, 0xfd686ec417788eb6, 0x1ec96940807a8749, 0x64d93a8608a988ef]
 
 for (rng_name, seed_t) in (
+        (:Xoroshiro64Star,      NTuple{2, UInt32}),
+        (:Xoroshiro64StarStar,  NTuple{2, UInt32}),
+        (:Xoroshiro128Plus,     NTuple{2, UInt64}),
+        (:Xoroshiro128StarStar, NTuple{2, UInt64}),
+        (:Xoshiro128Plus,       NTuple{4, UInt32}),
+        (:Xoshiro128StarStar,   NTuple{4, UInt32}),
+        (:Xoshiro256Plus,       NTuple{4, UInt64}),
+        (:Xoshiro256StarStar,   NTuple{4, UInt64}),
+
         (:Xorshift64,       UInt64),
         (:Xorshift64Star,   UInt64),
         (:Xorshift128,      NTuple{2, UInt64}),
@@ -27,7 +36,6 @@ for (rng_name, seed_t) in (
         (:Xorshift1024Plus, NTuple{16, UInt64}),
         (:Xoroshiro128,     NTuple{2, UInt64}),
         (:Xoroshiro128Star, NTuple{2, UInt64}),
-        (:Xoroshiro128Plus, NTuple{2, UInt64}),
     )
 
     outfile = open(string(
@@ -38,16 +46,13 @@ for (rng_name, seed_t) in (
     @eval x = $rng_name()
     @test_throws(
         ErrorException("0 cannot be the seed"),
-        seed_t === NTuple{16, UInt64} ? seed!(x, zeros(UInt64, 16)...) : seed!(x, 0)
+        seed!(x, seed_t <: Tuple ? (zeros(seed_t.types[1], length(seed_t.types))...,) : 0)
     )
     seed!(x)
     @test seed_type(x) == seed_t
     @test copyto!(copy(x), x) == x
-    if seed_t <: Tuple
-        seed = (seeds[1:length(seed_t.types)]...,)
-    else
-        seed = seeds[1]
-    end
+
+    seed = seed_t <: Tuple ? ((seeds[i] % seed_t.types[i] for i in 1:length(seed_t.types))...,) : seeds[1] % seed_t
     @eval x = $rng_name($seed)
 
     for i in 1:100
