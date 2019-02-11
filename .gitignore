@@ -8,3 +8,4 @@ actual/
 *.so
 *.dll
 /docs/site/
+/docs/Manifest.toml

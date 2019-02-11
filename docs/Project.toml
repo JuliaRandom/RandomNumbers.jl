@@ -1,8 +1,7 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 DocumenterMarkdown = "997ab1e6-3595-5248-9280-8efb232c3433"
-Random123 = "c3412330-2d8f-11e9-13ca-d9033ffe1343"
-RandomNumbers = "e6cf234a-135c-5ec9-84dd-332b85af5143"
+Random123 = "74087812-796a-5b5d-8853-05524746bad3"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]

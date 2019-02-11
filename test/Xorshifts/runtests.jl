@@ -44,6 +44,7 @@ for (rng_name, seed_t) in (
     redirect_stdout(outfile)
 
     @eval x = $rng_name()
+    @eval x = $rng_name(1234)
     @test_throws(
         ErrorException("0 cannot be the seed"),
         seed!(x, seed_t <: Tuple ? (zeros(seed_t.types[1], length(seed_t.types))...,) : 0)
