@@ -1,6 +1,6 @@
 The RandomNumbers.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2016: sunoru.
+> Copyright (c) 2018: sunoru.
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
@@ -20,5 +20,3 @@ The RandomNumbers.jl package is licensed under the MIT "Expat" License:
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
 > 
-
-The Random123 submodule is licensed under [its own license](./src/Random123/LICENSE).

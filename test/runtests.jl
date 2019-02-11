@@ -3,8 +3,7 @@ for (i, testfile) in enumerate((
     "wrapped_rng.jl",
     "PCG/runtests.jl",
     "MersenneTwisters/runtests.jl",
-    "Xorshifts/runtests.jl",
-    "Random123/runtests.jl"))
+    "Xorshifts/runtests.jl"))
     @eval module $(Symbol("T$i"))
         include("common.jl")
         include($testfile)

@@ -1,4 +1,5 @@
 using Documenter, RandomNumbers, DocumenterMarkdown
+import Random123
 
 makedocs(
     modules = [RandomNumbers],

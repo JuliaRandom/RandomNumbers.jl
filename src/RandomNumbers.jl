@@ -10,7 +10,7 @@ This module exports two types and four submodules:
 - [`WrappedRNG`](@ref)
 - [`PCG`](@ref)
 - [`MersenneTwisters`](@ref)
-- [`Random123`](@ref)
+- [`Random123`](random123.md#Random123.Random123)
 - [`Xorshifts`](@ref)
 """
 module RandomNumbers
@@ -27,7 +27,12 @@ module RandomNumbers
 
     include(joinpath("PCG", "PCG.jl"))
     include(joinpath("MersenneTwisters", "MersenneTwisters.jl"))
-    include(joinpath("Random123", "Random123.jl"))
     include(joinpath("Xorshifts", "Xorshifts.jl"))
+
+    import Requires
+    function __init__()
+        # The code of Random123 has been moved to Random123.jl
+        Requires.@require Random123="c3412330-2d8f-11e9-13ca-d9033ffe1343" import Random123
+    end
 
 end

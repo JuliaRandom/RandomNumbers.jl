@@ -25,7 +25,7 @@ choice for random number generation.
 
 This package is registered. The stable version of this package requires Julia `0.7+`. You can install it by:
 ```julia
-(v1.0) pkg> add RandomNumbers
+(v1.1) pkg> add RandomNumbers
 ```
 It is recommended to run the test suites before using the package:
 ```julia
@@ -45,6 +45,9 @@ There are four RNG families in this package:
     A family of good-performance *counter-based* RNG.
 - [Xorshift](http://sunoru.github.io/RandomNumbers.jl/stable/man/xorshifts/):
     A class of RNG based on *exclusive or* and *bit shift*.
+
+Note that `Random123` is now made a separate package as [Random123.jl](https://github.com/sunoru/Random123.jl).
+You can still use your old code with `RandomNumbers.Random123` as long as you import `Random123` manually.
 
 ## Usage
 
