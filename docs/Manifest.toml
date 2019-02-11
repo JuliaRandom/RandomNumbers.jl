@@ -72,7 +72,9 @@ version = "1.1.0"
 
 [[RandomNumbers]]
 deps = ["Random", "Requires"]
-path = "/mnt/c/Users/sunoru/pro/julia-packages/RandomNumbers"
+git-tree-sha1 = "6a98a789c7c1c497f0f7df647281c37c10b407fc"
+repo-rev = "master"
+repo-url = ".."
 uuid = "e6cf234a-135c-5ec9-84dd-332b85af5143"
 version = "1.1.0"
 
