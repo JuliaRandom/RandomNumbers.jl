@@ -32,7 +32,7 @@ module RandomNumbers
     import Requires
     function __init__()
         # The code of Random123 has been moved to Random123.jl
-        Requires.@require Random123="c3412330-2d8f-11e9-13ca-d9033ffe1343" import Random123
+        Requires.@require Random123="74087812-796a-5b5d-8853-05524746bad3" import .Random123
     end
 
 end
