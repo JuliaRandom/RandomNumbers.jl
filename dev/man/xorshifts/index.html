@@ -513,7 +513,7 @@
                 
                 <p><a id='Xorshift-Family-1'></a></p>
 <h1 id="xorshift-family">Xorshift Family</h1>
-<p><a href="http://xoroshiro.di.unimi.it/"><code>Xorshift</code></a> family is a class of PRNGs based on linear transformation that takes the <em>exclusive or</em> of a number with a <em>bit-shifted</em> version of itself<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. They are extremely fast on mordern computer architectures, and are very suitable for non-cryptographically-secure use. The suffix <code>-Star</code> and <code>-Plus</code> in the RNG names denote to two classes of improved RNGs<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>, which make it to pass Big Crush in TestU01. <code>-Star</code> RNGs are obtained by scrambling the output of a normal <code>Xorshift</code> generator with a 64-bit invertible multiplier, while <code>-Plus</code> RNGs return the sum of two consecutive output of a <code>Xorshift</code> generator.</p>
+<p><a href="http://xoroshiro.di.unimi.it/"><code>Xorshift</code></a> family is a class of PRNGs based on linear transformation that takes the <em>exclusive or</em> of a number with a <em>bit-shifted</em> version of itself<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. They are extremely fast on mordern computer architectures, and are very suitable for non-cryptographically-secure use. The suffix <code>-Star</code> and <code>-Plus</code> in the RNG names denote to two classes of improved RNGs<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>, which make it to pass Big Crush in TestU01. <code>-Star</code> RNGs are obtained by scrambling the output of a normal <code>Xorshift</code> generator with a 64-bit invertible multiplier, while <code>-Plus</code> RNGs return the sum of two consecutive output of a <code>Xorshift</code> generator.</p>
 <p>In this package there are four series of RNG types:</p>
 <ul>
 <li><a href="../../lib/xorshifts/#RandomNumbers.Xorshifts.Xorshift64"><code>Xorshift64</code></a> and <a href="../../lib/xorshifts/#RandomNumbers.Xorshifts.Xorshift64Star"><code>Xorshift64Star</code></a>:   They have a period of $2^{64}$, but not recommended because 64 bits of state are not enough for any   serious purpose.</li>
@@ -544,13 +544,13 @@ julia&gt; rand(r, UInt32)
 <hr />
 <ol>
 <li id="fn:1">
-<p>Marsaglia G. Xorshift rngs[J]. Journal of Statistical Software, 2003, 8(14): 1-6. doi:<a href="http://dx.doi.org/10.18637/jss.v008.i14">10.18637/jss.v008.i14</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Marsaglia G. Xorshift rngs[J]. Journal of Statistical Software, 2003, 8(14): 1-6. doi:<a href="http://dx.doi.org/10.18637/jss.v008.i14">10.18637/jss.v008.i14</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Vigna S. An experimental exploration of Marsaglia's xorshift generators, scrambled[J]. arXiv preprint <a href="http://arxiv.org/abs/1402.6246">arXiv:1402.6246</a>, 2014.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Vigna S. An experimental exploration of Marsaglia's xorshift generators, scrambled[J]. arXiv preprint <a href="http://arxiv.org/abs/1402.6246">arXiv:1402.6246</a>, 2014.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Vigna S. Further scramblings of Marsaglia's xorshift generators[J]. arXiv preprint <a href="http://arxiv.org/abs/1404.0390">arXiv:1404.0390</a>, 2014.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Vigna S. Further scramblings of Marsaglia's xorshift generators[J]. arXiv preprint <a href="http://arxiv.org/abs/1404.0390">arXiv:1404.0390</a>, 2014.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

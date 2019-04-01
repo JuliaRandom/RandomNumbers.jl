@@ -513,8 +513,8 @@
                 
                 <p><a id='Mersenne-Twisters-1'></a></p>
 <h1 id="mersenne-twisters">Mersenne Twisters</h1>
-<p>The <strong>Mersenne Twister</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> is so far the most widely used PRNG. Mersenne Twisters are taken as default random number generators of a great many of software systems, including the Julia language until the current 1.0 version. The most commonly used version of Mersenne Twisters is <strong>MT19937</strong>, which has a very long period of $2^{19937}-1$ and passes numerous tests including the Diehard tests.</p>
-<p>However, it also has many flaws by today's standards. For the large period, MT19937 has to use a 2.5 KiB state buffer, which place a load on the memory caches. More severely, it cannot pass all the TestU01 statistical tests<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>, and the speed is not so fast. <strong>So it is not recommended in most situations.</strong></p>
+<p>The <strong>Mersenne Twister</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is so far the most widely used PRNG. Mersenne Twisters are taken as default random number generators of a great many of software systems, including the Julia language until the current 1.0 version. The most commonly used version of Mersenne Twisters is <strong>MT19937</strong>, which has a very long period of $2^{19937}-1$ and passes numerous tests including the Diehard tests.</p>
+<p>However, it also has many flaws by today's standards. For the large period, MT19937 has to use a 2.5 KiB state buffer, which place a load on the memory caches. More severely, it cannot pass all the TestU01 statistical tests<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, and the speed is not so fast. <strong>So it is not recommended in most situations.</strong></p>
 <p>The <a href="../../lib/mersenne-twisters/#RandomNumbers.MersenneTwisters"><code>MersenneTwisters</code></a> in this package currently only provides one RNG: <a href="../../lib/mersenne-twisters/#RandomNumbers.MersenneTwisters.MT19937"><code>MT19937</code></a>. <code>MT19937</code> can only produce <code>UInt32</code> numbers as output. Its state is an array of 624 <code>UInt32</code> numbers, so it takes 624 <code>UInt32</code>s as seed. A default function is also provided to deal with one <code>UInt32</code> as seed.</p>
 <p><a id='Examples-1'></a></p>
 <h2 id="examples">Examples</h2>
@@ -533,16 +533,16 @@
 <p>Since MT19937 is a RNG based on linear-feedback shift-register techniques, this approach is not recommended for an obivous reason:</p>
 <div class="codehilite"><pre><span></span>julia&gt; rand(r, UInt32, 10)
 10-element Array{UInt32,1}:
- 0x0000018f
- 0x983ba049
- 0x00000192
- 0x983ba054
- 0x00000191
- 0x983ba057
- 0x00000190
- 0x983ba056
- 0x00000193
- 0x983ba055
+ 0x23864fee
+ 0xdd51a593
+ 0x20c049a2
+ 0xde17a3df
+ 0x20804931
+ 0xde57a34c
+ 0x20c049a0
+ 0xde17a3dd
+ 0x20804933
+ 0xde57a34e
 </pre></div>
 
 
@@ -552,38 +552,38 @@
 
 
 <p>In this case, all the 624 states will be filled with truly random numbers produced by <code>RandomDevice</code>. If someone needs the reproducibility, just save the state <code>r.mt</code> and use it for next time.</p>
-<p>An initialization function described in the original paper<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> is also implemented here, so the seed can also be just one <code>UInt32</code> number (or an <code>Integer</code> whose least 32 bits will be truncated):</p>
+<p>An initialization function described in the original paper<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is also implemented here, so the seed can also be just one <code>UInt32</code> number (or an <code>Integer</code> whose least 32 bits will be truncated):</p>
 <div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">Random</span>
 
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">Random</span><span class="o">.</span><span class="n">seed</span><span class="err">!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mh">0xabcdef12</span><span class="p">);</span>
 
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="mi">10</span><span class="o">-</span><span class="n">element</span> <span class="n">Array</span><span class="p">{</span><span class="n">UInt32</span><span class="p">,</span><span class="mi">1</span><span class="p">}:</span>
- <span class="mh">0x63ec7b30</span>
- <span class="mh">0x71b2167e</span>
- <span class="mh">0x6c339700</span>
- <span class="mh">0x1cfaa505</span>
- <span class="mh">0xc7a81f4d</span>
- <span class="mh">0x3319b105</span>
- <span class="mh">0x457db8ba</span>
- <span class="mh">0xc9d4ccd8</span>
- <span class="mh">0x811f30a0</span>
- <span class="mh">0x627ecfbe</span>
+ <span class="mh">0x986c5150</span>
+ <span class="mh">0xbb9e20f5</span>
+ <span class="mh">0xfb59a25a</span>
+ <span class="mh">0x189eb49c</span>
+ <span class="mh">0xbcca5395</span>
+ <span class="mh">0x48d9fdf5</span>
+ <span class="mh">0x3193f581</span>
+ <span class="mh">0xe0b6d080</span>
+ <span class="mh">0x63154ca2</span>
+ <span class="mh">0x72b28f0d</span>
 </pre></div>
 
 
-<p>Note that if you use one <code>UInt32</code> number as seed, you will always get in a bias way.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup></p>
+<p>Note that if you use one <code>UInt32</code> number as seed, you will always get in a bias way.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Matsumoto M, Nishimura T. Mersenne twister: a 623-dimensionally equidistributed uniform pseudo-random number generator[J]. ACM Transactions on Modeling and Computer Simulation (TOMACS), 1998, 8(1): 3-30. doi:<a href="https://dx.doi.org/10.1145/272991.272995">10.1145/272991.272995</a>.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Matsumoto M, Nishimura T. Mersenne twister: a 623-dimensionally equidistributed uniform pseudo-random number generator[J]. ACM Transactions on Modeling and Computer Simulation (TOMACS), 1998, 8(1): 3-30. doi:<a href="https://dx.doi.org/10.1145/272991.272995">10.1145/272991.272995</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>L'Ecuyer P, Simard R. TestU01: AC library for empirical testing of random number generators[J]. ACM Transactions on Mathematical Software (TOMS), 2007, 33(4): 22. doi:<a href="http://dx.doi.org/10.1145/1268776.1268777">10.1145/1268776.1268777</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>L'Ecuyer P, Simard R. TestU01: AC library for empirical testing of random number generators[J]. ACM Transactions on Mathematical Software (TOMS), 2007, 33(4): 22. doi:<a href="http://dx.doi.org/10.1145/1268776.1268777">10.1145/1268776.1268777</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p><a href="http://www.pcg-random.org/posts/cpp-seeding-surprises.html">C++ Seeding Surprises</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p><a href="http://www.pcg-random.org/posts/cpp-seeding-surprises.html">C++ Seeding Surprises</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
