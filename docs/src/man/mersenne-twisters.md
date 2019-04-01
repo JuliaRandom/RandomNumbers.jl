@@ -39,16 +39,16 @@ for an obivous reason:
 ```jldoctest
 julia> rand(r, UInt32, 10)
 10-element Array{UInt32,1}:
- 0x0000018f
- 0x983ba049
- 0x00000192
- 0x983ba054
- 0x00000191
- 0x983ba057
- 0x00000190
- 0x983ba056
- 0x00000193
- 0x983ba055
+ 0x23864fee
+ 0xdd51a593
+ 0x20c049a2
+ 0xde17a3df
+ 0x20804931
+ 0xde57a34c
+ 0x20c049a0
+ 0xde17a3dd
+ 0x20804933
+ 0xde57a34e
 ```
 The firstly generated numbers are so poorly random. This is because the most bits of states are zeros. So it
 is better to create a `MT19937` in this way:
@@ -67,16 +67,16 @@ julia> Random.seed!(r, 0xabcdef12);
 
 julia> rand(r, UInt32, 10)
 10-element Array{UInt32,1}:
- 0x63ec7b30
- 0x71b2167e
- 0x6c339700
- 0x1cfaa505
- 0xc7a81f4d
- 0x3319b105
- 0x457db8ba
- 0xc9d4ccd8
- 0x811f30a0
- 0x627ecfbe
+ 0x986c5150
+ 0xbb9e20f5
+ 0xfb59a25a
+ 0x189eb49c
+ 0xbcca5395
+ 0x48d9fdf5
+ 0x3193f581
+ 0xe0b6d080
+ 0x63154ca2
+ 0x72b28f0d
 ```
 Note that if you use one `UInt32` number as seed, you will always get in a bias way.[^3]
 
