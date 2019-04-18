@@ -1,4 +1,5 @@
 using RandomNumbers.MersenneTwisters
+import Random123
 using RandomNumbers.Random123
 using RandomNumbers.PCG
 using RandomNumbers.Xorshifts
