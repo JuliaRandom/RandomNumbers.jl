@@ -1,13 +1,33 @@
 using RandomNumbers.MersenneTwisters
+import Random123
 using RandomNumbers.Random123
 using RandomNumbers.PCG
 using RandomNumbers.Xorshifts
 import Random: rand
-import Printf: @printf
+import Printf: @printf, @sprintf
 
 include("common.jl")
 
+function rank_timing_results(results)
+    sort!(results, by = last)
+    mtidx = findfirst(t -> endswith(t[1], "MersenneTwister"), results)
+    timemt = results[mtidx][2]
+    println("\n\nRanked:")
+    for i in 1:length(results)
+        rngstr, timetaken = results[i]
+        @printf "%4d. %s: %6.3f ns/64 bits" i rngstr timetaken
+        p = 100.0 * (timetaken-timemt)/timemt
+        c = (p < 0.0 ? :green : (p > 0.0 ? :red : :normal))
+        if p != 0.0
+            signstr = (p > 0.0 ? "+" : "")
+            printstyled("  ", signstr, @sprintf("%.2f%%", p); color=c)
+        end
+        println("")
+    end
+end
+
 macro rngtest(rngs...)
+    results = []
     for rng in rngs
         if rng.head == :call
             r = @eval $rng
@@ -16,8 +36,11 @@ macro rngtest(rngs...)
             r = @eval $(rng.args[1])
             name = rng.args[2]
         end
-        @printf "%20s: %6.3f ns/64 bits\n" name speed_test(r)
+        timetaken = speed_test(r)
+        @printf "%20s: %6.3f ns/64 bits\n" name timetaken
+        push!(results, (@sprintf("%20s", name), timetaken))
     end
+    rank_timing_results(results)
 end
 
 @rngtest(
