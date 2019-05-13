@@ -525,18 +525,18 @@
 <p><a id='Examples-1'></a></p>
 <h2 id="examples">Examples</h2>
 <p>The usage of <code>Xorshift</code> family is very simple and common:</p>
-<div class="codehilite"><pre><span></span>julia&gt; using RandomNumbers.Xorshifts
+<div class="codehilite"><pre><span></span><span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">using</span> <span class="nv">RandomNumbers</span>.<span class="nv">Xorshifts</span>
 
-julia&gt; r = Xoroshiro128Plus();  # create a RNG with truly random seed.
+<span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">r</span> <span class="o">=</span> <span class="nv">Xoroshiro128Plus</span><span class="ss">()</span><span class="c1">;  # create a RNG with truly random seed.</span>
 
-julia&gt; r = Xoroshiro128Plus(0x1234567890abcdef)  # with a certain seed. Note that the seed must be non-zero.
-Xoroshiro128Plus(0xe7eb72d97b4beac6, 0x9b86d56534ba1f9e)
+<span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">r</span> <span class="o">=</span> <span class="nv">Xoroshiro128Plus</span><span class="ss">(</span><span class="mi">0</span><span class="nv">x1234567890abcdef</span><span class="ss">)</span>  # <span class="nv">with</span> <span class="nv">a</span> <span class="nv">certain</span> <span class="nv">seed</span>. <span class="nv">Note</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">seed</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">non</span><span class="o">-</span><span class="nv">zero</span>.
+<span class="nv">Xoroshiro128Plus</span><span class="ss">(</span><span class="mi">0</span><span class="nv">xe7eb72d97b4beac6</span>, <span class="mi">0</span><span class="nv">x9b86d56534ba1f9e</span><span class="ss">)</span>
 
-julia&gt; rand(r)
-0.14263790854661185
+<span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">rand</span><span class="ss">(</span><span class="nv">r</span><span class="ss">)</span>
+<span class="mi">0</span>.<span class="mi">14263790854661185</span>
 
-julia&gt; rand(r, UInt32)
-0x0a0315b3
+<span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">rand</span><span class="ss">(</span><span class="nv">r</span>, <span class="nv">UInt32</span><span class="ss">)</span>
+<span class="mi">0</span><span class="nv">x0a0315b3</span>
 </pre></div>
 
 

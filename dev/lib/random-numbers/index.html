@@ -600,7 +600,7 @@
 <li><a href="../random123/#Random123.Random123"><code>Random123</code></a></li>
 <li><a href="../xorshifts/#RandomNumbers.Xorshifts"><code>Xorshifts</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/3afbe824e470928951a0edb4d81aef876b611bb6/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/693be0eb201ad0f298d729e8ccb3a72a2c9b66fa/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.AbstractRNG' href='#RandomNumbers.AbstractRNG'>#</a>
 <strong><code>RandomNumbers.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">Random</span><span class="o">.</span><span class="kt">AbstractRNG</span>
@@ -608,7 +608,7 @@
 
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/3afbe824e470928951a0edb4d81aef876b611bb6/src/common.jl#L4-L10' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/693be0eb201ad0f298d729e8ccb3a72a2c9b66fa/src/common.jl#L4-L10' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.WrappedRNG' href='#RandomNumbers.WrappedRNG'>#</a>
 <strong><code>RandomNumbers.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">WrappedRNG</span><span class="p">{</span><span class="n">R</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="n">T2</span><span class="p">}</span>
@@ -619,35 +619,35 @@
 
 <p>Wrap a RNG which originally provides output in T1 into a RNG that provides output in T2.</p>
 <p><strong>Examples</strong></p>
-<div class="codehilite"><pre><span></span>julia&gt; r = Xorshifts.Xorshift128Star(123);
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Xorshifts</span><span class="p">.</span><span class="n">Xorshift128Star</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span><span class="w"></span>
 
-julia&gt; RandomNumbers.output_type(r)
-UInt64
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RandomNumbers</span><span class="p">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="n">UInt64</span><span class="w"></span>
 
-julia&gt; r1 = WrappedRNG(r, UInt32);
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WrappedRNG</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">UInt32</span><span class="p">);</span><span class="w"></span>
 
-julia&gt; RandomNumbers.output_type(r1)
-UInt32
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RandomNumbers</span><span class="p">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span><span class="w"></span>
+<span class="n">UInt32</span><span class="w"></span>
 
-julia&gt; r2 = WrappedRNG(Xorshifts.Xorshift128Star, UInt32, 123);
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WrappedRNG</span><span class="p">(</span><span class="n">Xorshifts</span><span class="p">.</span><span class="n">Xorshift128Star</span><span class="p">,</span><span class="w"> </span><span class="n">UInt32</span><span class="p">,</span><span class="w"> </span><span class="mi">123</span><span class="p">);</span><span class="w"></span>
 
-julia&gt; RandomNumbers.output_type(r2)
-UInt32
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RandomNumbers</span><span class="p">.</span><span class="n">output_type</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span><span class="w"></span>
+<span class="n">UInt32</span><span class="w"></span>
 
-julia&gt; @Test.test rand(r1, UInt32, 3) == rand(r2, UInt32, 3)
-Test Passed
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="nv">@Test</span><span class="p">.</span><span class="n">test</span><span class="w"> </span><span class="nf">rand</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">UInt32</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">rand</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">UInt32</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="n">Test</span><span class="w"> </span><span class="n">Passed</span><span class="w"></span>
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/3afbe824e470928951a0edb4d81aef876b611bb6/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/693be0eb201ad0f298d729e8ccb3a72a2c9b66fa/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T' href='#RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T'>#</a>
 <strong><code>RandomNumbers.output_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/3afbe824e470928951a0edb4d81aef876b611bb6/src/utils.jl#L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/693be0eb201ad0f298d729e8ccb3a72a2c9b66fa/src/utils.jl#L26' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.seed_type-Tuple{AbstractRNG}' href='#RandomNumbers.seed_type-Tuple{AbstractRNG}'>#</a>
 <strong><code>RandomNumbers.seed_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the default seed type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/3afbe824e470928951a0edb4d81aef876b611bb6/src/utils.jl#L32' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/693be0eb201ad0f298d729e8ccb3a72a2c9b66fa/src/utils.jl#L32' class='documenter-source'>source</a><br></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
 <p><a id='RandomNumbers.gen_seed-Union{Tuple{Type{T}}, Tuple{T}} where T<:Number' href='#RandomNumbers.gen_seed-Union{Tuple{Type{T}}, Tuple{T}} where T<:Number'>#</a>
@@ -666,7 +666,7 @@ Test Passed
 </pre></div>
 
 
-<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/3afbe824e470928951a0edb4d81aef876b611bb6/src/utils.jl#L5-L22' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/sunoru/RandomNumbers.jl/blob/693be0eb201ad0f298d729e8ccb3a72a2c9b66fa/src/utils.jl#L5-L22' class='documenter-source'>source</a><br></p>
                 
                   
                 

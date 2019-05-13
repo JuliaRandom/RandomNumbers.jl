@@ -625,28 +625,28 @@
 
 
 <p>Take <code>Philox4x64</code> for example:</p>
-<div class="codehilite"><pre><span></span>julia&gt; r = Philox4x();  # will output UInt64 by default, and two seed integers are truly randomly produced.
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">();</span>  <span class="o">#</span> <span class="n">will</span> <span class="k">output</span> <span class="n">UInt64</span> <span class="k">by</span> <span class="k">default</span><span class="p">,</span> <span class="k">and</span> <span class="n">two</span> <span class="n">seed</span> <span class="n">integers</span> <span class="k">are</span> <span class="n">truly</span> <span class="n">randomly</span> <span class="n">produced</span><span class="p">.</span>
 
-julia&gt; r = Philox4x((0x12345678abcdef01, 0x10fedcba87654321));  # specify the seed.
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">((</span><span class="mi">0</span><span class="n">x12345678abcdef01</span><span class="p">,</span> <span class="mi">0</span><span class="n">x10fedcba87654321</span><span class="p">));</span>  <span class="o">#</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">seed</span><span class="p">.</span>
 
-julia&gt; r = Philox4x(UInt64, (0x12345678abcdef01, 0x10fedcba87654321));  # specify both the output type and seed.
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Philox4x</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="n">x12345678abcdef01</span><span class="p">,</span> <span class="mi">0</span><span class="n">x10fedcba87654321</span><span class="p">));</span>  <span class="o">#</span> <span class="n">specify</span> <span class="k">both</span> <span class="n">the</span> <span class="k">output</span> <span class="k">type</span> <span class="k">and</span> <span class="n">seed</span><span class="p">.</span>
 
-julia&gt; rand(r, NTuple{4, UInt64})
-(0x00d626ee85b7d2ed, 0xa57b4af2b68c655e, 0x82dad737de789de2, 0x8d390e05845e6c4d)
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">NTuple</span><span class="err">{</span><span class="mi">4</span><span class="p">,</span> <span class="n">UInt64</span><span class="err">}</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span><span class="n">x00d626ee85b7d2ed</span><span class="p">,</span> <span class="mi">0</span><span class="n">xa57b4af2b68c655e</span><span class="p">,</span> <span class="mi">0</span><span class="n">x82dad737de789de2</span><span class="p">,</span> <span class="mi">0</span><span class="n">x8d390e05845e6c4d</span><span class="p">)</span>
 
-julia&gt; set_counter!(r, 123);  # update the counter manually.
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">set_counter</span><span class="o">!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>  <span class="o">#</span> <span class="k">update</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">manually</span><span class="p">.</span>
 
-julia&gt; rand(r, UInt64, 4)
-4-element Array{UInt64,1}:
- 0x56a4eb812faa9cd7
- 0xf3d3464a49b23b56
- 0xda5a5824aea0b2bb
- 0x097a8d117a2bb20a
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="nb">Array</span><span class="err">{</span><span class="n">UInt64</span><span class="p">,</span><span class="mi">1</span><span class="err">}</span><span class="p">:</span>
+ <span class="mi">0</span><span class="n">x56a4eb812faa9cd7</span>
+ <span class="mi">0</span><span class="n">xf3d3464a49b23b56</span>
+ <span class="mi">0</span><span class="n">xda5a5824aea0b2bb</span>
+ <span class="mi">0</span><span class="n">x097a8d117a2bb20a</span>
 
-julia&gt; set_counter!(r, 0);
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">set_counter</span><span class="o">!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-julia&gt; rand(r, NTuple{4, UInt64})
-(0x00d626ee85b7d2ed, 0xa57b4af2b68c655e, 0x82dad737de789de2, 0x8d390e05845e6c4d)
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">NTuple</span><span class="err">{</span><span class="mi">4</span><span class="p">,</span> <span class="n">UInt64</span><span class="err">}</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span><span class="n">x00d626ee85b7d2ed</span><span class="p">,</span> <span class="mi">0</span><span class="n">xa57b4af2b68c655e</span><span class="p">,</span> <span class="mi">0</span><span class="n">x82dad737de789de2</span><span class="p">,</span> <span class="mi">0</span><span class="n">x8d390e05845e6c4d</span><span class="p">)</span>
 </pre></div>
 
 

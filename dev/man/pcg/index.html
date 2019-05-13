@@ -563,30 +563,30 @@
 <p><a id='Interface-and-Examples-1'></a></p>
 <h2 id="interface-and-examples">Interface and Examples</h2>
 <p>An instance of PCG generator can be created by specify the state type, the output type, the method and seed. When seed is missing it is set to truly random numbers. The default output type is <code>UInt64</code>, and the default method is <code>PCG_XSH_RS</code>. The seed will be converted to the internal state type (a kind of unsigned integer), and for PCGs with specific stream (<code>PCGStateSetseq</code>) the seed should be a <code>Tuple</code> of two <code>Integer</code>s. Note that not all parameter combinations are available (see <a href="../../lib/pcg/#RandomNumbers.PCG.PCG_LIST"><code>PCG_LIST</code></a>). For example:</p>
-<div class="codehilite"><pre><span></span>julia&gt; using RandomNumbers.PCG
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">RandomNumbers</span><span class="p">.</span><span class="n">PCG</span>
 
-julia&gt; PCGStateOneseq(UInt64, 1234567)  # create a single stream PCG, specifying the output type and seed.
-PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="n">UInt64</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">)</span>  <span class="o">#</span> <span class="k">create</span> <span class="n">a</span> <span class="n">single</span> <span class="n">stream</span> <span class="n">PCG</span><span class="p">,</span> <span class="n">specifying</span> <span class="n">the</span> <span class="k">output</span> <span class="k">type</span> <span class="k">and</span> <span class="n">seed</span><span class="p">.</span>
+<span class="n">PCGStateOneseq</span><span class="err">{</span><span class="n">UInt128</span><span class="p">,</span><span class="n">Val</span><span class="err">{</span><span class="p">:</span><span class="n">XSH_RS</span><span class="err">}</span><span class="p">,</span><span class="n">UInt64</span><span class="err">}</span><span class="p">(</span><span class="mi">0</span><span class="n">xa10d40ffc2b1e573e589b22b2450d1fd</span><span class="p">)</span>
 
-julia&gt; PCGStateUnique(PCG_RXS_M_XS, 1234567);  # unique stream PCG, specifying the method and seed.
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">PCGStateUnique</span><span class="p">(</span><span class="n">PCG_RXS_M_XS</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">);</span>  <span class="o">#</span> <span class="k">unique</span> <span class="n">stream</span> <span class="n">PCG</span><span class="p">,</span> <span class="n">specifying</span> <span class="n">the</span> <span class="k">method</span> <span class="k">and</span> <span class="n">seed</span><span class="p">.</span>
 
-julia&gt; PCGStateSetseq(UInt32, PCG_XSH_RR, (1234567, 7654321))
-PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85, 0x0000000000e99763)
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">PCGStateSetseq</span><span class="p">(</span><span class="n">UInt32</span><span class="p">,</span> <span class="n">PCG_XSH_RR</span><span class="p">,</span> <span class="p">(</span><span class="mi">1234567</span><span class="p">,</span> <span class="mi">7654321</span><span class="p">))</span>
+<span class="n">PCGStateSetseq</span><span class="err">{</span><span class="n">UInt64</span><span class="p">,</span><span class="n">Val</span><span class="err">{</span><span class="p">:</span><span class="n">XSH_RR</span><span class="err">}</span><span class="p">,</span><span class="n">UInt32</span><span class="err">}</span><span class="p">(</span><span class="mi">0</span><span class="n">xfc77de2cd901ff85</span><span class="p">,</span> <span class="mi">0</span><span class="n">x0000000000e99763</span><span class="p">)</span>
 </pre></div>
 
 
 <p><a href="../../lib/pcg/#RandomNumbers.PCG.bounded_rand-Union{Tuple{OutputType}, Tuple{MethodType}, Tuple{StateType}, Tuple{AbstractPCG{StateType,MethodType,OutputType},OutputType}} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:XSH_RS}, Val{:XSH_RR}, Val{:RXS_M_XS}, Val{:XSL_RR}, Val{:XSL_RR_RR}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
-<div class="codehilite"><pre><span></span>julia&gt; r = PCGStateOneseq(1234567)
-PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)
+<div class="codehilite"><pre><span></span><span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">r</span> <span class="o">=</span> <span class="nv">PCGStateOneseq</span><span class="ss">(</span><span class="mi">1234567</span><span class="ss">)</span>
+<span class="nv">PCGStateOneseq</span>{<span class="nv">UInt128</span>,<span class="nv">Val</span>{:<span class="nv">XSH_RS</span>},<span class="nv">UInt64</span>}<span class="ss">(</span><span class="mi">0</span><span class="nv">xa10d40ffc2b1e573e589b22b2450d1fd</span><span class="ss">)</span>
 
-julia&gt; [bounded_rand(r, UInt64(100)) for i in 1:6]
-6-element Array{UInt64,1}:
- 0x0000000000000012
- 0x000000000000000a
- 0x000000000000002e
- 0x0000000000000049
- 0x0000000000000043
- 0x000000000000002b
+<span class="nv">julia</span><span class="o">&gt;</span> [<span class="nv">bounded_rand</span><span class="ss">(</span><span class="nv">r</span>, <span class="nv">UInt64</span><span class="ss">(</span><span class="mi">100</span><span class="ss">))</span> <span class="k">for</span> <span class="nv">i</span> <span class="nv">in</span> <span class="mi">1</span>:<span class="mi">6</span>]
+<span class="mi">6</span><span class="o">-</span><span class="nv">element</span> <span class="nv">Array</span>{<span class="nv">UInt64</span>,<span class="mi">1</span>}:
+ <span class="mi">0</span><span class="nv">x0000000000000012</span>
+ <span class="mi">0</span><span class="nv">x000000000000000a</span>
+ <span class="mi">0</span><span class="nv">x000000000000002e</span>
+ <span class="mi">0</span><span class="nv">x0000000000000049</span>
+ <span class="mi">0</span><span class="nv">x0000000000000043</span>
+ <span class="mi">0</span><span class="nv">x000000000000002b</span>
 </pre></div>
 
 
