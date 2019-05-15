@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="152.4mm" height="152.4mm" viewBox="0 0 152.4 152.4"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<g class="plotroot yscalable" id="img-dacef2cb-1">
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-dacef2cb-2">
+    <text x="82.68" y="140.79" text-anchor="middle" dy="0.6em">RNG Type</text>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-dacef2cb-3">
+    <text x="19.92" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 19.92, 108.78)">Xorshift64</text>
+    <text x="23.84" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 23.84, 108.78)">Xorshift64Star</text>
+    <text x="27.76" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 27.76, 108.78)">Xorshift128Star</text>
+    <text x="31.69" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 31.69, 108.78)">Xorshift128Plus</text>
+    <text x="35.61" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 35.61, 108.78)">Xorshift1024Star</text>
+    <text x="39.53" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 39.53, 108.78)">Xorshift1024Plus</text>
+    <text x="43.45" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 43.45, 108.78)">Xoroshiro128Plus</text>
+    <text x="47.38" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 47.38, 108.78)">Xoroshiro128Star</text>
+    <text x="51.3" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 51.3, 108.78)">MersenneTwister</text>
+    <text x="55.22" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 55.22, 108.78)">MT19937</text>
+    <text x="59.14" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 59.14, 108.78)">Threefry2x64</text>
+    <text x="63.07" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 63.07, 108.78)">Threefry4x64</text>
+    <text x="66.99" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 66.99, 108.78)">Threefry2x32</text>
+    <text x="70.91" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 70.91, 108.78)">Threefry4x32</text>
+    <text x="74.83" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 74.83, 108.78)">Philox2x64</text>
+    <text x="78.76" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 78.76, 108.78)">Philox4x64</text>
+    <text x="82.68" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 82.68, 108.78)">Philox2x32</text>
+    <text x="86.6" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 86.6, 108.78)">Philox4x32</text>
+    <text x="90.52" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 90.52, 108.78)">AESNI1x128</text>
+    <text x="94.45" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 94.45, 108.78)">ARS1x128</text>
+    <text x="98.37" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 98.37, 108.78)">AESNI4x32</text>
+    <text x="102.29" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 102.29, 108.78)">ARS4x32</text>
+    <text x="106.21" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 106.21, 108.78)">PCG_XSH_RS_128</text>
+    <text x="110.14" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 110.14, 108.78)">PCG_XSH_RR_128</text>
+    <text x="114.06" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 114.06, 108.78)">PCG_RXS_M_XS_64</text>
+    <text x="117.98" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 117.98, 108.78)">PCG_XSL_RR_128</text>
+    <text x="121.9" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 121.9, 108.78)">PCG_XSL_RR_RR_64</text>
+    <text x="125.83" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 125.83, 108.78)">PCG_XSH_RS_64</text>
+    <text x="129.75" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 129.75, 108.78)">PCG_XSH_RR_64</text>
+    <text x="133.67" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 133.67, 108.78)">PCG_RXS_M_XS_32</text>
+    <text x="137.59" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 137.59, 108.78)">PCG_XSL_RR_64</text>
+    <text x="141.52" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 141.52, 108.78)">PCG_RXS_M_XS_128</text>
+    <text x="145.44" y="108.78" text-anchor="end" dy="0.35em" transform="rotate(-90, 145.44, 108.78)">PCG_XSL_RR_RR_128</text>
+  </g>
+<g clip-path="url(#img-dacef2cb-4)">
+  <g id="img-dacef2cb-5">
+    <g pointer-events="visible" opacity="1" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-dacef2cb-6">
+      <rect x="17.96" y="12.61" width="129.44" height="95.17"/>
+    </g>
+    <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-dacef2cb-7">
+      <path fill="none" d="M17.96,105.78 L 147.4 105.78"/>
+      <path fill="none" d="M17.96,75.39 L 147.4 75.39"/>
+      <path fill="none" d="M17.96,45 L 147.4 45"/>
+      <path fill="none" d="M17.96,14.61 L 147.4 14.61"/>
+    </g>
+    <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-dacef2cb-8">
+      <path fill="none" d="M21.88,12.61 L 21.88 107.78"/>
+      <path fill="none" d="M25.8,12.61 L 25.8 107.78"/>
+      <path fill="none" d="M29.73,12.61 L 29.73 107.78"/>
+      <path fill="none" d="M33.65,12.61 L 33.65 107.78"/>
+      <path fill="none" d="M37.57,12.61 L 37.57 107.78"/>
+      <path fill="none" d="M41.49,12.61 L 41.49 107.78"/>
+      <path fill="none" d="M45.42,12.61 L 45.42 107.78"/>
+      <path fill="none" d="M49.34,12.61 L 49.34 107.78"/>
+      <path fill="none" d="M53.26,12.61 L 53.26 107.78"/>
+      <path fill="none" d="M57.18,12.61 L 57.18 107.78"/>
+      <path fill="none" d="M61.11,12.61 L 61.11 107.78"/>
+      <path fill="none" d="M65.03,12.61 L 65.03 107.78"/>
+      <path fill="none" d="M68.95,12.61 L 68.95 107.78"/>
+      <path fill="none" d="M72.87,12.61 L 72.87 107.78"/>
+      <path fill="none" d="M76.8,12.61 L 76.8 107.78"/>
+      <path fill="none" d="M80.72,12.61 L 80.72 107.78"/>
+      <path fill="none" d="M84.64,12.61 L 84.64 107.78"/>
+      <path fill="none" d="M88.56,12.61 L 88.56 107.78"/>
+      <path fill="none" d="M92.49,12.61 L 92.49 107.78"/>
+      <path fill="none" d="M96.41,12.61 L 96.41 107.78"/>
+      <path fill="none" d="M100.33,12.61 L 100.33 107.78"/>
+      <path fill="none" d="M104.25,12.61 L 104.25 107.78"/>
+      <path fill="none" d="M108.18,12.61 L 108.18 107.78"/>
+      <path fill="none" d="M112.1,12.61 L 112.1 107.78"/>
+      <path fill="none" d="M116.02,12.61 L 116.02 107.78"/>
+      <path fill="none" d="M119.94,12.61 L 119.94 107.78"/>
+      <path fill="none" d="M123.87,12.61 L 123.87 107.78"/>
+      <path fill="none" d="M127.79,12.61 L 127.79 107.78"/>
+      <path fill="none" d="M131.71,12.61 L 131.71 107.78"/>
+      <path fill="none" d="M135.63,12.61 L 135.63 107.78"/>
+      <path fill="none" d="M139.56,12.61 L 139.56 107.78"/>
+      <path fill="none" d="M143.48,12.61 L 143.48 107.78"/>
+    </g>
+    <g class="plotpanel" id="img-dacef2cb-9">
+      <g class="geometry" id="img-dacef2cb-10">
+        <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" stroke-width="0.3" fill="#00BFFF" id="img-dacef2cb-11">
+          <use xlink:href="#img-dacef2cb-12" x="19.92" y="99.95"/>
+          <use xlink:href="#img-dacef2cb-12" x="23.84" y="99.7"/>
+          <use xlink:href="#img-dacef2cb-12" x="27.76" y="101.27"/>
+          <use xlink:href="#img-dacef2cb-12" x="31.69" y="102.17"/>
+          <use xlink:href="#img-dacef2cb-12" x="35.61" y="94.39"/>
+          <use xlink:href="#img-dacef2cb-12" x="39.53" y="94.46"/>
+          <use xlink:href="#img-dacef2cb-12" x="43.45" y="101.55"/>
+          <use xlink:href="#img-dacef2cb-12" x="47.38" y="102.18"/>
+          <use xlink:href="#img-dacef2cb-12" x="51.3" y="99.79"/>
+          <use xlink:href="#img-dacef2cb-12" x="55.22" y="92.93"/>
+          <use xlink:href="#img-dacef2cb-12" x="59.14" y="82.2"/>
+          <use xlink:href="#img-dacef2cb-12" x="63.07" y="87.65"/>
+          <use xlink:href="#img-dacef2cb-12" x="66.99" y="56.39"/>
+          <use xlink:href="#img-dacef2cb-12" x="70.91" y="68.58"/>
+          <use xlink:href="#img-dacef2cb-12" x="74.83" y="90.1"/>
+          <use xlink:href="#img-dacef2cb-12" x="78.76" y="88.35"/>
+          <use xlink:href="#img-dacef2cb-12" x="82.68" y="76.31"/>
+          <use xlink:href="#img-dacef2cb-12" x="86.6" y="70.78"/>
+          <use xlink:href="#img-dacef2cb-12" x="90.52" y="50.16"/>
+          <use xlink:href="#img-dacef2cb-12" x="94.45" y="53.87"/>
+          <use xlink:href="#img-dacef2cb-12" x="98.37" y="15.31"/>
+          <use xlink:href="#img-dacef2cb-12" x="102.29" y="50.9"/>
+          <use xlink:href="#img-dacef2cb-12" x="106.21" y="95.53"/>
+          <use xlink:href="#img-dacef2cb-12" x="110.14" y="95.87"/>
+          <use xlink:href="#img-dacef2cb-12" x="114.06" y="101.16"/>
+          <use xlink:href="#img-dacef2cb-12" x="117.98" y="97.74"/>
+          <use xlink:href="#img-dacef2cb-12" x="121.9" y="99.57"/>
+          <use xlink:href="#img-dacef2cb-12" x="125.83" y="97.46"/>
+          <use xlink:href="#img-dacef2cb-12" x="129.75" y="94.9"/>
+          <use xlink:href="#img-dacef2cb-12" x="133.67" y="95.39"/>
+          <use xlink:href="#img-dacef2cb-12" x="137.59" y="95.73"/>
+          <use xlink:href="#img-dacef2cb-12" x="141.52" y="98.24"/>
+          <use xlink:href="#img-dacef2cb-12" x="145.44" y="100.91"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-dacef2cb-13">
+    <text x="16.96" y="105.78" text-anchor="end" dy="0.35em">0</text>
+    <text x="16.96" y="75.39" text-anchor="end" dy="0.35em">10</text>
+    <text x="16.96" y="45" text-anchor="end" dy="0.35em">20</text>
+    <text x="16.96" y="14.61" text-anchor="end" dy="0.35em">30</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-dacef2cb-14">
+    <text x="8.81" y="58.2" text-anchor="middle" dy="0.35em" transform="rotate(-90, 8.81, 60.2)">Speed (ns/64 bits)</text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-dacef2cb-15">
+    <text x="82.68" y="10.61" text-anchor="middle">Speed Test</text>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-dacef2cb-4">
+  <path d="M17.96,12.61 L 147.4 12.61 147.4 107.78 17.96 107.78" />
+</clipPath>
+  <g id="img-dacef2cb-12">
+    <circle cx="0" cy="0" r="0.9"/>
+  </g>
+</defs>
+</svg>
