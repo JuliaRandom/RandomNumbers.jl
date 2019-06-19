@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/man/basics/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/man/benchmark/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/man/pcg/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/man/mersenne-twisters/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/man/random123/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/man/xorshifts/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/lib/random-numbers/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/lib/pcg/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/lib/mersenne-twisters/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/lib/random123/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/lib/xorshifts/</loc>
-     <lastmod>2019-05-15</lastmod>
+     <lastmod>2019-06-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
