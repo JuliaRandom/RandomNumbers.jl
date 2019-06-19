@@ -1,5 +1,5 @@
-@inline xorshift_rotl(x::UInt64, k) = (x << k) | (x >> (64 - k))
-@inline xorshift_rotl(x::UInt32, k) = (x << k) | (x >> (32 - k))
+@inline xorshift_rotl(x::UInt64, k::Int) = (x >>> (0x3f & -k)) | (x << (0x3f & k))
+@inline xorshift_rotl(x::UInt32, k::Int) = (x >>> (0x1f & -k)) | (x << (0x1f & k))
 
 """
 SplitMix64: only for initializing a random seed.
