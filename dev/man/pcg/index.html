@@ -576,17 +576,17 @@
 
 
 <p><a href="../../lib/pcg/#RandomNumbers.PCG.bounded_rand-Union{Tuple{OutputType}, Tuple{MethodType}, Tuple{StateType}, Tuple{AbstractPCG{StateType,MethodType,OutputType},OutputType}} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:XSH_RS}, Val{:XSH_RR}, Val{:RXS_M_XS}, Val{:XSL_RR}, Val{:XSL_RR_RR}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
-<div class="codehilite"><pre><span></span><span class="nv">julia</span><span class="o">&gt;</span> <span class="nv">r</span> <span class="o">=</span> <span class="nv">PCGStateOneseq</span><span class="ss">(</span><span class="mi">1234567</span><span class="ss">)</span>
-<span class="nv">PCGStateOneseq</span>{<span class="nv">UInt128</span>,<span class="nv">Val</span>{:<span class="nv">XSH_RS</span>},<span class="nv">UInt64</span>}<span class="ss">(</span><span class="mi">0</span><span class="nv">xa10d40ffc2b1e573e589b22b2450d1fd</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="mi">1234567</span><span class="p">)</span>
+<span class="n">PCGStateOneseq</span><span class="err">{</span><span class="n">UInt128</span><span class="p">,</span><span class="n">Val</span><span class="err">{</span><span class="p">:</span><span class="n">XSH_RS</span><span class="err">}</span><span class="p">,</span><span class="n">UInt64</span><span class="err">}</span><span class="p">(</span><span class="mi">0</span><span class="n">xa10d40ffc2b1e573e589b22b2450d1fd</span><span class="p">)</span>
 
-<span class="nv">julia</span><span class="o">&gt;</span> [<span class="nv">bounded_rand</span><span class="ss">(</span><span class="nv">r</span>, <span class="nv">UInt64</span><span class="ss">(</span><span class="mi">100</span><span class="ss">))</span> <span class="k">for</span> <span class="nv">i</span> <span class="nv">in</span> <span class="mi">1</span>:<span class="mi">6</span>]
-<span class="mi">6</span><span class="o">-</span><span class="nv">element</span> <span class="nv">Array</span>{<span class="nv">UInt64</span>,<span class="mi">1</span>}:
- <span class="mi">0</span><span class="nv">x0000000000000012</span>
- <span class="mi">0</span><span class="nv">x000000000000000a</span>
- <span class="mi">0</span><span class="nv">x000000000000002e</span>
- <span class="mi">0</span><span class="nv">x0000000000000049</span>
- <span class="mi">0</span><span class="nv">x0000000000000043</span>
- <span class="mi">0</span><span class="nv">x000000000000002b</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">bounded_rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="mi">6</span><span class="o">-</span><span class="n">element</span> <span class="nb">Array</span><span class="err">{</span><span class="n">UInt64</span><span class="p">,</span><span class="mi">1</span><span class="err">}</span><span class="p">:</span>
+ <span class="mi">0</span><span class="n">x0000000000000012</span>
+ <span class="mi">0</span><span class="n">x000000000000000a</span>
+ <span class="mi">0</span><span class="n">x000000000000002e</span>
+ <span class="mi">0</span><span class="n">x0000000000000049</span>
+ <span class="mi">0</span><span class="n">x0000000000000043</span>
+ <span class="mi">0</span><span class="n">x000000000000002b</span>
 </pre></div>
 
 
