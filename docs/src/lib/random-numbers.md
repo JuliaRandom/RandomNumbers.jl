@@ -1,12 +1,5 @@
 # RandomNumbers
 
-```@meta
-DocTestSetup = quote
-    using RandomNumbers
-    import Test
-end
-```
-
 ## Index
 ```@index
 Pages = ["random-numbers.md"]

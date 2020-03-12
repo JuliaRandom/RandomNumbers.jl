@@ -1,12 +1,5 @@
 # PCG
 
-```@meta
-DocTestSetup = quote
-    using RandomNumbers.PCG
-    import Test
-end
-```
-
 ## Index
 ```@index
 Pages = ["pcg.md"]
