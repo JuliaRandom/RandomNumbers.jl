@@ -2,7 +2,7 @@
 *Random number generators for the Julia language.*
 
 Build Status
-[![Build Status](https://github.com/sunoru/RandomNumbers/workflows/ci/badge.svg?branch=master)](https://github.com/sunoru/RandomNumbers.jl/actions)
+[![Build Status](https://github.com/sunoru/RandomNumbers.jl/workflows/CI%20Build/badge.svg?branch=master)](https://github.com/sunoru/RandomNumbers.jl/actions)
 
 Code Coverage:
 [![codecov.io](https://codecov.io/github/sunoru/RandomNumbers.jl/coverage.svg?branch=master)](https://codecov.io/github/sunoru/RandomNumbers.jl?branch=master)
