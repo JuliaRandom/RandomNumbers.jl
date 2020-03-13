@@ -1,63 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-     <loc>/</loc>
-     <lastmod>2020-01-04</lastmod>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/man/basics/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/man/benchmark/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/man/pcg/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/man/mersenne-twisters/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/man/random123/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/man/xorshifts/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lib/random-numbers/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lib/pcg/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lib/mersenne-twisters/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lib/random123/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lib/xorshifts/</loc>
-     <lastmod>2020-01-04</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2020-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
