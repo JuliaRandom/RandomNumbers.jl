@@ -1,15 +1,11 @@
 # RandomNumbers.jl
 *Random number generators for the Julia language.*
 
-Linux, OSX:
-[![Build Status](https://travis-ci.org/sunoru/RandomNumbers.jl.svg?branch=master)](https://travis-ci.org/sunoru/RandomNumbers.jl)
-
-Windows:
-[![Build status](https://ci.appveyor.com/api/projects/status/xlkbmyasu096a34l?svg=true)](https://ci.appveyor.com/project/sunoru/randomnumbers-jl)
+Build Status
+[![Build Status](https://github.com/sunoru/RandomNumbers/workflows/ci/badge.svg?branch=master)](https://github.com/sunoru/RandomNumbers.jl/actions)
 
 Code Coverage:
-[![Coverage Status](https://coveralls.io/repos/sunoru/RandomNumbers.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/sunoru/RandomNumbers.jl?branch=master)
-[![codecov.io](http://codecov.io/github/sunoru/RandomNumbers.jl/coverage.svg?branch=master)](http://codecov.io/github/sunoru/RandomNumbers.jl?branch=master)
+[![codecov.io](https://codecov.io/github/sunoru/RandomNumbers.jl/coverage.svg?branch=master)](https://codecov.io/github/sunoru/RandomNumbers.jl?branch=master)
 
 Documentation:
 [![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://sunoru.github.io/RandomNumbers.jl/stable/)
@@ -25,7 +21,7 @@ choice for random number generation.
 
 This package is registered. The stable version of this package requires Julia `0.7+`. You can install it by:
 ```julia
-(v1.1) pkg> add RandomNumbers
+(v1.0) pkg> add RandomNumbers
 ```
 It is recommended to run the test suites before using the package:
 ```julia
