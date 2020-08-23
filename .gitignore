@@ -4,6 +4,7 @@
 *.swp
 build/
 actual/
+temp_file/
 *.log
 *.so
 *.dll
