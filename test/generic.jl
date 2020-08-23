@@ -17,6 +17,7 @@ using Test
         randstringres = "6j22eD3r"
     else
         randstringres = "KuSFMMEc"
+    end
     @test randstring(r) == randstringres
     a = 1:100
     @test randsubseq(r, a, 0.1) == [1, 11, 12, 17, 19, 21, 27, 38, 44, 54, 58, 78, 80]
