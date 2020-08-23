@@ -13,7 +13,7 @@ using Test
     @test bitrand(r, 3, 3) == [false false false; false true false; false true true]
     # randstring method changed after a julia release
     randstringres = ""
-    if VERSION >= v"1.4"
+    if VERSION >= v"1.5"
         randstringres = "6j22eD3r"
     else
         randstringres = "KuSFMMEc"
