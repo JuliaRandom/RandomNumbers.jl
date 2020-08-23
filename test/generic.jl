@@ -11,7 +11,13 @@ using Test
     ]
     @test randexp(r) == 1.0279939998988223
     @test bitrand(r, 3, 3) == [false false false; false true false; false true true]
-    @test randstring(r) == "KuSFMMEc"
+    # randstring method changed after a julia release
+    randstringres = ""
+    if VERSION > v"1.3"
+        randstringres = "6j22eD3r"
+    else
+        randstringres = "KuSFMMEc"
+    @test randstring(r) == randstringres
     a = 1:100
     @test randsubseq(r, a, 0.1) == [1, 11, 12, 17, 19, 21, 27, 38, 44, 54, 58, 78, 80]
     a = 1:10
