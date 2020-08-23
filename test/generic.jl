@@ -11,7 +11,7 @@ using Test
     ]
     @test randexp(r) == 1.0279939998988223
     @test bitrand(r, 3, 3) == [false false false; false true false; false true true]
-    @test randstring(r) == "KuSFMMEc"
+    @test randstring(r) == "6j22eD3r"
     a = 1:100
     @test randsubseq(r, a, 0.1) == [1, 11, 12, 17, 19, 21, 27, 38, 44, 54, 58, 78, 80]
     a = 1:10
