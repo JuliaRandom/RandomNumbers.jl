@@ -1,5 +1,4 @@
-import Xorshifts.Xoroshiro128Plus
-const Xoroshiro128P = Xoroshiro128Plus()    # use as default RNG for randfloat
+const Xoroshiro128P = Xorshifts.Xoroshiro128Plus()    # use as default RNG for randfloat
 
 """Random number generator for Float32 in [0,1) that samples from *all* floats.""" 
 function randfloat(rng::AbstractRNG,::Type{Float32})
