@@ -9,3 +9,5 @@ for (i, testfile) in enumerate((
         include($testfile)
     end
 end
+
+include("randfloat.jl")
