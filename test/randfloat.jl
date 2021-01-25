@@ -51,7 +51,7 @@ end
 
     H = fit(Histogram,x,nbins=100).weights
     @test minimum(H) > 98000
-    @test maximum(H) < 10200
+    @test maximum(H) < 102000
     
     # Float32
     x = randfloat(Float32,10_000_000)
@@ -60,5 +60,5 @@ end
 
     H = fit(Histogram,x,nbins=100).weights
     @test minimum(H) > 98000
-    @test maximum(H) < 10200
+    @test maximum(H) < 102000
 end
