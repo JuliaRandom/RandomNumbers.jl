@@ -1,6 +1,7 @@
-const Xoroshiro128P = Xorshifts.Xoroshiro128Plus()    # use as default RNG for randfloat
+import Random: default_rng, AbstractRNG
 
-"""Random number generator for Float32 in [0,1) that samples from *all* floats.""" 
+"""Random number generator for Float32 in [0,1) that samples from 
+42*2^23 float32s in [0,1) compared to 2^23 for rand(Float32).""" 
 function randfloat(rng::AbstractRNG,::Type{Float32})
     # create exponent bits in 0000_0000 to 0111_1110
     # at following chances
@@ -8,58 +9,61 @@ function randfloat(rng::AbstractRNG,::Type{Float32})
     # e=01111101 at 25.0% for [0.25,0.5)
     # e=01111100 at 12.5% for [0.125,0.25)
     # ...
-    ui = rand(rng,UInt64) >> 1    # first bit always 0
+    ui = rand(rng,UInt64)
 
-    # count leading zeros of random UInt128 in two steps
-    # only if first random UInt64 is zero create a second one
-    # 0 leading zeros at 0% chance due to >> 1 above
-    # 1 leading zero at 50% chance
-    # 2 leading zeros at 25% chance etc.
-    lz = ui == 0 ?
-        64+leading_zeros(rand(rng,UInt64) | 0x1) : leading_zeros(ui) 
-    e = ((127 - lz) % UInt32) << 23     # convert lz to exponent bits of float32
+    # count leading zeros of random UInt64
+    # 0 leading zeros at 50% chance
+    # 1 leading zero at 25% chance
+    # 2 leading zeros at 12.5% chance etc.
+    # then convert leading zeros to exponent bits of Float32
+    e = ((126 - leading_zeros(ui)) % UInt32) << 23
 
-    # significant bits
-    f = rand(rng,UInt32) >> 9 
-    
-    # combine exponent and significand (sign always 0)
-    return reinterpret(Float32,e | f)
+    # for 64 leading zeros the smallest float32 that
+    # can be created is 2.7105054f-20
+
+    # reuse last 23 bits for signficand, this impacts only
+    # numbers <= 1.1368684f-13 where the sampled floats will
+    # have zeros in their first significant bits, but only to
+    # be expected after 35TB of data
+    return reinterpret(Float32,e | ((ui % UInt32) & 0x007f_ffff))
 end
 
-"""Random number generator for Float64 in [0,1) that samples from *all* floats.""" 
+"""Random number generator for Float64 in [0,1) that samples from 
+64*2^52 floats compared to 2^52 for rand(Float64).""" 
 function randfloat(rng::AbstractRNG,::Type{Float64})
-    # create exponent bits in 00_0000_0000 to 01_1111_1110
+    # create exponent bits in 000_0000_0000 to 011_1111_1110
     # at following chances
-    # e=0111111110 at 50.0% for [0.5,1.0)
-    # e=0111111101 at 25.0% for [0.25,0.5)
-    # e=0111111100 at 12.5% for [0.125,0.25)
+    # e=01111111110 at 50.0% for [0.5,1.0)
+    # e=01111111101 at 25.0% for [0.25,0.5)
+    # e=01111111100 at 12.5% for [0.125,0.25)
     # ...
-    ui = rand(rng,UInt64) >> 1    # first bit always 0
+    ui = rand(rng,UInt64)
 
-    # count leading zeros of random UInt128 in several steps
-    # only if first random UInt64 is zero create a next one
-    # 0 leading zeros at 0% chance due to >> 1 above
-    # 1 leading zero at 50% chance
-    # 2 leading zeros at 25% chance etc.
-    # Technically one would need to draw up to 16 UInt64 to allow for up to 1022
-    # leading zeros, however, most (all? TODO is that true?) RNGs don't produce
-    # several UInt64(0) consequitively, so stop at 2
-    lz = ui == 0 ?
-        64+leading_zeros(rand(rng,UInt64)) : leading_zeros(ui) 
-    e = ((1023 - lz) % UInt64) << 52     # convert lz to exponent bits of float64
+    # count leading zeros of random UInt64 in several steps
+    # 0 leading zeros at 50% chance
+    # 1 leading zero at 25% chance
+    # 2 leading zeros at 12.5% chance etc.
+    # then convert leading zeros to exponent bits of Float64
+    lz = leading_zeros(ui)
+    e = ((1022 - lz) % UInt64) << 52
 
-    # significant bits
-    f = rand(rng,UInt64) >> 12 
+    # for 64 leading zeros the smallest float64 that
+    # can be created is 2.710505431213761e-20
+
+    # draw another UInt64 for significant bits in case the leading
+    # zeros reach into the bits that would be used for the significand
+    # (in which case the first signifcant bits would always be zero)
+    ui = lz > 11 ? rand(rng,UInt64) : ui
     
     # combine exponent and significand (sign always 0)
-    return reinterpret(Float64,e | f)
+    return reinterpret(Float64,e | (ui & 0x000f_ffff_ffff_ffff))
 end
 
-# use Xoroshiro128Plus and Float64 as default
-randfloat(::Type{T}=Float64) where T = randfloat(Xoroshiro128P,T)
+# use stdlib default RNG as a default here too
+randfloat(::Type{T}=Float64) where T = randfloat(default_rng(),T)
 randfloat(rng::AbstractRNG) = randfloat(rng,Float64)
 
-# array versions
+# randfloat for arrays - in-place
 function randfloat!(rng::AbstractRNG, A::AbstractArray{T}) where T
     for i in eachindex(A)
         @inbounds A[i] = randfloat(rng, T)
@@ -67,7 +71,8 @@ function randfloat!(rng::AbstractRNG, A::AbstractArray{T}) where T
     A
 end
 
+# randfloat for arrays with memory allocation
 randfloat(rng::AbstractRNG, ::Type{T}, dims::Integer...) where T = randfloat!(rng, Array{T}(undef,dims))
 randfloat(rng::AbstractRNG,            dims::Integer...)         = randfloat!(rng, Array{Float64}(undef,dims))
-randfloat(                  ::Type{T}, dims::Integer...) where T = randfloat!(Xoroshiro128P, Array{T}(undef,dims))
-randfloat(                             dims::Integer...)         = randfloat!(Xoroshiro128P, Array{Float64}(undef,dims))
+randfloat(                  ::Type{T}, dims::Integer...) where T = randfloat!(default_rng(), Array{T}(undef,dims))
+randfloat(                             dims::Integer...)         = randfloat!(default_rng(), Array{Float64}(undef,dims))

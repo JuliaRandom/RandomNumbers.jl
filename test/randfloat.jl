@@ -1,5 +1,4 @@
 using RandomNumbers
-using StatsBase
 using Test
 
 @testset "Check types" begin
@@ -44,21 +43,39 @@ end
 end
 
 @testset "Distribution is uniform [0,1)" begin
+    N = 100_000_000
+
     # Float64
-    x = randfloat(10_000_000)
+    x = randfloat(N)
     @test maximum(x) > 0.999999
-    @test minimum(x) < 5e-7
+    @test minimum(x) < 1e-7
 
-    H = fit(Histogram,x,nbins=100).weights
-    @test minimum(H) > 98000
-    @test maximum(H) < 102000
+    # histogram for exponents
+    H = fill(0,64)  
+    for xi in x     # 0.5 is in H[1], 0.25 is in H[2] etc
+        e = reinterpret(UInt64,xi) & Base.exponent_mask(Float64)
+        H[Base.exponent_bias(Float64)-Int(e >> 52)] += 1
+    end
+
+    # test that the most frequent exponents occur at 50%, 25%, 12.5% etc.
+    for i in 1:10   
+        @test isapprox(H[i]/N,2.0^-i,atol=1e-4)
+    end
     
-    # Float32
-    x = randfloat(Float32,10_000_000)
+    # FLOAT32
+    x = randfloat(Float32,N)
     @test maximum(x) > prevfloat(1f0,5)
-    @test minimum(x) < 5e-7
+    @test minimum(x) < 1e-7
 
-    H = fit(Histogram,x,nbins=100).weights
-    @test minimum(H) > 98000
-    @test maximum(H) < 102000
+    # histogram for exponents
+    H = fill(0,64)  
+    for xi in x     # 0.5f0 is in H[1], 0.25f0 is in H[2] etc
+        e = reinterpret(UInt32,xi) & Base.exponent_mask(Float32)
+        H[Base.exponent_bias(Float32)-Int(e >> 23)] += 1
+    end
+
+    # test that the most frequent exponents occur at 50%, 25%, 12.5% etc.
+    for i in 1:10   
+        @test isapprox(H[i]/N,2.0^-i,atol=1e-4)
+    end
 end
