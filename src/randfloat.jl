@@ -1,4 +1,4 @@
-import Random: default_rng, AbstractRNG
+import Random: GLOBAL_RNG
 
 """Random number generator for Float32 in [0,1) that samples from 
 42*2^23 float32s in [0,1) compared to 2^23 for rand(Float32).""" 
@@ -60,7 +60,7 @@ function randfloat(rng::AbstractRNG,::Type{Float64})
 end
 
 # use stdlib default RNG as a default here too
-randfloat(::Type{T}=Float64) where T = randfloat(default_rng(),T)
+randfloat(::Type{T}=Float64) where T = randfloat(GLOBAL_RNG,T)
 randfloat(rng::AbstractRNG) = randfloat(rng,Float64)
 
 # randfloat for arrays - in-place
@@ -74,5 +74,5 @@ end
 # randfloat for arrays with memory allocation
 randfloat(rng::AbstractRNG, ::Type{T}, dims::Integer...) where T = randfloat!(rng, Array{T}(undef,dims))
 randfloat(rng::AbstractRNG,            dims::Integer...)         = randfloat!(rng, Array{Float64}(undef,dims))
-randfloat(                  ::Type{T}, dims::Integer...) where T = randfloat!(default_rng(), Array{T}(undef,dims))
-randfloat(                             dims::Integer...)         = randfloat!(default_rng(), Array{Float64}(undef,dims))
+randfloat(                  ::Type{T}, dims::Integer...) where T = randfloat!(GLOBAL_RNG, Array{T}(undef,dims))
+randfloat(                             dims::Integer...)         = randfloat!(GLOBAL_RNG, Array{Float64}(undef,dims))
