@@ -1,6 +1,7 @@
 for (i, testfile) in enumerate((
     "generic.jl",
     "wrapped_rng.jl",
+    "randfloat.jl",
     "PCG/runtests.jl",
     "MersenneTwisters/runtests.jl",
     "Xorshifts/runtests.jl"))
@@ -9,5 +10,3 @@ for (i, testfile) in enumerate((
         include($testfile)
     end
 end
-
-include("randfloat.jl")
