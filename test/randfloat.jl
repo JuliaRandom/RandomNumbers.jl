@@ -50,11 +50,14 @@ end
     @test maximum(x) > 0.999999
     @test minimum(x) < 1e-7
 
+    exponent_mask = 0x7ff0_0000_0000_0000
+    exponent_bias = 1023
+
     # histogram for exponents
     H = fill(0,64)  
     for xi in x     # 0.5 is in H[1], 0.25 is in H[2] etc
-        e = reinterpret(UInt64,xi) & Base.exponent_mask(Float64)
-        H[Base.exponent_bias(Float64)-Int(e >> 52)] += 1
+        e = reinterpret(UInt64,xi) & exponent_mask
+        H[exponent_bias-Int(e >> 52)] += 1
     end
 
     # test that the most frequent exponents occur at 50%, 25%, 12.5% etc.
@@ -67,11 +70,14 @@ end
     @test maximum(x) > prevfloat(1f0,5)
     @test minimum(x) < 1e-7
 
+    exponent_mask = 0x7f80_0000
+    exponent_bias = 127
+
     # histogram for exponents
     H = fill(0,64)  
     for xi in x     # 0.5f0 is in H[1], 0.25f0 is in H[2] etc
-        e = reinterpret(UInt32,xi) & Base.exponent_mask(Float32)
-        H[Base.exponent_bias(Float32)-Int(e >> 23)] += 1
+        e = reinterpret(UInt32,xi) & exponent_mask
+        H[exponent_bias-Int(e >> 23)] += 1
     end
 
     # test that the most frequent exponents occur at 50%, 25%, 12.5% etc.
