@@ -62,7 +62,7 @@ end
 
     # test that the most frequent exponents occur at 50%, 25%, 12.5% etc.
     for i in 1:10   
-        @test isapprox(H[i]/N,2.0^-i,atol=1e-4)
+        @test isapprox(H[i]/N,2.0^-i,atol=5e-4)
     end
     
     # FLOAT32
@@ -82,6 +82,6 @@ end
 
     # test that the most frequent exponents occur at 50%, 25%, 12.5% etc.
     for i in 1:10   
-        @test isapprox(H[i]/N,2.0^-i,atol=1e-4)
+        @test isapprox(H[i]/N,2.0^-i,atol=5e-4)
     end
 end
