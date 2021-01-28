@@ -1,4 +1,4 @@
-import Random: GLOBAL_RNG
+import Random: AbstractRNG, GLOBAL_RNG
 
 """Random number generator for Float32 in [0,1) that samples from 
 42*2^23 float32s in [0,1) compared to 2^23 for rand(Float32).""" 
@@ -16,15 +16,15 @@ function randfloat(rng::AbstractRNG,::Type{Float32})
     # 1 leading zero at 25% chance
     # 2 leading zeros at 12.5% chance etc.
     # then convert leading zeros to exponent bits of Float32
-    e = ((126 - leading_zeros(ui)) % UInt32) << 23
+    lz = leading_zeros(ui)
+    e = ((126 - lz) % UInt32) << 23
 
-    # for 64 leading zeros the smallest float32 that
-    # can be created is 2.7105054f-20
+    # for 64 leading zeros the smallest float32 that can be created is 2.7105054f-20
+    # use last 23 bits for signficand, only when they are not part of the leading zeros
+    # to sample from all floats in 2.7105054f-20 to prevfloat(1f0)
+    ui = lz > 40 ? rand(rng,UInt64) : ui
 
-    # reuse last 23 bits for signficand, this impacts only
-    # numbers <= 1.1368684f-13 where the sampled floats will
-    # have zeros in their first significant bits, but only to
-    # be expected after 35TB of data
+    # combine exponent and signficand
     return reinterpret(Float32,e | ((ui % UInt32) & 0x007f_ffff))
 end
 
