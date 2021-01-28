@@ -29,6 +29,9 @@ module RandomNumbers
     include(joinpath("MersenneTwisters", "MersenneTwisters.jl"))
     include(joinpath("Xorshifts", "Xorshifts.jl"))
 
+    export randfloat
+    include("randfloat.jl")
+
     import Requires
     function __init__()
         # The code of Random123 has been moved to Random123.jl
