@@ -2,7 +2,7 @@ import Random: AbstractRNG, GLOBAL_RNG
 
 """Random number generator for Float32 in [0,1) that samples from 
 42*2^23 float32s in [0,1) compared to 2^23 for rand(Float32).""" 
-function randfloat(rng::AbstractRNG,::Type{Float32})
+function randfloat(rng::Random.AbstractRNG,::Type{Float32})
     # create exponent bits in 0000_0000 to 0111_1110
     # at following chances
     # e=01111110 at 50.0% for [0.5,1.0)
@@ -30,7 +30,7 @@ end
 
 """Random number generator for Float64 in [0,1) that samples from 
 64*2^52 floats compared to 2^52 for rand(Float64).""" 
-function randfloat(rng::AbstractRNG,::Type{Float64})
+function randfloat(rng::Random.AbstractRNG,::Type{Float64})
     # create exponent bits in 000_0000_0000 to 011_1111_1110
     # at following chances
     # e=01111111110 at 50.0% for [0.5,1.0)
@@ -61,10 +61,10 @@ end
 
 # use stdlib default RNG as a default here too
 randfloat(::Type{T}=Float64) where T = randfloat(GLOBAL_RNG,T)
-randfloat(rng::AbstractRNG) = randfloat(rng,Float64)
+randfloat(rng::Random.AbstractRNG) = randfloat(rng,Float64)
 
 # randfloat for arrays - in-place
-function randfloat!(rng::AbstractRNG, A::AbstractArray{T}) where T
+function randfloat!(rng::Random.AbstractRNG, A::AbstractArray{T}) where T
     for i in eachindex(A)
         @inbounds A[i] = randfloat(rng, T)
     end
@@ -72,7 +72,7 @@ function randfloat!(rng::AbstractRNG, A::AbstractArray{T}) where T
 end
 
 # randfloat for arrays with memory allocation
-randfloat(rng::AbstractRNG, ::Type{T}, dims::Integer...) where T = randfloat!(rng, Array{T}(undef,dims))
-randfloat(rng::AbstractRNG,            dims::Integer...)         = randfloat!(rng, Array{Float64}(undef,dims))
+randfloat(rng::Random.AbstractRNG, ::Type{T}, dims::Integer...) where T = randfloat!(rng, Array{T}(undef,dims))
+randfloat(rng::Random.AbstractRNG,            dims::Integer...)         = randfloat!(rng, Array{Float64}(undef,dims))
 randfloat(                  ::Type{T}, dims::Integer...) where T = randfloat!(GLOBAL_RNG, Array{T}(undef,dims))
 randfloat(                             dims::Integer...)         = randfloat!(GLOBAL_RNG, Array{Float64}(undef,dims))
