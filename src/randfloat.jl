@@ -59,6 +59,30 @@ function randfloat(rng::Random.AbstractRNG,::Type{Float64})
     return reinterpret(Float64,e | (ui & 0x000f_ffff_ffff_ffff))
 end
 
+"""Random number generator for Float16 in [0,1) that samples from 
+all 15360 float16s in that range.""" 
+function randfloat(rng::Random.AbstractRNG,::Type{Float16})
+    # create exponent bits in 00000 to 01110
+    # at following chances
+    # e=01110 at 50.0% for [0.5,1.0)
+    # e=01101 at 25.0% for [0.25,0.5)
+    # e=01100 at 12.5% for [0.125,0.25)
+    # ...
+    ui = rand(rng,UInt32) | 0x0002_0000
+    # set 15th bit to 1 to have at most 14 leading zeros.
+
+    # count leading zeros of random UInt64 in several steps
+    # 0 leading zeros at 50% chance
+    # 1 leading zero at 25% chance
+    # 2 leading zeros at 12.5% chance etc.
+    # then convert leading zeros to exponent bits of Float16
+    lz = leading_zeros(ui)
+    e = ((14 - lz) % UInt32) << 10
+    
+    # combine exponent and significand (sign always 0)
+    return reinterpret(Float16,(e | (ui & 0x0000_03ff)) % UInt16)
+end
+
 # use stdlib default RNG as a default here too
 randfloat(::Type{T}=Float64) where T = randfloat(GLOBAL_RNG,T)
 randfloat(rng::Random.AbstractRNG) = randfloat(rng,Float64)
