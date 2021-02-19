@@ -84,7 +84,7 @@ function randfloat(rng::Random.AbstractRNG,::Type{Float16})
 end
 
 # use stdlib default RNG as a default here too
-randfloat(::Type{T}=Float64) where T = randfloat(GLOBAL_RNG,T)
+randfloat(::Type{T}=Float64) where {T<:Base.IEEEFloat} = randfloat(GLOBAL_RNG,T)
 randfloat(rng::Random.AbstractRNG) = randfloat(rng,Float64)
 
 # randfloat for arrays - in-place
@@ -96,7 +96,7 @@ function randfloat!(rng::Random.AbstractRNG, A::AbstractArray{T}) where T
 end
 
 # randfloat for arrays with memory allocation
-randfloat(rng::Random.AbstractRNG, ::Type{T}, dims::Integer...) where T = randfloat!(rng, Array{T}(undef,dims))
-randfloat(rng::Random.AbstractRNG,            dims::Integer...)         = randfloat!(rng, Array{Float64}(undef,dims))
-randfloat(                  ::Type{T}, dims::Integer...) where T = randfloat!(GLOBAL_RNG, Array{T}(undef,dims))
-randfloat(                             dims::Integer...)         = randfloat!(GLOBAL_RNG, Array{Float64}(undef,dims))
+randfloat(rng::Random.AbstractRNG, ::Type{T}, dims::Integer...) where {T<:Base.IEEEFloat} = randfloat!(rng, Array{T}(undef,dims))
+randfloat(rng::Random.AbstractRNG,            dims::Integer...)                           = randfloat!(rng, Array{Float64}(undef,dims))
+randfloat(::Type{T}, dims::Integer...) where {T<:Base.IEEEFloat} = randfloat!(GLOBAL_RNG, Array{T}(undef,dims))
+randfloat(           dims::Integer...)                           = randfloat!(GLOBAL_RNG, Array{Float64}(undef,dims))
