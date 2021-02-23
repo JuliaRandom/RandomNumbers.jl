@@ -132,9 +132,34 @@ naive approach to multiply an `UInt64` by ``2^{-64}``, users may get 1.0, and th
 In this package, we make use of the fact that the distribution of the least 52 bits can be the same in an
 `UInt64` and a `Float64` (if you are familiar with
 [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point) this is easy to understand). An `UInt64` will
-firstly be converted to a `Float64` that is perfectly uniformly distributed in [1.0, 2.0), and then be minus
-by one. This is a very fast approach, but not completely ideal, since the one bit is wasted. The current
-default RNG in `Base.Random` library does the same thing, so it also causes some tricky problems.[^2]
+firstly be converted to a `Float64` that is perfectly uniformly distributed in [1.0, 2.0), and then subtract
+one. This is a very fast approach, but not completely ideal, as the statistics of the least significant bits
+are affected. Due to rounding in the subtraction,
+
+- the least significant bit of `rand()` is always 0, the second last is
+only at 25% a 1, the third last bit is at 37.5% chance a 1, the n-th last bit is at p=1/2-2^(-n) chance a 1.
+In practice, this only affects the last few bits, but holds for `rand(Float32)` as well as for `rand(Float64)`.
+- the sampling is not from all floats in [0,1) but only from 2^23 (Float32) or 2^52 (Float64).
+- The subset of floats which is sampled from is every second float in [1/2,1), every 4th in [1/4,1/2),
+so every 2n-th in [1/2n,1/n).
+- The smallest positive float (but note that 0f0/0.0 is also possible) that is sampled is `eps(Float32)=1.1920929f-7`
+(Float32) or `eps(Float64)=2.220446049250313e-16` (Float64).
+
+The current default RNG in `Base.Random` library does the same thing, so it also causes some tricky problems.[^2]
+
+To address some of these issues RandomNumbers.jl also provides `randfloat()` for `Float16`, `Float32` and `Float64`,
+which
+
+- has full entropy for all significant bits, i.e. 0 and 1 always occur at 50% chance
+- samples from all floats in [2.7105054f-20,1) (Float32) and [2.710505431213761e-20,1) (Float64) and true [0,1) 
+(Float16, including correct chances for subnormals) 
+- As the true chance to obtain a 0 in [0,1) for floats is effectively 0, it is practically also 0 for randfloat
+(except for Float16).
+- is about 20% slower than `rand`, see [#72](https://github.com/sunoru/RandomNumbers.jl/issues/72)
+
+`randfloat()` is not based on the `[1,2) minus one`-approach but counts the leading zeros of a random `UInt` to obtain
+the correct chances for the exponent bits (which are 50% for 01111110 meaning [1/2,1) in float32, 25% for 01111101
+meaning [1/4,1/2), etc.). This is combined with random `UInt` bits for the significand.
 
 [^2]:
     [Least significant bit of rand() is always zero #16344](https://github.com/JuliaLang/julia/issues/16344)
