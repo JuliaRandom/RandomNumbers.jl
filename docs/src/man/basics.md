@@ -136,14 +136,10 @@ firstly be converted to a `Float64` that is perfectly uniformly distributed in [
 one. This is a very fast approach, but not completely ideal, as the statistics of the least significant bits
 are affected. Due to rounding in the subtraction,
 
-- the least significant bit of `rand()` is always 0, the second last is
-only at 25% a 1, the third last bit is at 37.5% chance a 1, the n-th last bit is at p=1/2-2^(-n) chance a 1.
-In practice, this only affects the last few bits, but holds for `rand(Float32)` as well as for `rand(Float64)`.
+- the least significant bit of `rand()` is always 0, the second last is only at 25% a 1, the third last bit is at 37.5% chance a 1, the n-th last bit is at p=1/2-2^(-n) chance a 1. In practice, this only affects the last few bits, but holds for `rand(Float32)` as well as for `rand(Float64)`.
 - the sampling is not from all floats in [0,1) but only from 2^23 (Float32) or 2^52 (Float64).
-- The subset of floats which is sampled from is every second float in [1/2,1), every 4th in [1/4,1/2),
-so every 2n-th in [1/2n,1/n).
-- The smallest positive float (but note that 0f0/0.0 is also possible) that is sampled is `eps(Float32)=1.1920929f-7`
-(Float32) or `eps(Float64)=2.220446049250313e-16` (Float64).
+- The subset of floats which is sampled from is every second float in [1/2,1), every 4th in [1/4,1/2), so every 2n-th in [1/2n,1/n).
+- The smallest positive float (but note that 0f0/0.0 is also possible) that is sampled is `eps(Float32)=1.1920929f-7` (Float32) or `eps(Float64)=2.220446049250313e-16` (Float64).
 
 The current default RNG in `Base.Random` library does the same thing, so it also causes some tricky problems.[^2]
 
@@ -151,10 +147,8 @@ To address some of these issues RandomNumbers.jl also provides `randfloat()` for
 which
 
 - has full entropy for all significant bits, i.e. 0 and 1 always occur at 50% chance
-- samples from all floats in [2.7105054f-20,1) (Float32) and [2.710505431213761e-20,1) (Float64) and true [0,1) 
-(Float16, including correct chances for subnormals) 
-- As the true chance to obtain a 0 in [0,1) for floats is effectively 0, it is practically also 0 for randfloat
-(except for Float16).
+- samples from all floats in [2.7105054f-20,1) (Float32) and [2.710505431213761e-20,1) (Float64) and true [0,1) (Float16, including correct chances for subnormals) 
+- As the true chance to obtain a 0 in [0,1) for floats is effectively 0, it is practically also 0 for randfloat (except for Float16).
 - is about 20% slower than `rand`, see [#72](https://github.com/sunoru/RandomNumbers.jl/issues/72)
 
 `randfloat()` is not based on the `[1,2) minus one`-approach but counts the leading zeros of a random `UInt` to obtain
