@@ -14,7 +14,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.3">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a3f8f96a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1655a90d.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -225,19 +225,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
-      <label class="md-nav__link" for="nav-2">
+      <label class="md-nav__link" for="__nav_2">
         Manual
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Manual" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Manual
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -387,19 +386,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="nav-3">
+      <label class="md-nav__link" for="__nav_3">
         Library
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Library" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Library
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -615,30 +613,17 @@
 <p>The cause is that a <code>Float64</code> number in $[0.0, 1.0)$ has only 53 <em>significand</em> bits (52 explicitly stored), which means at least 11 bits of an <code>UInt64</code> are abandoned when being converted to <code>Float64</code>. If using the naive approach to multiply an <code>UInt64</code> by $2^{-64}$, users may get 1.0, and the distribution is not good (although using $2^{-32}$ for an <code>UInt32</code> is OK).</p>
 <p>In this package, we make use of the fact that the distribution of the least 52 bits can be the same in an <code>UInt64</code> and a <code>Float64</code> (if you are familiar with <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> this is easy to understand). An <code>UInt64</code> will firstly be converted to a <code>Float64</code> that is perfectly uniformly distributed in [1.0, 2.0), and then subtract one. This is a very fast approach, but not completely ideal, as the statistics of the least significant bits are affected. Due to rounding in the subtraction,</p>
 <ul>
-<li>the least significant bit of <code>rand()</code> is always 0, the second last is</li>
-</ul>
-<p>only at 25% a 1, the third last bit is at 37.5% chance a 1, the n-th last bit is at p=1/2-2^(-n) chance a 1. In practice, this only affects the last few bits, but holds for <code>rand(Float32)</code> as well as for <code>rand(Float64)</code>.</p>
-<ul>
+<li>the least significant bit of <code>rand()</code> is always 0, the second last is only at 25% a 1, the third last bit is at 37.5% chance a 1, the n-th last bit is at p=1/2-2^(-n) chance a 1. In practice, this only affects the last few bits, but holds for <code>rand(Float32)</code> as well as for <code>rand(Float64)</code>.</li>
 <li>the sampling is not from all floats in [0,1) but only from 2^23 (Float32) or 2^52 (Float64).</li>
-<li>The subset of floats which is sampled from is every second float in [1/2,1), every 4th in [1/4,1/2),</li>
+<li>The subset of floats which is sampled from is every second float in [1/2,1), every 4th in [1/4,1/2), so every 2n-th in [1/2n,1/n).</li>
+<li>The smallest positive float (but note that 0f0/0.0 is also possible) that is sampled is <code>eps(Float32)=1.1920929f-7</code> (Float32) or <code>eps(Float64)=2.220446049250313e-16</code> (Float64).</li>
 </ul>
-<p>so every 2n-th in [1/2n,1/n).</p>
-<ul>
-<li>The smallest positive float (but note that 0f0/0.0 is also possible) that is sampled is <code>eps(Float32)=1.1920929f-7</code></li>
-</ul>
-<p>(Float32) or <code>eps(Float64)=2.220446049250313e-16</code> (Float64).</p>
 <p>The current default RNG in <code>Base.Random</code> library does the same thing, so it also causes some tricky problems.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <p>To address some of these issues RandomNumbers.jl also provides <code>randfloat()</code> for <code>Float16</code>, <code>Float32</code> and <code>Float64</code>, which</p>
 <ul>
 <li>has full entropy for all significant bits, i.e. 0 and 1 always occur at 50% chance</li>
-<li>samples from all floats in [2.7105054f-20,1) (Float32) and [2.710505431213761e-20,1) (Float64) and true [0,1)</li>
-</ul>
-<p>(Float16, including correct chances for subnormals) </p>
-<ul>
-<li>As the true chance to obtain a 0 in [0,1) for floats is effectively 0, it is practically also 0 for randfloat</li>
-</ul>
-<p>(except for Float16).</p>
-<ul>
+<li>samples from all floats in [2.7105054f-20,1) (Float32) and [2.710505431213761e-20,1) (Float64) and true [0,1) (Float16, including correct chances for subnormals)</li>
+<li>As the true chance to obtain a 0 in [0,1) for floats is effectively 0, it is practically also 0 for randfloat (except for Float16).</li>
 <li>is about 20% slower than <code>rand</code>, see <a href="https://github.com/sunoru/RandomNumbers.jl/issues/72">#72</a></li>
 </ul>
 <p><code>randfloat()</code> is not based on the <code>[1,2) minus one</code>-approach but counts the leading zeros of a random <code>UInt</code> to obtain the correct chances for the exponent bits (which are 50% for 01111110 meaning [1/2,1) in float32, 25% for 01111101 meaning [1/4,1/2), etc.). This is combined with random <code>UInt</code> bits for the significand.</p>
@@ -719,10 +704,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.217ffd95.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.926459b3.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ca5457b8.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       
