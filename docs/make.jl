@@ -16,7 +16,7 @@ makedocs(
 )
 
 deploydocs(
-    repo   = "github.com/sunoru/RandomNumbers.jl.git",
+    repo   = "github.com/JuliaRandom/RandomNumbers.jl.git",
     deps   = Deps.pip("pygments", "mkdocs", "python-markdown-math", "mkdocs-material"),
     make = () -> run(`mkdocs build`),
     target = "site"

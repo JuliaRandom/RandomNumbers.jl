@@ -16,7 +16,7 @@ const BitTypes = Union{Bool, UInt8, UInt16, UInt32, UInt64, UInt128, Int8, Int16
 rng_native_52(::AbstractRNG) = UInt64
 rand(rng::AbstractRNG, ::Random.SamplerType{T}) where {T} = rand(rng, T)
 
-# see https://github.com/sunoru/RandomNumbers.jl/issues/8
+# see https://github.com/JuliaRandom/RandomNumbers.jl/issues/8
 # TODO: find a better approach.
 @inline function rand(rng::AbstractRNG{T}, ::Type{Float64}=Float64) where {T<:Union{UInt64, UInt128}}
     reinterpret(Float64, Base.exponent_one(Float64) | rand(rng, UInt52())) - 1.0
