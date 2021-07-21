@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.875de78c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -44,6 +44,8 @@
     
     
       
+
+
     
     
   </head>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -528,6 +534,13 @@
 <ul>
 <li><a href="./#Random123.Random123"><code>Random123.Random123</code></a></li>
 <li><a href="./#Random123.R123_USE_AESNI"><code>Random123.R123_USE_AESNI</code></a></li>
+<li><a href="./#Random123.AESNI1x"><code>Random123.AESNI1x</code></a></li>
+<li><a href="./#Random123.AESNI4x"><code>Random123.AESNI4x</code></a></li>
+<li><a href="./#Random123.AESNIKey"><code>Random123.AESNIKey</code></a></li>
+<li><a href="./#Random123.ARS1x"><code>Random123.ARS1x</code></a></li>
+<li><a href="./#Random123.ARS4x"><code>Random123.ARS4x</code></a></li>
+<li><a href="./#Random123.AbstractAESNI1x"><code>Random123.AbstractAESNI1x</code></a></li>
+<li><a href="./#Random123.AbstractAESNI4x"><code>Random123.AbstractAESNI4x</code></a></li>
 <li><a href="./#Random123.AbstractR123"><code>Random123.AbstractR123</code></a></li>
 <li><a href="./#Random123.Philox2x"><code>Random123.Philox2x</code></a></li>
 <li><a href="./#Random123.Philox4x"><code>Random123.Philox4x</code></a></li>
@@ -536,6 +549,7 @@
 <li><a href="./#Random123.R123Generator4x"><code>Random123.R123Generator4x</code></a></li>
 <li><a href="./#Random123.Threefry2x"><code>Random123.Threefry2x</code></a></li>
 <li><a href="./#Random123.Threefry4x"><code>Random123.Threefry4x</code></a></li>
+<li><a href="./#Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64},VecElement{UInt64}},Tuple{VecElement{UInt64},VecElement{UInt64}}}"><code>Random123._aes_128_assist</code></a></li>
 <li><a href="./#Random123.random123_r"><code>Random123.random123_r</code></a></li>
 <li><a href="./#Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T},Integer}} where T&lt;:UInt128"><code>Random123.set_counter!</code></a></li>
 </ul>
@@ -551,16 +565,58 @@
 <li><a href="./#Random123.Threefry4x"><code>Threefry4x</code></a></li>
 <li><a href="./#Random123.Philox2x"><code>Philox2x</code></a></li>
 <li><a href="./#Random123.Philox4x"><code>Philox4x</code></a></li>
-<li><a href="@ref"><code>AESNI1x</code></a></li>
-<li><a href="@ref"><code>AESNI4x</code></a></li>
-<li><a href="@ref"><code>ARS1x</code></a></li>
-<li><a href="@ref"><code>ARS4x</code></a></li>
+<li><a href="./#Random123.AESNI1x"><code>AESNI1x</code></a></li>
+<li><a href="./#Random123.AESNI4x"><code>AESNI4x</code></a></li>
+<li><a href="./#Random123.ARS1x"><code>ARS1x</code></a></li>
+<li><a href="./#Random123.ARS4x"><code>ARS4x</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/Random123.jl#L3-L16' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/Random123.jl#L3-L16' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.R123_USE_AESNI' href='#Random123.R123_USE_AESNI'>#</a>
 <strong><code>Random123.R123_USE_AESNI</code></strong> &mdash; <em>Constant</em>.</p>
-<p>True when AES-NI library has been compiled.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L10' class='documenter-source'>source</a><br></p>
+<p>True when AES-NI has been enabled.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L8' class='documenter-source'>source</a><br></p>
+<p><a id='Random123.AESNI1x' href='#Random123.AESNI1x'>#</a>
+<strong><code>Random123.AESNI1x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">AESNI1x</span> <span class="o">&lt;:</span> <span class="kt">AbstractAESNI1x</span>
+<span class="n">AESNI1x</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</code></pre></div>
+
+<p>AESNI1x is one kind of AESNI Counter-Based RNGs. It generates one <code>UInt128</code> number at a time.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>UInt128</code>.</p>
+<p>Only available when <a href="./#Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/aesni.jl#L112-L123' class='documenter-source'>source</a><br></p>
+<p><a id='Random123.AESNI4x' href='#Random123.AESNI4x'>#</a>
+<strong><code>Random123.AESNI4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">AESNI4x</span> <span class="o">&lt;:</span> <span class="kt">AbstractAESNI4x</span>
+<span class="n">AESNI4x</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</code></pre></div>
+
+<p>AESNI4x is one kind of AESNI Counter-Based RNGs. It generates four <code>UInt32</code> numbers at a time.</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>UInt32</code>.</p>
+<p>Only available when <a href="./#Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/aesni.jl#L157-L168' class='documenter-source'>source</a><br></p>
+<p><a id='Random123.ARS1x' href='#Random123.ARS1x'>#</a>
+<strong><code>Random123.ARS1x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">ARS1x</span><span class="p">{</span><span class="kt">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractAESNI1x</span>
+<span class="n">ARS1x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">7</span><span class="p">])</span>
+</code></pre></div>
+
+<p>ARS1x is one kind of ARS Counter-Based RNGs. It generates one <code>UInt128</code> number at a time.</p>
+<p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>UInt128</code>.</p>
+<p><code>R</code> denotes to the Rounds which should be at least 1 and no more than 10. With 7 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p>Only available when <a href="./#Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/ars.jl#L5-L20' class='documenter-source'>source</a><br></p>
+<p><a id='Random123.ARS4x' href='#Random123.ARS4x'>#</a>
+<strong><code>Random123.ARS4x</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">ARS4x</span><span class="p">{</span><span class="kt">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractAESNI4x</span>
+<span class="n">ARS4x</span><span class="p">([</span><span class="n">seed</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">7</span><span class="p">])</span>
+</code></pre></div>
+
+<p>ARS4x is one kind of ARS Counter-Based RNGs. It generates four <code>UInt32</code> numbers at a time.</p>
+<p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>UInt32</code>.</p>
+<p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 10. With 7 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
+<p>Only available when <a href="./#Random123.R123_USE_AESNI"><code>R123_USE_AESNI</code></a>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/ars.jl#L51-L66' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.Philox2x' href='#Random123.Philox2x'>#</a>
 <strong><code>Random123.Philox2x</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Philox2x</span><span class="p">{</span><span class="kt">T</span><span class="p">,</span> <span class="kt">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">R123Generator2x</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
@@ -572,7 +628,7 @@
 <p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
 <p><code>seed</code> is an <code>Integer</code> which will be automatically converted to <code>T</code>.</p>
 <p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 16. With 10 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/philox.jl#L29-L45' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/philox.jl#L29-L45' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.Philox4x' href='#Random123.Philox4x'>#</a>
 <strong><code>Random123.Philox4x</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Philox4x</span><span class="p">{</span><span class="kt">T</span><span class="p">,</span> <span class="kt">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">R123Generator4x</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
@@ -584,7 +640,7 @@
 <p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
 <p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to <code>T</code>.</p>
 <p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 16. With 10 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/philox.jl#L113-L129' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/philox.jl#L113-L129' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.Threefry2x' href='#Random123.Threefry2x'>#</a>
 <strong><code>Random123.Threefry2x</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Threefry2x</span><span class="p">{</span><span class="kt">T</span><span class="p">,</span> <span class="kt">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">R123Generator2x</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
@@ -596,7 +652,7 @@
 <p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
 <p><code>seed</code> is a <code>Tuple</code> of two <code>Integer</code>s which will both be automatically converted to <code>T</code>.</p>
 <p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/threefry.jl#L62-L78' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/threefry.jl#L62-L78' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.Threefry4x' href='#Random123.Threefry4x'>#</a>
 <strong><code>Random123.Threefry4x</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Threefry4x</span><span class="p">{</span><span class="kt">T</span><span class="p">,</span> <span class="kt">R</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">R123Generator4x</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
@@ -608,34 +664,64 @@
 <p><code>T</code> is <code>UInt32</code> or <code>UInt64</code>(default).</p>
 <p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>T</code>.</p>
 <p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/threefry.jl#L197-L213' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/threefry.jl#L197-L213' class='documenter-source'>source</a><br></p>
 <p>&lt;a id='Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T},Integer}} where T&lt;:UInt128' href='#Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T},Integer}} where T&lt;:UInt128'&gt;#</a>
 <strong><code>Random123.set_counter!</code></strong> &mdash; <em>Method</em>.</p>
 <p>Set the counter of a Random123 RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L27' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L27' class='documenter-source'>source</a><br></p>
 <p><a id='Internal'></a></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
+<p><a id='Random123.AESNIKey' href='#Random123.AESNIKey'>#</a>
+<strong><code>Random123.AESNIKey</code></strong> &mdash; <em>Type</em>.</p>
+<p>The key for AESNI.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/aesni.jl#L6' class='documenter-source'>source</a><br></p>
+<p><a id='Random123.AbstractAESNI1x' href='#Random123.AbstractAESNI1x'>#</a>
+<strong><code>Random123.AbstractAESNI1x</code></strong> &mdash; <em>Type</em>.</p>
+<p>Abstract RNG that generates one number at a time and is based on AESNI.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/aesni_common.jl#L50' class='documenter-source'>source</a><br></p>
+<p><a id='Random123.AbstractAESNI4x' href='#Random123.AbstractAESNI4x'>#</a>
+<strong><code>Random123.AbstractAESNI4x</code></strong> &mdash; <em>Type</em>.</p>
+<p>Abstract RNG that generates four numbers at a time and is based on AESNI.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/aesni_common.jl#L52' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.AbstractR123' href='#Random123.AbstractR123'>#</a>
 <strong><code>Random123.AbstractR123</code></strong> &mdash; <em>Type</em>.</p>
 <p>The base abstract type for RNGs in <a href="../../man/random123/#Random123-Family">Random123 Family</a>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L17' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L15' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.R123Generator1x' href='#Random123.R123Generator1x'>#</a>
 <strong><code>Random123.R123Generator1x</code></strong> &mdash; <em>Type</em>.</p>
 <p>RNG that generates one number at a time.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L20' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L18' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.R123Generator2x' href='#Random123.R123Generator2x'>#</a>
 <strong><code>Random123.R123Generator2x</code></strong> &mdash; <em>Type</em>.</p>
 <p>RNG that generates two numbers at a time.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L22' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L20' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.R123Generator4x' href='#Random123.R123Generator4x'>#</a>
 <strong><code>Random123.R123Generator4x</code></strong> &mdash; <em>Type</em>.</p>
 <p>RNG that generates four numbers at a time.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L24' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L22' class='documenter-source'>source</a><br></p>
+<p><a id='Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64},VecElement{UInt64}},Tuple{VecElement{UInt64},VecElement{UInt64}}}' href='#Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64},VecElement{UInt64}},Tuple{VecElement{UInt64},VecElement{UInt64}}}'>#</a>
+<strong><code>Random123._aes_128_assist</code></strong> &mdash; <em>Method</em>.</p>
+<p>Assistant function for AES128. Compiled from the C++ source code:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">R123_STATIC_INLINE</span> <span class="kr">__m128i</span> <span class="n">AES_128_ASSIST</span> <span class="p">(</span><span class="kr">__m128i</span> <span class="n">temp1</span><span class="p">,</span> <span class="kr">__m128i</span> <span class="n">temp2</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="kr">__m128i</span> <span class="n">temp3</span><span class="p">;</span> 
+    <span class="n">temp2</span> <span class="o">=</span> <span class="n">_mm_shuffle_epi32</span> <span class="p">(</span><span class="n">temp2</span> <span class="p">,</span><span class="mh">0xff</span><span class="p">);</span> 
+    <span class="n">temp3</span> <span class="o">=</span> <span class="n">_mm_slli_si128</span> <span class="p">(</span><span class="n">temp1</span><span class="p">,</span> <span class="mh">0x4</span><span class="p">);</span>
+    <span class="n">temp1</span> <span class="o">=</span> <span class="n">_mm_xor_si128</span> <span class="p">(</span><span class="n">temp1</span><span class="p">,</span> <span class="n">temp3</span><span class="p">);</span>
+    <span class="n">temp3</span> <span class="o">=</span> <span class="n">_mm_slli_si128</span> <span class="p">(</span><span class="n">temp3</span><span class="p">,</span> <span class="mh">0x4</span><span class="p">);</span>
+    <span class="n">temp1</span> <span class="o">=</span> <span class="n">_mm_xor_si128</span> <span class="p">(</span><span class="n">temp1</span><span class="p">,</span> <span class="n">temp3</span><span class="p">);</span>
+    <span class="n">temp3</span> <span class="o">=</span> <span class="n">_mm_slli_si128</span> <span class="p">(</span><span class="n">temp3</span><span class="p">,</span> <span class="mh">0x4</span><span class="p">);</span>
+    <span class="n">temp1</span> <span class="o">=</span> <span class="n">_mm_xor_si128</span> <span class="p">(</span><span class="n">temp1</span><span class="p">,</span> <span class="n">temp3</span><span class="p">);</span>
+    <span class="n">temp1</span> <span class="o">=</span> <span class="n">_mm_xor_si128</span> <span class="p">(</span><span class="n">temp1</span><span class="p">,</span> <span class="n">temp2</span><span class="p">);</span> 
+    <span class="k">return</span> <span class="n">temp1</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div>
+
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/aesni.jl#L28-L44' class='documenter-source'>source</a><br></p>
 <p><a id='Random123.random123_r' href='#Random123.random123_r'>#</a>
 <strong><code>Random123.random123_r</code></strong> &mdash; <em>Function</em>.</p>
-<p>Do one iteration and return the a tuple of a Random123 RNG object.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/13da9ad4af120cf57af6cc19986d8c214df6e45f/src/common.jl#L145' class='documenter-source'>source</a><br></p>
+<p>Do one iteration and return the result tuple of a Random123 RNG object.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L151-L153' class='documenter-source'>source</a><br></p>
                 
               
               
@@ -654,7 +740,8 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../mersenne-twisters/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="../mersenne-twisters/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MersenneTwisters" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -669,7 +756,8 @@
         </a>
       
       
-        <a href="../xorshifts/" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="../xorshifts/" class="md-footer__link md-footer__link--next" aria-label="Next: Xorshifts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -704,10 +792,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       

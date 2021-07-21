@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.875de78c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -44,6 +44,8 @@
     
     
       
+
+
     
     
   </head>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -545,8 +551,8 @@
 <li><a href="./#RandomNumbers.WrappedRNG"><code>RandomNumbers.WrappedRNG</code></a></li>
 <li><a href="./#RandomNumbers.gen_seed-Union{Tuple{Type{T}}, Tuple{T}} where T&lt;:Number"><code>RandomNumbers.gen_seed</code></a></li>
 <li><a href="./#RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T"><code>RandomNumbers.output_type</code></a></li>
-<li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float32}}"><code>RandomNumbers.randfloat</code></a></li>
 <li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float64}}"><code>RandomNumbers.randfloat</code></a></li>
+<li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float32}}"><code>RandomNumbers.randfloat</code></a></li>
 <li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float16}}"><code>RandomNumbers.randfloat</code></a></li>
 <li><a href="./#RandomNumbers.seed_type-Tuple{AbstractRNG}"><code>RandomNumbers.seed_type</code></a></li>
 </ul>
@@ -587,14 +593,14 @@
 <li><a href="../random123/#Random123.Random123"><code>Random123</code></a></li>
 <li><a href="../xorshifts/#RandomNumbers.Xorshifts"><code>Xorshifts</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.AbstractRNG' href='#RandomNumbers.AbstractRNG'>#</a>
 <strong><code>RandomNumbers.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">Random</span><span class="o">.</span><span class="n">AbstractRNG</span>
 </code></pre></div>
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/common.jl#L4-L10' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/common.jl#L4-L10' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.WrappedRNG' href='#RandomNumbers.WrappedRNG'>#</a>
 <strong><code>RandomNumbers.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">WrappedRNG</span><span class="p">{</span><span class="kt">R</span><span class="p">,</span> <span class="kt">T1</span><span class="p">,</span> <span class="kt">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">T2</span><span class="p">}</span>
@@ -623,27 +629,27 @@
 <span class="go">Test Passed</span>
 </code></pre></div>
 
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T' href='#RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T'>#</a>
 <strong><code>RandomNumbers.output_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/utils.jl#L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/utils.jl#L26' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float16}}' href='#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float16}}'>#</a>
 <strong><code>RandomNumbers.randfloat</code></strong> &mdash; <em>Method</em>.</p>
 <p>Random number generator for Float16 in [0,1) that samples from  all 15360 float16s in that range.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/randfloat.jl#L62-L64' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/randfloat.jl#L62-L64' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float32}}' href='#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float32}}'>#</a>
 <strong><code>RandomNumbers.randfloat</code></strong> &mdash; <em>Method</em>.</p>
 <p>Random number generator for Float32 in [0,1) that samples from  42*2^23 float32s in [0,1) compared to 2^23 for rand(Float32).</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/randfloat.jl#L3-L5' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/randfloat.jl#L3-L5' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float64}}' href='#RandomNumbers.randfloat-Tuple{Random.AbstractRNG,Type{Float64}}'>#</a>
 <strong><code>RandomNumbers.randfloat</code></strong> &mdash; <em>Method</em>.</p>
 <p>Random number generator for Float64 in [0,1) that samples from  64*2^52 floats compared to 2^52 for rand(Float64).</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/randfloat.jl#L31-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/randfloat.jl#L31-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.seed_type-Tuple{AbstractRNG}' href='#RandomNumbers.seed_type-Tuple{AbstractRNG}'>#</a>
 <strong><code>RandomNumbers.seed_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the default seed type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/utils.jl#L32' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/utils.jl#L32' class='documenter-source'>source</a><br></p>
 <p><a id='Internal'></a></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
@@ -661,7 +667,7 @@
 <span class="mh">0x9ba60fdc</span>
 </code></pre></div>
 
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/a03b66fc843171ca1a6b3bfd56b292578a8dbd7c/src/utils.jl#L5-L22' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6e74016a188f017e00962720eb056723df161984/src/utils.jl#L5-L22' class='documenter-source'>source</a><br></p>
                 
               
               
@@ -680,7 +686,8 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../../man/xorshifts/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="../../man/xorshifts/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Xorshift Family" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -695,7 +702,8 @@
         </a>
       
       
-        <a href="../pcg/" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="../pcg/" class="md-footer__link md-footer__link--next" aria-label="Next: PCG" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -730,10 +738,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       
