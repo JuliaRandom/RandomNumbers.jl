@@ -540,6 +540,7 @@
 <li><a href="./#RandomNumbers.Xorshifts.AbstractXorshift64"><code>RandomNumbers.Xorshifts.AbstractXorshift64</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.AbstractXoshiro128"><code>RandomNumbers.Xorshifts.AbstractXoshiro128</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.AbstractXoshiro256"><code>RandomNumbers.Xorshifts.AbstractXoshiro256</code></a></li>
+<li><a href="./#RandomNumbers.Xorshifts.SplitMix64"><code>RandomNumbers.Xorshifts.SplitMix64</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoroshiro128"><code>RandomNumbers.Xorshifts.Xoroshiro128</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoroshiro128Plus"><code>RandomNumbers.Xorshifts.Xoroshiro128Plus</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoroshiro128Star"><code>RandomNumbers.Xorshifts.Xoroshiro128Star</code></a></li>
@@ -558,7 +559,6 @@
 <li><a href="./#RandomNumbers.Xorshifts.Xoshiro128StarStar"><code>RandomNumbers.Xorshifts.Xoshiro128StarStar</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoshiro256Plus"><code>RandomNumbers.Xorshifts.Xoshiro256Plus</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoshiro256StarStar"><code>RandomNumbers.Xorshifts.Xoshiro256StarStar</code></a></li>
-<li><a href="./#RandomNumbers.Xorshifts.splitmix64-Tuple{UInt64}"><code>RandomNumbers.Xorshifts.splitmix64</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.xorshift_next"><code>RandomNumbers.Xorshifts.xorshift_next</code></a></li>
 </ul>
 <p><a id='Public'></a></p>
@@ -578,135 +578,135 @@
 <li><a href="./#RandomNumbers.Xorshifts.Xoshiro256Plus"><code>Xoshiro256Plus</code></a></li>
 <li><a href="./#RandomNumbers.Xorshifts.Xoshiro256StarStar"><code>Xoshiro256StarStar</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/Xorshifts.jl#L3-L16' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/Xorshifts.jl#L3-L16' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128' href='#RandomNumbers.Xorshifts.Xoroshiro128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoroshiro128</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoroshiro128</span>
 <span class="n">Xoroshiro128</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoroshiro128 RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L76-L84' class='documenter-source'>source</a><br></p>
+<p>Xoroshiro128 RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L77-L85' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128Plus' href='#RandomNumbers.Xorshifts.Xoroshiro128Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoroshiro128Plus</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoroshiro128</span>
 <span class="n">Xoroshiro128Plus</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoroshiro128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L78-L86' class='documenter-source'>source</a><br></p>
+<p>Xoroshiro128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L79-L87' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128Star' href='#RandomNumbers.Xorshifts.Xoroshiro128Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoroshiro128Star</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoroshiro128</span>
 <span class="n">Xoroshiro128Star</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoroshiro128Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L77-L85' class='documenter-source'>source</a><br></p>
+<p>Xoroshiro128Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L78-L86' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro128StarStar' href='#RandomNumbers.Xorshifts.Xoroshiro128StarStar'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro128StarStar</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoroshiro128StarStar</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoroshiro128</span>
 <span class="n">Xoroshiro128StarStar</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoroshiro128StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L79-L87' class='documenter-source'>source</a><br></p>
+<p>Xoroshiro128StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L80-L88' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro64Star' href='#RandomNumbers.Xorshifts.Xoroshiro64Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro64Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoroshiro64Star</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoroshiro64</span>
 <span class="n">Xoroshiro64Star</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoroshiro64Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt32</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt64</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L62-L70' class='documenter-source'>source</a><br></p>
+<p>Xoroshiro64Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt32</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L63-L71' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoroshiro64StarStar' href='#RandomNumbers.Xorshifts.Xoroshiro64StarStar'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoroshiro64StarStar</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoroshiro64StarStar</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoroshiro64</span>
 <span class="n">Xoroshiro64StarStar</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoroshiro64StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt32</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt64</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L63-L71' class='documenter-source'>source</a><br></p>
+<p>Xoroshiro64StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt32</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L64-L72' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift1024' href='#RandomNumbers.Xorshifts.Xorshift1024'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift1024</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift1024</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift1024</span>
 <span class="n">Xorshift1024</span><span class="p">([</span><span class="n">seed</span><span class="o">...</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift1024 RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or several (no more than 16) <code>Integer</code>s which will all be automatically converted to <code>UInt64</code> numbers. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L44-L52' class='documenter-source'>source</a><br></p>
+<p>Xorshift1024 RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L45-L53' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift1024Plus' href='#RandomNumbers.Xorshifts.Xorshift1024Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift1024Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift1024Plus</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift1024</span>
 <span class="n">Xorshift1024Plus</span><span class="p">([</span><span class="n">seed</span><span class="o">...</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift1024Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or several (no more than 16) <code>Integer</code>s which will all be automatically converted to <code>UInt64</code> numbers. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
+<p>Xorshift1024Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L47-L55' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift1024Star' href='#RandomNumbers.Xorshifts.Xorshift1024Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift1024Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift1024Star</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift1024</span>
 <span class="n">Xorshift1024Star</span><span class="p">([</span><span class="n">seed</span><span class="o">...</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift1024Star RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or several (no more than 16) <code>Integer</code>s which will all be automatically converted to <code>UInt64</code> numbers. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L45-L53' class='documenter-source'>source</a><br></p>
+<p>Xorshift1024Star RNG. The <code>seed</code> can be a <code>Tuple</code> of 16 <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L46-L54' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift128' href='#RandomNumbers.Xorshifts.Xorshift128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift128</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift128</span>
 <span class="n">Xorshift128</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift128 RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L27-L35' class='documenter-source'>source</a><br></p>
+<p>Xorshift128 RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L28-L36' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift128Plus' href='#RandomNumbers.Xorshifts.Xorshift128Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift128Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift128Plus</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift128</span>
 <span class="n">Xorshift128Plus</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L29-L37' class='documenter-source'>source</a><br></p>
+<p>Xorshift128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L30-L38' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift128Star' href='#RandomNumbers.Xorshifts.Xorshift128Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift128Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift128Star</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift128</span>
 <span class="n">Xorshift128Star</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift128Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L28-L36' class='documenter-source'>source</a><br></p>
+<p>Xorshift128Star RNG. The <code>seed</code> can be a <code>Tuple</code> of two <code>UInt64</code>s, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L29-L37' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift64' href='#RandomNumbers.Xorshifts.Xorshift64'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift64</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift64</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift64</span>
 <span class="n">Xorshift64</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift64 RNG. The <code>seed</code> will be automatically convert to an <code>UInt64</code> number. A zero seed is not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L12-L19' class='documenter-source'>source</a><br></p>
+<p>Xorshift64 RNG. The <code>seed</code> can be an <code>UInt64</code>, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L13-L21' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xorshift64Star' href='#RandomNumbers.Xorshifts.Xorshift64Star'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xorshift64Star</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xorshift64Star</span> <span class="o">&lt;:</span> <span class="kt">AbstractXorshift64</span>
 <span class="n">Xorshift64Star</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xorshift64Star RNG. The <code>seed</code> will be automatically convert to an <code>UInt64</code> number. A zero seed is not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L13-L20' class='documenter-source'>source</a><br></p>
+<p>Xorshift64Star RNG. The <code>seed</code> can be an <code>UInt64</code>, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L14-L22' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoshiro128Plus' href='#RandomNumbers.Xorshifts.Xoshiro128Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoshiro128Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoshiro128Plus</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoshiro128</span>
 <span class="n">Xoshiro128Plus</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoshiro128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of four <code>UInt32</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L94-L102' class='documenter-source'>source</a><br></p>
+<p>Xoshiro128Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of four <code>UInt32</code>s, a <code>Tuple</code> of two, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L95-L103' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoshiro128StarStar' href='#RandomNumbers.Xorshifts.Xoshiro128StarStar'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoshiro128StarStar</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoshiro128StarStar</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoshiro128</span>
 <span class="n">Xoshiro128StarStar</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
 </code></pre></div>
 
-<p>Xoshiro128StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of four <code>UInt32</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt128</code> number. Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L95-L103' class='documenter-source'>source</a><br></p>
+<p>Xoshiro128StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of four <code>UInt32</code>s, a <code>Tuple</code> of two, or an <code>Integer</code> which will be initialized with <code>SplitMix64</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L96-L104' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoshiro256Plus' href='#RandomNumbers.Xorshifts.Xoshiro256Plus'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoshiro256Plus</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoshiro256Plus</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoshiro256</span>
@@ -714,7 +714,7 @@
 </code></pre></div>
 
 <p>Xoshiro256Plus RNG. The <code>seed</code> can be a <code>Tuple</code> of four <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt64</code> number (and then is initialized with SplitMix64). Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L108-L116' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L109-L117' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.Xoshiro256StarStar' href='#RandomNumbers.Xorshifts.Xoshiro256StarStar'>#</a>
 <strong><code>RandomNumbers.Xorshifts.Xoshiro256StarStar</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">Xoshiro256StarStar</span> <span class="o">&lt;:</span> <span class="kt">AbstractXoshiro256</span>
@@ -722,7 +722,7 @@
 </code></pre></div>
 
 <p>Xoshiro256StarStar RNG. The <code>seed</code> can be a <code>Tuple</code> of four <code>UInt64</code>s, or an <code>Integer</code> which will be automatically convert to an <code>UInt64</code> number (and then is initialized with SplitMix64). Zero seeds are not acceptable.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L109-L117' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L110-L118' class='documenter-source'>source</a><br></p>
 <p><a id='Internal'></a></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
@@ -732,57 +732,61 @@
 </code></pre></div>
 
 <p>The base abstract type for <code>Xoroshiro128</code>, <code>Xoroshiro128Star</code>, <code>Xoroshiro128Plus</code> and <code>Xoroshiro128StarStar</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xoroshiro128.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xoroshiro128.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXoroshiro64' href='#RandomNumbers.Xorshifts.AbstractXoroshiro64'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXoroshiro64</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractXoroshiro64</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt32</span><span class="p">}</span>
 </code></pre></div>
 
 <p>The base abstract type for <code>Xoroshiro64Star</code> and <code>Xoroshiro64StarStar</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xoroshiro64.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xoroshiro64.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXorshift1024' href='#RandomNumbers.Xorshifts.AbstractXorshift1024'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXorshift1024</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractXorshift1024</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
 </code></pre></div>
 
 <p>The base abstract type for <code>Xorshift1024</code>, <code>Xorshift1024Star</code> and <code>Xorshift1024Plus</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xorshift1024.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xorshift1024.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXorshift128' href='#RandomNumbers.Xorshifts.AbstractXorshift128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXorshift128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractXorshift128</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
 </code></pre></div>
 
 <p>The base abstract type for <code>Xorshift128</code>, <code>Xorshift128Star</code> and <code>Xorshift128Plus</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xorshift128.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xorshift128.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXorshift64' href='#RandomNumbers.Xorshifts.AbstractXorshift64'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXorshift64</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractXorshift64</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
 </code></pre></div>
 
 <p>The base abstract type for <code>Xorshift64</code> and <code>Xorshift64Star</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xorshift64.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xorshift64.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXoshiro128' href='#RandomNumbers.Xorshifts.AbstractXoshiro128'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXoshiro128</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractXoshiro128</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt32</span><span class="p">}</span>
 </code></pre></div>
 
 <p>The base abstract type for <code>Xoshiro128Plus</code> and <code>Xoshiro128StarStar</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xoshiro128.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xoshiro128.jl#L5-L11' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.AbstractXoshiro256' href='#RandomNumbers.Xorshifts.AbstractXoshiro256'>#</a>
 <strong><code>RandomNumbers.Xorshifts.AbstractXoshiro256</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractXoshiro256</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
 </code></pre></div>
 
 <p>The base abstract type for <code>Xoshiro256Plus</code> and <code>Xoshiro256StarStar</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/xoshiro256.jl#L5-L11' class='documenter-source'>source</a><br></p>
-<p><a id='RandomNumbers.Xorshifts.splitmix64-Tuple{UInt64}' href='#RandomNumbers.Xorshifts.splitmix64-Tuple{UInt64}'>#</a>
-<strong><code>RandomNumbers.Xorshifts.splitmix64</code></strong> &mdash; <em>Method</em>.</p>
-<p>SplitMix64: only for initializing a random seed.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/common.jl#L4-L6' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/xoshiro256.jl#L5-L11' class='documenter-source'>source</a><br></p>
+<p><a id='RandomNumbers.Xorshifts.SplitMix64' href='#RandomNumbers.Xorshifts.SplitMix64'>#</a>
+<strong><code>RandomNumbers.Xorshifts.SplitMix64</code></strong> &mdash; <em>Type</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">SplitMix64</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">UInt64</span><span class="p">}</span>
+<span class="n">SplitMix64</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Used for initializing a random seed.</p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/splitmix64.jl#L6-L13' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.Xorshifts.xorshift_next' href='#RandomNumbers.Xorshifts.xorshift_next'>#</a>
 <strong><code>RandomNumbers.Xorshifts.xorshift_next</code></strong> &mdash; <em>Function</em>.</p>
 <p>Do one iteration and get the current value of a Xorshift RNG object.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/9b988bbac9841cdb42e64c8f391a2a0b95696f30/src/Xorshifts/docs.jl#L1' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/6096df3ec1259c1f5869298294e1397a6d9542d9/src/Xorshifts/docs.jl#L1' class='documenter-source'>source</a><br></p>
                 
               
               

@@ -564,7 +564,7 @@
 <span class="go">PCGStateSetseq{UInt64,Val{:XSH_RR},UInt32}(0xfc77de2cd901ff85, 0x0000000000e99763)</span>
 </code></pre></div>
 
-<p><a href="../../lib/pcg/#RandomNumbers.PCG.bounded_rand-Union{Tuple{OutputType}, Tuple{MethodType}, Tuple{StateType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType},OutputType}} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:XSH_RS}, Val{:XSH_RR}, Val{:RXS_M_XS}, Val{:XSL_RR}, Val{:XSL_RR_RR}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
+<p><a href="../../lib/pcg/#RandomNumbers.PCG.bounded_rand-Union{Tuple{OutputType}, Tuple{MethodType}, Tuple{StateType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType, MethodType, OutputType}, OutputType}} where {StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}, MethodType&lt;:Union{Val{:XSH_RS}, Val{:XSH_RR}, Val{:RXS_M_XS}, Val{:XSL_RR}, Val{:XSL_RR_RR}}, OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}}"><code>bounded_rand</code></a> is provided by this module, in which the bound is must an integer in the output type:</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">julia&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">PCGStateOneseq</span><span class="p">(</span><span class="mi">1234567</span><span class="p">)</span>
 <span class="go">PCGStateOneseq{UInt128,Val{:XSH_RS},UInt64}(0xa10d40ffc2b1e573e589b22b2450d1fd)</span>
 
@@ -578,7 +578,7 @@
 <span class="go"> 0x000000000000002b</span>
 </code></pre></div>
 
-<p>PCG also has an <a href="../../lib/pcg/#RandomNumbers.PCG.advance!-Union{Tuple{StateType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType,MethodType,OutputType} where OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8} where MethodType&lt;:Union{Val{:XSH_RS}, Val{:XSH_RR}, Val{:RXS_M_XS}, Val{:XSL_RR}, Val{:XSL_RR_RR}},Integer}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>advance!</code></a> function, used to advance the state of a PCG instance.</p>
+<p>PCG also has an <a href="../../lib/pcg/#RandomNumbers.PCG.advance!-Union{Tuple{StateType}, Tuple{RandomNumbers.PCG.AbstractPCG{StateType, MethodType, OutputType} where {MethodType&lt;:Union{Val{:XSH_RS}, Val{:XSH_RR}, Val{:RXS_M_XS}, Val{:XSL_RR}, Val{:XSL_RR_RR}}, OutputType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}}, Integer}} where StateType&lt;:Union{UInt128, UInt16, UInt32, UInt64, UInt8}"><code>advance!</code></a> function, used to advance the state of a PCG instance.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">julia&gt;</span> <span class="k">import</span> <span class="n">Random</span>
 
 <span class="gp">julia&gt;</span> <span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1234567</span><span class="p">);</span>

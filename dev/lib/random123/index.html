@@ -549,9 +549,9 @@
 <li><a href="./#Random123.R123Generator4x"><code>Random123.R123Generator4x</code></a></li>
 <li><a href="./#Random123.Threefry2x"><code>Random123.Threefry2x</code></a></li>
 <li><a href="./#Random123.Threefry4x"><code>Random123.Threefry4x</code></a></li>
-<li><a href="./#Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64},VecElement{UInt64}},Tuple{VecElement{UInt64},VecElement{UInt64}}}"><code>Random123._aes_128_assist</code></a></li>
+<li><a href="./#Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64}, VecElement{UInt64}}, Tuple{VecElement{UInt64}, VecElement{UInt64}}}"><code>Random123._aes_128_assist</code></a></li>
 <li><a href="./#Random123.random123_r"><code>Random123.random123_r</code></a></li>
-<li><a href="./#Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T},Integer}} where T&lt;:UInt128"><code>Random123.set_counter!</code></a></li>
+<li><a href="./#Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T}, Integer}} where T&lt;:UInt128"><code>Random123.set_counter!</code></a></li>
 </ul>
 <p><a id='Public'></a></p>
 <p><a id='Public-1'></a></p>
@@ -665,7 +665,7 @@
 <p><code>seed</code> is a <code>Tuple</code> of four <code>Integer</code>s which will all be automatically converted to <code>T</code>.</p>
 <p><code>R</code> denotes to the Rounds which must be at least 1 and no more than 32. With 20 rounds (by default), it has a considerable safety margin over the minimum number of rounds with no known statistical flaws, but still has excellent performance.</p>
 <p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/threefry.jl#L197-L213' class='documenter-source'>source</a><br></p>
-<p>&lt;a id='Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T},Integer}} where T&lt;:UInt128' href='#Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T},Integer}} where T&lt;:UInt128'&gt;#</a>
+<p>&lt;a id='Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T}, Integer}} where T&lt;:UInt128' href='#Random123.set_counter!-Union{Tuple{T}, Tuple{Random123.R123Generator1x{T}, Integer}} where T&lt;:UInt128'&gt;#</a>
 <strong><code>Random123.set_counter!</code></strong> &mdash; <em>Method</em>.</p>
 <p>Set the counter of a Random123 RNG.</p>
 <p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L27' class='documenter-source'>source</a><br></p>
@@ -700,7 +700,7 @@
 <strong><code>Random123.R123Generator4x</code></strong> &mdash; <em>Type</em>.</p>
 <p>RNG that generates four numbers at a time.</p>
 <p><a target='_blank' href='https://github.com/JuliaRandom/Random123.jl/blob/840c556723fd003976172d16280fc6f2e6d31e19/src/common.jl#L22' class='documenter-source'>source</a><br></p>
-<p><a id='Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64},VecElement{UInt64}},Tuple{VecElement{UInt64},VecElement{UInt64}}}' href='#Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64},VecElement{UInt64}},Tuple{VecElement{UInt64},VecElement{UInt64}}}'>#</a>
+<p><a id='Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64}, VecElement{UInt64}}, Tuple{VecElement{UInt64}, VecElement{UInt64}}}' href='#Random123._aes_128_assist-Tuple{Tuple{VecElement{UInt64}, VecElement{UInt64}}, Tuple{VecElement{UInt64}, VecElement{UInt64}}}'>#</a>
 <strong><code>Random123._aes_128_assist</code></strong> &mdash; <em>Method</em>.</p>
 <p>Assistant function for AES128. Compiled from the C++ source code:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">R123_STATIC_INLINE</span> <span class="kr">__m128i</span> <span class="n">AES_128_ASSIST</span> <span class="p">(</span><span class="kr">__m128i</span> <span class="n">temp1</span><span class="p">,</span> <span class="kr">__m128i</span> <span class="n">temp2</span><span class="p">)</span> <span class="p">{</span> 
