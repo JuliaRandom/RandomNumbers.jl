@@ -16,14 +16,14 @@ for star in (false, true)
     @eval begin
         mutable struct $rng_name <: AbstractXorshift64
             x::UInt64
-            function $rng_name(seed::UInt64=gen_seed(UInt64))
-                r = new(0)
-                seed!(r, seed)
-                r
-            end
         end
 
-        $rng_name(seed::Integer) = $rng_name(seed % UInt64)
+        function $rng_name(seed::Integer=gen_seed(UInt64))
+            r = $rng_name(zero(UInt64))
+            seed = init_seed(seed, UInt64)
+            seed!(r, seed)
+            r
+        end
 
         @inline function xorshift_next(r::$rng_name)
             r.x ⊻= r.x << 18

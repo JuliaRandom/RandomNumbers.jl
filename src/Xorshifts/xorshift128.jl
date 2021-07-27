@@ -21,14 +21,15 @@ for (star, plus) in (
         mutable struct $rng_name <: AbstractXorshift128
             x::UInt64
             y::UInt64
-            function $rng_name(seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
-                r = new(0, 0)
-                seed!(r, seed)
-                r
-            end
         end
 
-        $rng_name(seed::Integer) = $rng_name(split_uint(seed % UInt128))
+        function $rng_name(seed::NTuple{2, UInt64}=gen_seed(UInt64, 2))
+            r = $rng_name(zero(UInt64), zero(UInt64))
+            seed!(r, seed)
+            r
+        end
+
+        $rng_name(seed::Integer) = $rng_name(init_seed(seed, UInt64, 2))
 
         @inline function xorshift_next(r::$rng_name)
             t = r.x ⊻ r.x << 23

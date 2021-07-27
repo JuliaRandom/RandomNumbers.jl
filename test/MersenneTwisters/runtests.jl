@@ -1,11 +1,12 @@
 using Test
 
+if !@isdefined RandomNumbers
+    include("../common.jl")
+end
+
 @testset "MersenneTwisters" begin
 
     using RandomNumbers.MersenneTwisters
-    if !@isdefined RandomNumbers
-        include("../common.jl")
-    end
 
     @info "Testing MersenneTwisters"
     stdout_ = stdout

@@ -22,14 +22,16 @@ for (plus, starstar) in (
             y::UInt64
             z::UInt64
             w::UInt64
-            function $rng_name(seed::NTuple{4, UInt64}=gen_seed(UInt64, 4))
-                r = new(0, 0, 0, 0)
-                seed!(r, seed)
-                r
-            end
         end
 
-        $rng_name(seed::Integer) = $rng_name(init_seed(seed % UInt64))
+        function $rng_name(seed::NTuple{4, UInt64}=gen_seed(UInt64, 4))
+            o = zero(UInt64)
+            r = $rng_name(o, o, o, o)
+            seed!(r, seed)
+            r
+        end
+
+        $rng_name(seed::Integer) = $rng_name(init_seed(seed, UInt64, 4))
 
         @inline function xorshift_next(r::$rng_name)
             p = $(plus ? :(r.x + r.w)

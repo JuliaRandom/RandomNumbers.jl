@@ -18,6 +18,8 @@ module Xorshifts
 
 include("common.jl")
 
+include("splitmix64.jl")
+
 include("xorshift64.jl")
 
 include("xorshift128.jl")

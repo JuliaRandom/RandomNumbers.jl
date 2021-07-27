@@ -20,14 +20,15 @@ for (star, starstar) in (
         mutable struct $rng_name <: AbstractXoroshiro64
             x::UInt32
             y::UInt32
-            function $rng_name(seed::NTuple{2, UInt32}=gen_seed(UInt32, 2))
-                r = new(0, 0)
-                seed!(r, seed)
-                r
-            end
         end
 
-        $rng_name(seed::Integer) = $rng_name(split_uint(seed % UInt64))
+        function $rng_name(seed::NTuple{2, UInt32}=gen_seed(UInt32, 2))
+            r = $rng_name(zero(UInt32), zero(UInt32))
+            seed!(r, seed)
+            r
+        end
+
+        $rng_name(seed::Integer) = $rng_name(init_seed(seed, UInt32, 2))
 
         @inline function xorshift_next(r::$rng_name)
             p = r.x * 0x9E3779BB

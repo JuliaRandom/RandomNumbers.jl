@@ -118,5 +118,4 @@ end
     for i in 1:10   
         @test isapprox(H[i]/N,2.0^-i,atol=5e-4)
     end
-    println(H)
 end

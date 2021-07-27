@@ -22,14 +22,16 @@ for (plus, starstar) in (
             y::UInt32
             z::UInt32
             w::UInt32
-            function $rng_name(seed::NTuple{4, UInt32}=gen_seed(UInt32, 4))
-                r = new(0, 0, 0, 0)
-                seed!(r, seed)
-                r
-            end
         end
 
-        $rng_name(seed::Integer) = $rng_name(split_uint(seed % UInt128, UInt32))
+        function $rng_name(seed::NTuple{4, UInt32}=gen_seed(UInt32, 4))
+            o = zero(UInt32)
+            r = $rng_name(o, o, o, o)
+            seed!(r, seed)
+            r
+        end
+
+        $rng_name(seed::Integer) = $rng_name(init_seed(seed, UInt32, 4))
 
         @inline function xorshift_next(r::$rng_name)
             p = $(plus ? :(r.x + r.w)

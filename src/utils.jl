@@ -21,7 +21,7 @@ julia> RandomNumbers.gen_seed(UInt32)
 ```
 """
 gen_seed(::Type{T}) where {T<:Number} = rand(RandomDevice(), T)
-gen_seed(::Type{T}, n) where {T<:Number} = tuple(rand(RandomDevice(), T, n)...)
+gen_seed(::Type{T}, n) where {T<:Number} = Tuple(rand(RandomDevice(), T, n))
 
 "Get the original output type of a RNG."
 @inline output_type(::AbstractRNG{T}) where {T} = T

@@ -36,21 +36,21 @@ for (star, plus) in (
             s14::UInt64
             s15::UInt64
             p::Int
-            function $rng_name(seed::NTuple{16, UInt64}=gen_seed(UInt64, 16))
-                r = new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                seed!(r, seed)
-                r
-            end
         end
-    end # If no another @eval: type definition not allowed inside a local scope. (It's a bug of julia)
-    @eval begin
-        function $rng_name(seed::Integer...)
-            l = length(seed)
-            @assert 0 ≤ l ≤ 16
-            if l == 0
-                return $rng_name(gen_seed(UInt64, 16))
-            end
-            $rng_name(map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
+
+        function $rng_name(seed::NTuple{16, UInt64}=gen_seed(UInt64, 16))
+            o = zero(UInt64)
+            r = $rng_name(
+                o, o, o, o, o, o, o, o,
+                o, o, o, o, o, o, o, o,
+                zero(Int)
+            )
+            seed!(r, seed)
+            r
+        end
+
+        function $rng_name(seed::Integer)
+            $rng_name(init_seed(seed, UInt64, 16))
         end
 
         @inline function xorshift_next(r::$rng_name)

@@ -7,7 +7,8 @@ $r <: AbstractXorshift64
 $r([seed])
 ```
 
-$r RNG. The `seed` will be automatically convert to an `UInt64` number. A zero seed is not acceptable.
+$r RNG. The `seed` can be an `UInt64`,
+or an `Integer` which will be initialized with `SplitMix64`.
 """
     @doc doc_xorshift64("Xorshift64") Xorshift64
     @doc doc_xorshift64("Xorshift64Star") Xorshift64Star
@@ -21,8 +22,8 @@ $r <: AbstractXorshift128
 $r([seed])
 ```
 
-$r RNG. The `seed` can be a `Tuple` of two `UInt64`s, or an `Integer` which will be automatically convert to
-an `UInt128` number. Zero seeds are not acceptable.
+$r RNG. The `seed` can be a `Tuple` of two `UInt64`s,
+or an `Integer` which will be initialized with `SplitMix64`.
 """
     @doc doc_xorshift128("Xorshift128") Xorshift128
     @doc doc_xorshift128("Xorshift128Star") Xorshift128Star
@@ -38,8 +39,8 @@ $r <: AbstractXorshift1024
 $r([seed...])
 ```
 
-$r RNG. The `seed` can be a `Tuple` of 16 `UInt64`s, or several (no more than 16) `Integer`s which will all
-be automatically converted to `UInt64` numbers. Zero seeds are not acceptable.
+$r RNG. The `seed` can be a `Tuple` of 16 `UInt64`s,
+or an `Integer` which will be initialized with `SplitMix64`.
 """
     @doc doc_xorshift1024("Xorshift1024") Xorshift1024
     @doc doc_xorshift1024("Xorshift1024Star") Xorshift1024Star
@@ -56,8 +57,8 @@ $r <: AbstractXoroshiro64
 $r([seed])
 ```
 
-$r RNG. The `seed` can be a `Tuple` of two `UInt32`s, or an `Integer` which will be automatically convert to
-an `UInt64` number. Zero seeds are not acceptable.
+$r RNG. The `seed` can be a `Tuple` of two `UInt32`s,
+or an `Integer` which will be initialized with `SplitMix64`.
 """
     @doc doc_xoroshiro64("Xoroshiro64Star") Xoroshiro64Star
     @doc doc_xoroshiro64("Xoroshiro64StarStar") Xoroshiro64StarStar
@@ -70,8 +71,8 @@ $r <: AbstractXoroshiro128
 $r([seed])
 ```
 
-$r RNG. The `seed` can be a `Tuple` of two `UInt64`s, or an `Integer` which will be automatically convert to
-an `UInt128` number. Zero seeds are not acceptable.
+$r RNG. The `seed` can be a `Tuple` of two `UInt64`s,
+or an `Integer` which will be initialized with `SplitMix64`.
 """
     @doc doc_xoroshiro128("Xoroshiro128") Xoroshiro128
     @doc doc_xoroshiro128("Xoroshiro128Star") Xoroshiro128Star
@@ -88,8 +89,8 @@ $r <: AbstractXoshiro128
 $r([seed])
 ```
 
-$r RNG. The `seed` can be a `Tuple` of four `UInt32`s, or an `Integer` which will be automatically convert to
-an `UInt128` number. Zero seeds are not acceptable.
+$r RNG. The `seed` can be a `Tuple` of four `UInt32`s, a `Tuple` of two,
+or an `Integer` which will be initialized with `SplitMix64`.
 """
     @doc doc_xoshiro128("Xoshiro128Plus") Xoshiro128Plus
     @doc doc_xoshiro128("Xoshiro128StarStar") Xoshiro128StarStar

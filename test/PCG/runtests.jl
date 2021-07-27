@@ -1,11 +1,12 @@
 using Test
 
+if !@isdefined RandomNumbers
+    include("../common.jl")
+end
+
 @testset "PCG" begin
 
     using RandomNumbers.PCG
-    if !@isdefined RandomNumbers
-        include("../common.jl")
-    end
 
     @info "Testing PCG"
     stdout_ = stdout
