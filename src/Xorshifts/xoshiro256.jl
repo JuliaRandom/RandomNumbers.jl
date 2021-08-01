@@ -63,7 +63,7 @@ copy(src::T) where T <: AbstractXoshiro256 = copyto!(T(), src)
 
 ==(r1::T, r2::T) where T <: AbstractXoshiro256 = r1.x == r2.x && r1.y == r2.y && r1.z == r2.z && r1.w == r2.w
 
-seed!(r::AbstractXoshiro256, seed::Integer) = seed!(r, init_seed(seed % UInt64))
+seed!(r::AbstractXoshiro256, seed::Integer) = seed!(r, init_seed(seed, UInt64))
 function seed!(r::AbstractXoshiro256, seed::NTuple{4, UInt64}=gen_seed(UInt64, 4))
     all(==(0), seed) && error("0 cannot be the seed")
     r.x = seed[1]
