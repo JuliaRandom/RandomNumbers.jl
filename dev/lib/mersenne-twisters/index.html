@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.1">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -536,8 +536,8 @@
 <li><a href="./#RandomNumbers.MersenneTwisters.MT19937"><code>RandomNumbers.MersenneTwisters.MT19937</code></a></li>
 <li><a href="./#RandomNumbers.MersenneTwisters.MersenneTwister"><code>RandomNumbers.MersenneTwisters.MersenneTwister</code></a></li>
 <li><a href="./#RandomNumbers.MersenneTwisters.mt_get-Tuple{RandomNumbers.MersenneTwisters.MT19937}"><code>RandomNumbers.MersenneTwisters.mt_get</code></a></li>
-<li><a href="./#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, NTuple{624, UInt32}}"><code>RandomNumbers.MersenneTwisters.mt_set!</code></a></li>
 <li><a href="./#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, UInt32}"><code>RandomNumbers.MersenneTwisters.mt_set!</code></a></li>
+<li><a href="./#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, NTuple{624, UInt32}}"><code>RandomNumbers.MersenneTwisters.mt_set!</code></a></li>
 </ul>
 <p><a id='Public'></a></p>
 <p><a id='Public-1'></a></p>
@@ -549,7 +549,7 @@
 <ul>
 <li><a href="./#RandomNumbers.MersenneTwisters.MT19937"><code>MT19937</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/MersenneTwisters/MersenneTwisters.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/MersenneTwisters/MersenneTwisters.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.MT19937' href='#RandomNumbers.MersenneTwisters.MT19937'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.MT19937</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">MT19937</span> <span class="o">&lt;:</span> <span class="kt">MersenneTwister</span><span class="p">{</span><span class="kt">UInt32</span><span class="p">}</span>
@@ -557,7 +557,7 @@
 </code></pre></div>
 
 <p>MT19937 RNG. The <code>seed</code> is a <code>Tuple</code> of 624 <code>UInt32</code> numbers, or an <code>Integer</code> which will be automatically convert to an <code>UInt32</code> number.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/MersenneTwisters/bases.jl#L17-L25' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/MersenneTwisters/bases.jl#L17-L25' class='documenter-source'>source</a><br></p>
 <p><a id='Internal'></a></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
@@ -567,19 +567,19 @@
 </code></pre></div>
 
 <p>The base type of Mersenne Twisters.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/MersenneTwisters/bases.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/MersenneTwisters/bases.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.mt_get-Tuple{RandomNumbers.MersenneTwisters.MT19937}' href='#RandomNumbers.MersenneTwisters.mt_get-Tuple{RandomNumbers.MersenneTwisters.MT19937}'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.mt_get</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get a random <code>UInt32</code> number from a <code>MT19937</code> object.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/MersenneTwisters/bases.jl#L57' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/MersenneTwisters/bases.jl#L57' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, NTuple{624, UInt32}}' href='#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, NTuple{624, UInt32}}'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
 <p>Set up a <code>MT19937</code> RNG object using a <code>Tuple</code> of 624 <code>UInt32</code> numbers.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/MersenneTwisters/bases.jl#L37' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/MersenneTwisters/bases.jl#L37' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, UInt32}' href='#RandomNumbers.MersenneTwisters.mt_set!-Tuple{RandomNumbers.MersenneTwisters.MT19937, UInt32}'>#</a>
 <strong><code>RandomNumbers.MersenneTwisters.mt_set!</code></strong> &mdash; <em>Method</em>.</p>
 <p>Set up a <code>MT19937</code> RNG object using an <code>UInt32</code> number.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/MersenneTwisters/bases.jl#L46' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/MersenneTwisters/bases.jl#L46' class='documenter-source'>source</a><br></p>
                 
               
               
@@ -650,10 +650,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       

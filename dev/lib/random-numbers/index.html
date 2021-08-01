@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.1">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -551,9 +551,9 @@
 <li><a href="./#RandomNumbers.WrappedRNG"><code>RandomNumbers.WrappedRNG</code></a></li>
 <li><a href="./#RandomNumbers.gen_seed-Union{Tuple{Type{T}}, Tuple{T}} where T&lt;:Number"><code>RandomNumbers.gen_seed</code></a></li>
 <li><a href="./#RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T"><code>RandomNumbers.output_type</code></a></li>
-<li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float32}}"><code>RandomNumbers.randfloat</code></a></li>
 <li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float16}}"><code>RandomNumbers.randfloat</code></a></li>
 <li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float64}}"><code>RandomNumbers.randfloat</code></a></li>
+<li><a href="./#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float32}}"><code>RandomNumbers.randfloat</code></a></li>
 <li><a href="./#RandomNumbers.seed_type-Tuple{AbstractRNG}"><code>RandomNumbers.seed_type</code></a></li>
 </ul>
 <p><a id='common-functions'></a></p>
@@ -593,14 +593,14 @@
 <li><a href="../random123/#Random123.Random123"><code>Random123</code></a></li>
 <li><a href="../xorshifts/#RandomNumbers.Xorshifts"><code>Xorshifts</code></a></li>
 </ul>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/RandomNumbers.jl#L3-L15' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.AbstractRNG' href='#RandomNumbers.AbstractRNG'>#</a>
 <strong><code>RandomNumbers.AbstractRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">Random</span><span class="o">.</span><span class="n">AbstractRNG</span>
 </code></pre></div>
 
 <p>The abstract type of Random Number Generators. T indicates the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/common.jl#L4-L10' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/common.jl#L4-L10' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.WrappedRNG' href='#RandomNumbers.WrappedRNG'>#</a>
 <strong><code>RandomNumbers.WrappedRNG</code></strong> &mdash; <em>Type</em>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">WrappedRNG</span><span class="p">{</span><span class="kt">R</span><span class="p">,</span> <span class="kt">T1</span><span class="p">,</span> <span class="kt">T2</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="kt">AbstractRNG</span><span class="p">{</span><span class="kt">T2</span><span class="p">}</span>
@@ -629,27 +629,27 @@
 <span class="go">Test Passed</span>
 </code></pre></div>
 
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/wrapped_rng.jl#L4-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T' href='#RandomNumbers.output_type-Union{Tuple{AbstractRNG{T}}, Tuple{T}} where T'>#</a>
 <strong><code>RandomNumbers.output_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the original output type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/utils.jl#L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/utils.jl#L26' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float16}}' href='#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float16}}'>#</a>
 <strong><code>RandomNumbers.randfloat</code></strong> &mdash; <em>Method</em>.</p>
 <p>Random number generator for Float16 in [0,1) that samples from  all 15360 float16s in that range.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/randfloat.jl#L62-L64' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/randfloat.jl#L62-L64' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float32}}' href='#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float32}}'>#</a>
 <strong><code>RandomNumbers.randfloat</code></strong> &mdash; <em>Method</em>.</p>
 <p>Random number generator for Float32 in [0,1) that samples from  42*2^23 float32s in [0,1) compared to 2^23 for rand(Float32).</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/randfloat.jl#L3-L5' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/randfloat.jl#L3-L5' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float64}}' href='#RandomNumbers.randfloat-Tuple{Random.AbstractRNG, Type{Float64}}'>#</a>
 <strong><code>RandomNumbers.randfloat</code></strong> &mdash; <em>Method</em>.</p>
 <p>Random number generator for Float64 in [0,1) that samples from  64*2^52 floats compared to 2^52 for rand(Float64).</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/randfloat.jl#L31-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/randfloat.jl#L31-L33' class='documenter-source'>source</a><br></p>
 <p><a id='RandomNumbers.seed_type-Tuple{AbstractRNG}' href='#RandomNumbers.seed_type-Tuple{AbstractRNG}'>#</a>
 <strong><code>RandomNumbers.seed_type</code></strong> &mdash; <em>Method</em>.</p>
 <p>Get the default seed type of a RNG.</p>
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/utils.jl#L32' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/utils.jl#L32' class='documenter-source'>source</a><br></p>
 <p><a id='Internal'></a></p>
 <p><a id='Internal-1'></a></p>
 <h2 id="internal">Internal</h2>
@@ -667,7 +667,7 @@
 <span class="mh">0x9ba60fdc</span>
 </code></pre></div>
 
-<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/8a3d9dd0b713abde9c3b7a7987c684888103d887/src/utils.jl#L5-L22' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaRandom/RandomNumbers.jl/blob/edf28776a8b64c95fa7a9b7109d738eddd586d1d/src/utils.jl#L5-L22' class='documenter-source'>source</a><br></p>
                 
               
               
@@ -738,10 +738,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
       
