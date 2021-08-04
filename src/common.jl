@@ -14,7 +14,7 @@ const BitTypes = Union{Bool, UInt8, UInt16, UInt32, UInt64, UInt128, Int8, Int16
 
 # For compatibility with functions in Random stdlib.
 rng_native_52(::AbstractRNG) = UInt64
-rand(rng::AbstractRNG, ::Random.SamplerType{T}) where {T} = rand(rng, T)
+rand(rng::AbstractRNG, ::Random.SamplerType{T}) where {T<:BitTypes} = rand(rng, T)
 
 # see https://github.com/JuliaRandom/RandomNumbers.jl/issues/8
 # TODO: find a better approach.
