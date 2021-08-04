@@ -100,14 +100,13 @@ function seed!(r::AbstractXorshift1024, seed::Integer...)
     l = length(seed)
     @assert 0 ≤ l ≤ 16 
     if l == 0
-        seed!(r, gen_seed(UInt64, 16))
+        return seed!(r, gen_seed(UInt64, 16))
     end
-    if 0 < l < 16
-        warn("Seed sequencing for Xorshift1024 family is unconfirmed. Please use 0 or 16 UInt64 numbers" *
-             " for the seed.")
+    seed = [x % UInt64 for x in seed]
+    while length(seed) < 16
+        push!(seed, splitmix64(seed[end]))
     end
-    # TODO: this is really awful..
-    seed!(r, map(x -> x % UInt64, (seed..., [i for i in l+1:16]...)))
+    seed!(r, Tuple(seed))
 end
 
 @inline rand(r::AbstractXorshift1024, ::Type{UInt64}) = xorshift_next(r)

@@ -52,6 +52,7 @@ end
 
         x = rng_type()
         x = rng_type(1234)
+        seed!(x, 2345)
         if rng_type == Xorshifts.SplitMix64
             rng_type(0)
         else
