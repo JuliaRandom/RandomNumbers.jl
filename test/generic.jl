@@ -26,5 +26,4 @@ using Test
     @test randperm(r, 10) == [2, 10, 1, 6, 4, 3, 7, 8, 9, 5]
     @test randcycle(r, 10) == [8, 4, 5, 1, 10, 2, 3, 9, 7, 6]
     @test rand(r, ComplexF64) == 0.9500729643158807 + 0.9280185794620359im
-    @test rand(r, Char) == '\Ufe68e'
 end
