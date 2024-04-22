@@ -2,7 +2,7 @@
 *Random number generators for the Julia language.*
 
 Build Status
-[![Build Status](https://github.com/JuliaRandom/RandomNumbers.jl/workflows/CI%20Build/badge.svg?branch=master)](https://github.com/JuliaRandom/RandomNumbers.jl/actions)
+[![Build Status](https://github.com/JuliaRandom/RandomNumbers.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaRandom/RandomNumbers.jl/actions/workflows/ci.yml)
 
 Code Coverage:
 [![codecov.io](https://codecov.io/github/JuliaRandom/RandomNumbers.jl/coverage.svg?branch=master)](https://codecov.io/github/JuliaRandom/RandomNumbers.jl?branch=master)
