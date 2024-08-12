@@ -43,7 +43,6 @@ There are four RNG families in this package:
     A class of RNG based on *exclusive or* and *bit shift*.
 
 Note that `Random123` is now made a separate package as [Random123.jl](https://github.com/JuliaRandom/Random123.jl).
-You can still use your old code with `RandomNumbers.Random123` as long as you import `Random123` manually.
 
 ## Usage
 
